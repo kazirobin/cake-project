@@ -1,9 +1,9 @@
+// src/hooks/use-mobile.js
 import * as React from "react"
 
 const MOBILE_BREAKPOINT = 768
 
-// Change this from useIsMobile to useMobile
-export function useMobile() {
+export function useMobile() {  // Make sure it's named useMobile, not useIsMobile
   const [isMobile, setIsMobile] = React.useState(undefined)
 
   React.useEffect(() => {
@@ -13,7 +13,7 @@ export function useMobile() {
     }
     mql.addEventListener("change", onChange)
     setIsMobile(window.innerWidth < MOBILE_BREAKPOINT)
-    return () => mql.removeEventListener("change", onChange);
+    return () => mql.removeEventListener("change", onChange)
   }, [])
 
   return !!isMobile
