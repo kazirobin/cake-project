@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router";
 import { Facebook, Instagram, Twitter, Youtube } from "lucide-react";
+import { useTheme } from "@/components/Theme/theme-provider";
 
 const socialLinks = [
   { icon: Facebook, href: "#", color: "hover:text-blue-600" },
@@ -10,13 +11,19 @@ const socialLinks = [
 ];
 
 const LogoSection = () => {
+  const { theme } = useTheme();
+  
+  const logoSrc = theme === 'dark'
+    ? "https://media.ugcakes.com/assets/logo/long-logo-dark-sd.webp"
+    : "https://i.ibb.co/nNjY5t0b/long-logo-sd.webp";
+
   return (
     <div className="lg:col-span-3 space-y-4">
       <Link to="/" className="inline-block">
         <img
-          src="https://i.ibb.co/nNjY5t0b/long-logo-sd.webp"
+          src={logoSrc}
           alt="UG Cakes"
-          className="h-12 w-auto dark:brightness-90"
+          className="h-12 w-auto"
         />
       </Link>
       <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">

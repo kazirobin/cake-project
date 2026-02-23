@@ -5,12 +5,21 @@ import { useTheme } from "@/components/Theme/theme-provider";
 
 const ThemeToggle = () => {
   const { theme, setTheme } = useTheme();
+  
+  // Log current theme on render
+  console.log("ThemeToggle rendered, current theme:", theme);
+
+  const handleThemeToggle = () => {
+    const newTheme = theme === "dark" ? "light" : "dark";
+    console.log("Toggling theme from", theme, "to", newTheme);
+    setTheme(newTheme);
+  };
 
   return (
     <Button
       variant="ghost"
       size="icon"
-      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+      onClick={handleThemeToggle}
       className="h-10 w-10 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300 transition-all duration-200"
       aria-label="Toggle theme"
     >

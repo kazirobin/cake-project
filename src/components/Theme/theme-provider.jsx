@@ -8,6 +8,11 @@ export function ThemeProvider({ children, defaultTheme = "system", storageKey = 
     return stored || defaultTheme
   })
 
+  // Debug: Log when theme changes
+  useEffect(() => {
+    console.log("Theme state changed to:", theme)
+  }, [theme])
+
   useEffect(() => {
     const root = window.document.documentElement
     root.classList.remove("light", "dark")
@@ -15,17 +20,20 @@ export function ThemeProvider({ children, defaultTheme = "system", storageKey = 
     if (theme === "system") {
       const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
       root.classList.add(systemTheme)
+      console.log("Applied system theme:", systemTheme)
       return
     }
 
     root.classList.add(theme)
+    console.log("Applied theme:", theme)
   }, [theme])
 
   const value = {
     theme,
-    setTheme: (theme) => {
-      localStorage.setItem(storageKey, theme)
-      setTheme(theme)
+    setTheme: (newTheme) => {
+      console.log("Setting theme to:", newTheme) // Debug log
+      localStorage.setItem(storageKey, newTheme)
+      setTheme(newTheme)
     },
   }
 
@@ -38,6 +46,8 @@ export function ThemeProvider({ children, defaultTheme = "system", storageKey = 
 
 export const useTheme = () => {
   const context = useContext(ThemeProviderContext)
-  if (context === undefined) throw new Error("useTheme must be used within a ThemeProvider")
+  if (context === undefined) {
+    throw new Error("useTheme must be used within a ThemeProvider")
+  }
   return context
 }
