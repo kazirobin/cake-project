@@ -1,6 +1,6 @@
 import { FcGoogle } from "react-icons/fc";
 import { motion } from "framer-motion";
-import useAuth from "@/hooks/useAuth";
+import useAuth from "@/Hooks/useAuth";
 import { useNavigate } from "react-router";
 
 const GoggleBTN = ({ itemVariants }) => {

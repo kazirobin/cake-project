@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { FiMail, FiLock, FiEye, FiEyeOff, FiArrowRight } from "react-icons/fi";
 import { Link, useNavigate } from "react-router";
 import GoggleBTN from "@/root/Buttons/GoggleBTN";
-import useAuth from "@/hooks/useAuth";
+import useAuth from "@/Hooks/useAuth";
 import { toast, ToastContainer } from "react-toastify";
 
 const Login = () => {
