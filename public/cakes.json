@@ -1,0 +1,698 @@
+[
+  {
+    "cakeDetails": {
+      "title": "Chocolate Cupcakes by UG",
+      "id": 1,
+      "avatar": "https://media.ugcakes.com/products/large/2199-chocolate-cupcakes-by-ug.jpg",
+      "price": 1.79,
+      "description": "Chocolate Cupcakes for your special day. Cupcakes make people happy, and these sweet recipes are guaranteed to put a smile on any face. These delicious cupcakes can also be a satisfying dessert of yours. This does not just taste delicious, but also looks eye pleasing. The cake can be delivered online, which is the best online cake delivery service in Kathmandu. All cakes are baked with hygiene and quality in the top of our priority at our own state-of-the-art baking facility and quality checked twice by our expert QC team before delivery. You can send cakes or gifts to your loved ones in Nepal or shop online for yourself in Nepal with UG Bazaar, a pioneer in online shopping in Nepal.",
+      "customizable": true,
+      "SKU": "SKU: UGC-CC-CHOCOLATE",
+      "category": "cupcake",
+      "stock": 20,
+      "rating": {
+        "value": 4.5,
+        "count": 128,
+        "stars": 5
+      },
+      "pricing": {
+        "original": 14.20,
+        "discounted": 11.83,
+        "discountPercentage": 20,
+        "currency": "$"
+      },
+      "specifications": [
+        { "label": "Weight", "value": "1 kg (approx)" },
+        { "label": "Serves", "value": "8-10 people" },
+        { "label": "Shelf Life", "value": "3 days" },
+        { "label": "Storage", "value": "Refrigerate" }
+      ],
+      "features": [
+        "Fresh sponge layers",
+        "Velvety cream frosting",
+        "Hand-arranged strawberries",
+        "Premium ingredients",
+        "Perfect for celebrations"
+      ],
+      "deliveryInfo": [
+        { "icon": "Truck", "text": "Free delivery inside Kathmandu Valley" },
+        { "icon": "Shield", "text": "100% satisfaction guaranteed" },
+        { "icon": "RotateCcw", "text": "24-hour return policy" },
+        { "icon": "Package", "text": "Premium quality ingredients" }
+      ],
+      "nutritionInfo": [
+        { "label": "Calories", "value": "350 kcal" },
+        { "label": "Protein", "value": "4g" },
+        { "label": "Carbs", "value": "45g" },
+        { "label": "Fat", "value": "18g" }
+      ],
+      "additionalImages": [
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-2.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-3.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-4.webp"
+      ]
+    },
+    "relatedProducts": [2, 3, 4, 5],
+    "reviews": [101, 102, 103],
+    "faqs": [1, 2, 3]
+  },
+  {
+    "cakeDetails": {
+      "title": "Strawberry Topped Cake",
+      "id": 2,
+      "avatar": "https://media.ugcakes.com/products/large/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+      "price": 11.83,
+            "description": "Experience the elegance of our Rose Garden cake, a perfect blend of delicate flavors and stunning design. Fresh, premium ingredients for an unforgettable taste. Beautifully crafted with artistic rose decorations. Perfect for birthdays, anniversaries, and special occasions. Fast and reliable delivery within Kathmandu Valley.y Order now to celebrate your moments with sweetness and style",
+      "customizable": true,
+      "SKU": "SKU: UGC-B-1115",
+      "category": "cake",
+      "stock": 15,
+      "rating": {
+        "value": 4.8,
+        "count": 95,
+        "stars": 5
+      },
+      "pricing": {
+        "original": 17.99,
+        "discounted": 14.99,
+        "discountPercentage": 17,
+        "currency": "$"
+      },
+      "specifications": [
+        { "label": "Weight", "value": "1 kg (approx)" },
+        { "label": "Serves", "value": "8-10 people" },
+        { "label": "Shelf Life", "value": "3 days" },
+        { "label": "Storage", "value": "Refrigerate" }
+      ],
+      "features": [
+        "Personalized message",
+        "Rich chocolate sponge",
+        "Creamy buttercream",
+        "Perfect for Father's Day",
+        "Customizable design"
+      ],
+      "deliveryInfo": [
+        { "icon": "Truck", "text": "Free delivery inside Kathmandu Valley" },
+        { "icon": "Shield", "text": "100% satisfaction guaranteed" },
+        { "icon": "RotateCcw", "text": "24-hour return policy" },
+        { "icon": "Package", "text": "Premium quality ingredients" }
+      ],
+      "nutritionInfo": [
+        { "label": "Calories", "value": "380 kcal" },
+        { "label": "Protein", "value": "5g" },
+        { "label": "Carbs", "value": "48g" },
+        { "label": "Fat", "value": "20g" }
+      ],
+      "additionalImages": [
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-2.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-3.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-4.webp"
+      ]
+    },
+    "relatedProducts": [1, 3, 6, 7],
+    "reviews": [104, 105, 106],
+    "faqs": [1, 2, 4]
+  },
+  {
+    "cakeDetails": {
+      "title": "Rose Garden",
+      "id": 3,
+      "avatar": "https://media.ugcakes.com/products/large/rose-garden-887631752131346-U03zjdIwmF.webp",
+      "price": 11.83,
+      "description": "Experience the elegance of our Rose Garden cake, a perfect blend of delicate flavors and stunning design. Fresh, premium ingredients for an unforgettable taste. Beautifully crafted with artistic rose decorations. Perfect for birthdays, anniversaries, and special occasions. Fast and reliable delivery within Kathmandu Valle.y Order now to celebrate your moments with sweetness and style",
+      "customizable": true,
+      "SKU": "SKU: UGC-B-1013",
+      "category": "Cakes",
+      "stock": 18,
+      "rating": {
+        "value": 4.9,
+        "count": 112,
+        "stars": 5
+      },
+      "pricing": {
+        "original": 17.99,
+        "discounted": 14.99,
+        "discountPercentage": 17,
+        "currency": "$"
+      },
+      "specifications": [
+        { "label": "Weight", "value": "1 kg (approx)" },
+        { "label": "Serves", "value": "8-10 people" },
+        { "label": "Shelf Life", "value": "3 days" },
+        { "label": "Storage", "value": "Refrigerate" }
+      ],
+      "features": [
+        "Vanilla sponge",
+        "Strawberry filling",
+        "Buttercream roses",
+        "Personalized message",
+        "Mother's Day special"
+      ],
+      "deliveryInfo": [
+        { "icon": "Truck", "text": "Free delivery inside Kathmandu Valley" },
+        { "icon": "Shield", "text": "100% satisfaction guaranteed" },
+        { "icon": "RotateCcw", "text": "24-hour return policy" },
+        { "icon": "Package", "text": "Premium quality ingredients" }
+      ],
+      "nutritionInfo": [
+        { "label": "Calories", "value": "340 kcal" },
+        { "label": "Protein", "value": "4g" },
+        { "label": "Carbs", "value": "44g" },
+        { "label": "Fat", "value": "18g" }
+      ],
+      "additionalImages": [
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-2.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-3.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-4.webp"
+      ]
+    },
+    "relatedProducts": [1, 2, 8, 9],
+    "reviews": [107, 108, 109],
+    "faqs": [1, 3, 4]
+  },
+  {
+    "cakeDetails": {
+      "title": "Red Velvet Cupcakes by UG",
+      "id": 4,
+      "avatar": "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+      "price": 1.79,
+      "description": "Red Velvet Cupcakes for your special day. Cupcakes make people happy, and these sweet recipes are guaranteed to put a smile on any face. These delicious cupcakes can also be a satisfying dessert of yours. This does not just taste delicious, but also looks eye pleasing. The cake can be delivered online, which is the best online cake delivery service in Kathmandu. All cakes are baked with hygiene and quality in the top of our priority at our own state-of-the-art baking facility and quality checked twice by our expert QC team before delivery. You can send cakes or gifts to your loved ones in Nepal or shop online for yourself in Nepal with UG Bazaar, a pioneer in online shopping in Nepal.",
+      "customizable": true,
+      "SKU": "SKU: UGC-CC-REDVELVET",
+      "category": "cupcake",
+      "stock": 12,
+      "rating": {
+        "value": 4.7,
+        "count": 78,
+        "stars": 5
+      },
+      "pricing": {
+        "original": 20.39,
+        "discounted": 16.99,
+        "discountPercentage": 17,
+        "currency": "$"
+      },
+      "specifications": [
+        { "label": "Weight", "value": "1 kg (approx)" },
+        { "label": "Serves", "value": "8-10 people" },
+        { "label": "Shelf Life", "value": "4 days" },
+        { "label": "Storage", "value": "Refrigerate" }
+      ],
+      "features": [
+        "Red velvet cake",
+        "Cream cheese frosting",
+        "Gold leaf accents",
+        "Romantic design",
+        "Personalized message"
+      ],
+      "deliveryInfo": [
+        { "icon": "Truck", "text": "Free delivery inside Kathmandu Valley" },
+        { "icon": "Shield", "text": "100% satisfaction guaranteed" },
+        { "icon": "RotateCcw", "text": "24-hour return policy" },
+        { "icon": "Package", "text": "Premium quality ingredients" }
+      ],
+      "nutritionInfo": [
+        { "label": "Calories", "value": "360 kcal" },
+        { "label": "Protein", "value": "5g" },
+        { "label": "Carbs", "value": "46g" },
+        { "label": "Fat", "value": "19g" }
+      ],
+      "additionalImages": [
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-2.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-3.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-4.webp"
+      ]
+    },
+    "relatedProducts": [1, 5, 10, 11],
+    "reviews": [110, 111, 112],
+    "faqs": [2, 3, 5]
+  },
+  {
+    "cakeDetails": {
+      "title": "Chocolate Truffle cake with choco barks",
+      "id": 5,
+      "avatar": "https://media.ugcakes.com/products/large/4867-chocolate-cake-with-choco-bark.webp",
+      "price": 13.67,
+      "description": "This beautiful classic chocolate cake is for chocolate lovers. It is sure that this cake will melt the hearts of every guest at the celebrations. It is topped with choco wafer and bark. This cake not only tastes delicious, but also looks eye-pleasing. The cake can be delivered online, which is the best online cake delivery service in Kathmandu. All cakes are baked with hygiene and quality in the top of our priority at our own state-of-the-art baking facility and quality checked twice by our expert QC team before delivery. You can send cakes or gifts to your loved ones in Nepal or shop online for yourself in Nepal with UG Bazaar, a pioneer in online shopping in Nepal.",
+      "customizable": true,
+      "SKU": "SKU: UGC-C-190",
+      "category": "Cakes",
+      "stock": 10,
+      "rating": {
+        "value": 4.6,
+        "count": 67,
+        "stars": 5
+      },
+      "pricing": {
+        "original": 20.39,
+        "discounted": 16.99,
+        "discountPercentage": 17,
+        "currency": "$"
+      },
+      "specifications": [
+        { "label": "Weight", "value": "1 kg (approx)" },
+        { "label": "Serves", "value": "8-10 people" },
+        { "label": "Shelf Life", "value": "4 days" },
+        { "label": "Storage", "value": "Refrigerate" }
+      ],
+      "features": [
+        "Whiskey chocolate",
+        "Rich ganache",
+        "Dark chocolate shavings",
+        "Masculine design",
+        "Personalized message"
+      ],
+      "deliveryInfo": [
+        { "icon": "Truck", "text": "Free delivery inside Kathmandu Valley" },
+        { "icon": "Shield", "text": "100% satisfaction guaranteed" },
+        { "icon": "RotateCcw", "text": "24-hour return policy" },
+        { "icon": "Package", "text": "Premium quality ingredients" }
+      ],
+      "nutritionInfo": [
+        { "label": "Calories", "value": "390 kcal" },
+        { "label": "Protein", "value": "6g" },
+        { "label": "Carbs", "value": "47g" },
+        { "label": "Fat", "value": "21g" }
+      ],
+      "additionalImages": [
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-2.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-3.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-4.webp"
+      ]
+    },
+    "relatedProducts": [2, 4, 6, 12],
+    "reviews": [113, 114, 115],
+    "faqs": [1, 4, 5]
+  },
+  {
+    "cakeDetails": {
+      "title": "Rasmalai Cake with Floral and Pearls Detailing",
+      "id": 6,
+      "avatar": "https://media.ugcakes.com/products/large/rasmalai-cake-with-floral-and-pearls-detailing-659981711618140-uxGIlG0kaS.webp",
+      "price": 13.67,
+      "description": "Indulge in the exquisite fusion of tradition and innovation with our Rasmalai Cake adorned with delicate floral and pearl detailing. Crafted with care by the finest bakers at UGCakes, renowned as the best bakery in Kathmandu, this delectable creation promises a symphony of flavors that will tantalize your taste buds. Elevate your celebrations with a cake that seamlessly marries the rich, creamy essence of Rasmalai with the irresistible allure of a classic cake. Treat yourself to the best of both worlds and make every moment unforgettable with our signature Rasmalai Cake. Order now and experience the epitome of cake perfection. Every details used in cake is edible and made out of sponges and creams. All cakes are baked with hygiene and quality at the top of our priority at our own state-of-the-art baking facility and quality is checked twice by our expert QC team before delivery. You can send cakes or gifts to your loved ones in Nepal or shop online for yourself in Nepal with UG Bazaar, a pioneer in online shopping in Nepal.",
+      "customizable": true,
+      "SKU": "SKU: UGC-B-604",
+      "category": "Cakes",
+      "stock": 22,
+      "rating": {
+        "value": 4.8,
+        "count": 89,
+        "stars": 5
+      },
+      "pricing": {
+        "original": 16.79,
+        "discounted": 13.99,
+        "discountPercentage": 17,
+        "currency": "$"
+      },
+      "specifications": [
+        { "label": "Weight", "value": "1 kg (approx)" },
+        { "label": "Serves", "value": "8-10 people" },
+        { "label": "Shelf Life", "value": "3 days" },
+        { "label": "Storage", "value": "Refrigerate" }
+      ],
+      "features": [
+        "Fun design",
+        "Toy decoration",
+        "Colorful sprinkles",
+        "Kid-friendly",
+        "Personalized message"
+      ],
+      "deliveryInfo": [
+        { "icon": "Truck", "text": "Free delivery inside Kathmandu Valley" },
+        { "icon": "Shield", "text": "100% satisfaction guaranteed" },
+        { "icon": "RotateCcw", "text": "24-hour return policy" },
+        { "icon": "Package", "text": "Premium quality ingredients" }
+      ],
+      "nutritionInfo": [
+        { "label": "Calories", "value": "350 kcal" },
+        { "label": "Protein", "value": "4g" },
+        { "label": "Carbs", "value": "45g" },
+        { "label": "Fat", "value": "18g" }
+      ],
+      "additionalImages": [
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-2.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-3.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-4.webp"
+      ]
+    },
+    "relatedProducts": [2, 3, 7, 13],
+    "reviews": [116, 117, 118],
+    "faqs": [2, 3, 6]
+  },
+  {
+    "cakeDetails": {
+      "title": "Chocolate Muffins",
+      "id": 7,
+      "avatar": "https://media.ugcakes.com/products/large/3629-chocolate-muffins.JPG",
+      "price": 0.83,
+      "description": "A pretty birthday cake for daughters, featuring a lovely 'Happy Birthday Daughter' message. Pink ombre cake with vanilla buttercream and edible glitter.",
+      "customizable": true,
+      "SKU": "SKU: UG-CM",
+      "category": "cupcake",
+      "stock": 18,
+      "rating": {
+        "value": 4.9,
+        "count": 103,
+        "stars": 5
+      },
+      "pricing": {
+        "original": 17.99,
+        "discounted": 14.99,
+        "discountPercentage": 17,
+        "currency": "$"
+      },
+      "specifications": [
+        { "label": "Weight", "value": "1 kg (approx)" },
+        { "label": "Serves", "value": "8-10 people" },
+        { "label": "Shelf Life", "value": "3 days" },
+        { "label": "Storage", "value": "Refrigerate" }
+      ],
+      "features": [
+        "Pink ombre design",
+        "Vanilla buttercream",
+        "Edible glitter",
+        "Princess theme",
+        "Personalized message"
+      ],
+      "deliveryInfo": [
+        { "icon": "Truck", "text": "Free delivery inside Kathmandu Valley" },
+        { "icon": "Shield", "text": "100% satisfaction guaranteed" },
+        { "icon": "RotateCcw", "text": "24-hour return policy" },
+        { "icon": "Package", "text": "Premium quality ingredients" }
+      ],
+      "nutritionInfo": [
+        { "label": "Calories", "value": "340 kcal" },
+        { "label": "Protein", "value": "4g" },
+        { "label": "Carbs", "value": "44g" },
+        { "label": "Fat", "value": "18g" }
+      ],
+      "additionalImages": [
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-2.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-3.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-4.webp"
+      ]
+    },
+    "relatedProducts": [3, 6, 8, 14],
+    "reviews": [119, 120, 121],
+    "faqs": [1, 4, 6]
+  },
+  {
+    "cakeDetails": {
+      "title": "Happy Birthday Brother Cake",
+      "id": 8,
+      "avatar": "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+      "price": 13.99,
+      "description": "A cool birthday cake for brothers, featuring a trendy 'Happy Birthday Brother' design. Black forest cake with cherry filling and chocolate shavings.",
+      "customizable": true,
+      "SKU": "UGC-BB-8890",
+      "category": "Birthday Cakes",
+      "stock": 16,
+      "rating": {
+        "value": 4.7,
+        "count": 72,
+        "stars": 5
+      },
+      "pricing": {
+        "original": 16.79,
+        "discounted": 13.99,
+        "discountPercentage": 17,
+        "currency": "$"
+      },
+      "specifications": [
+        { "label": "Weight", "value": "1 kg (approx)" },
+        { "label": "Serves", "value": "8-10 people" },
+        { "label": "Shelf Life", "value": "3 days" },
+        { "label": "Storage", "value": "Refrigerate" }
+      ],
+      "features": [
+        "Black forest cake",
+        "Cherry filling",
+        "Chocolate shavings",
+        "Cool design",
+        "Personalized message"
+      ],
+      "deliveryInfo": [
+        { "icon": "Truck", "text": "Free delivery inside Kathmandu Valley" },
+        { "icon": "Shield", "text": "100% satisfaction guaranteed" },
+        { "icon": "RotateCcw", "text": "24-hour return policy" },
+        { "icon": "Package", "text": "Premium quality ingredients" }
+      ],
+      "nutritionInfo": [
+        { "label": "Calories", "value": "360 kcal" },
+        { "label": "Protein", "value": "5g" },
+        { "label": "Carbs", "value": "46g" },
+        { "label": "Fat", "value": "19g" }
+      ],
+      "additionalImages": [
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-2.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-3.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-4.webp"
+      ]
+    },
+    "relatedProducts": [2, 5, 9, 15],
+    "reviews": [122, 123, 124],
+    "faqs": [2, 3, 5]
+  },
+  {
+    "cakeDetails": {
+      "title": "Happy Birthday Sister Cake",
+      "id": 9,
+      "avatar": "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+      "price": 14.99,
+      "description": "A beautiful birthday cake for sisters, featuring a lovely 'Happy Birthday Sister' message. Strawberry cake with fresh strawberry filling and pink frosting.",
+      "customizable": true,
+      "SKU": "UGC-BS-9901",
+      "category": "Birthday Cakes",
+      "stock": 20,
+      "rating": {
+        "value": 4.8,
+        "count": 94,
+        "stars": 5
+      },
+      "pricing": {
+        "original": 17.99,
+        "discounted": 14.99,
+        "discountPercentage": 17,
+        "currency": "$"
+      },
+      "specifications": [
+        { "label": "Weight", "value": "1 kg (approx)" },
+        { "label": "Serves", "value": "8-10 people" },
+        { "label": "Shelf Life", "value": "3 days" },
+        { "label": "Storage", "value": "Refrigerate" }
+      ],
+      "features": [
+        "Strawberry cake",
+        "Fresh strawberries",
+        "Pink buttercream",
+        "Feminine design",
+        "Personalized message"
+      ],
+      "deliveryInfo": [
+        { "icon": "Truck", "text": "Free delivery inside Kathmandu Valley" },
+        { "icon": "Shield", "text": "100% satisfaction guaranteed" },
+        { "icon": "RotateCcw", "text": "24-hour return policy" },
+        { "icon": "Package", "text": "Premium quality ingredients" }
+      ],
+      "nutritionInfo": [
+        { "label": "Calories", "value": "345 kcal" },
+        { "label": "Protein", "value": "4g" },
+        { "label": "Carbs", "value": "45g" },
+        { "label": "Fat", "value": "18g" }
+      ],
+      "additionalImages": [
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-2.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-3.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-4.webp"
+      ]
+    },
+    "relatedProducts": [3, 7, 10, 16],
+    "reviews": [125, 126, 127],
+    "faqs": [1, 3, 4]
+  },
+  {
+    "cakeDetails": {
+      "title": "Happy Anniversary Cake",
+      "id": 10,
+      "avatar": "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+      "price": 18.99,
+      "description": "An elegant anniversary cake featuring 'Happy Anniversary' message with romantic rose decorations. Red velvet cake with cream cheese frosting and edible pearls.",
+      "customizable": true,
+      "SKU": "UGC-HA-1012",
+      "category": "Anniversary Cakes",
+      "stock": 8,
+      "rating": {
+        "value": 4.9,
+        "count": 156,
+        "stars": 5
+      },
+      "pricing": {
+        "original": 22.79,
+        "discounted": 18.99,
+        "discountPercentage": 17,
+        "currency": "$"
+      },
+      "specifications": [
+        { "label": "Weight", "value": "1 kg (approx)" },
+        { "label": "Serves", "value": "8-10 people" },
+        { "label": "Shelf Life", "value": "4 days" },
+        { "label": "Storage", "value": "Refrigerate" }
+      ],
+      "features": [
+        "Red velvet cake",
+        "Cream cheese frosting",
+        "Rose decorations",
+        "Edible pearls",
+        "Romantic design"
+      ],
+      "deliveryInfo": [
+        { "icon": "Truck", "text": "Free delivery inside Kathmandu Valley" },
+        { "icon": "Shield", "text": "100% satisfaction guaranteed" },
+        { "icon": "RotateCcw", "text": "24-hour return policy" },
+        { "icon": "Package", "text": "Premium quality ingredients" }
+      ],
+      "nutritionInfo": [
+        { "label": "Calories", "value": "365 kcal" },
+        { "label": "Protein", "value": "5g" },
+        { "label": "Carbs", "value": "47g" },
+        { "label": "Fat", "value": "19g" }
+      ],
+      "additionalImages": [
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-2.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-3.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-4.webp"
+      ]
+    },
+    "relatedProducts": [4, 5, 11, 17],
+    "reviews": [128, 129, 130],
+    "faqs": [2, 4, 6]
+  },
+  {
+    "cakeDetails": {
+      "title": "Happy Birthday Grandpa Cake",
+      "id": 11,
+      "avatar": "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+      "price": 15.99,
+      "description": "A heartwarming birthday cake for grandpa, featuring a special 'Happy Birthday Grandpa' message. Classic vanilla cake with caramel filling and walnut topping.",
+      "customizable": true,
+      "SKU": "UGC-BG-1123",
+      "category": "Birthday Cakes",
+      "stock": 14,
+      "rating": {
+        "value": 4.7,
+        "count": 63,
+        "stars": 5
+      },
+      "pricing": {
+        "original": 19.19,
+        "discounted": 15.99,
+        "discountPercentage": 17,
+        "currency": "$"
+      },
+      "specifications": [
+        { "label": "Weight", "value": "1 kg (approx)" },
+        { "label": "Serves", "value": "8-10 people" },
+        { "label": "Shelf Life", "value": "3 days" },
+        { "label": "Storage", "value": "Refrigerate" }
+      ],
+      "features": [
+        "Vanilla cake",
+        "Caramel filling",
+        "Walnut topping",
+        "Traditional design",
+        "Personalized message"
+      ],
+      "deliveryInfo": [
+        { "icon": "Truck", "text": "Free delivery inside Kathmandu Valley" },
+        { "icon": "Shield", "text": "100% satisfaction guaranteed" },
+        { "icon": "RotateCcw", "text": "24-hour return policy" },
+        { "icon": "Package", "text": "Premium quality ingredients" }
+      ],
+      "nutritionInfo": [
+        { "label": "Calories", "value": "355 kcal" },
+        { "label": "Protein", "value": "5g" },
+        { "label": "Carbs", "value": "46g" },
+        { "label": "Fat", "value": "19g" }
+      ],
+      "additionalImages": [
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-2.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-3.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-4.webp"
+      ]
+    },
+    "relatedProducts": [2, 8, 12, 18],
+    "reviews": [131, 132, 133],
+    "faqs": [1, 3, 5]
+  },
+  {
+    "cakeDetails": {
+      "title": "Happy Birthday Grandma Cake",
+      "id": 12,
+      "avatar": "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+      "price": 15.99,
+      "description": "A sweet birthday cake for grandma, featuring a loving 'Happy Birthday Grandma' message. Lemon cake with elderflower buttercream and edible flowers.",
+      "customizable": true,
+      "SKU": "UGC-BG-1224",
+      "category": "Birthday Cakes",
+      "stock": 16,
+      "rating": {
+        "value": 4.8,
+        "count": 71,
+        "stars": 5
+      },
+      "pricing": {
+        "original": 19.19,
+        "discounted": 15.99,
+        "discountPercentage": 17,
+        "currency": "$"
+      },
+      "specifications": [
+        { "label": "Weight", "value": "1 kg (approx)" },
+        { "label": "Serves", "value": "8-10 people" },
+        { "label": "Shelf Life", "value": "3 days" },
+        { "label": "Storage", "value": "Refrigerate" }
+      ],
+      "features": [
+        "Lemon cake",
+        "Elderflower buttercream",
+        "Edible flowers",
+        "Elegant design",
+        "Personalized message"
+      ],
+      "deliveryInfo": [
+        { "icon": "Truck", "text": "Free delivery inside Kathmandu Valley" },
+        { "icon": "Shield", "text": "100% satisfaction guaranteed" },
+        { "icon": "RotateCcw", "text": "24-hour return policy" },
+        { "icon": "Package", "text": "Premium quality ingredients" }
+      ],
+      "nutritionInfo": [
+        { "label": "Calories", "value": "335 kcal" },
+        { "label": "Protein", "value": "4g" },
+        { "label": "Carbs", "value": "43g" },
+        { "label": "Fat", "value": "17g" }
+      ],
+      "additionalImages": [
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-2.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-3.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-4.webp"
+      ]
+    },
+    "relatedProducts": [3, 9, 13, 19],
+    "reviews": [134, 135, 136],
+    "faqs": [2, 4, 6]
+  }
+]
