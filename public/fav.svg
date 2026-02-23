@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <defs>
+    <style>
+      .bg { fill: #ff6b9d; }
+      .text { fill: white; font-family: Arial, sans-serif; font-weight: bold; }
+      .cake { fill: #ffd93d; }
+    </style>
+  </defs>
+  
+  <!-- Background circle -->
+  <circle cx="60" cy="60" r="60" class="bg"/>
+  
+  <!-- Simple cake icon -->
+  <g transform="translate(30, 25)">
+    <!-- Cake base -->
+    <rect x="10" y="40" width="40" height="25" rx="5" class="cake"/>
+    <!-- Cake middle -->
+    <rect x="15" y="30" width="30" height="20" rx="3" fill="#ffeb3b"/>
+    <!-- Cake top -->
+    <rect x="20" y="20" width="20" height="15" rx="2" fill="#fff"/>
+    <!-- Candle -->
+    <rect x="28" y="15" width="4" height="10" fill="#ff5722"/>
+    <!-- Flame -->
+    <ellipse cx="30" cy="12" rx="2" ry="4" fill="#ff9800"/>
+  </g>
+  
+  <!-- UG text -->
+  <text x="60" y="85" text-anchor="middle" class="text" font-size="20">UG</text>
+</svg>
