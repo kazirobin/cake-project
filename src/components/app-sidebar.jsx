@@ -38,6 +38,7 @@ const data = {
   ],
   navMain: [
     {
+      
       title: "Playground",
       url: "#",
       icon: SquareTerminal,
