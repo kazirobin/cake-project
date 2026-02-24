@@ -7,9 +7,9 @@ export const navigateLinks = [
   },
   {
     id: 2,
-    label: "Bakery Training",
+    label: "All Categories",
     icon: "👩‍🍳",
-    path: "/bakery-training",
+    path: "/categories",
   },
   {
     id: 3,

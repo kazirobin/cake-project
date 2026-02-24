@@ -6,6 +6,9 @@ import Register from "@/pages/Register/Register";
 import AdminPanel from "@/pages/admin-panel/AdminPanel";
 import NotFoundPage from "@/pages/error/NotFoundPage";
 import CategoryLayout from "@/Layouts/CategoryLayout";
+import AllCategory from "@/pages/category/all-category";
+import CategoryDetails from "@/pages/category/category-details";
+import ProductDetails from "@/pages/category/product/product-details";
 
 
 const router = createBrowserRouter([
@@ -39,17 +42,17 @@ const router = createBrowserRouter([
       {
         index: true,
         // <CategoriesPage />
-        element: <> </>,
+        element: <AllCategory/>,
       },
       {
         path: ":categoryId",
         //  <CategoryDetailsPage /> 
-        element:<>hello</>,
+        element:<CategoryDetails/>,
       },
       {
         path: "product/:productId", // Changed to 'product/' prefix to avoid conflict
         // <CakeDetails />
-        element:  <>hello</>,
+        element:  <ProductDetails/>,
       },
     ],
   },

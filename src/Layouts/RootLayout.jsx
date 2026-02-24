@@ -1,7 +1,7 @@
 import { Outlet } from "react-router";
 import Footer from "@/root/Components/Footer/Footer";
 import NavbarWithNavigation from "@/root/Components/NavbarWithNavigation";
-import { ThemeProvider } from "@/components/Theme/theme-provider";
+import { ThemeProvider } from '@/components/Theme/theme-provider';
 
 const RootLayout = () => {
   return (

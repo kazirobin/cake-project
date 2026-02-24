@@ -24,7 +24,7 @@ const NavbarWithNavigation = () => {
   return (
     <>
       {/* Top Navbar */}
-      <div className="w-full bg-white dark:bg-gray-900 shadow-sm flex flex-col lg:flex-row items-center justify-between p-4 lg:px-8 gap-4 lg:gap-0 relative border-b border-gray-200 dark:border-gray-800">
+      <div className="container mx-auto bg-white dark:bg-gray-900 shadow-sm flex flex-col lg:flex-row items-center justify-between p-4 lg:px-8 gap-4 lg:gap-0 relative border-b border-gray-200 dark:border-gray-800">
         {/* Logo and Mobile Menu */}
         <div className="flex items-center justify-between w-full lg:w-auto gap-4">
           <MobileLeftSheet navLinks={navLinks} />

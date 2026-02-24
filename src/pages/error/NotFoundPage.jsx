@@ -51,35 +51,7 @@ const NotFoundPage = () => {
           </p>
         </div>
 
-        {/* Fun Illustration */}
-        <div className="relative mb-8">
-          <svg
-            className="w-64 h-64 mx-auto"
-            viewBox="0 0 200 200"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <circle cx="100" cy="100" r="80" className="fill-purple-200 dark:fill-purple-900/30" />
-            <path
-              d="M70 90 Q100 70 130 90"
-              stroke="currentColor"
-              className="stroke-purple-500 dark:stroke-purple-400"
-              strokeWidth="6"
-              strokeLinecap="round"
-              fill="none"
-            />
-            <circle cx="70" cy="120" r="8" className="fill-purple-500 dark:fill-purple-400" />
-            <circle cx="130" cy="120" r="8" className="fill-purple-500 dark:fill-purple-400" />
-            <path
-              d="M85 140 Q100 150 115 140"
-              stroke="currentColor"
-              className="stroke-pink-500 dark:stroke-pink-400"
-              strokeWidth="4"
-              strokeLinecap="round"
-              fill="none"
-            />
-          </svg>
-        </div>
+   
 
         {/* Action Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
