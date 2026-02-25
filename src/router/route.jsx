@@ -9,7 +9,8 @@ import CategoryLayout from "@/Layouts/CategoryLayout";
 import AllCategory from "@/pages/category/all-category";
 import CategoryDetails from "@/pages/category/category-details";
 import ProductDetails from "@/pages/category/product/product-details";
-
+import CartPage from "@/root/Components/Cart/cart-page";
+import CheckoutPage from "@/root/Components/Checkout/checkout";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,14 @@ const router = createBrowserRouter([
         path: "/register",
         element: <Register />,
       },
+      {
+        path: "/cart",
+        element: <CartPage />,
+      },
+      {
+        path: "/checkout",
+        element: <CheckoutPage />,
+      },
     ],
   },
   {
@@ -42,17 +51,17 @@ const router = createBrowserRouter([
       {
         index: true,
         // <CategoriesPage />
-        element: <AllCategory/>,
+        element: <AllCategory />,
       },
       {
         path: ":categoryId",
-        //  <CategoryDetailsPage /> 
-        element:<CategoryDetails/>,
+        //  <CategoryDetailsPage />
+        element: <CategoryDetails />,
       },
       {
         path: "product/:productId", // Changed to 'product/' prefix to avoid conflict
         // <CakeDetails />
-        element:  <ProductDetails/>,
+        element: <ProductDetails />,
       },
     ],
   },

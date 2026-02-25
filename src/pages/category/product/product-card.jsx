@@ -1,37 +1,143 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Star, ShoppingCart, Check } from 'lucide-react';
+import { useCart } from '@/Hooks/cart-context';
 
-const ProductCard = ({ product, priceData }) => {
+const ProductCard = ({ product }) => {
+  const { addToCart } = useCart();
+  const [showPopup, setShowPopup] = useState(false);
+  const { id, title, avatar, pricing, rating, stock } = product;
+
+  const handleAddToCart = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    // Add to cart
+    addToCart({
+      id,
+      title,
+      price: pricing.discounted,
+      image: avatar,
+    });
+    
+    // Show popup
+    setShowPopup(true);
+    
+    // Hide popup after 2 seconds
+    setTimeout(() => {
+      setShowPopup(false);
+    }, 2000);
+  };
+
   return (
-    <Link to={`/categories/product/${product.id}`} className="block h-full group">
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md dark:shadow-gray-700/30 hover:shadow-lg dark:hover:shadow-gray-700/50 transition-all duration-300 h-full flex flex-col overflow-hidden hover:scale-[1.02]">
-        <div className="relative overflow-hidden">
-          <img 
-            src={product.avatar} 
-            alt={product.title} 
-            className="w-full h-48 object-cover rounded-t-lg transition-transform duration-300 group-hover:scale-110" 
-          />
-          {/* Optional: Add a subtle overlay on hover */}
-          <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+    <>
+      {/* Popup Notification */}
+      {showPopup && (
+        <div className="fixed top-4 right-4 z-50 animate-slideDown">
+          <div className="bg-green-500 text-white px-4 py-3 rounded-lg shadow-lg flex items-center gap-3 min-w-[250px]">
+            <div className="bg-white/20 rounded-full p-1">
+              <Check className="w-4 h-4" />
+            </div>
+            <div className="flex-1">
+              <p className="font-medium">Added to Cart!</p>
+              <p className="text-xs text-white/90 truncate max-w-[180px]">{title}</p>
+            </div>
+          </div>
         </div>
+      )}
+
+      <Card className="group overflow-hidden hover:shadow-xl transition-all duration-300 relative">
+        <Link to={`/categories/product/${id}`}>
+          <div className="relative overflow-hidden h-48">
+            <img 
+              src={avatar} 
+              alt={title}
+              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+              onError={(e) => {
+                e.target.src = 'https://via.placeholder.com/300x200?text=Product+Image';
+              }}
+            />
+            {pricing.discountPercentage > 0 && (
+              <Badge className="absolute top-2 right-2 bg-red-500 text-white">
+                {pricing.discountPercentage}% OFF
+              </Badge>
+            )}
+          </div>
+          
+          <CardContent className="p-4">
+            <h3 className="font-semibold text-lg text-gray-900 dark:text-white mb-2 line-clamp-1">
+              {title}
+            </h3>
+            
+            <div className="flex items-center mb-2">
+              <div className="flex items-center">
+                <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                <span className="ml-1 text-sm font-medium text-gray-700 dark:text-gray-300">
+                  {rating.value}
+                </span>
+              </div>
+              <span className="mx-2 text-gray-400">•</span>
+              <span className="text-sm text-gray-600 dark:text-gray-400">
+                {rating.count} reviews
+              </span>
+            </div>
+
+            <div className="flex items-center justify-between">
+              <div>
+                <span className="text-2xl font-bold text-orange-600 dark:text-orange-400">
+                  {pricing.currency}{pricing.discounted}
+                </span>
+                {pricing.original > pricing.discounted && (
+                  <span className="ml-2 text-sm text-gray-400 line-through">
+                    {pricing.currency}{pricing.original}
+                  </span>
+                )}
+              </div>
+              
+              <Button
+                onClick={handleAddToCart}
+                size="sm"
+                disabled={stock === 0}
+                className="bg-orange-500 hover:bg-orange-600 text-white relative overflow-hidden group/btn"
+              >
+                <ShoppingCart className="w-4 h-4 group-hover/btn:scale-110 transition-transform" />
+              </Button>
+            </div>
+
+            {stock < 10 && stock > 0 && (
+              <p className="mt-2 text-xs text-orange-600 dark:text-orange-400">
+                Only {stock} left in stock!
+              </p>
+            )}
+            
+            {stock === 0 && (
+              <p className="mt-2 text-xs text-red-500">Out of stock</p>
+            )}
+          </CardContent>
+        </Link>
+      </Card>
+
+      {/* Add animation styles */}
+      <style jsx>{`
+        @keyframes slideDown {
+          from {
+            transform: translateY(-100%);
+            opacity: 0;
+          }
+          to {
+            transform: translateY(0);
+            opacity: 1;
+          }
+        }
         
-        <div className="p-4 flex flex-col flex-1">
-          <h3 className="font-semibold text-gray-900 dark:text-white line-clamp-2 min-h-[3rem] transition-colors duration-300">
-            {product.title}
-          </h3>
-          
-          <p className="text-lg font-bold text-orange-600 dark:text-orange-400 my-2 transition-colors duration-300">
-            {priceData.displayPrice}
-          </p>
-          
-          <div className="flex-1"></div> {/* Spacer */}
-          
-          <button className="w-full bg-orange-500 dark:bg-orange-600 text-white py-2.5 rounded-lg hover:bg-orange-600 dark:hover:bg-orange-700 transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] font-medium shadow-md hover:shadow-lg">
-            Add to Cart
-          </button>
-        </div>
-      </div>
-    </Link>
+        .animate-slideDown {
+          animation: slideDown 0.3s ease-out;
+        }
+      `}</style>
+    </>
   );
 };
 
