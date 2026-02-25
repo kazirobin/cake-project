@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -27,11 +27,39 @@ const ProductDetails = () => {
   const { addToCart } = useCart();
   const [selectedImage, setSelectedImage] = useState(0);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+  const [showFavoriteMessage, setShowFavoriteMessage] = useState(false);
   const [quantity, setQuantity] = useState(1);
+  const [isFavorite, setIsFavorite] = useState(false);
 
   const productData = productService.getFullProductData(productId);
   const product = productData?.cakeDetails;
   const relatedProducts = productService.getRelatedProducts(productId);
+
+  // Load favorite status from localStorage on component mount
+  useEffect(() => {
+    const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+    setIsFavorite(favorites.includes(parseInt(productId)));
+  }, [productId]);
+
+  // Toggle favorite status
+  const toggleFavorite = () => {
+    const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+    const productIdNum = parseInt(productId);
+    
+    let newFavorites;
+    if (isFavorite) {
+      // Remove from favorites
+      newFavorites = favorites.filter(id => id !== productIdNum);
+    } else {
+      // Add to favorites
+      newFavorites = [...favorites, productIdNum];
+      setShowFavoriteMessage(true);
+      setTimeout(() => setShowFavoriteMessage(false), 2000);
+    }
+    
+    localStorage.setItem('favorites', JSON.stringify(newFavorites));
+    setIsFavorite(!isFavorite);
+  };
 
   if (!product) {
     return (
@@ -44,7 +72,7 @@ const ProductDetails = () => {
           The product you're looking for doesn't exist or has been removed.
         </p>
         <Button 
-          onClick={() => navigate('/products')}
+          onClick={() => navigate('/categories')}
           className="bg-orange-500 hover:bg-orange-600 text-white"
         >
           Browse Products
@@ -81,7 +109,7 @@ const ProductDetails = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
-      {/* Success Message */}
+      {/* Success Messages */}
       {showSuccessMessage && (
         <div className="fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50 animate-slideIn flex items-center gap-2">
           <Check className="w-5 h-5" />
@@ -89,10 +117,17 @@ const ProductDetails = () => {
         </div>
       )}
 
+      {showFavoriteMessage && (
+        <div className="fixed top-20 right-4 bg-red-500 text-white px-6 py-3 rounded-lg shadow-lg z-50 animate-slideIn flex items-center gap-2">
+          <Heart className="w-5 h-5 fill-white" />
+          Added to favorites!
+        </div>
+      )}
+
       <div className="container mx-auto px-4 py-8">
         {/* Breadcrumb */}
         <nav className="mb-6 text-sm">
-          <ol className="flex items-center space-x-2">
+          <ol className="flex items-center space-x-2 flex-wrap">
             <li>
               <Link to="/" className="text-gray-500 hover:text-orange-600 dark:text-gray-400">
                 Home
@@ -100,8 +135,8 @@ const ProductDetails = () => {
             </li>
             <li className="text-gray-400">/</li>
             <li>
-              <Link to="/products" className="text-gray-500 hover:text-orange-600 dark:text-gray-400">
-                Products
+              <Link to="/categories" className="text-gray-500 hover:text-orange-600 dark:text-gray-400">
+                Categories
               </Link>
             </li>
             <li className="text-gray-400">/</li>
@@ -252,22 +287,38 @@ const ProductDetails = () => {
               <Button 
                 onClick={handleAddToCart}
                 disabled={product.stock === 0}
-                className="flex-1 bg-orange-500 hover:bg-orange-600 text-white"
+                className="flex-1 bg-orange-500 hover:bg-orange-600 text-white cursor-pointer"
                 size="lg"
               >
                 <ShoppingCart className="w-4 h-4 mr-2" />
                 {product.stock > 0 ? 'Add to Cart' : 'Out of Stock'}
               </Button>
+              
+              {/* Single Heart Icon in Action Buttons */}
               <Button 
                 variant="outline" 
                 size="icon"
-                className="border-gray-300 dark:border-gray-600"
+                onClick={toggleFavorite}
+                className={`border-gray-300 dark:border-gray-600 transition-all ${
+                  isFavorite ? 'border-red-200 dark:border-red-800' : ''
+                }`}
               >
-                <Heart className="w-4 h-4" />
+                <Heart 
+                  className={`w-4 h-4 transition-all ${
+                    isFavorite 
+                      ? 'fill-red-500 text-red-500 scale-110' 
+                      : 'text-gray-700 dark:text-gray-300'
+                  }`} 
+                />
               </Button>
+              
               <Button 
                 variant="outline" 
                 size="icon"
+                onClick={() => {
+                  navigator.clipboard.writeText(window.location.href);
+                  // You can add a toast notification here
+                }}
                 className="border-gray-300 dark:border-gray-600"
               >
                 <Share2 className="w-4 h-4" />

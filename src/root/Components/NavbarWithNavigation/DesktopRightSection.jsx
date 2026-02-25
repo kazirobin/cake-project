@@ -58,7 +58,7 @@ const DesktopRightSection = ({
           variant="ghost"
           size="icon"
           onClick={handleCartClick}
-          className="h-10 w-10 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300 relative"
+          className="h-10 w-10 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300 relative cursor-pointer"
           aria-label="Shopping cart"
         >
           <ShoppingCart className="h-4 w-4" />
@@ -74,7 +74,7 @@ const DesktopRightSection = ({
           variant="ghost"
           size="icon"
           onClick={handleUserClick}
-          className="h-10 w-10 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300"
+          className="h-10 w-10 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300 cursor-pointer"
           aria-label="User account"
         >
           <User className="h-4 w-4" />

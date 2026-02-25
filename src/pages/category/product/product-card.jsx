@@ -101,7 +101,7 @@ const ProductCard = ({ product }) => {
                 onClick={handleAddToCart}
                 size="sm"
                 disabled={stock === 0}
-                className="bg-orange-500 hover:bg-orange-600 text-white relative overflow-hidden group/btn"
+                className="bg-orange-500 hover:bg-orange-600 text-white relative overflow-hidden group/btn cursor-pointer"
               >
                 <ShoppingCart className="w-4 h-4 group-hover/btn:scale-110 transition-transform" />
               </Button>

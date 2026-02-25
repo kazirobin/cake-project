@@ -50,15 +50,7 @@ const MobileRightIcons = ({
               <h2 className="font-semibold text-gray-900 dark:text-gray-100">
                 Navigation Menu
               </h2>
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => setIsRightMenuOpen(false)}
-                className="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
-                aria-label="Close navigation menu"
-              >
-                <X className="h-5 w-5" />
-              </Button>
+            
             </div>
             {/* Navigate Content in Mobile Sheet */}
             <MobileNavigateContent />
