@@ -36,7 +36,7 @@ const ProductCard = ({ product }) => {
     <>
       {/* Popup Notification */}
       {showPopup && (
-        <div className="fixed top-4 right-4 z-50 animate-slideDown">
+        <div className="fixed top-20 right-4 z-50 animate-slideDown">
           <div className="bg-green-500 text-white px-4 py-3 rounded-lg shadow-lg flex items-center gap-3 min-w-[250px]">
             <div className="bg-white/20 rounded-full p-1">
               <Check className="w-4 h-4" />

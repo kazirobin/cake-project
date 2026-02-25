@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { Table2Icon, Search, ShoppingCart, User, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { 
@@ -10,12 +11,24 @@ import {
 } from "@/components/ui/sheet";
 import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
 import MobileNavigateContent from "./MobileNavigateContent";
+import { useCart } from "@/Hooks/cart-context";
 
 const MobileRightIcons = ({
   onSearchClick,
   isRightMenuOpen,
   setIsRightMenuOpen,
 }) => {
+  const navigate = useNavigate();
+  const { cart } = useCart();
+
+  const handleCartClick = () => {
+    navigate("/cart");
+  };
+
+  const handleUserClick = () => {
+    navigate("/login");
+  };
+
   return (
     <div className="flex items-center gap-1 lg:hidden">
       {/* Table2Icon Button with Right Sheet */}
@@ -24,7 +37,7 @@ const MobileRightIcons = ({
           <Button
             variant="ghost"
             size="icon"
-            className="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+            className="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer"
             aria-label="Open navigation menu"
           >
             <Table2Icon className="h-5 w-5" />
@@ -50,7 +63,6 @@ const MobileRightIcons = ({
               <h2 className="font-semibold text-gray-900 dark:text-gray-100">
                 Navigation Menu
               </h2>
-            
             </div>
             {/* Navigate Content in Mobile Sheet */}
             <MobileNavigateContent />
@@ -62,7 +74,7 @@ const MobileRightIcons = ({
         variant="ghost"
         size="icon"
         onClick={onSearchClick}
-        className="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+        className="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer"
         aria-label="Search"
       >
         <Search className="h-5 w-5" />
@@ -71,19 +83,23 @@ const MobileRightIcons = ({
       <Button
         variant="ghost"
         size="icon"
-        className="relative text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+        onClick={handleCartClick}
+        className="relative text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer"
         aria-label="Shopping cart"
       >
         <ShoppingCart className="h-5 w-5" />
-        <span className="absolute -top-1 -right-1 bg-purple-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-          0
-        </span>
+        {cart.totalItems > 0 && (
+          <span className="absolute -top-1 -right-1 bg-purple-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+            {cart.totalItems > 9 ? '9+' : cart.totalItems}
+          </span>
+        )}
       </Button>
 
       <Button
         variant="ghost"
         size="icon"
-        className="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+        onClick={handleUserClick}
+        className="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer"
         aria-label="User account"
       >
         <User className="h-5 w-5" />

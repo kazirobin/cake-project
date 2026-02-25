@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Menu, User, ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -12,8 +12,20 @@ import {
 } from "@/components/ui/sheet";
 import ThemeToggle from "./ThemeToggle";
 import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
+import { useCart } from "@/Hooks/cart-context";
 
 const MobileLeftSheet = ({ navLinks }) => {
+  const navigate = useNavigate();
+  const { cart } = useCart();
+
+  const handleCartClick = () => {
+    navigate("/cart");
+  };
+
+  const handleUserClick = () => {
+    navigate("/login");
+  };
+
   return (
     <Sheet>
       <SheetTrigger asChild className="lg:hidden">
@@ -84,17 +96,25 @@ const MobileLeftSheet = ({ navLinks }) => {
           <div className="border-t border-gray-200 dark:border-gray-800 p-4 space-y-3 transition-colors duration-300">
             <Button
               variant="outline"
-              className="w-full justify-start gap-3 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300"
+              onClick={handleUserClick}
+              className="w-full justify-start gap-3 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300 cursor-pointer"
             >
               <User className="h-5 w-5" />
               <span>Account</span>
             </Button>
+            
             <Button
               variant="outline"
-              className="w-full justify-start gap-3 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300"
+              onClick={handleCartClick}
+              className="w-full justify-start gap-3 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300 cursor-pointer relative"
             >
               <ShoppingCart className="h-5 w-5" />
-              <span>Cart (0)</span>
+              <span>Cart</span>
+              {cart.totalItems > 0 && (
+                <span className="ml-auto bg-purple-600 text-white text-xs rounded-full h-5 min-w-5 px-1 flex items-center justify-center">
+                  {cart.totalItems > 99 ? '99+' : cart.totalItems}
+                </span>
+              )}
             </Button>
             
             {/* Theme Toggle */}
