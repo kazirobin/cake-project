@@ -11,6 +11,11 @@ import CategoryDetails from "@/pages/category/category-details";
 import ProductDetails from "@/pages/category/product/product-details";
 import CartPage from "@/root/Components/Cart/cart-page";
 import CheckoutPage from "@/root/Components/Checkout/checkout";
+import AddProduct from "@/pages/admin-panel/AddProduct";
+import Dashboard from "@/pages/admin-panel/Dashboard";
+import AllProducts from "@/pages/admin-panel/AllProducts";
+import Modaretors from "@/pages/admin-panel/Modaretors";
+import Orders from "@/pages/admin-panel/Orders";
 
 const router = createBrowserRouter([
   {
@@ -68,6 +73,28 @@ const router = createBrowserRouter([
   {
     path: "/admin-panel",
     element: <AdminPanel />,
+    children: [
+      {
+        index: true,
+        element: <Dashboard />,
+      },
+      {
+        path: "all-products",
+        element: <AllProducts />,
+      },
+      {
+        path: "add-product",
+        element: <AddProduct />,
+      },
+      {
+        path: "moderators",
+        element: <Modaretors />,
+      },
+      {
+        path: "orders",
+        element: <Orders />,
+      },
+    ],
   },
 ]);
 
