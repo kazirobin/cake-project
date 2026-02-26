@@ -19,7 +19,7 @@ import {
   SidebarRail,
 } from "./ui/sidebar";
 
-// This is sample data.
+// This is nav menu data.
 const data = {
   user: {
     name: "shadcn",

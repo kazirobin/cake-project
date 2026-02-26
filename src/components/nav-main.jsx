@@ -13,7 +13,7 @@ export function NavMain({ items }) {
 
   return (
     <SidebarGroup>
-      <SidebarGroupLabel>Product Management</SidebarGroupLabel>
+      <SidebarGroupLabel>Manage Product</SidebarGroupLabel>
       <SidebarMenu>
         {items.map((item) => (
           <SidebarMenuItem key={item.title}>
