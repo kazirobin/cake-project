@@ -1,24 +1,28 @@
 import { Outlet } from "react-router";
 import Footer from "@/root/Components/Footer/Footer";
 import NavbarWithNavigation from "@/root/Components/NavbarWithNavigation";
-import { ThemeProvider } from '@/components/Theme/theme-provider';
+import { ThemeProvider } from "@/components/Theme/theme-provider";
+import DesktopNavigateContent from "@/root/Components/NavbarWithNavigation/DesktopNavigateContent";
 
 const RootLayout = () => {
   return (
     <ThemeProvider>
-      <div className="min-h-screen flex flex-col bg-amber-50 dark:bg-gray-900 transition-colors duration-300">
+      <div className="flex min-h-screen flex-col duration-300">
         {/* Sticky Header */}
-        <header className="sticky top-0 z-50 w-full bg-amber-50/95 dark:bg-gray-900/95 backdrop-blur-sm shadow-sm transition-colors duration-300">
+        <header className="sticky top-0 z-50 w-full">
           <NavbarWithNavigation />
         </header>
+        <div className="hidden lg:flex">
+          <DesktopNavigateContent />
+        </div>
 
         {/* Main content */}
-        <main className="flex-1 transition-colors duration-300 container mx-auto">
+        <main className="container mx-auto flex-1">
           <Outlet />
         </main>
 
         {/* Footer */}
-        <footer className="transition-colors duration-300">
+        <footer>
           <Footer />
         </footer>
       </div>

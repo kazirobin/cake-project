@@ -49,7 +49,7 @@ const ProductCard = ({ product }) => {
         </div>
       )}
 
-      <Card className="group overflow-hidden hover:shadow-xl transition-all duration-300 relative">
+      <Card className="group overflow-hidden hover:shadow-xl transition-all duration-300 relative bg-background">
         <Link to={`/categories/product/${id}`}>
           <div className="relative overflow-hidden h-48">
             <img 

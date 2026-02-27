@@ -32,7 +32,7 @@ const DesktopSearch = ({
         onChange={(e) => setSearchTerm(e.target.value)}
         onFocus={() => setShowSuggestions(true)}
         placeholder="Search for cakes, categories, or flavors..."
-        className="w-full pl-8 pr-10 py-1.5 h-[44px] rounded-full border border-gray-300 dark:border-gray-600 focus:ring-0 focus:outline-none bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500"
+        className="w-full pl-8 pr-10 py-1.5 h-[44px] rounded-full border border-gray-300 dark:border-gray-600 focus:ring-0 focus:outline-none text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500"
       />
       <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500 h-3.5 w-3.5" />
       <span className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[10px] text-gray-400 dark:text-gray-500">

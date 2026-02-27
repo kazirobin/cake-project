@@ -11,7 +11,7 @@ import { Home } from 'lucide-react';
 
 const ReusableBreadcrumb = ({ items, showHome = true, homePath = '/' }) => {
   return (
-    <Breadcrumb className="mb-4">
+    <Breadcrumb className="mb-2 p-2">
       <BreadcrumbList>
         {showHome && (
           <>
@@ -82,7 +82,7 @@ const AdminBreadcrumb = ({ page, subPage }) => {
   return <ReusableBreadcrumb items={items} />;
 };
 
-// 4. Direct usage with  custom items
+// 4. Direct usage with custom items
 const CustomPage = () => {
   const breadcrumbItems = [
     { label: 'Products', path: '/products' },

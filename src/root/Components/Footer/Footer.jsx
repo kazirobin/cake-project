@@ -12,7 +12,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800">
+    <footer className="border-t border-gray-200 dark:border-gray-800">
       {/* Newsletter Section */}
       <Newsletter />
 

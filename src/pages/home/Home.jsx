@@ -15,7 +15,7 @@ const Home = () => {
   const newArrivals = productService.getNewArrivals(4);
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen">
  
 
       {/* Slider Banner Section */}
@@ -51,7 +51,7 @@ const Home = () => {
       </section>
 
       {/* Features Section */}
-      <section className="bg-white dark:bg-gray-800 py-16">
+      <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="text-center">

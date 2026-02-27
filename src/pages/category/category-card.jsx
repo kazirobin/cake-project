@@ -38,7 +38,7 @@ const CategoryCard = ({ category }) => {
 
   return (
     <Link to={`/categories/${slug}`} className="block h-full">
-      <div className="flex h-full flex-col overflow-hidden rounded-lg bg-white dark:bg-gray-800 shadow-md transition-all duration-300 hover:shadow-lg dark:shadow-gray-700/30 hover:scale-[1.02]">
+      <div className="flex h-full flex-col overflow-hidden rounded-lg  shadow-md transition-all duration-300 hover:shadow-lg dark:shadow-gray-700/30 hover:scale-[1.02]">
         {/* Image - Fixed height */}
         <div className="h-48 overflow-hidden">
           <img 

@@ -8,7 +8,8 @@ import NoProductsFound from "./product/no-product-found";
 import SortDropdown from "./sort-dropdown";
 import FeaturesBar from "./category-features-bar";
 import CategoryHero from "./category-hero";
-import { formatPriceData } from './../../lib/price-formatter';
+import { formatPriceData } from "./../../lib/price-formatter";
+import ReusableBreadcrumb from "@/root/Components/BreadCrumbs/ReusableBreadcrumb";
 
 // Map category names to IDs
 const categoryNameToId = {
@@ -86,10 +87,10 @@ const CategoryDetails = () => {
 
   if (loading) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+      <div className="flex min-h-screen items-center justify-center  transition-colors duration-300">
         <div className="text-center">
           <div className="mx-auto h-12 w-12 animate-spin rounded-full border-b-2 border-orange-500 dark:border-orange-400"></div>
-          <p className="mt-4 text-gray-600 dark:text-gray-300 transition-colors duration-300">
+          <p className="mt-4 text-gray-600 transition-colors duration-300 dark:text-gray-300">
             Loading category...
           </p>
         </div>
@@ -99,15 +100,18 @@ const CategoryDetails = () => {
 
   if (!category) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+      <div className="flex min-h-screen items-center justify-center  transition-colors duration-300">
         <div className="text-center">
-          <h1 className="mb-4 text-2xl font-bold text-gray-900 dark:text-white transition-colors duration-300">
+          <h1 className="mb-4 text-2xl font-bold text-gray-900 transition-colors duration-300 dark:text-white">
             Category Not Found
           </h1>
-          <p className="mb-6 text-gray-600 dark:text-gray-300 transition-colors duration-300">
+          <p className="mb-6 text-gray-600 transition-colors duration-300 dark:text-gray-300">
             The category "{categoryId}" doesn't exist.
           </p>
-          <Button asChild className="bg-orange-500 hover:bg-orange-600 dark:bg-orange-600 dark:hover:bg-orange-700 text-white transition-colors duration-300">
+          <Button
+            asChild
+            className="bg-orange-500 text-white transition-colors duration-300 hover:bg-orange-600 dark:bg-orange-600 dark:hover:bg-orange-700"
+          >
             <Link to="/categories">Browse All Categories</Link>
           </Button>
         </div>
@@ -118,7 +122,13 @@ const CategoryDetails = () => {
   const sortedProducts = getSortedProducts();
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+    <div className="min-h-screen  transition-colors duration-300">
+      <ReusableBreadcrumb
+        items={[
+          { path: "/categories", label: "Categories" },
+          { label: category?.name || "Category" },
+        ]}
+      />
       {/* Hero Section */}
       <CategoryHero
         category={category}
@@ -132,7 +142,7 @@ const CategoryDetails = () => {
 
         {/* Sort and Results Count */}
         <div className="mb-6 flex flex-col items-start justify-between sm:flex-row sm:items-center">
-          <p className="mb-4 text-gray-600 dark:text-gray-300 sm:mb-0 transition-colors duration-300">
+          <p className="mb-4 text-gray-600 transition-colors duration-300 sm:mb-0 dark:text-gray-300">
             Showing{" "}
             <span className="font-semibold text-gray-900 dark:text-white">
               {categoryProducts.length}
@@ -149,7 +159,7 @@ const CategoryDetails = () => {
             {sortedProducts.map((item) => {
               const product = item.cakeDetails;
               const priceData = formatPriceData(item);
-              
+
               return (
                 <ProductCard
                   key={product.id}
