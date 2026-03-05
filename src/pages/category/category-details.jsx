@@ -3,11 +3,11 @@ import { useParams, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import categories from "@/data/category.json";
 import products from "@/data/products.json";
-import ProductCard from "./product/product-card";
-import NoProductsFound from "./product/no-product-found";
-import SortDropdown from "./sort-dropdown";
-import FeaturesBar from "./category-features-bar";
-import CategoryHero from "./category-hero";
+import ProductCard from "../product/product-card";
+import NoProductsFound from "../../root/Components/Product/no-product-found";
+import SortDropdown from "../../root/Components/Category/sort-dropdown";
+import FeaturesBar from "../../root/Components/Category/category-features-bar";
+import CategoryHero from "../../root/Components/Category/category-hero";
 import { formatPriceData } from "./../../lib/price-formatter";
 import ReusableBreadcrumb from "@/root/Components/BreadCrumbs/ReusableBreadcrumb";
 
@@ -87,7 +87,7 @@ const CategoryDetails = () => {
 
   if (loading) {
     return (
-      <div className="flex min-h-screen items-center justify-center  transition-colors duration-300">
+      <div className="flex min-h-screen items-center justify-center transition-colors duration-300">
         <div className="text-center">
           <div className="mx-auto h-12 w-12 animate-spin rounded-full border-b-2 border-orange-500 dark:border-orange-400"></div>
           <p className="mt-4 text-gray-600 transition-colors duration-300 dark:text-gray-300">
@@ -100,7 +100,7 @@ const CategoryDetails = () => {
 
   if (!category) {
     return (
-      <div className="flex min-h-screen items-center justify-center  transition-colors duration-300">
+      <div className="flex min-h-screen items-center justify-center transition-colors duration-300">
         <div className="text-center">
           <h1 className="mb-4 text-2xl font-bold text-gray-900 transition-colors duration-300 dark:text-white">
             Category Not Found
@@ -122,7 +122,7 @@ const CategoryDetails = () => {
   const sortedProducts = getSortedProducts();
 
   return (
-    <div className="min-h-screen  transition-colors duration-300">
+    <div className="min-h-screen transition-colors duration-300">
       <ReusableBreadcrumb
         items={[
           { path: "/categories", label: "Categories" },

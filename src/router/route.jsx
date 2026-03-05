@@ -6,9 +6,9 @@ import Register from "@/pages/Register/Register";
 import AdminPanel from "@/pages/admin-panel/AdminPanel";
 import NotFoundPage from "@/pages/error/NotFoundPage";
 import CategoryLayout from "@/Layouts/CategoryLayout";
-import AllCategory from "@/pages/category/all-category";
+import AllCategory from "@/root/Components/Category/all-category";
 import CategoryDetails from "@/pages/category/category-details";
-import ProductDetails from "@/pages/category/product/product-details";
+import ProductDetails from "@/pages/product/product-details";
 import CartPage from "@/root/Components/Cart/cart-page";
 import CheckoutPage from "@/root/Components/Checkout/checkout";
 
