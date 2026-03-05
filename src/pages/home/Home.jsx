@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { ShoppingCart, Truck, Shield, Clock, Heart } from "lucide-react";
 import SliderBanner from "@/root/Components/SliderBanner/SliderBanner";
 import { useCart } from "@/Hooks/cart-context";
-import ProductCard from "../product/product-card";
+import ProductCard from "../../root/Components/Product/product-card";
 import productService from "../product/product-service";
 import CartSidebar from "@/root/Components/Cart/cart-sidebar";
 import PlayWinCake from "@/root/Components/Mohosin/PlayWinCake";

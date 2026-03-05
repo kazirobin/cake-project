@@ -3,7 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import categories from "@/data/category.json";
 import products from "@/data/products.json";
-import ProductCard from "../product/product-card";
+import ProductCard from "../../root/Components/Product/product-card";
 import NoProductsFound from "../../root/Components/Product/no-product-found";
 import SortDropdown from "../../root/Components/Category/sort-dropdown";
 import FeaturesBar from "../../root/Components/Category/category-features-bar";

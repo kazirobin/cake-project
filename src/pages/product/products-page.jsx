@@ -1,32 +1,30 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { 
-  Search, 
-  ShoppingCart, 
-  SlidersHorizontal,
-  X 
-} from 'lucide-react';
-import { useCart } from '@/Hooks/cart-context';
-import productService from './product-service';
-import ProductCard from './product-card';
-import CartSidebar from '@/root/Components/Cart/cart-sidebar';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Search, ShoppingCart, SlidersHorizontal, X } from "lucide-react";
+import { useCart } from "@/Hooks/cart-context";
+import productService from "./product-service";
+import ProductCard from "../../root/Components/Product/product-card";
+import CartSidebar from "@/root/Components/Cart/cart-sidebar";
 
 const ProductsPage = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("all");
   const [priceRange, setPriceRange] = useState({ min: 0, max: 100 });
   const [showFilters, setShowFilters] = useState(false);
-  const [sortBy, setSortBy] = useState('featured');
+  const [sortBy, setSortBy] = useState("featured");
   const { cart } = useCart();
-  
+
   const allProducts = productService.getAllProducts();
-  
+
   // Get unique categories
-  const categories = ['all', ...new Set(allProducts.flatMap(p => p.categoryIds))];
-  
+  const categories = [
+    "all",
+    ...new Set(allProducts.flatMap((p) => p.categoryIds)),
+  ];
+
   const [filteredProducts, setFilteredProducts] = useState(allProducts);
 
   useEffect(() => {
@@ -38,28 +36,31 @@ const ProductsPage = () => {
     }
 
     // Apply category filter
-    if (selectedCategory !== 'all') {
-      filtered = filtered.filter(p => p.categoryIds.includes(parseInt(selectedCategory)));
+    if (selectedCategory !== "all") {
+      filtered = filtered.filter((p) =>
+        p.categoryIds.includes(parseInt(selectedCategory)),
+      );
     }
 
     // Apply price filter
-    filtered = filtered.filter(p => 
-      p.pricing.discounted >= priceRange.min && 
-      p.pricing.discounted <= priceRange.max
+    filtered = filtered.filter(
+      (p) =>
+        p.pricing.discounted >= priceRange.min &&
+        p.pricing.discounted <= priceRange.max,
     );
 
     // Apply sorting
     switch (sortBy) {
-      case 'price-low':
+      case "price-low":
         filtered.sort((a, b) => a.pricing.discounted - b.pricing.discounted);
         break;
-      case 'price-high':
+      case "price-high":
         filtered.sort((a, b) => b.pricing.discounted - a.pricing.discounted);
         break;
-      case 'rating':
+      case "rating":
         filtered.sort((a, b) => b.rating.value - a.rating.value);
         break;
-      case 'newest':
+      case "newest":
         filtered.sort((a, b) => b.id - a.id);
         break;
       default:
@@ -71,38 +72,41 @@ const ProductsPage = () => {
   }, [searchQuery, selectedCategory, priceRange, sortBy]);
 
   const clearFilters = () => {
-    setSearchQuery('');
-    setSelectedCategory('all');
+    setSearchQuery("");
+    setSelectedCategory("all");
     setPriceRange({ min: 0, max: 100 });
-    setSortBy('featured');
+    setSortBy("featured");
   };
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Header */}
-      <header className="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-30">
+      <header className="sticky top-0 z-30 bg-white shadow-sm dark:bg-gray-800">
         <div className="container mx-auto px-4 py-4">
-          <div className="flex justify-between items-center">
-            <Link to="/" className="text-2xl font-bold text-orange-600 dark:text-orange-400">
+          <div className="flex items-center justify-between">
+            <Link
+              to="/"
+              className="text-2xl font-bold text-orange-600 dark:text-orange-400"
+            >
               UG Cakes
             </Link>
-            
+
             <div className="flex items-center gap-4">
               <Button
                 variant="outline"
                 onClick={() => setShowFilters(!showFilters)}
                 className="md:hidden"
               >
-                <SlidersHorizontal className="w-5 h-5" />
+                <SlidersHorizontal className="h-5 w-5" />
               </Button>
               <Button
                 onClick={() => setIsCartOpen(true)}
                 className="relative"
                 variant="outline"
               >
-                <ShoppingCart className="w-5 h-5" />
+                <ShoppingCart className="h-5 w-5" />
                 {cart.totalItems > 0 && (
-                  <span className="absolute -top-2 -right-2 bg-orange-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                  <span className="absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center rounded-full bg-orange-500 text-xs text-white">
                     {cart.totalItems}
                   </span>
                 )}
@@ -115,8 +119,8 @@ const ProductsPage = () => {
       <div className="container mx-auto px-4 py-8">
         {/* Search Bar */}
         <div className="mb-8">
-          <div className="relative max-w-md mx-auto">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+          <div className="relative mx-auto max-w-md">
+            <Search className="absolute top-1/2 left-3 h-5 w-5 -translate-y-1/2 transform text-gray-400" />
             <Input
               type="text"
               placeholder="Search products..."
@@ -127,23 +131,23 @@ const ProductsPage = () => {
           </div>
         </div>
 
-        <div className="flex flex-col md:flex-row gap-8">
+        <div className="flex flex-col gap-8 md:flex-row">
           {/* Filters - Desktop */}
-          <div className="hidden md:block w-64 flex-shrink-0">
-            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 sticky top-24">
-              <h3 className="font-bold text-lg text-gray-900 dark:text-white mb-4">
+          <div className="hidden w-64 flex-shrink-0 md:block">
+            <div className="sticky top-24 rounded-lg bg-white p-6 shadow-lg dark:bg-gray-800">
+              <h3 className="mb-4 text-lg font-bold text-gray-900 dark:text-white">
                 Filters
               </h3>
-              
+
               {/* Categories */}
               <div className="mb-6">
-                <h4 className="font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <h4 className="mb-2 font-medium text-gray-700 dark:text-gray-300">
                   Categories
                 </h4>
                 <select
                   value={selectedCategory}
                   onChange={(e) => setSelectedCategory(e.target.value)}
-                  className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                  className="w-full rounded-lg border border-gray-300 bg-white p-2 text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
                 >
                   <option value="all">All Categories</option>
                   <option value="1">Birthday Cakes</option>
@@ -155,7 +159,7 @@ const ProductsPage = () => {
 
               {/* Price Range */}
               <div className="mb-6">
-                <h4 className="font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <h4 className="mb-2 font-medium text-gray-700 dark:text-gray-300">
                   Price Range
                 </h4>
                 <div className="space-y-2">
@@ -164,7 +168,12 @@ const ProductsPage = () => {
                     min="0"
                     max="100"
                     value={priceRange.max}
-                    onChange={(e) => setPriceRange({ ...priceRange, max: parseInt(e.target.value) })}
+                    onChange={(e) =>
+                      setPriceRange({
+                        ...priceRange,
+                        max: parseInt(e.target.value),
+                      })
+                    }
                     className="w-full"
                   />
                   <div className="flex justify-between text-sm text-gray-600 dark:text-gray-400">
@@ -176,13 +185,13 @@ const ProductsPage = () => {
 
               {/* Sort By */}
               <div className="mb-6">
-                <h4 className="font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <h4 className="mb-2 font-medium text-gray-700 dark:text-gray-300">
                   Sort By
                 </h4>
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
-                  className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                  className="w-full rounded-lg border border-gray-300 bg-white p-2 text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
                 >
                   <option value="featured">Featured</option>
                   <option value="price-low">Price: Low to High</option>
@@ -205,22 +214,36 @@ const ProductsPage = () => {
 
           {/* Mobile Filters */}
           {showFilters && (
-            <div className="md:hidden fixed inset-0 bg-black/50 z-40" onClick={() => setShowFilters(false)}>
-              <div className="absolute right-0 top-0 h-full w-64 bg-white dark:bg-gray-800 p-6" onClick={e => e.stopPropagation()}>
-                <div className="flex justify-between items-center mb-4">
-                  <h3 className="font-bold text-lg text-gray-900 dark:text-white">Filters</h3>
-                  <Button variant="ghost" size="icon" onClick={() => setShowFilters(false)}>
-                    <X className="w-5 h-5" />
+            <div
+              className="fixed inset-0 z-40 bg-black/50 md:hidden"
+              onClick={() => setShowFilters(false)}
+            >
+              <div
+                className="absolute top-0 right-0 h-full w-64 bg-white p-6 dark:bg-gray-800"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <div className="mb-4 flex items-center justify-between">
+                  <h3 className="text-lg font-bold text-gray-900 dark:text-white">
+                    Filters
+                  </h3>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => setShowFilters(false)}
+                  >
+                    <X className="h-5 w-5" />
                   </Button>
                 </div>
-                
+
                 {/* Same filter content as desktop */}
                 <div className="mb-6">
-                  <h4 className="font-medium text-gray-700 dark:text-gray-300 mb-2">Categories</h4>
+                  <h4 className="mb-2 font-medium text-gray-700 dark:text-gray-300">
+                    Categories
+                  </h4>
                   <select
                     value={selectedCategory}
                     onChange={(e) => setSelectedCategory(e.target.value)}
-                    className="w-full p-2 border rounded-lg"
+                    className="w-full rounded-lg border p-2"
                   >
                     <option value="all">All Categories</option>
                     <option value="1">Birthday Cakes</option>
@@ -230,23 +253,32 @@ const ProductsPage = () => {
                 </div>
 
                 <div className="mb-6">
-                  <h4 className="font-medium text-gray-700 dark:text-gray-300 mb-2">Price Range</h4>
+                  <h4 className="mb-2 font-medium text-gray-700 dark:text-gray-300">
+                    Price Range
+                  </h4>
                   <input
                     type="range"
                     min="0"
                     max="100"
                     value={priceRange.max}
-                    onChange={(e) => setPriceRange({ ...priceRange, max: parseInt(e.target.value) })}
+                    onChange={(e) =>
+                      setPriceRange({
+                        ...priceRange,
+                        max: parseInt(e.target.value),
+                      })
+                    }
                     className="w-full"
                   />
                 </div>
 
                 <div className="mb-6">
-                  <h4 className="font-medium text-gray-700 dark:text-gray-300 mb-2">Sort By</h4>
+                  <h4 className="mb-2 font-medium text-gray-700 dark:text-gray-300">
+                    Sort By
+                  </h4>
                   <select
                     value={sortBy}
                     onChange={(e) => setSortBy(e.target.value)}
-                    className="w-full p-2 border rounded-lg"
+                    className="w-full rounded-lg border p-2"
                   >
                     <option value="featured">Featured</option>
                     <option value="price-low">Price: Low to High</option>
@@ -254,7 +286,11 @@ const ProductsPage = () => {
                   </select>
                 </div>
 
-                <Button onClick={clearFilters} variant="outline" className="w-full">
+                <Button
+                  onClick={clearFilters}
+                  variant="outline"
+                  className="w-full"
+                >
                   Clear Filters
                 </Button>
               </div>
@@ -264,7 +300,7 @@ const ProductsPage = () => {
           {/* Products Grid */}
           <div className="flex-1">
             {/* Results Count */}
-            <div className="flex justify-between items-center mb-4">
+            <div className="mb-4 flex items-center justify-between">
               <p className="text-gray-600 dark:text-gray-400">
                 {filteredProducts.length} products found
               </p>
@@ -273,26 +309,26 @@ const ProductsPage = () => {
                 onClick={() => setShowFilters(true)}
                 className="md:hidden"
               >
-                <SlidersHorizontal className="w-4 h-4 mr-2" />
+                <SlidersHorizontal className="mr-2 h-4 w-4" />
                 Filters
               </Button>
             </div>
 
             {/* Products */}
             {filteredProducts.length > 0 ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {filteredProducts.map(product => (
+              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {filteredProducts.map((product) => (
                   <ProductCard key={product.id} product={product} />
                 ))}
               </div>
             ) : (
-              <div className="text-center py-12">
-                <p className="text-gray-600 dark:text-gray-400 mb-4">
+              <div className="py-12 text-center">
+                <p className="mb-4 text-gray-600 dark:text-gray-400">
                   No products found matching your criteria
                 </p>
                 <Button
                   onClick={clearFilters}
-                  className="bg-orange-500 hover:bg-orange-600 text-white"
+                  className="bg-orange-500 text-white hover:bg-orange-600"
                 >
                   Clear Filters
                 </Button>

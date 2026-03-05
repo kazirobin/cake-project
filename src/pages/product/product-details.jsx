@@ -19,7 +19,7 @@ import {
 } from "lucide-react";
 import { useCart } from "@/Hooks/cart-context";
 import productService from "./product-service";
-import ProductCard from "./product-card";
+import ProductCard from "../../root/Components/Product/product-card";
 import ReusableBreadcrumb from "@/root/Components/BreadCrumbs/ReusableBreadcrumb";
 import categories from "@/data/category.json";
 
@@ -164,12 +164,10 @@ const ProductDetails = () => {
           ]}
         />
 
- 
-
         <div className="mb-12 grid gap-8 lg:grid-cols-2">
           {/* Product Images */}
           <div className="space-y-4">
-            <div className="overflow-hidden rounded-lg shadow-lg ">
+            <div className="overflow-hidden rounded-lg shadow-lg">
               <img
                 src={allImages[selectedImage]}
                 alt={product.title}
@@ -209,7 +207,7 @@ const ProductDetails = () => {
           </div>
 
           {/* Product Details */}
-          <div className="rounded-lg p-6 shadow-lg ">
+          <div className="rounded-lg p-6 shadow-lg">
             {/* Title and SKU */}
             <div className="mb-4">
               <h1 className="mb-2 text-3xl font-bold text-gray-900 dark:text-white">
