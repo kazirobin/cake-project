@@ -7,6 +7,7 @@ import { useCart } from "@/Hooks/cart-context";
 import ProductCard from "../product/product-card";
 import productService from "../product/product-service";
 import CartSidebar from "@/root/Components/Cart/cart-sidebar";
+import PlayWinCake from "@/root/Components/Mohosin/PlayWinCake";
 
 const Home = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -124,6 +125,9 @@ const Home = () => {
 
       {/* Cart Sidebar */}
       <CartSidebar isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
+
+      {/* Play and wind cake section */}
+      <PlayWinCake />
     </div>
   );
 };
