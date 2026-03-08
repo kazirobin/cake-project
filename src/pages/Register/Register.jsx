@@ -236,7 +236,7 @@ const Register = () => {
               // whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               type="submit"
-              className="group flex w-full cursor-pointer items-center justify-center rounded-2xl bg-gradient-to-r from-purple-600 to-blue-600 py-4 font-bold text-white shadow-lg shadow-purple-500/20 transition-all"
+              className="group flex w-full cursor-pointer items-center justify-center rounded-2xl bg-linear-to-r from-purple-600 to-blue-600 py-4 font-bold text-white shadow-lg shadow-purple-500/20 transition-all"
             >
               Get Started
               <FiArrowRight className="ml-2 transition-transform group-hover:translate-x-2" />

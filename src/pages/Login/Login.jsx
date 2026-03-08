@@ -127,7 +127,7 @@ const Login = () => {
         <div className="rounded-[48px] border border-white/10 p-10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] backdrop-blur-3xl">
           {/* Header */}
           <motion.div variants={itemVariants} className="mb-10 text-center">
-            <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-tr from-purple-600 to-blue-600 shadow-lg">
+            <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-linear-to-tr from-purple-600 to-blue-600 shadow-lg">
               <FiLock className="text-white" size={30} />
             </div>
             <h2 className="mb-2 text-4xl font-bold tracking-tight">
@@ -254,7 +254,7 @@ const Login = () => {
               }}
               whileTap={{ scale: 0.98 }}
               type="submit"
-              className="group flex w-full cursor-pointer items-center justify-center rounded-2xl bg-gradient-to-r from-blue-600 to-purple-600 py-4 font-bold text-white transition-all"
+              className="group flex w-full cursor-pointer items-center justify-center rounded-2xl bg-linear-to-r from-blue-600 to-purple-600 py-4 font-bold text-white transition-all"
             >
               Sign In
               <FiArrowRight className="ml-2 transition-transform group-hover:translate-x-1" />

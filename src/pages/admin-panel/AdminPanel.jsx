@@ -1,52 +1,30 @@
 import { AppSidebar } from "@/components/app-sidebar";
 import DyBread from "@/components/common/DyBread";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
 import { Separator } from "@/components/ui/separator";
 import {
-  SidebarInset,
   SidebarProvider,
   SidebarTrigger,
+  SidebarInset,
 } from "@/components/ui/sidebar";
 import { Outlet } from "react-router";
 
 const AdminPanel = () => {
   return (
-    <SidebarProvider className="flex w-full">
+    <SidebarProvider>
       <AppSidebar />
-      <SidebarInset className="ml-48">
-        <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
+      <SidebarInset className="flex w-full flex-col">
+        <header className="bg-background sticky top-0 z-40 flex h-16 shrink-0 items-center gap-2 border-b">
           <div className="flex items-center gap-2 px-4">
             <SidebarTrigger className="-ml-1" />
-            <Separator
-              orientation="vertical"
-              className="mr-2 data-[orientation=vertical]:h-4"
-            />
-            {/* <Breadcrumb>
-              <BreadcrumbList>
-                <BreadcrumbItem className="hidden md:block">
-                  <BreadcrumbLink href="#">
-                    Build Your Application
-                  </BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator className="hidden md:block" />
-                <BreadcrumbItem>
-                  <BreadcrumbPage>Data Fetching</BreadcrumbPage>
-                </BreadcrumbItem>
-              </BreadcrumbList>
-            </Breadcrumb> */}
+            <Separator orientation="vertical" className="mr-2 h-4" />
             <DyBread />
           </div>
         </header>
-        <div className="flex gap-4 p-4 pt-0">
-          <Outlet />
-        </div>
+        <main className="flex-1 overflow-y-auto">
+          <div className="flex flex-col gap-6 p-4 md:p-6 lg:p-8">
+            <Outlet />
+          </div>
+        </main>
       </SidebarInset>
     </SidebarProvider>
   );

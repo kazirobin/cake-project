@@ -1,24 +1,24 @@
 import { Outlet } from "react-router";
 import Footer from "@/root/Components/Footer/Footer";
 import NavbarWithNavigation from "@/root/Components/NavbarWithNavigation";
-import { ThemeProvider } from '@/components/Theme/theme-provider';
+import { ThemeProvider } from "@/components/Theme/theme-provider";
 
 const RootLayout = () => {
   return (
     <ThemeProvider>
-      <div className="min-h-screen flex flex-col bg-amber-50 dark:bg-gray-900 transition-colors duration-300">
+      <div className="bg-background flex min-h-screen flex-col transition-colors duration-300 dark:bg-slate-950">
         {/* Sticky Header */}
-        <header className="sticky top-0 z-50 w-full bg-amber-50/95 dark:bg-gray-900/95 backdrop-blur-sm shadow-sm transition-colors duration-300">
+        <header className="border-border bg-background/95 supports-backdrop-filter:bg-background/60 sticky top-0 z-50 w-full border-b backdrop-blur dark:bg-slate-950/95">
           <NavbarWithNavigation />
         </header>
 
         {/* Main content */}
-        <main className="flex-1 transition-colors duration-300 container mx-auto">
+        <main className="w-full flex-1 transition-colors duration-300">
           <Outlet />
         </main>
 
         {/* Footer */}
-        <footer className="transition-colors duration-300">
+        <footer className="border-border w-full border-t transition-colors duration-300">
           <Footer />
         </footer>
       </div>
