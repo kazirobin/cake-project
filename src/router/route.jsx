@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router";
 import RootLayout from "../Layouts/RootLayout";
-import Home from "../pages/home/Home";
+import Home from "@/pages/home/Home";
 import Login from "@/pages/Login/Login";
 import Register from "@/pages/Register/Register";
 import AdminPanel from "@/pages/admin-panel/AdminPanel";
@@ -14,7 +14,7 @@ import CheckoutPage from "@/root/Components/Checkout/checkout";
 import AddProduct from "@/pages/admin-panel/AddProduct";
 import Dashboard from "@/pages/admin-panel/Dashboard";
 import AllProducts from "@/pages/admin-panel/AllProducts";
-import Modaretors from "@/pages/admin-panel/Modaretors";
+import Moderators from "@/pages/admin-panel/Moderators";
 import Orders from "@/pages/admin-panel/Orders";
 
 const router = createBrowserRouter([
@@ -88,7 +88,7 @@ const router = createBrowserRouter([
       },
       {
         path: "moderators",
-        element: <Modaretors />,
+        element: <Moderators />,
       },
       {
         path: "orders",

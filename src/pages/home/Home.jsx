@@ -10,6 +10,7 @@ import CartSidebar from "@/root/Components/Cart/cart-sidebar";
 import PlayWinCake from "@/root/Components/Mohosin/PlayWinCake";
 
 const Home = () => {
+  console.log("Home component is rendering");
   const [isCartOpen, setIsCartOpen] = useState(false);
   const { cart } = useCart();
   const featuredProducts = productService.getFeaturedProducts(4);
