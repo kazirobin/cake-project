@@ -16,6 +16,7 @@ import Dashboard from "@/pages/admin-panel/Dashboard";
 import AllProducts from "@/pages/admin-panel/AllProducts";
 import Moderators from "@/pages/admin-panel/Moderators";
 import Orders from "@/pages/admin-panel/Orders";
+import WishGenerator from './../pages/wish-generator/WishGenerator';
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: "/about",
         element: <div>About</div>,
+      },
+      {
+        path: "/wish-generator",
+        element: <WishGenerator/>,
       },
       {
         path: "/login",
