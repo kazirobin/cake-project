@@ -1,2 +1,1 @@
-[live](https://ug-cake.vercel.app/)
-git clone by jobayer rahman
+# Professional Folder Structure for Cake Shop E-commerce
