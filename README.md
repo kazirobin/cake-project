@@ -1,9 +1,6 @@
 Here's the restructured folder structure in a clean markdown code block:
 
-```markdown
 # Professional Folder Structure for Cake Shop E-commerce
-
-```
 
 cake-project/
 ├── public/                      # Static assets (served as-is)
@@ -116,7 +113,6 @@ cake-project/
 ├── vite.config.js
 └── README.md                         # Updated project documentation
 
-```
 
 ## Key Benefits of This Structure
 
@@ -145,7 +141,6 @@ New developers can understand the app's capabilities just by looking at the `fea
 1. **Start Small**: Create the `features/` directory and migrate one complete feature (like `auth`)
 2. **Refactor Incrementally**: Gradually move other parts of your existing `src` into this new structure
 3. **Update README**: Update your project documentation to reflect this new folder structure
-```
 
 This markdown-formatted version presents the folder structure and explanations in a clean, organized way that's easy to read and share with your team.৩. ডকার রান করো:
 docker-compose up --build
