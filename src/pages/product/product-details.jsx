@@ -37,7 +37,10 @@ const ProductDetails = () => {
   const productData = productService.getFullProductData(productId);
   const product = productData?.cakeDetails;
   const relatedProducts = productService.getRelatedProducts(productId);
+   
 
+
+  const [showMore, setShowMore] = useState(false);
   // Get category data from categories.json based on product categoryIds
   useEffect(() => {
     if (product?.categoryIds && product.categoryIds.length > 0) {
@@ -272,17 +275,52 @@ const ProductDetails = () => {
                   : "Out of stock"}
               </p>
             </div>
+            {/* Customizable Badge */}
+            {product.customizable && (
+              <div className="rounded-lg bg-orange-50 p-4 dark:bg-orange-900/20 border-2 border-orange-200 dark:border-orange-700 mb-6">
+                <div className="flex items-center gap-3">
+                    <p className="text-2xl bg-orange-900/30 rounded-full px-1">✨</p>
+                  <p className="font-medium text-orange-600 dark:text-orange-400">
+                   <span className="font-bold text-xl">This cake is Fully Customizable!</span> <br/>Personalize this cake with your preferred flavors, shapes, sizes, and icing colors!
+                </p>
+                </div>
+              </div>
+            )}
 
             {/* Description */}
             <div className="mb-6">
               <h3 className="mb-2 font-semibold text-gray-900 dark:text-white">
                 Description:
               </h3>
-              <p className="leading-relaxed text-gray-600 dark:text-gray-300">
+              <p className={`leading-relaxed text-gray-600 dark:text-gray-300 ${
+                showMore ? "" : "line-clamp-3"
+              }`}>
                 {product.description}
               </p>
+              <button onClick={() => setShowMore(!showMore)} className="mt-2 text-sm text-orange-500 hover:underline justify-center">
+                {showMore ? "Show Less" : "Read More"}
+              </button>
             </div>
 
+              {/* starting Price */}
+              
+                <div className="flex flex-col rounded-lg bg-orange-50 p-4 dark:bg-orange-900/20 border-2 border-orange-200 dark:border-orange-700 mb-6">
+                <div className="flex justify-between items-center ">
+                  <h3 className="font-semibold text-gray-900 dark:text-white">
+                    Starting Price:
+                  </h3>
+
+                  <p className="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-1">
+                    {product.pricing.currency}
+                    {product.pricing.discounted}
+                  </p>
+                </div>
+                <p className="mt-2 text-sm text-gray-600 dark:text-gray-300">
+                  The price shown is for a single pound cake in base options. 
+                  The final price might change based on the options you choose.
+                </p>
+          </div>
+           
             {/* Quantity Selector */}
             <div className="mb-6">
               <label className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
@@ -318,6 +356,7 @@ const ProductDetails = () => {
 
             {/* Action Buttons */}
             <div className="mb-6 flex gap-4">
+             {/* 
               <Button
                 onClick={handleAddToCart}
                 disabled={product.stock === 0}
@@ -326,6 +365,17 @@ const ProductDetails = () => {
               >
                 <ShoppingCart className="mr-2 h-4 w-4" />
                 {product.stock > 0 ? "Add to Cart" : "Out of Stock"}
+              </Button>
+              */}
+                {/*button redirect ot customize & add to cart*/}
+               <Button
+                onClick={handleAddToCart}
+                disabled={product.stock === 0}
+                className="flex-1 cursor-pointer bg-gradient-to-r from-orange-400 to-orange-800 text-white hover:from-orange-600 hover:to-orange-700"
+                size="lg"
+              >
+                <ShoppingCart className="mr-2 h-4 w-4" />
+                {product.stock > 0 ? "Customize & Add to Cart" : "Out of Stock"}
               </Button>
 
               {/* Single Heart Icon in Action Buttons */}
@@ -359,15 +409,7 @@ const ProductDetails = () => {
               </Button>
             </div>
 
-            {/* Customizable Badge */}
-            {product.customizable && (
-              <div className="rounded-lg bg-orange-50 p-4 dark:bg-orange-900/20">
-                <p className="font-medium text-orange-600 dark:text-orange-400">
-                  ✨ This cake is customizable! You can add a personalized
-                  message.
-                </p>
-              </div>
-            )}
+            
           </div>
         </div>
 
