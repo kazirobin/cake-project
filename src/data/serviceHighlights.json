@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "title": "Same Day Delivery",
+    "description": "In Kathmandu Valley",
+    "icon": "/icons/truck.png"
+  },
+  {
+    "id": 2,
+    "title": "Custom Designs",
+    "description": "Made to Order",
+    "icon": "/icons/palette.png"
+  },
+  {
+    "id": 3,
+    "title": "Fresh Daily",
+    "description": "Baked Fresh Daily",
+    "icon": "/icons/cake.png"
+  },
+  {
+    "id": 4,
+    "title": "Easy Payment",
+    "description": "Card, QR or Cash",
+    "icon": "/icons/card.png"
+  },
+  {
+    "id": 5,
+    "title": "Sugarless Cakes",
+    "description": "Diabetic Friendly",
+    "icon": "/icons/heart.png"
+  },
+  {
+    "id": 6,
+    "title": "Eggless Cakes",
+    "description": "Pure Vegetarian",
+    "icon": "/icons/star.png"
+  }
+]

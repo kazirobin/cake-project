@@ -8,6 +8,7 @@ import ProductCard from "../../root/Components/Product/product-card";
 import productService from "../product/product-service";
 import CartSidebar from "@/root/Components/Cart/cart-sidebar";
 import PlayWinCake from "@/root/Components/Mohosin/PlayWinCake";
+import ServiceHighlights from "@/components/ServiceHighlights/ServiceHighlights";
 
 const Home = () => {
   console.log("Home component is rendering");
@@ -20,6 +21,8 @@ const Home = () => {
     <div className="min-h-screen">
       {/* Slider Banner Section */}
       <SliderBanner />
+      {/* ServiceHighlight Section */}
+      <ServiceHighlights />
 
       {/* Featured Products Section */}
       <section className="container mx-auto px-4 py-16">
@@ -50,6 +53,7 @@ const Home = () => {
           </Link>
         </div>
       </section>
+
 
       {/* Features Section */}
       <section className="py-16">
