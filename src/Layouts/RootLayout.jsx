@@ -4,6 +4,7 @@ import NavbarWithNavigation from "@/root/Components/NavbarWithNavigation";
 import { ThemeProvider } from "@/components/Theme/theme-provider";
 import DesktopNavigateContent from "@/root/Components/NavbarWithNavigation/DesktopNavigateContent";
 
+
 const RootLayout = () => {
   return (
     <ThemeProvider>

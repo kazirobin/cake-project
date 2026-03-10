@@ -7,6 +7,7 @@ import AppSection from './AppSection';
 import PaymentMethods from './PaymentMethods';
 import BottomBar from './BottomBar';
 import TrustBadges from './TrustBadges';
+import MobileBottomNav from '@/components/MobileBottomNav/MobileBottomNav';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -42,6 +43,8 @@ const Footer = () => {
 
       {/* Trust Badges */}
       <TrustBadges />
+      {/* Additional spacing for mobile */}
+      <MobileBottomNav/>
     </footer>
   );
 };
