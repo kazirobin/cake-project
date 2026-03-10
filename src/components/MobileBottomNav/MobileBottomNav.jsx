@@ -17,7 +17,7 @@ const MobileBottomNav = () => {
 
   return (
     <nav className="fixed bottom-0 left-0 right-0 bg-white border-t dark:bg-[#0f0f0f] dark:border-gray-800 shadow-md md:hidden">
-      <ul className="flex justify-around items-center py-4">
+      <ul className="flex justify-around items-center py-3">
         {tabs.map((tab) => {
           const isActive = location.pathname === tab.path;
 
@@ -25,7 +25,7 @@ const MobileBottomNav = () => {
             <li
               key={tab.name}
               onClick={() => navigate(tab.path)}
-              className="flex flex-col items-center text-m font-bold cursor-pointer"
+              className="flex flex-col items-center text-sm font-bold cursor-pointer"
             >
               <motion.div
                 animate={isActive ? { scale: 1.2 } : { scale: 1 }}

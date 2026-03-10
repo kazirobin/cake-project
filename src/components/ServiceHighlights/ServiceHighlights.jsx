@@ -56,7 +56,7 @@ const ServiceHighlights = () => {
                   <img
                     src={service.icon}
                     alt={service.title}
-                    className="w-7 h-7"
+                    className="w-10 h-10"
                   />
                 </motion.div>
               </div>
