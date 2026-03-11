@@ -9,6 +9,14 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 export function DyFormField({ fieldConfig }) {
   return (
@@ -41,6 +49,21 @@ export function DyFormField({ fieldConfig }) {
                 className="resize-none"
                 {...field}
               />
+            ) : fieldConfig.type === "select" ? (
+              <Select value={field.value} onValueChange={field.onChange}>
+                <SelectTrigger>
+                  <SelectValue placeholder={fieldConfig.placeholder} />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup>
+                    {fieldConfig.items?.map((item) => (
+                      <SelectItem key={item.value} value={item.value}>
+                        {item.label}
+                      </SelectItem>
+                    ))}
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
             ) : (
               <Input
                 placeholder={fieldConfig.placeholder}

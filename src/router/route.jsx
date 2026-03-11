@@ -14,8 +14,9 @@ import CheckoutPage from "@/root/Components/Checkout/checkout";
 import AddProduct from "@/pages/admin-panel/AddProduct";
 import Dashboard from "@/pages/admin-panel/Dashboard";
 import AllProducts from "@/pages/admin-panel/AllProducts";
-import Modaretors from "@/pages/admin-panel/Modaretors";
 import Orders from "@/pages/admin-panel/Orders";
+import ManageCategory from "@/pages/admin-panel/ManageCategory";
+import Moderators from "@/pages/admin-panel/Moderators";
 
 const router = createBrowserRouter([
   {
@@ -32,7 +33,7 @@ const router = createBrowserRouter([
         element: <div>About</div>,
       },
       {
-        path: "/login",
+        path: "login",
         element: <Login />,
       },
       {
@@ -87,8 +88,12 @@ const router = createBrowserRouter([
         element: <AddProduct />,
       },
       {
+        path: "manage-category",
+        element: <ManageCategory />,
+      },
+      {
         path: "moderators",
-        element: <Modaretors />,
+        element: <Moderators />,
       },
       {
         path: "orders",

@@ -1,6 +1,7 @@
 import * as React from "react";
 import {
   Cake,
+  ChartGantt,
   LayoutDashboard,
   Package,
   PackagePlus,
@@ -50,6 +51,11 @@ const data = {
       icon: PackagePlus,
     },
     {
+      title: "Manage Category",
+      url: "/admin-panel/manage-category",
+      icon: ChartGantt,
+    },
+    {
       title: "Moderators",
       url: "/admin-panel/moderators",
       icon: ShieldUser,
@@ -64,7 +70,7 @@ const data = {
 
 export function AppSidebar({ ...props }) {
   return (
-    <Sidebar {...props}>
+    <Sidebar {...props} className="lg:pt-16">
       <SidebarHeader>
         <TeamSwitcher teams={data.teams} />
       </SidebarHeader>

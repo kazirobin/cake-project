@@ -1,10 +1,10 @@
-import React, { Children } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
-import { DyFormField } from "./DyFormField";
+import { Spinner } from "../ui/spinner";
 
 export function DyForm({
   schema,
@@ -29,7 +29,19 @@ export function DyForm({
     <Form {...form}>
       <form onSubmit={form.handleSubmit(handleSubmit)} className={className}>
         {children}
-        <Button type="submit">{submitText}</Button>
+        <Button
+          type="submit"
+          className="cursor-pointer"
+          disabled={form.formState.isSubmitting}
+        >
+          {form.formState.isSubmitting ? (
+            <div className="flex items-center gap-2">
+              <Spinner /> <span>Submitting...</span>
+            </div>
+          ) : (
+            submitText
+          )}
+        </Button>
       </form>
     </Form>
   );
