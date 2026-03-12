@@ -14,9 +14,15 @@ import CheckoutPage from "@/root/Components/Checkout/checkout";
 import AddProduct from "@/pages/admin-panel/AddProduct";
 import Dashboard from "@/pages/admin-panel/Dashboard";
 import AllProducts from "@/pages/admin-panel/AllProducts";
+<<<<<<< HEAD
 import Moderators from "@/pages/admin-panel/Moderators";
 import Orders from "@/pages/admin-panel/Orders";
 import WishGenerator from './../pages/wish-generator/WishGenerator';
+=======
+import Orders from "@/pages/admin-panel/Orders";
+import ManageCategory from "@/pages/admin-panel/ManageCategory";
+import Moderators from "@/pages/admin-panel/Moderators";
+>>>>>>> e7ff83551320383b76394b829103f133d8746ded
 
 const router = createBrowserRouter([
   {
@@ -33,11 +39,15 @@ const router = createBrowserRouter([
         element: <div>About</div>,
       },
       {
+<<<<<<< HEAD
         path: "/wish-generator",
         element: <WishGenerator/>,
       },
       {
         path: "/login",
+=======
+        path: "login",
+>>>>>>> e7ff83551320383b76394b829103f133d8746ded
         element: <Login />,
       },
       {
@@ -90,6 +100,10 @@ const router = createBrowserRouter([
       {
         path: "add-product",
         element: <AddProduct />,
+      },
+      {
+        path: "manage-category",
+        element: <ManageCategory />,
       },
       {
         path: "moderators",
