@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Star,
   ShoppingCart,
   Heart,
-  Share2,
   Truck,
   Shield,
   RotateCcw,
@@ -16,81 +13,176 @@ import {
   AlertCircle,
   Minus,
   Plus,
+  X,
+  Calendar,
 } from "lucide-react";
+
 import { useCart } from "@/Hooks/cart-context";
 import productService from "./product-service";
 import ProductCard from "../../root/Components/Product/product-card";
 import ReusableBreadcrumb from "@/root/Components/BreadCrumbs/ReusableBreadcrumb";
 import categories from "@/data/category.json";
 
+/* ---------------- DELIVERY MODAL ---------------- */
+
+const DeliveryDateModal = ({
+  isOpen,
+  onClose,
+  setDeliveryDate,
+  handleAddToCart,
+}) => {
+  const [selectedDate, setSelectedDate] = useState(null);
+
+  if (!isOpen) return null;
+
+  const dates = [
+    "Mar 11",
+    "Mar 12",
+    "Mar 13",
+    "Mar 14",
+    "Mar 15",
+    "Mar 16",
+    "Mar 17",
+    "Mar 18",
+  ];
+
+  const handleSelect = (date) => {
+    setSelectedDate(date);
+  };
+
+  const handleNext = () => {
+    if (!selectedDate) {
+      alert("Please select a delivery date");
+      return;
+    }
+
+    setDeliveryDate(selectedDate);
+    handleAddToCart();
+  };
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+      <div className="w-[700px] rounded-xl bg-white shadow-xl dark:bg-[#111]">
+        {/* Header */}
+        <div className="flex items-center justify-between border-b p-5">
+          <h2 className="text-lg font-semibold">Select Delivery Date</h2>
+          <X className="cursor-pointer" onClick={onClose} />
+        </div>
+
+        <div className="p-6">
+          <p className="mb-4 font-medium">
+            When would you like it delivered?
+          </p>
+
+          <div className="grid grid-cols-4 gap-4">
+            {dates.map((date, i) => (
+              <div
+                key={i}
+                onClick={() => handleSelect(date)}
+                className={`cursor-pointer rounded-lg border p-4 text-center hover:border-purple-500
+                ${
+                  selectedDate === date
+                    ? "border-purple-500 bg-purple-50"
+                    : ""
+                }`}
+              >
+                <p className="text-sm font-semibold">{date}</p>
+              </div>
+            ))}
+          </div>
+
+          {selectedDate && (
+            <div className="mt-5 rounded-lg bg-purple-50 p-3 text-sm text-purple-700">
+              Delivery scheduled for: <b>{selectedDate}</b>
+            </div>
+          )}
+        </div>
+
+        {/* Footer */}
+        <div className="flex gap-4 border-t p-5">
+          <Button
+            variant="outline"
+            className="w-full"
+            onClick={onClose}
+          >
+            Cancel
+          </Button>
+
+          <Button
+            className="w-full bg-gradient-to-r from-purple-600 to-pink-500 text-white"
+            onClick={handleNext}
+          >
+            Add To Cart
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+/* ---------------- PRODUCT DETAILS ---------------- */
+
 const ProductDetails = () => {
   const { productId } = useParams();
   const navigate = useNavigate();
   const { addToCart } = useCart();
+
   const [selectedImage, setSelectedImage] = useState(0);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [showFavoriteMessage, setShowFavoriteMessage] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const [isFavorite, setIsFavorite] = useState(false);
   const [categoryData, setCategoryData] = useState(null);
+  const [showMore, setShowMore] = useState(false);
+
+  const [showDeliveryModal, setShowDeliveryModal] = useState(false);
+  const [deliveryDate, setDeliveryDate] = useState(null);
 
   const productData = productService.getFullProductData(productId);
   const product = productData?.cakeDetails;
   const relatedProducts = productService.getRelatedProducts(productId);
-   
 
-
-  const [showMore, setShowMore] = useState(false);
-  // Get category data from categories.json based on product categoryIds
   useEffect(() => {
-    if (product?.categoryIds && product.categoryIds.length > 0) {
+    if (product?.categoryIds?.length > 0) {
       const firstCategoryId = product.categoryIds[0];
       const foundCategory = categories.find(
-        (cat) => cat.id === firstCategoryId,
+        (cat) => cat.id === firstCategoryId
       );
       setCategoryData(foundCategory || null);
     }
   }, [product]);
 
-  // Load favorite status from localStorage on component mount
   useEffect(() => {
     const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
     setIsFavorite(favorites.includes(parseInt(productId)));
   }, [productId]);
 
-  // Toggle favorite status
   const toggleFavorite = () => {
     const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
-    const productIdNum = parseInt(productId);
+    const id = parseInt(productId);
 
-    let newFavorites;
+    let updated;
+
     if (isFavorite) {
-      // Remove from favorites
-      newFavorites = favorites.filter((id) => id !== productIdNum);
+      updated = favorites.filter((item) => item !== id);
     } else {
-      // Add to favorites
-      newFavorites = [...favorites, productIdNum];
+      updated = [...favorites, id];
       setShowFavoriteMessage(true);
       setTimeout(() => setShowFavoriteMessage(false), 2000);
     }
 
-    localStorage.setItem("favorites", JSON.stringify(newFavorites));
+    localStorage.setItem("favorites", JSON.stringify(updated));
     setIsFavorite(!isFavorite);
   };
 
   if (!product) {
     return (
-      <div className="container mx-auto px-4 py-16 text-center">
+      <div className="container mx-auto py-16 text-center">
         <AlertCircle className="mx-auto mb-4 h-16 w-16 text-gray-400" />
-        <h2 className="mb-2 text-2xl font-bold text-gray-900 dark:text-white">
-          Product Not Found
-        </h2>
-        <p className="mb-8 text-gray-600 dark:text-gray-400">
-          The product you're looking for doesn't exist or has been removed.
-        </p>
+        <h2 className="text-2xl font-bold">Product Not Found</h2>
         <Button
           onClick={() => navigate("/categories")}
-          className="bg-orange-500 text-white hover:bg-orange-600"
+          className="mt-6 bg-orange-500 text-white"
         >
           Browse Products
         </Button>
@@ -99,27 +191,21 @@ const ProductDetails = () => {
   }
 
   const handleAddToCart = () => {
-    for (let i = 0; i < quantity; i++) {
-      addToCart({
-        id: product.id,
-        title: product.title,
-        price: product.pricing.discounted,
-        image: product.avatar,
-      });
-    }
+    addToCart({
+      id: product.id,
+      title: product.title,
+      price: product.pricing.discounted,
+      image: product.avatar,
+      quantity,
+      deliveryDate,
+    });
 
+    setShowDeliveryModal(false);
     setShowSuccessMessage(true);
-    setTimeout(() => setShowSuccessMessage(false), 3000);
-  };
 
-  const getIcon = (iconName) => {
-    const icons = {
-      Truck: <Truck className="h-5 w-5" />,
-      Shield: <Shield className="h-5 w-5" />,
-      RotateCcw: <RotateCcw className="h-5 w-5" />,
-      Package: <Package className="h-5 w-5" />,
-    };
-    return icons[iconName] || <Package className="h-5 w-5" />;
+    setTimeout(() => {
+      setShowSuccessMessage(false);
+    }, 3000);
   };
 
   const allImages = [
@@ -127,398 +213,188 @@ const ProductDetails = () => {
     ...(product.additionalImages || []),
   ].filter(Boolean);
 
-  // Get the first category ID for the breadcrumb link
   const firstCategoryId = product.categoryIds?.[0] || "";
-  // console.log(categoryData);
+
   return (
-    <div className="min-h-screen transition-colors duration-300">
-      {/* Success Messages */}
+    <div className="container mx-auto">
+
+      {/* SUCCESS MESSAGE */}
       {showSuccessMessage && (
-        <div className="animate-slideIn fixed top-4 right-4 z-50 flex items-center gap-2 rounded-lg bg-green-500 px-6 py-3 text-white shadow-lg">
+        <div className="fixed top-4 right-4 z-50 flex items-center gap-2 rounded-lg bg-green-500 px-6 py-3 text-white">
           <Check className="h-5 w-5" />
           Added to cart successfully!
         </div>
       )}
 
-      {showFavoriteMessage && (
-        <div className="animate-slideIn fixed top-20 right-4 z-50 flex items-center gap-2 rounded-lg bg-red-500 px-6 py-3 text-white shadow-lg">
-          <Heart className="h-5 w-5 fill-white" />
-          Added to favorites!
-        </div>
-      )}
+      <ReusableBreadcrumb
+        items={[
+          { path: "/categories", label: "Categories" },
+          {
+            path: firstCategoryId
+              ? `/categories/${categoryData?.slug}`
+              : "/categories",
+            label: categoryData?.name || "Category",
+          },
+          { label: product.title },
+        ]}
+      />
 
-      <div className="container mx-auto">
-        {/* Breadcrumb with Category Name from JSON */}
-        <ReusableBreadcrumb
-          items={[
-            {
-              path: "/categories",
-              label: "Categories",
-            },
-            {
-              path: firstCategoryId
-                ? `/categories/${categoryData?.slug}`
-                : "/categories",
-              label: categoryData?.name || "Category",
-            },
-            {
-              label: product.title,
-            },
-          ]}
-        />
+      <div className="grid gap-10 lg:grid-cols-2">
 
-        <div className="mb-12 grid gap-8 lg:grid-cols-2">
-          {/* Product Images */}
-          <div className="space-y-4">
-            <div className="overflow-hidden rounded-lg shadow-lg">
+        {/* IMAGES */}
+        <div>
+          <img
+            src={allImages[selectedImage]}
+            className="rounded-lg"
+          />
+
+          <div className="mt-4 grid grid-cols-4 gap-2">
+            {allImages.map((img, i) => (
               <img
-                src={allImages[selectedImage]}
-                alt={product.title}
-                className="h-auto w-full object-cover"
-                onError={(e) => {
-                  e.target.src =
-                    "https://via.placeholder.com/600x400?text=Product+Image";
-                }}
+                key={i}
+                src={img}
+                onClick={() => setSelectedImage(i)}
+                className="cursor-pointer rounded-lg border"
               />
-            </div>
-
-            {allImages.length > 1 && (
-              <div className="grid grid-cols-4 gap-2">
-                {allImages.map((img, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setSelectedImage(index)}
-                    className={`overflow-hidden rounded-lg border-2 transition-all ${
-                      selectedImage === index
-                        ? "scale-105 border-orange-500"
-                        : "border-transparent hover:border-orange-300"
-                    }`}
-                  >
-                    <img
-                      src={img}
-                      alt={`${product.title} - View ${index + 1}`}
-                      className="h-20 w-full object-cover"
-                      onError={(e) => {
-                        e.target.src =
-                          "https://via.placeholder.com/100x80?text=Image";
-                      }}
-                    />
-                  </button>
-                ))}
-              </div>
-            )}
+            ))}
           </div>
+        </div>
 
-          {/* Product Details */}
-          <div className="rounded-lg p-6 shadow-lg">
-            {/* Title and SKU */}
-            <div className="mb-4">
-              <h1 className="mb-2 text-3xl font-bold text-gray-900 dark:text-white">
-                {product.title}
-              </h1>
-              <p className="text-sm text-gray-500 dark:text-gray-400">
-                SKU: {product.SKU}
-              </p>
-            </div>
+        {/* DETAILS */}
+        <div>
 
-            {/* Rating */}
-            <div className="mb-4 flex items-center">
-              <div className="mr-4 flex items-center">
-                {[...Array(5)].map((_, i) => (
-                  <Star
-                    key={i}
-                    className={`h-5 w-5 ${
-                      i < product.rating.stars
-                        ? "fill-yellow-400 text-yellow-400"
-                        : "text-gray-300 dark:text-gray-600"
-                    }`}
-                  />
-                ))}
-                <span className="ml-2 font-semibold text-gray-900 dark:text-white">
-                  {product.rating.value}
-                </span>
-              </div>
-              <span className="text-gray-600 dark:text-gray-400">
-                ({product.rating.count} reviews)
-              </span>
-            </div>
+          <h1 className="text-3xl font-bold mb-4">{product.title}</h1>
 
-            {/* Price */}
-            <div className="mb-6">
-              <div className="flex flex-wrap items-center gap-3">
-                <p className="text-3xl font-bold text-orange-600 dark:text-orange-400">
-                  {product.pricing.currency}
-                  {product.pricing.discounted}
-                </p>
-                {product.pricing.original > product.pricing.discounted && (
-                  <>
-                    <p className="text-lg text-gray-400 line-through">
-                      {product.pricing.currency}
-                      {product.pricing.original}
-                    </p>
-                    <Badge className="bg-green-500 text-white">
-                      Save {product.pricing.currency}
-                      {(
-                        product.pricing.original - product.pricing.discounted
-                      ).toFixed(2)}
-                    </Badge>
-                  </>
-                )}
-              </div>
-              <p
-                className={`mt-2 text-sm ${
-                  product.stock > 0 ? "text-green-600" : "text-red-500"
-                }`}
-              >
-                {product.stock > 0
-                  ? `${product.stock} in stock`
-                  : "Out of stock"}
-              </p>
-            </div>
-            {/* Customizable Badge */}
+          <p className="text-3xl font-bold text-orange-600">
+            {product.pricing.currency}
+            {product.pricing.discounted}
+          </p>
+            {/* customizable badge */}
             {product.customizable && (
-              <div className="rounded-lg bg-orange-50 p-4 dark:bg-orange-900/20 border-2 border-orange-200 dark:border-orange-700 mb-6">
-                <div className="flex items-center gap-3">
-                    <p className="text-2xl bg-orange-900/30 rounded-full px-1">✨</p>
-                  <p className="font-medium text-orange-600 dark:text-orange-400">
-                   <span className="font-bold text-xl">This cake is Fully Customizable!</span> <br/>Personalize this cake with your preferred flavors, shapes, sizes, and icing colors!
-                </p>
-                </div>
-              </div>
-            )}
+  <div className="mb-6 rounded-lg border border-orange-200 bg-orange-50 p-2 dark:border-orange-700 dark:bg-orange-900/20">
+    
+    <div className="flex items-start gap-3">
+      
+      <span className="flex h-10 w-10 items-center justify-center rounded-full bg-orange-200 text-xl dark:bg-orange-800">
+        ✨
+      </span>
 
-            {/* Description */}
-            <div className="mb-6">
-              <h3 className="mb-2 font-semibold text-gray-900 dark:text-white">
-                Description:
-              </h3>
-              <p className={`leading-relaxed text-gray-600 dark:text-gray-300 ${
-                showMore ? "" : "line-clamp-3"
-              }`}>
-                {product.description}
-              </p>
-              <button onClick={() => setShowMore(!showMore)} className="mt-2 text-sm text-orange-500 hover:underline justify-center">
-                {showMore ? "Show Less" : "Read More"}
-              </button>
-            </div>
+      <div>
+        <h4 className="text-lg font-bold text-orange-700 dark:text-orange-400">
+          This Cake is Fully Customizable!
+        </h4>
 
-              {/* starting Price */}
-              
-                <div className="flex flex-col rounded-lg bg-orange-50 p-4 dark:bg-orange-900/20 border-2 border-orange-200 dark:border-orange-700 mb-6">
-                <div className="flex justify-between items-center ">
-                  <h3 className="font-semibold text-gray-900 dark:text-white">
-                    Starting Price:
-                  </h3>
-
-                  <p className="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-1">
-                    {product.pricing.currency}
-                    {product.pricing.discounted}
-                  </p>
-                </div>
-                <p className="mt-2 text-sm text-gray-600 dark:text-gray-300">
-                  The price shown is for a single pound cake in base options. 
-                  The final price might change based on the options you choose.
-                </p>
-          </div>
-           
-            {/* Quantity Selector */}
-            <div className="mb-6">
-              <label className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
-                Quantity:
-              </label>
-              <div className="flex items-center gap-2">
-                <Button
-                  variant="outline"
-                  size="icon"
-                  onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                  disabled={quantity <= 1}
-                >
-                  <Minus className="h-4 w-4" />
-                </Button>
-                <span className="w-12 text-center font-medium text-gray-900 dark:text-white">
-                  {quantity}
-                </span>
-                <Button
-                  variant="outline"
-                  size="icon"
-                  onClick={() =>
-                    setQuantity(Math.min(product.stock, quantity + 1))
-                  }
-                  disabled={quantity >= product.stock}
-                >
-                  <Plus className="h-4 w-4" />
-                </Button>
-                <span className="ml-2 text-sm text-gray-500">
-                  (Max: {product.stock})
-                </span>
-              </div>
-            </div>
-
-            {/* Action Buttons */}
-            <div className="mb-6 flex gap-4">
-             {/* 
-              <Button
-                onClick={handleAddToCart}
-                disabled={product.stock === 0}
-                className="flex-1 cursor-pointer bg-orange-500 text-white hover:bg-orange-600"
-                size="lg"
-              >
-                <ShoppingCart className="mr-2 h-4 w-4" />
-                {product.stock > 0 ? "Add to Cart" : "Out of Stock"}
-              </Button>
-              */}
-                {/*button redirect ot customize & add to cart*/}
-               <Button
-                onClick={handleAddToCart}
-                disabled={product.stock === 0}
-                className="flex-1 cursor-pointer bg-gradient-to-r from-orange-400 to-orange-800 text-white hover:from-orange-600 hover:to-orange-700"
-                size="lg"
-              >
-                <ShoppingCart className="mr-2 h-4 w-4" />
-                {product.stock > 0 ? "Customize & Add to Cart" : "Out of Stock"}
-              </Button>
-
-              {/* Single Heart Icon in Action Buttons */}
-              <Button
-                variant="outline"
-                size="icon"
-                onClick={toggleFavorite}
-                className={`border-gray-300 transition-all dark:border-gray-600 ${
-                  isFavorite ? "border-red-200 dark:border-red-800" : ""
-                }`}
-              >
-                <Heart
-                  className={`h-4 w-4 transition-all ${
-                    isFavorite
-                      ? "scale-110 fill-red-500 text-red-500"
-                      : "text-gray-700 dark:text-gray-300"
-                  }`}
-                />
-              </Button>
-
-              <Button
-                variant="outline"
-                size="icon"
-                onClick={() => {
-                  navigator.clipboard.writeText(window.location.href);
-                  // You can add a toast notification here
-                }}
-                className="border-gray-300 dark:border-gray-600"
-              >
-                <Share2 className="h-4 w-4" />
-              </Button>
-            </div>
-
-            
-          </div>
-        </div>
-
-        {/* Product Information Tabs */}
-        <div className="mb-12 rounded-lg p-6 shadow-lg">
-          <Tabs defaultValue="features" className="w-full">
-            <TabsList className="mb-6 grid w-full grid-cols-2 md:grid-cols-4">
-              <TabsTrigger value="features">Features</TabsTrigger>
-              <TabsTrigger value="specifications">Specifications</TabsTrigger>
-              <TabsTrigger value="delivery">Delivery</TabsTrigger>
-              <TabsTrigger value="nutrition">Nutrition</TabsTrigger>
-            </TabsList>
-
-            <TabsContent value="features" className="p-4">
-              <h3 className="mb-3 font-semibold text-gray-900 dark:text-white">
-                Product Features:
-              </h3>
-              <ul className="grid grid-cols-1 gap-3 md:grid-cols-2">
-                {product.features?.map((feature, index) => (
-                  <li
-                    key={index}
-                    className="flex items-center gap-2 text-gray-600 dark:text-gray-300"
-                  >
-                    <Check className="h-4 w-4 flex-shrink-0 text-green-500" />
-                    <span>{feature}</span>
-                  </li>
-                ))}
-              </ul>
-            </TabsContent>
-
-            <TabsContent value="specifications" className="p-4">
-              <h3 className="mb-3 font-semibold text-gray-900 dark:text-white">
-                Specifications:
-              </h3>
-              <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-                {product.specifications?.map((spec, index) => (
-                  <div
-                    key={index}
-                    className="flex justify-between rounded bg-gray-50 p-3 dark:bg-gray-700"
-                  >
-                    <span className="text-gray-600 dark:text-gray-400">
-                      {spec.label}:
-                    </span>
-                    <span className="font-medium text-gray-900 dark:text-white">
-                      {spec.value}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </TabsContent>
-
-            <TabsContent value="delivery" className="p-4">
-              <h3 className="mb-3 font-semibold text-gray-900 dark:text-white">
-                Delivery Information:
-              </h3>
-              <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-                {product.deliveryInfo?.map((info, index) => (
-                  <div
-                    key={index}
-                    className="flex items-center gap-3 rounded bg-gray-50 p-3 dark:bg-gray-700"
-                  >
-                    <span className="text-orange-500">
-                      {getIcon(info.icon)}
-                    </span>
-                    <span className="text-gray-600 dark:text-gray-300">
-                      {info.text}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </TabsContent>
-
-            <TabsContent value="nutrition" className="p-4">
-              <h3 className="mb-3 font-semibold text-gray-900 dark:text-white">
-                Nutrition Facts (per serving):
-              </h3>
-              <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
-                {product.nutritionInfo?.map((info, index) => (
-                  <div
-                    key={index}
-                    className="rounded bg-gray-50 p-3 text-center dark:bg-gray-700"
-                  >
-                    <div className="text-sm text-gray-500 dark:text-gray-400">
-                      {info.label}
-                    </div>
-                    <div className="font-bold text-gray-900 dark:text-white">
-                      {info.value}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </TabsContent>
-          </Tabs>
-        </div>
-
-        {/* Related Products */}
-        {relatedProducts.length > 0 && (
-          <div>
-            <h2 className="mb-6 text-2xl font-bold text-gray-900 dark:text-white">
-              You Might Also Like
-            </h2>
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-              {relatedProducts.map((relatedProduct) => (
-                <ProductCard key={relatedProduct.id} product={relatedProduct} />
-              ))}
-            </div>
-          </div>
-        )}
+        <p className="mt-1 text-sm text-orange-600 dark:text-orange-300">
+          Personalize this cake with your preferred flavors, shapes, sizes, and icing colors.
+        </p>
       </div>
+
+    </div>
+
+  </div>
+)}
+          <p
+            className={`mt-4 text-gray-600 ${
+              showMore ? "" : "line-clamp-3"
+            }`}
+          >
+            {product.description}
+          </p>
+
+
+
+
+          <button
+            onClick={() => setShowMore(!showMore)}
+            className="text-orange-500 mt-1"
+          >
+            {showMore ? "Show Less" : "Read More"}
+          </button>
+           
+            <div className="mb-6 rounded-lg border border-orange-200 bg-orange-50 p-1 dark:border-orange-700 dark:bg-orange-900/20">
+                 <div className="flex justify-between gap-3">
+                    <h4>Starting Price:</h4>
+                    <p className="flex items-center text-lg font-bold text-gray-900 dark:text-white">
+                    {product.pricing.currency}
+                    <span className="ml-1">{product.pricing.discounted}</span>
+                  </p>
+                 </div>
+                  <p className="mt-2 text-sm text-gray-600 dark:text-gray-400"> 
+                    The price shown is for a single pound cake in base options. The final price might change based on the options you choose.
+                  </p>
+            </div>
+
+
+
+          {/* QUANTITY */}
+          <div className="flex items-center gap-3 mt-6">
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={() => setQuantity(Math.max(1, quantity - 1))}
+            >
+              <Minus />
+            </Button>
+
+            <span>{quantity}</span>
+
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={() => setQuantity(quantity + 1)}
+            >
+              <Plus />
+            </Button>
+          </div>
+
+          {/* ACTION BUTTON */}
+          <div className="mt-6 flex gap-4">
+
+            <Button
+              onClick={() => setShowDeliveryModal(true)}
+              className="flex-1 bg-gradient-to-r from-orange-400 to-orange-600 text-white"
+            >
+              <ShoppingCart className="mr-2 h-4 w-4" />
+              Customize & Add to Cart
+            </Button>
+
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={toggleFavorite}
+            >
+              <Heart
+                className={`h-4 w-4 ${
+                  isFavorite ? "text-red-500 fill-red-500" : ""
+                }`}
+              />
+            </Button>
+          </div>
+        </div>
+      </div>
+
+      {/* RELATED PRODUCTS */}
+
+      <div className="mt-16">
+        <h2 className="mb-6 text-2xl font-bold">
+          You Might Also Like
+        </h2>
+
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {relatedProducts.map((item) => (
+            <ProductCard key={item.id} product={item} />
+          ))}
+        </div>
+      </div>
+
+      {/* DELIVERY MODAL */}
+
+      <DeliveryDateModal
+        isOpen={showDeliveryModal}
+        onClose={() => setShowDeliveryModal(false)}
+        setDeliveryDate={setDeliveryDate}
+        handleAddToCart={handleAddToCart}
+      />
     </div>
   );
 };
