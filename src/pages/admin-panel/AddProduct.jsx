@@ -1,6 +1,7 @@
 import * as z from "zod";
 import { DyForm } from "@/components/common/DyForm";
 import { DyFormField } from "@/components/common/DyFormField";
+import categoriesData from "@/data/category.json";
 
 const formSchema = z.object({
   title: z.string().min(2, "Title must be at least 2 characters."),
@@ -37,6 +38,14 @@ const defaultValues = {
 };
 
 const AddProduct = () => {
+  // Transform category data into select options
+  const categoryOptions = categoriesData.map((category) => ({
+    value: category.name.toLowerCase().replace(/\s+/g, "-"),
+    label: category.name,
+  }));
+
+  console.log("Category Options:", categoryOptions);
+
   function onSubmit(values) {
     console.log(values);
   }
@@ -78,9 +87,10 @@ const AddProduct = () => {
                 fieldConfig={{
                   name: "category",
                   label: "Category",
-                  placeholder: "Enter category",
+                  placeholder: "Select a category...",
                   description: "Product category.",
-                  type: "text",
+                  type: "select",
+                  items: categoryOptions,
                 }}
               />
             </div>

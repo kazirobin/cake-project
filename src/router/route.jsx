@@ -17,6 +17,7 @@ import AllProducts from "@/pages/admin-panel/AllProducts";
 import Moderators from "@/pages/admin-panel/Moderators";
 import Orders from "@/pages/admin-panel/Orders";
 import WishGenerator from './../pages/wish-generator/WishGenerator';
+import ManageCategory from "@/pages/admin-panel/ManageCategory";
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/login",
+        path: "login",
         element: <Login />,
       },
       {
@@ -90,6 +92,10 @@ const router = createBrowserRouter([
       {
         path: "add-product",
         element: <AddProduct />,
+      },
+      {
+        path: "manage-category",
+        element: <ManageCategory />,
       },
       {
         path: "moderators",

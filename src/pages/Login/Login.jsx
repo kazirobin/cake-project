@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import { FiMail, FiLock, FiEye, FiEyeOff, FiArrowRight } from "react-icons/fi";
 import { Link, useNavigate } from "react-router";
 import GoggleBTN from "@/root/Buttons/GoggleBTN";
@@ -53,8 +53,9 @@ const Login = () => {
   };
 
   // forget password handle logic
-  const handleFogetPass = (e) => {
+  const handleForgetPass = (e) => {
     e.preventDefault();
+    // eslint-disable-next-line react-hooks/incompatible-library
     const email = watch("email");
     if (!email) {
       toast.error("Please enter your email address");
@@ -110,12 +111,12 @@ const Login = () => {
       <motion.div
         animate={{ x: [0, 50, 0], y: [0, 30, 0] }}
         transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-        className="absolute top-[-20%] right-[-10%] h-[600px] w-[600px] rounded-full bg-blue-600/10 blur-[120px]"
+        className="absolute top-[-20%] right-[-10%] h-150 w-150 rounded-full bg-blue-600/10 blur-[120px]"
       />
       <motion.div
         animate={{ x: [0, -40, 0], y: [0, 50, 0] }}
         transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
-        className="absolute bottom-[-20%] left-[-10%] h-[600px] w-[600px] rounded-full bg-purple-600/10 blur-[120px]"
+        className="absolute bottom-[-20%] left-[-10%] h-150 w-150 rounded-full bg-purple-600/10 blur-[120px]"
       />
 
       <motion.div
@@ -184,7 +185,7 @@ const Login = () => {
                   Password
                 </label>
                 <button
-                  onClick={handleFogetPass}
+                  onClick={handleForgetPass}
                   className="text-[10px] font-bold tracking-wider text-blue-400 uppercase transition-colors hover:text-blue-300"
                 >
                   Forgot?

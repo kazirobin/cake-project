@@ -17,10 +17,13 @@ import {
 } from "@/components/ui/select";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Search, Plus } from "lucide-react";
+import { useNavigate } from "react-router";
 
 const AllProducts = () => {
   const [searchValue, setSearchValue] = useState("");
   const [filterType, setFilterType] = useState("all");
+
+  const navigate = useNavigate();
 
   // Placeholder data - replace with actual API call
   const products = [];
@@ -36,7 +39,10 @@ const AllProducts = () => {
             Manage and view all your cake products
           </p>
         </div>
-        <Button className="w-full sm:w-auto">
+        <Button
+          className="w-full cursor-pointer sm:w-auto"
+          onClick={() => navigate("/admin-panel/add-product")}
+        >
           <Plus className="mr-2 h-4 w-4" />
           Add Product
         </Button>
@@ -94,7 +100,12 @@ const AllProducts = () => {
           ) : products.length === 0 ? (
             <div className="py-12 text-center">
               <p className="text-muted-foreground mb-4">No products yet</p>
-              <Button>Add Your First Product</Button>
+              <Button
+                className="w-full cursor-pointer sm:w-auto"
+                onClick={() => navigate("/admin-panel/add-product")}
+              >
+                Add Your First Product
+              </Button>
             </div>
           ) : (
             <div className="overflow-x-auto">

@@ -35,7 +35,7 @@ const DyBread = () => {
             </BreadcrumbPage>
           ) : (
             <BreadcrumbLink asChild>
-              <Link to={homeRoute} className="text-white hover:text-white">
+              <Link to={homeRoute} className="text-black hover:text-gray-500">
                 <Home className="h-4 w-4" />
               </Link>
             </BreadcrumbLink>
@@ -53,12 +53,12 @@ const DyBread = () => {
             <React.Fragment key={to}>
               <BreadcrumbItem>
                 {isLast ? (
-                  <BreadcrumbPage className="text-white">
+                  <BreadcrumbPage className="text-black">
                     {title}
                   </BreadcrumbPage>
                 ) : (
                   <BreadcrumbLink asChild>
-                    <Link to={to} className="text-white hover:text-white">
+                    <Link to={to} className="text-black hover:text-gray-500">
                       {title}
                     </Link>
                   </BreadcrumbLink>
