@@ -1,9 +1,10 @@
 import * as z from "zod";
 import { DyForm } from "@/components/common/DyForm";
 import { DyFormField } from "@/components/common/DyFormField";
-import axios from "axios";
 import { toast } from "react-toastify";
-// import { useState } from "react";
+import useAxios from "@/Hooks/useAxios";
+import PageHeader from "@/components/common/PageHeader";
+import { ChartGantt } from "lucide-react";
 
 const formSchema = z.object({
   name: z.string().min(2, "Title must be at least 2 characters."),
@@ -16,7 +17,7 @@ const defaultValues = {
 };
 
 const ManageCategory = () => {
-  //   const [loading, setLoading] = useState(false);
+  const axios = useAxios();
 
   const onSubmit = async (values) => {
     console.log("Submitted Category values:", values);
@@ -30,9 +31,8 @@ const ManageCategory = () => {
 
     console.log("Category Form Data: ", ...formData);
     try {
-      //   setLoading(true);
       const { data } = await axios.post(
-        `${import.meta.env.VITE_API_URL}/categories/create-category`,
+        `/categories/create-category`,
         formData,
         {
           headers: {
@@ -58,12 +58,11 @@ const ManageCategory = () => {
   return (
     <div className="space-y-8">
       {/* Header */}
-      <div>
-        <h1 className="text-3xl font-bold tracking-tight">Add New Category</h1>
-        <p className="text-muted-foreground mt-1">
-          Create and publish a new category for your product
-        </p>
-      </div>
+      <PageHeader
+        icon={ChartGantt}
+        title={"Add New Category"}
+        description={"Create and publish a new category for your product"}
+      />
 
       {/* Form Card */}
       <div className="bg-card rounded-lg border">

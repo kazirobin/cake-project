@@ -1,7 +1,12 @@
 import * as z from "zod";
 import { DyForm } from "@/components/common/DyForm";
 import { DyFormField } from "@/components/common/DyFormField";
-import categoriesData from "@/data/category.json";
+import { useQuery } from "@tanstack/react-query";
+import useAxios from "@/Hooks/useAxios";
+import Loading from "@/components/common/Loading";
+import { PackagePlus } from "lucide-react";
+import PageHeader from "@/components/common/PageHeader";
+import DySelect from "@/components/common/DySelect";
 
 const formSchema = z.object({
   title: z.string().min(2, "Title must be at least 2 characters."),
@@ -38,27 +43,37 @@ const defaultValues = {
 };
 
 const AddProduct = () => {
-  // Transform category data into select options
-  const categoryOptions = categoriesData.map((category) => ({
-    value: category.name.toLowerCase().replace(/\s+/g, "-"),
+  const axios = useAxios();
+
+  const { data: categories = [], isLoading } = useQuery({
+    queryKey: ["categories"],
+    queryFn: async () => {
+      const { data } = await axios.get("/categories");
+      return data?.data || [];
+    },
+  });
+
+  const categoryItems = categories.map((category) => ({
+    value: category.id,
     label: category.name,
   }));
-
-  console.log("Category Options:", categoryOptions);
 
   function onSubmit(values) {
     console.log(values);
   }
 
+  if (isLoading) {
+    return <Loading />;
+  }
+
   return (
     <div className="space-y-8">
       {/* Header */}
-      <div>
-        <h1 className="text-3xl font-bold tracking-tight">Add New Product</h1>
-        <p className="text-muted-foreground mt-1">
-          Create and publish a new cake product to your catalog
-        </p>
-      </div>
+      <PageHeader
+        icon={PackagePlus}
+        title={"Add New Product"}
+        description={"Create and publish a new cake product to your catalog"}
+      />
 
       {/* Form Card */}
       <div className="bg-card rounded-lg border">
@@ -73,7 +88,7 @@ const AddProduct = () => {
             submitText="Save Product"
             className="space-y-6"
           >
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
               <DyFormField
                 fieldConfig={{
                   name: "title",
@@ -83,15 +98,26 @@ const AddProduct = () => {
                   type: "text",
                 }}
               />
-              <DyFormField
-                fieldConfig={{
-                  name: "category",
-                  label: "Category",
-                  placeholder: "Select a category...",
-                  description: "Product category.",
-                  type: "select",
-                  items: categoryOptions,
-                }}
+              <DySelect
+                name="category"
+                label="Category"
+                selectLabel="Categories"
+                placeholder="Select a category..."
+                description="Product category."
+                items={categoryItems}
+                isLoading={isLoading}
+              />
+              <DySelect
+                name="cakeType"
+                label="Cake Type"
+                selectLabel="Cake Types"
+                placeholder="Select cake type..."
+                description="The type of the cake."
+                items={[
+                  { value: "cup-cake", label: "Cup Cake" },
+                  { value: "cake", label: "Cake" },
+                ]}
+                isLoading={false}
               />
             </div>
 
@@ -105,7 +131,7 @@ const AddProduct = () => {
               }}
             />
 
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
               <DyFormField
                 fieldConfig={{
                   name: "price",
@@ -122,15 +148,6 @@ const AddProduct = () => {
                   placeholder: "0",
                   description: "Current inventory count.",
                   type: "number",
-                }}
-              />
-              <DyFormField
-                fieldConfig={{
-                  name: "cakeType",
-                  label: "Cake Type",
-                  placeholder: "e.g., Birthday, Wedding",
-                  description: "The type of the cake.",
-                  type: "text",
                 }}
               />
             </div>

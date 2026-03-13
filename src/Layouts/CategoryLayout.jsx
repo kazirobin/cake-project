@@ -1,7 +1,7 @@
 // src/layouts/CategoryLayout.jsx
 import { Outlet } from "react-router-dom";
-import NavbarWithNavigation from "@/root/Components/NavbarWithNavigation";
-import Footer from "@/root/Components/Footer/Footer";
+import NavbarWithNavigation from "@/components/root/Components/NavbarWithNavigation";
+import Footer from "@/components/root/Components/Footer/Footer";
 import { ThemeProvider } from "@/components/Theme/theme-provider";
 
 export default function CategoryLayout() {

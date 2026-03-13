@@ -16,8 +16,9 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Search, Plus } from "lucide-react";
+import { Search, Plus, Package } from "lucide-react";
 import { useNavigate } from "react-router";
+import PageHeader from "@/components/common/PageHeader";
 
 const AllProducts = () => {
   const [searchValue, setSearchValue] = useState("");
@@ -33,12 +34,11 @@ const AllProducts = () => {
     <div className="space-y-6">
       {/* Header */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight">Products</h1>
-          <p className="text-muted-foreground mt-1">
-            Manage and view all your cake products
-          </p>
-        </div>
+        <PageHeader
+          icon={Package}
+          title={"All Products"}
+          description={"Manage and view all your cake products"}
+        />
         <Button
           className="w-full cursor-pointer sm:w-auto"
           onClick={() => navigate("/admin-panel/add-product")}

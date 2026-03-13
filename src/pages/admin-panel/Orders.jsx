@@ -16,7 +16,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Search, Package } from "lucide-react";
+import { Search, Package, ShoppingBag } from "lucide-react";
+import PageHeader from "@/components/common/PageHeader";
 
 const Orders = () => {
   const [searchValue, setSearchValue] = useState("");
@@ -29,12 +30,11 @@ const Orders = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div>
-        <h1 className="text-3xl font-bold tracking-tight">Orders</h1>
-        <p className="text-muted-foreground mt-1">
-          View and manage all customer orders
-        </p>
-      </div>
+      <PageHeader
+        icon={ShoppingBag}
+        title={"Orders"}
+        description={"View and manage all customer orders"}
+      />
 
       {/* Filters Card */}
       <Card>
