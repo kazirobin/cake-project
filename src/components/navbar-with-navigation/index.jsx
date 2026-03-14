@@ -5,7 +5,7 @@ import MobileLeftSheet from "./MobileLeftSheet";
 import MobileRightIcons from "./MobileRightIcons";
 import MobileSearch from "./MobileSearch";
 import DesktopRightSection from "./DesktopRightSection";
-import { useTheme } from "../Theme";
+import { useTheme } from '@/components/theme/theme-provider';
 
 const NavbarWithNavigation = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
