@@ -1,3 +1,4 @@
+import PageHeader from "@/components/common/PageHeader";
 import { SectionCards } from "@/components/section-cards";
 import {
   Card,
@@ -6,17 +7,17 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { LayoutDashboard } from "lucide-react";
 
 const Dashboard = () => {
   return (
     <div className="space-y-8">
       {/* Header */}
-      <div>
-        <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
-        <p className="text-muted-foreground mt-1">
-          Welcome back! Here's your business overview.
-        </p>
-      </div>
+      <PageHeader
+        icon={LayoutDashboard}
+        title={"Dashboard"}
+        description={"Welcome back! Here's your business overview."}
+      />
 
       {/* Key Metrics */}
       <div>

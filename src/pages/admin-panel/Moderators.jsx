@@ -9,7 +9,8 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Search, Plus, Trash2, Shield } from "lucide-react";
+import { Search, Plus, Trash2, Shield, ShieldUser } from "lucide-react";
+import PageHeader from "@/components/common/PageHeader";
 
 const Moderators = () => {
   const [searchValue, setSearchValue] = useState("");
@@ -22,12 +23,11 @@ const Moderators = () => {
     <div className="space-y-6">
       {/* Header */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight">Moderators</h1>
-          <p className="text-muted-foreground mt-1">
-            Manage admin team members and their permissions
-          </p>
-        </div>
+        <PageHeader
+          icon={ShieldUser}
+          title={"Moderators"}
+          description={"Manage admin team members and their permissions"}
+        />
         <Button className="w-full sm:w-auto">
           <Plus className="mr-2 h-4 w-4" />
           Add Moderator

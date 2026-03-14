@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+<<<<<<< HEAD
 import { ShoppingCart, Truck, Shield, Clock, Heart } from "lucide-react";
 import SliderBanner from "@/root/Components/SliderBanner/SliderBanner";
 import { useCart } from "@/Hooks/cart-context";
@@ -9,16 +10,28 @@ import productService from "../product/product-service";
 import CartSidebar from "@/root/Components/Cart/cart-sidebar";
 import PlayWinCake from "@/root/Components/Mohosin/PlayWinCake";
 import ServiceHighlights from "@/components/ServiceHighlights/ServiceHighlights";
+=======
+import { Truck, Shield, Clock, Heart } from "lucide-react";
+import SliderBanner from "@/components/root/Components/SliderBanner/SliderBanner";
+// import { useCart } from "@/Hooks/cart-context";
+import ProductCard from "../category/product/product-card";
+import productService from "../category/product/product-service";
+import CartSidebar from "@/components/root/Components/Cart/cart-sidebar";
+>>>>>>> 06738e750c5c3ed14fdb81f706ade01564cbe7c0
 
 const Home = () => {
   console.log("Home component is rendering");
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const { cart } = useCart();
+  // const { cart } = useCart();
   const featuredProducts = productService.getFeaturedProducts(4);
   const newArrivals = productService.getNewArrivals(4);
 
   return (
+<<<<<<< HEAD
     <div className="min-h-screen">
+=======
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+>>>>>>> 06738e750c5c3ed14fdb81f706ade01564cbe7c0
       {/* Slider Banner Section */}
       <SliderBanner />
       {/* ServiceHighlight Section */}
@@ -56,7 +69,11 @@ const Home = () => {
 
 
       {/* Features Section */}
+<<<<<<< HEAD
       <section className="py-16">
+=======
+      <section className="bg-white py-16 dark:bg-gray-800">
+>>>>>>> 06738e750c5c3ed14fdb81f706ade01564cbe7c0
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
             <div className="text-center">

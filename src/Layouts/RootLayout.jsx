@@ -1,6 +1,6 @@
 import { Outlet } from "react-router";
-import Footer from "@/root/Components/Footer/Footer";
-import NavbarWithNavigation from "@/root/Components/NavbarWithNavigation";
+import Footer from "@/components/root/Components/Footer/Footer";
+import NavbarWithNavigation from "@/components/root/Components/NavbarWithNavigation";
 import { ThemeProvider } from "@/components/Theme/theme-provider";
 import DesktopNavigateContent from "@/root/Components/NavbarWithNavigation/DesktopNavigateContent";
 
