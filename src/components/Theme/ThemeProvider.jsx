@@ -8,7 +8,6 @@ export function ThemeProvider({ children, defaultTheme = "light", storageKey = "
     return stored || defaultTheme
   })
 
-  // Debug: Log when theme changes
   useEffect(() => {
     console.log("Theme state changed to:", theme)
   }, [theme])
@@ -31,7 +30,7 @@ export function ThemeProvider({ children, defaultTheme = "light", storageKey = "
   const value = {
     theme,
     setTheme: (newTheme) => {
-      console.log("Setting theme to:", newTheme) // Debug log
+      console.log("Setting theme to:", newTheme)
       localStorage.setItem(storageKey, newTheme)
       setTheme(newTheme)
     },
