@@ -8,7 +8,7 @@ import AuthProvider from "./AuthContext/AuthProvider";
 import { CartProvider } from "./Hooks/cart-context";
 import { ToastContainer } from "react-toastify";
 import { Toaster } from "./components/ui/sonner";
-import { ThemeProvider } from "./components/theme";
+import { ThemeProvider } from "./components/theme/theme-provider";
 
 // Create a client
 const queryClient = new QueryClient();
