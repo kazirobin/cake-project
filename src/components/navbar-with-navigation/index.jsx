@@ -5,7 +5,6 @@ import MobileLeftSheet from "./MobileLeftSheet";
 import MobileRightIcons from "./MobileRightIcons";
 import MobileSearch from "./MobileSearch";
 import DesktopRightSection from "./DesktopRightSection";
-import DesktopNavigateContent from "./DesktopNavigateContent";
 import { useTheme } from "../Theme";
 
 const NavbarWithNavigation = () => {

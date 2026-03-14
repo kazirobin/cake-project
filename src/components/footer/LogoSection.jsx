@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router";
 import { Facebook, Instagram, Twitter, Youtube } from "lucide-react";
-import { useTheme } from "@/components/theme/theme-provider";
+import { useTheme } from "../Theme";
 
 const socialLinks = [
   { icon: Facebook, href: "#", color: "hover:text-blue-600" },
