@@ -1,9 +1,8 @@
 import React from "react";
-import { useForm } from "react-hook-form";
+import { useForm, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { Button } from "@/components/ui/button";
-import { Form } from "@/components/ui/form";
 import { Spinner } from "../ui/spinner";
 
 export function DyForm({
@@ -12,6 +11,7 @@ export function DyForm({
   onSubmit,
   children,
   submitText = "Submit",
+  submitLoadingText = "Submitting...",
   className = "space-y-8",
 }) {
   const form = useForm({
@@ -19,16 +19,18 @@ export function DyForm({
     defaultValues,
   });
 
-  function handleSubmit(values) {
+  const handleSubmit = async (values) => {
     if (onSubmit) {
-      onSubmit(values);
+      await onSubmit(values);
+      form.reset();
     }
-  }
+  };
 
   return (
-    <Form {...form}>
+    <FormProvider {...form}>
       <form onSubmit={form.handleSubmit(handleSubmit)} className={className}>
         {children}
+
         <Button
           type="submit"
           className="cursor-pointer"
@@ -36,13 +38,14 @@ export function DyForm({
         >
           {form.formState.isSubmitting ? (
             <div className="flex items-center gap-2">
-              <Spinner /> <span>Submitting...</span>
+              <Spinner />
+              <span>{submitLoadingText}</span>
             </div>
           ) : (
             submitText
           )}
         </Button>
       </form>
-    </Form>
+    </FormProvider>
   );
 }
