@@ -3,12 +3,11 @@ import { Outlet } from "react-router-dom";
 import NavbarWithNavigation from "@/components/navbar-with-navigation";
 import Footer from "@/components/footer/Footer";
 import DesktopNavigateContent from "@/components/navbar-with-navigation/DesktopNavigateContent";
-import { ThemeProvider } from '../components/theme/theme-provider';
 
 export default function CategoryLayout() {
   return (
     <div>
-      <ThemeProvider>
+     
         <div className="sticky top-0 z-50">
           <NavbarWithNavigation />
         </div>
@@ -27,7 +26,7 @@ export default function CategoryLayout() {
         <div>
           <Footer />
         </div>
-      </ThemeProvider>
+      
     </div>
   );
 }
