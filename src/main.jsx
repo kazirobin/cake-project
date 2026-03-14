@@ -8,7 +8,7 @@ import AuthProvider from "./AuthContext/AuthProvider";
 import { CartProvider } from "./Hooks/cart-context";
 import { ToastContainer } from "react-toastify";
 import { Toaster } from "./components/ui/sonner";
-import { ThemeProvider } from "./components/theme/theme-provider";
+import { ThemeProvider } from "./components/theme/ThemeProvider";
 
 // Create a client
 const queryClient = new QueryClient();
@@ -18,12 +18,11 @@ createRoot(document.getElementById("root")).render(
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <ThemeProvider>
-
-        <CartProvider>
-          <RouterProvider router={router} />
-          <ToastContainer />
-          <Toaster />
-        </CartProvider>
+          <CartProvider>
+            <RouterProvider router={router} />
+            <ToastContainer />
+            <Toaster />
+          </CartProvider>
         </ThemeProvider>
       </AuthProvider>
     </QueryClientProvider>

@@ -1,5 +1,5 @@
 import React from "react";
-import { useTheme } from "@/components/theme/theme-provider";
+import { useTheme } from "@/components/theme/ThemeProvider";
 
 const SearchSuggestions = ({ suggestions, onSelect, isVisible }) => {
   const { theme } = useTheme();
