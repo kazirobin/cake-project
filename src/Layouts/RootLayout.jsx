@@ -27,6 +27,7 @@ const RootLayout = () => {
         </footer>
       </div>
     </ThemeProvider>
+    
   );
 };
 
