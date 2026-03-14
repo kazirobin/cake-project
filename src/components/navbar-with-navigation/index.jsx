@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useTheme } from "@/components/theme/theme-provider";
 import { navLinks, searchSuggestions } from "./constants";
 import LogoSection from "./LogoSection";
 import MobileLeftSheet from "./MobileLeftSheet";
@@ -7,6 +6,7 @@ import MobileRightIcons from "./MobileRightIcons";
 import MobileSearch from "./MobileSearch";
 import DesktopRightSection from "./DesktopRightSection";
 import DesktopNavigateContent from "./DesktopNavigateContent";
+import { useTheme } from "../Theme";
 
 const NavbarWithNavigation = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
