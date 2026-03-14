@@ -6,7 +6,7 @@ import { Search, ShoppingCart, SlidersHorizontal, X } from "lucide-react";
 import { useCart } from "@/Hooks/cart-context";
 import productService from "./product-service";
 <<<<<<< HEAD:src/pages/product/products-page.jsx
-import ProductCard from "../../root/Components/Product/product-card";
+import ProductCard from "../../components/product/product-card";
 import CartSidebar from "@/root/Components/Cart/cart-sidebar";
 =======
 import ProductCard from "./product-card";

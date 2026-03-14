@@ -6,24 +6,18 @@ import Register from "@/pages/Register/Register";
 import AdminPanel from "@/pages/admin-panel/AdminPanel";
 import NotFoundPage from "@/pages/error/NotFoundPage";
 import CategoryLayout from "@/Layouts/CategoryLayout";
-import AllCategory from "@/root/Components/Category/all-category";
+import AllCategory from "@/components/category/all-category";
 import CategoryDetails from "@/pages/category/category-details";
-<<<<<<< HEAD
 import ProductDetails from "@/pages/product/product-details";
-import CartPage from "@/root/Components/Cart/cart-page";
-import CheckoutPage from "@/root/Components/Checkout/checkout";
-=======
-import ProductDetails from "@/pages/category/product/product-details";
-import CartPage from "@/components/root/Components/Cart/cart-page";
-import CheckoutPage from "@/components/root/Components/Checkout/checkout";
->>>>>>> 06738e750c5c3ed14fdb81f706ade01564cbe7c0
 import AddProduct from "@/pages/admin-panel/AddProduct";
 import Dashboard from "@/pages/admin-panel/Dashboard";
 import AllProducts from "@/pages/admin-panel/AllProducts";
 import Moderators from "@/pages/admin-panel/Moderators";
 import Orders from "@/pages/admin-panel/Orders";
-import WishGenerator from './../pages/wish-generator/WishGenerator';
+import WishGenerator from "./../pages/wish-generator/WishGenerator";
 import ManageCategory from "@/pages/admin-panel/ManageCategory";
+import CartPage from "@/components/cart/cart-page";
+import CheckoutPage from "@/components/checkout/checkout";
 
 const router = createBrowserRouter([
   {
@@ -41,11 +35,10 @@ const router = createBrowserRouter([
       },
       {
         path: "/wish-generator",
-        element: <WishGenerator/>,
+        element: <WishGenerator />,
       },
       {
         path: "/login",
-        path: "login",
         element: <Login />,
       },
       {

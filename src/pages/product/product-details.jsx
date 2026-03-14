@@ -19,8 +19,8 @@ import {
 
 import { useCart } from "@/Hooks/cart-context";
 import productService from "./product-service";
-import ProductCard from "../../root/Components/Product/product-card";
-import ReusableBreadcrumb from "@/root/Components/BreadCrumbs/ReusableBreadcrumb";
+import ProductCard from "../../components/product/product-card";
+import ReusableBreadcrumb from "@/components/common/ReusableBreadcrumb";
 import categories from "@/data/category.json";
 
 /* ---------------- MULTI-STEP DELIVERY + CUSTOMIZATION MODAL ---------------- */
@@ -96,48 +96,44 @@ const DeliveryCustomizationModal = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
-      <div className="w-[700px] rounded-xl bg-white dark:bg-[#111] shadow-xl p-6">
+      <div className="w-[700px] rounded-xl bg-white p-6 shadow-xl dark:bg-[#111]">
         {/* Header */}
-        <div className="flex items-center justify-between mb-4">
+        <div className="mb-4 flex items-center justify-between">
           <h2 className="text-lg font-semibold">
-            {step === 1
-              ? "Select Delivery Date"
-              : "Customize Your Cake"}
+            {step === 1 ? "Select Delivery Date" : "Customize Your Cake"}
           </h2>
           <X className="cursor-pointer" onClick={handleCancel} />
         </div>
 
-        <div className="space-y-4 max-h-[500px] overflow-y-auto">
+        <div className="max-h-[500px] space-y-4 overflow-y-auto">
           {step === 1 && (
             <div className="space-y-4">
               {/* Today / Tomorrow */}
               <div className="flex gap-4">
-                {[today.toDateString(), tomorrow.toDateString()].map(
-                  (date) => (
-                    <div
-                      key={date}
-                      onClick={() => setSelectedDate(date)}
-                      className={`cursor-pointer p-4 border rounded w-1/2 text-center ${
-                        selectedDate === date
-                          ? "border-purple-500 bg-purple-50"
-                          : ""
-                      }`}
-                    >
-                      {date}
-                    </div>
-                  )
-                )}
+                {[today.toDateString(), tomorrow.toDateString()].map((date) => (
+                  <div
+                    key={date}
+                    onClick={() => setSelectedDate(date)}
+                    className={`w-1/2 cursor-pointer rounded border p-4 text-center ${
+                      selectedDate === date
+                        ? "border-purple-500 bg-purple-50"
+                        : ""
+                    }`}
+                  >
+                    {date}
+                  </div>
+                ))}
               </div>
 
               {/* This week */}
               <div>
-                <p className="font-semibold mb-2">This Week</p>
+                <p className="mb-2 font-semibold">This Week</p>
                 <div className="flex gap-2">
                   {weekDates.map((d) => (
                     <div
                       key={d}
                       onClick={() => setSelectedDate(d)}
-                      className={`cursor-pointer p-2 border rounded flex-1 text-center ${
+                      className={`flex-1 cursor-pointer rounded border p-2 text-center ${
                         selectedDate === d
                           ? "border-purple-500 bg-purple-50"
                           : ""
@@ -160,16 +156,14 @@ const DeliveryCustomizationModal = ({
                 {showCustomDates && (
                   <input
                     type="date"
-                    className="border p-2 rounded w-full mt-2"
-                    onChange={(e) =>
-                      setSelectedDate(e.target.value)
-                    }
+                    className="mt-2 w-full rounded border p-2"
+                    onChange={(e) => setSelectedDate(e.target.value)}
                   />
                 )}
               </div>
 
               {selectedDate && (
-                <div className="p-3 rounded-lg bg-purple-50 text-purple-700 text-sm">
+                <div className="rounded-lg bg-purple-50 p-3 text-sm text-purple-700">
                   Delivery Scheduled for: <b>{selectedDate}</b>
                 </div>
               )}
@@ -180,13 +174,13 @@ const DeliveryCustomizationModal = ({
             <div className="space-y-4">
               {/* Cake Weight */}
               <div>
-                <p className="font-semibold mb-2">How many pounds?</p>
+                <p className="mb-2 font-semibold">How many pounds?</p>
                 <div className="flex gap-2">
                   {sizes.map((s) => (
                     <div
                       key={s}
                       onClick={() => setSelectedSize(s)}
-                      className={`cursor-pointer p-4 border rounded flex-1 text-center ${
+                      className={`flex-1 cursor-pointer rounded border p-4 text-center ${
                         selectedSize === s
                           ? "border-orange-500 bg-orange-50"
                           : ""
@@ -200,13 +194,13 @@ const DeliveryCustomizationModal = ({
 
               {/* Flavor */}
               <div>
-                <p className="font-semibold mb-2">Choose your flavor</p>
+                <p className="mb-2 font-semibold">Choose your flavor</p>
                 <div className="flex gap-2">
                   {flavors.map((f) => (
                     <div
                       key={f}
                       onClick={() => setSelectedFlavor(f)}
-                      className={`cursor-pointer p-4 border rounded flex-1 text-center ${
+                      className={`flex-1 cursor-pointer rounded border p-4 text-center ${
                         selectedFlavor === f
                           ? "border-orange-500 bg-orange-50"
                           : ""
@@ -220,11 +214,11 @@ const DeliveryCustomizationModal = ({
 
               {/* Personal Message */}
               <div>
-                <p className="font-semibold mb-2">
+                <p className="mb-2 font-semibold">
                   Add a personal message (optional)
                 </p>
                 <textarea
-                  className="w-full border p-2 rounded"
+                  className="w-full rounded border p-2"
                   placeholder="Write your message"
                   value={personalMessage}
                   onChange={(e) => setPersonalMessage(e.target.value)}
@@ -233,16 +227,14 @@ const DeliveryCustomizationModal = ({
 
               {/* Cake Type */}
               <div>
-                <p className="font-semibold mb-2">Cake Type</p>
+                <p className="mb-2 font-semibold">Cake Type</p>
                 <div className="flex gap-2">
                   {types.map((t) => (
                     <div
                       key={t}
                       onClick={() => setCakeType(t)}
-                      className={`cursor-pointer p-4 border rounded flex-1 text-center ${
-                        cakeType === t
-                          ? "border-orange-500 bg-orange-50"
-                          : ""
+                      className={`flex-1 cursor-pointer rounded border p-4 text-center ${
+                        cakeType === t ? "border-orange-500 bg-orange-50" : ""
                       }`}
                     >
                       {t}
@@ -255,7 +247,7 @@ const DeliveryCustomizationModal = ({
         </div>
 
         {/* Footer Buttons */}
-        <div className="flex gap-4 mt-6">
+        <div className="mt-6 flex gap-4">
           {step === 2 && (
             <Button variant="outline" onClick={handleBack} className="flex-1">
               Back
@@ -310,7 +302,7 @@ const ProductDetails = () => {
     if (product?.categoryIds?.length > 0) {
       const firstCategoryId = product.categoryIds[0];
       const foundCategory = categories.find(
-        (cat) => cat.id === firstCategoryId
+        (cat) => cat.id === firstCategoryId,
       );
       setCategoryData(foundCategory || null);
     }
@@ -363,7 +355,6 @@ const ProductDetails = () => {
 
   return (
     <div className="container mx-auto">
-
       {/* SUCCESS MESSAGE */}
       {showSuccessMessage && (
         <div className="fixed top-4 right-4 z-50 flex items-center gap-2 rounded-lg bg-green-500 px-6 py-3 text-white">
@@ -386,13 +377,9 @@ const ProductDetails = () => {
       />
 
       <div className="grid gap-10 lg:grid-cols-2">
-
         {/* IMAGES */}
         <div>
-          <img
-            src={allImages[selectedImage]}
-            className="rounded-lg"
-          />
+          <img src={allImages[selectedImage]} className="rounded-lg" />
 
           <div className="mt-4 grid grid-cols-4 gap-2">
             {allImages.map((img, i) => (
@@ -408,10 +395,11 @@ const ProductDetails = () => {
 
         {/* DETAILS */}
         <div>
-          <h1 className="text-3xl font-bold mb-4">{product.title}</h1>
+          <h1 className="mb-4 text-3xl font-bold">{product.title}</h1>
 
           <p className="text-3xl font-bold text-orange-600">
-            {product.pricing.currency}{product.pricing.discounted}
+            {product.pricing.currency}
+            {product.pricing.discounted}
           </p>
 
           {/* customizable badge */}
@@ -426,7 +414,8 @@ const ProductDetails = () => {
                     This Cake is Fully Customizable!
                   </h4>
                   <p className="mt-1 text-sm text-orange-600 dark:text-orange-300">
-                    Personalize this cake with your preferred flavors, shapes, sizes, and icing colors.
+                    Personalize this cake with your preferred flavors, shapes,
+                    sizes, and icing colors.
                   </p>
                 </div>
               </div>
@@ -439,7 +428,7 @@ const ProductDetails = () => {
 
           <button
             onClick={() => setShowMore(!showMore)}
-            className="text-orange-500 mt-1"
+            className="mt-1 text-orange-500"
           >
             {showMore ? "Show Less" : "Read More"}
           </button>
@@ -453,12 +442,13 @@ const ProductDetails = () => {
               </p>
             </div>
             <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
-              The price shown is for a single pound cake in base options. The final price might change based on the options you choose.
+              The price shown is for a single pound cake in base options. The
+              final price might change based on the options you choose.
             </p>
           </div>
 
           {/* QUANTITY */}
-          <div className="flex items-center gap-3 mt-6">
+          <div className="mt-6 flex items-center gap-3">
             <Button
               variant="outline"
               size="icon"
@@ -493,7 +483,7 @@ const ProductDetails = () => {
             >
               <Heart
                 className={`h-4 w-4 ${
-                  isFavorite ? "text-red-500 fill-red-500" : ""
+                  isFavorite ? "fill-red-500 text-red-500" : ""
                 }`}
               />
             </Button>

@@ -1,9 +1,8 @@
 import { Outlet } from "react-router";
-import Footer from "@/components/root/Components/Footer/Footer";
-import NavbarWithNavigation from "@/components/root/Components/NavbarWithNavigation";
-import { ThemeProvider } from "@/components/Theme/theme-provider";
-import DesktopNavigateContent from "@/root/Components/NavbarWithNavigation/DesktopNavigateContent";
-
+import Footer from "@/components/footer/Footer";
+import NavbarWithNavigation from "@/components/navbar-with-navigation";
+import { ThemeProvider } from "@/components/theme/theme-provider";
+import DesktopNavigateContent from "@/components/navbar-with-navigation/DesktopNavigateContent";
 
 const RootLayout = () => {
   return (

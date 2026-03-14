@@ -2,9 +2,14 @@ import React from "react";
 
 const PlayWinCake = () => {
   return (
-    <section className="bg-[#FCF2F7] px-4 py-12 transition-colors duration-500 md:px-24 dark:from-[#0f0f14] dark:to-[#16161d]">
+    <section className=" px-4 py-12 transition-colors duration-500 md:px-24 ">
       {/* In this div, I applied shadow for the card */}
-      <div className="mx-auto max-w-7xl rounded-3xl bg-white/70 p-8 shadow-[0_70px_100px_-20px_rgba(0,0,0,0.18),0_-15px_30px_-18px_rgba(0,0,0,0.08)] backdrop-blur-xl md:p-12 dark:bg-white/5 dark:shadow-[0_45px_100px_-20px_rgba(0,0,0,0.75),0_-12px_30px_-18px_rgba(0,0,0,0.5)]">
+      <div className="mx-auto max-w-7xl rounded-3xl  p-8  backdrop-blur-xl md:p-12">
+        
+        <div className="hidden lg:flex">
+          {/* This div is empty in your structure, keeping it as is */}
+        </div>
+
         <div className="grid gap-10 md:grid-cols-5">
           {/* LEFT SIDE */}
           <div className="flex flex-col justify-center md:col-span-2">
@@ -108,7 +113,6 @@ const PlayWinCake = () => {
                 Tower Builder
               </h3>
 
-              {/* <div className="grid items-center gap-6 md:grid-cols-2"> */}
               <div className="grid items-center gap-6 md:grid-cols-3">
                 {/* Left side → 2 columns */}
                 <div className="md:col-span-2">
@@ -125,12 +129,12 @@ const PlayWinCake = () => {
 
                 {/* Right side → 1 column */}
                 <div className="flex flex-col items-center justify-center space-y-2">
-                  <div className="h-4 w-full rounded-full bg-cyan-500"></div>
-                  <div className="h-4 w-5/6 rounded-full bg-cyan-500"></div>
-                  <div className="h-4 w-4/5 rounded-full bg-cyan-500"></div>
-                  <div className="h-4 w-3/4 rounded-full bg-cyan-500"></div>
-                  <div className="h-4 w-2/3 rounded-full bg-cyan-500"></div>
-                  <div className="h-4 w-1/2 rounded-full bg-cyan-500"></div>
+                  <div className="h-4 w-full rounded-full"></div>
+                  <div className="h-4 w-5/6 rounded-full"></div>
+                  <div className="h-4 w-4/5 rounded-full"></div>
+                  <div className="h-4 w-3/4 rounded-full"></div>
+                  <div className="h-4 w-2/3 rounded-full"></div>
+                  <div className="h-4 w-1/2 rounded-full"></div>
                 </div>
               </div>
             </div>
