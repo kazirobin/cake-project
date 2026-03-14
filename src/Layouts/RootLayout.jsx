@@ -2,7 +2,7 @@ import { Outlet } from "react-router";
 import Footer from "@/components/footer/Footer";
 import NavbarWithNavigation from "@/components/navbar-with-navigation";
 import DesktopNavigateContent from "@/components/navbar-with-navigation/DesktopNavigateContent";
-import { ThemeProvider } from './../components/theme/theme-provider';
+import { ThemeProvider } from '@/components/theme/theme-provider';
 
 const RootLayout = () => {
   return (
