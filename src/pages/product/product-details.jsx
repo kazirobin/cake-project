@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+
 import {
   Star,
   ShoppingCart,
@@ -48,7 +49,7 @@ const DeliveryCustomizationModal = ({
   const tomorrow = new Date(today);
   tomorrow.setDate(today.getDate() + 1);
 
-  const weekDates = Array.from({ length: 4 }).map((_, i) => {
+  const weekDates = Array.from({ length: 8 }).map((_, i) => {
     const d = new Date(today);
     d.setDate(today.getDate() + i + 2);
     return d.toDateString();
@@ -99,6 +100,7 @@ const DeliveryCustomizationModal = ({
       <div className="w-[700px] rounded-xl bg-white p-6 shadow-xl dark:bg-[#111]">
         {/* Header */}
         <div className="mb-4 flex items-center justify-between">
+         
           <h2 className="text-lg font-semibold">
             {step === 1 ? "Select Delivery Date" : "Customize Your Cake"}
           </h2>
@@ -109,31 +111,54 @@ const DeliveryCustomizationModal = ({
           {step === 1 && (
             <div className="space-y-4">
               {/* Today / Tomorrow */}
-              <div className="flex gap-4">
-                {[today.toDateString(), tomorrow.toDateString()].map((date) => (
-                  <div
-                    key={date}
-                    onClick={() => setSelectedDate(date)}
-                    className={`w-1/2 cursor-pointer rounded border p-4 text-center ${
-                      selectedDate === date
-                        ? "border-purple-500 bg-purple-50"
-                        : ""
-                    }`}
-                  >
-                    {date}
-                  </div>
-                ))}
-              </div>
+                {/* Title */}
+                <hr/>
+        <p className="mb-4 font-medium">
+          When would you like it delivered?
+        </p>
+<div className="flex gap-4">
+
+  {[today.toDateString(), tomorrow.toDateString()].map((date, i) => (
+
+    <div
+      key={date}
+      onClick={() => setSelectedDate(date)}
+      className={`w-1/2 cursor-pointer rounded border p-4 text-center ${
+        selectedDate === date
+          ? "border-purple-500 bg-purple-50"
+          : ""
+      }`}
+    >
+
+      {/* Label */}
+      <p className="text-sm text-gray-500">
+        {i === 0 ? <div className="flex justify-center space-x-2"> <img src="/icons/calendar.png" width="20px"/> <p className="font-bold">Today</p> </div> : <div className="flex justify-center space-x-2"> <img src="/icons/tomorrow.png" width="20px"/> <p className="font-bold">Tomorrow</p> </div>}
+      </p>
+
+      {/* Date */}
+      <p className="text-sm font-semibold">
+        {date}
+      </p>
+
+    </div>
+
+  ))}
+
+</div>
 
               {/* This week */}
               <div>
-                <p className="mb-2 font-semibold">This Week</p>
                 <div className="flex gap-2">
+                  <img src="/icons/agenda.png" width="30px" className="inline-block mr-1"/>
+                <p className="mb-2 font-semibold">Select Delivery Date</p>
+                </div>
+                
+                <div className="grid grid-cols-4 gap-2">
                   {weekDates.map((d) => (
                     <div
                       key={d}
                       onClick={() => setSelectedDate(d)}
-                      className={`flex-1 cursor-pointer rounded border p-2 text-center ${
+                      className={`flex-1 cursor-pointer rounded border p-3 text-center ${
                         selectedDate === d
                           ? "border-purple-500 bg-purple-50"
                           : ""
@@ -146,11 +171,12 @@ const DeliveryCustomizationModal = ({
               </div>
 
               {/* Custom Dates */}
-              <div>
+              <div className="mt-4 justify-center text-center border border-dashed border-gray-400 py-2 rounded-lg">
                 <p
                   className="cursor-pointer text-blue-500"
                   onClick={() => setShowCustomDates(!showCustomDates)}
                 >
+                  <img src="/icons/agenda.png" width="20px" className="inline-block mr-1"/>
                   Pick another date {showCustomDates ? "▲" : "▼"}
                 </p>
                 {showCustomDates && (
