@@ -13,14 +13,13 @@ const formSchema = z.object({
 
 const defaultValues = {
   name: "",
-  image: null,
+  image: undefined,
 };
 
 const ManageCategory = () => {
   const axios = useAxios();
 
   const onSubmit = async (values) => {
-    console.log("Submitted Category values:", values);
     const { name, image } = values;
 
     const formData = new FormData();
@@ -29,29 +28,22 @@ const ManageCategory = () => {
       formData.append("file", image);
     }
 
-    console.log("Category Form Data: ", ...formData);
     try {
       const { data } = await axios.post(
         `/categories/create-category`,
         formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            boundary: formData._boundary,
-          },
-        },
       );
 
       const { success, message } = data;
 
       if (!success) {
-        toast.error("Failed to create category: " + message);
+        toast.error(message);
         throw new Error("Failed to create category");
       }
 
       toast.success(message || "Category created successfully!");
     } catch (error) {
-      console.error("Error creating category:", error);
+      toast.error(error.message);
     }
   };
 
@@ -75,6 +67,7 @@ const ManageCategory = () => {
             defaultValues={defaultValues}
             onSubmit={onSubmit}
             submitText="Save Category"
+            submitLoadingText="Saving..."
             className="space-y-6"
           >
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2">

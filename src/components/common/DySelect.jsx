@@ -19,8 +19,6 @@ const DySelect = ({
   items,
   isLoading,
 }) => {
-  console.log("Items from DySelect: ", items);
-
   const {
     register,
     formState: { errors },
