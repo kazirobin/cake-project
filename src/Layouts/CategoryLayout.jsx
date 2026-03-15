@@ -1,8 +1,8 @@
 // src/layouts/CategoryLayout.jsx
 import { Outlet } from "react-router-dom";
-import NavbarWithNavigation from "@/components/navbar-with-navigation";
-import Footer from "@/components/footer/Footer";
-import DesktopNavigateContent from "@/components/navbar-with-navigation/DesktopNavigateContent";
+import NavbarWithNavigation from "@/components/common/navbar-with-navigation";
+import Footer from "@/components/common/footer/Footer";
+import DesktopNavigateContent from "@/components/common/navbar-with-navigation/DesktopNavigateContent";
 
 export default function CategoryLayout() {
   return (

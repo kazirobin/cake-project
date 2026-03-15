@@ -20,9 +20,10 @@ import {
 
 import { useCart } from "@/Hooks/cart-context";
 import productService from "./product-service";
-import ProductCard from "../../components/product/product-card";
+
 import ReusableBreadcrumb from "@/components/common/ReusableBreadcrumb";
 import categories from "@/data/category.json";
+import ProductCard from "@/components/users/product/product-card";
 
 /* ---------------- MULTI-STEP DELIVERY + CUSTOMIZATION MODAL ---------------- */
 
