@@ -1,5 +1,5 @@
 import React from "react";
-import { useTheme } from "@/components/Theme/theme-provider";
+import { useTheme } from "@/components/Theme/ThemeProvider";
 
 const SearchSuggestions = ({ suggestions, onSelect, isVisible }) => {
   const { theme } = useTheme();
@@ -7,16 +7,16 @@ const SearchSuggestions = ({ suggestions, onSelect, isVisible }) => {
   if (!isVisible) return null;
 
   return (
-    <div className="absolute top-full left-0 right-0 mt-1 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg z-50 max-h-96 overflow-y-auto">
+    <div className="absolute top-full right-0 left-0 z-50 mt-1 max-h-96 overflow-y-auto rounded-lg border border-gray-200 bg-white shadow-lg dark:border-gray-700 dark:bg-gray-800">
       <div className="p-2">
-        <p className="text-xs text-gray-500 dark:text-gray-400 px-3 py-2">
+        <p className="px-3 py-2 text-xs text-gray-500 dark:text-gray-400">
           Popular Suggestions
         </p>
         {suggestions.map((item) => (
           <button
             key={item.id}
             onClick={() => onSelect(item)}
-            className="w-full flex items-center gap-3 px-3 py-2 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-lg transition-colors"
+            className="flex w-full items-center gap-3 rounded-lg px-3 py-2 transition-colors hover:bg-gray-50 dark:hover:bg-gray-700"
           >
             <span className="text-xl">{item.icon}</span>
             <div className="flex-1 text-left">

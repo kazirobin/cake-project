@@ -1,35 +1,34 @@
-import React, { useState } from 'react';
-import { useTheme } from "@/components/Theme/theme-provider";
-import { navLinks, searchSuggestions } from './constants';
-import LogoSection from './LogoSection';
-import MobileLeftSheet from './MobileLeftSheet';
-import MobileRightIcons from './MobileRightIcons';
-import MobileSearch from './MobileSearch';
-import DesktopRightSection from './DesktopRightSection';
-import DesktopNavigateContent from './DesktopNavigateContent';
+import React, { useState } from "react";
+import { navLinks, searchSuggestions } from "./constants";
+import LogoSection from "./LogoSection";
+import MobileLeftSheet from "./MobileLeftSheet";
+import MobileRightIcons from "./MobileRightIcons";
+import MobileSearch from "./MobileSearch";
+import DesktopRightSection from "./DesktopRightSection";
+import { useTheme } from "@/components/Theme/ThemeProvider";
 
 const NavbarWithNavigation = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isRightMenuOpen, setIsRightMenuOpen] = useState(false);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const [showSuggestions, setShowSuggestions] = useState(false);
   const { theme } = useTheme();
 
   const handleSuggestionSelect = (suggestion) => {
     setSearchTerm(suggestion.name);
     setShowSuggestions(false);
-    console.log('Selected:', suggestion);
+    console.log("Selected:", suggestion);
   };
 
   return (
     <>
       {/* Top Navbar */}
-      <div className="container mx-auto shadow-sm flex flex-col lg:flex-row items-center justify-between p-4 lg:px-8 gap-4 lg:gap-0 relative border-b border-gray-200 dark:border-gray-800">
+      <div className="relative container mx-auto flex flex-col items-center justify-between gap-4 border-b border-gray-200 p-4 shadow-sm lg:flex-row lg:gap-0 lg:px-8 dark:border-gray-800">
         {/* Logo and Mobile Menu */}
-        <div className="flex items-center justify-between w-full lg:w-auto gap-4">
+        <div className="flex w-full items-center justify-between gap-4 lg:w-auto">
           <MobileLeftSheet navLinks={navLinks} />
           <LogoSection />
-          <MobileRightIcons 
+          <MobileRightIcons
             onSearchClick={() => setIsSearchOpen(!isSearchOpen)}
             isRightMenuOpen={isRightMenuOpen}
             setIsRightMenuOpen={setIsRightMenuOpen}
@@ -38,7 +37,7 @@ const NavbarWithNavigation = () => {
         </div>
 
         {/* Mobile Search Bar with Suggestions */}
-        <MobileSearch 
+        <MobileSearch
           isOpen={isSearchOpen}
           searchTerm={searchTerm}
           setSearchTerm={setSearchTerm}
@@ -49,7 +48,7 @@ const NavbarWithNavigation = () => {
         />
 
         {/* Desktop Sections with Search Suggestions */}
-        <DesktopRightSection 
+        <DesktopRightSection
           searchTerm={searchTerm}
           setSearchTerm={setSearchTerm}
           showSuggestions={showSuggestions}
@@ -58,8 +57,6 @@ const NavbarWithNavigation = () => {
           onSelectSuggestion={handleSuggestionSelect}
         />
       </div>
-
-    
     </>
   );
 };

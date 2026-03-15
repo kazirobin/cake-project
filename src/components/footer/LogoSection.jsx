@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router";
 import { Facebook, Instagram, Twitter, Youtube } from "lucide-react";
-import { useTheme } from "@/components/Theme/theme-provider";
+import { useTheme } from "@/components/Theme/ThemeProvider";
 
 const socialLinks = [
   { icon: Facebook, href: "#", color: "hover:text-blue-600" },
@@ -12,21 +12,18 @@ const socialLinks = [
 
 const LogoSection = () => {
   const { theme } = useTheme();
-  
-  const logoSrc = theme === 'dark'
-    ? "https://media.ugcakes.com/assets/logo/long-logo-dark-sd.webp"
-    : "https://i.ibb.co/nNjY5t0b/long-logo-sd.webp";
+
+  const logoSrc =
+    theme === "dark"
+      ? "https://media.ugcakes.com/assets/logo/long-logo-dark-sd.webp"
+      : "https://i.ibb.co/nNjY5t0b/long-logo-sd.webp";
 
   return (
-    <div className="lg:col-span-3 space-y-4">
+    <div className="space-y-4 lg:col-span-3">
       <Link to="/" className="inline-block">
-        <img
-          src={logoSrc}
-          alt="UG Cakes"
-          className="h-12 w-auto"
-        />
+        <img src={logoSrc} alt="UG Cakes" className="h-12 w-auto" />
       </Link>
-      <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+      <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-400">
         Delicious cakes made with love and delivered fresh to your doorstep.
         Making every celebration sweeter since 2015.
       </p>
@@ -39,7 +36,7 @@ const LogoSection = () => {
             <a
               key={index}
               href={social.href}
-              className={`p-2 bg-gray-100 dark:bg-gray-800 rounded-full text-gray-600 dark:text-gray-400 ${social.color} transition-colors`}
+              className={`rounded-full bg-gray-100 p-2 text-gray-600 dark:bg-gray-800 dark:text-gray-400 ${social.color} transition-colors`}
               target="_blank"
               rel="noopener noreferrer"
             >

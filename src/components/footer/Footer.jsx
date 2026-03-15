@@ -7,7 +7,7 @@ import AppSection from './AppSection';
 import PaymentMethods from './PaymentMethods';
 import BottomBar from './BottomBar';
 import TrustBadges from './TrustBadges';
-import MobileBottomNav from '@/components/MobileBottomNav/MobileBottomNav';
+import MobileBottomNav from '@/components/mobile-bottom-nav/MobileBottomNav';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();

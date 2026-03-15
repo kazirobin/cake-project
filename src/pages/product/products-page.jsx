@@ -5,8 +5,13 @@ import { Input } from "@/components/ui/input";
 import { Search, ShoppingCart, SlidersHorizontal, X } from "lucide-react";
 import { useCart } from "@/Hooks/cart-context";
 import productService from "./product-service";
-import ProductCard from "../../root/Components/Product/product-card";
+<<<<<<< HEAD:src/pages/product/products-page.jsx
+import ProductCard from "../../components/product/product-card";
 import CartSidebar from "@/root/Components/Cart/cart-sidebar";
+=======
+import ProductCard from "./product-card";
+import CartSidebar from "@/components/root/Components/Cart/cart-sidebar";
+>>>>>>> 06738e750c5c3ed14fdb81f706ade01564cbe7c0:src/pages/category/product/products-page.jsx
 
 const ProductsPage = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -20,10 +25,17 @@ const ProductsPage = () => {
   const allProducts = productService.getAllProducts();
 
   // Get unique categories
+<<<<<<< HEAD:src/pages/product/products-page.jsx
   const categories = [
     "all",
     ...new Set(allProducts.flatMap((p) => p.categoryIds)),
   ];
+=======
+  // const categories = [
+  //   "all",
+  //   ...new Set(allProducts.flatMap((p) => p.categoryIds)),
+  // ];
+>>>>>>> 06738e750c5c3ed14fdb81f706ade01564cbe7c0:src/pages/category/product/products-page.jsx
 
   const [filteredProducts, setFilteredProducts] = useState(allProducts);
 
@@ -68,8 +80,9 @@ const ProductsPage = () => {
         break;
     }
 
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setFilteredProducts(filtered);
-  }, [searchQuery, selectedCategory, priceRange, sortBy]);
+  }, [searchQuery, selectedCategory, priceRange, sortBy, allProducts]);
 
   const clearFilters = () => {
     setSearchQuery("");
@@ -133,7 +146,11 @@ const ProductsPage = () => {
 
         <div className="flex flex-col gap-8 md:flex-row">
           {/* Filters - Desktop */}
+<<<<<<< HEAD:src/pages/product/products-page.jsx
           <div className="hidden w-64 flex-shrink-0 md:block">
+=======
+          <div className="hidden w-64 shrink-0 md:block">
+>>>>>>> 06738e750c5c3ed14fdb81f706ade01564cbe7c0:src/pages/category/product/products-page.jsx
             <div className="sticky top-24 rounded-lg bg-white p-6 shadow-lg dark:bg-gray-800">
               <h3 className="mb-4 text-lg font-bold text-gray-900 dark:text-white">
                 Filters

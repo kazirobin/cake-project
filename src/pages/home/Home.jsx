@@ -1,19 +1,19 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ShoppingCart, Truck, Shield, Clock, Heart } from "lucide-react";
-import SliderBanner from "@/root/Components/SliderBanner/SliderBanner";
-import { useCart } from "@/Hooks/cart-context";
-import ProductCard from "../../root/Components/Product/product-card";
+import ProductCard from "../../components/product/product-card";
 import productService from "../product/product-service";
-import CartSidebar from "@/root/Components/Cart/cart-sidebar";
-import PlayWinCake from "@/root/Components/Mohosin/PlayWinCake";
-import ServiceHighlights from "@/components/ServiceHighlights/ServiceHighlights";
+import ServiceHighlights from "@/components/service-highlights/ServiceHighlights";
+import { Truck, Shield, Clock, Heart } from "lucide-react";
+import SliderBanner from "@/components/slider-banner/SliderBanner";
+// import { useCart } from "@/Hooks/cart-context";
+import CartSidebar from "@/components/cart/cart-sidebar";
+import PlayWinCake from "@/components/play-win-cake/PlayWinCake";
 
 const Home = () => {
   console.log("Home component is rendering");
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const { cart } = useCart();
+  // const { cart } = useCart();
   const featuredProducts = productService.getFeaturedProducts(4);
   const newArrivals = productService.getNewArrivals(4);
 
@@ -53,7 +53,6 @@ const Home = () => {
           </Link>
         </div>
       </section>
-
 
       {/* Features Section */}
       <section className="py-16">
