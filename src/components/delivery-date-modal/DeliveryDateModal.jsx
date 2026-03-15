@@ -105,9 +105,8 @@ const DeliveryCustomizationModal = ({
                   )
                 )}
               </div>
-              {/* Select delivery date */}
-             
-
+           
+     
               {/* This week */}
               <div>
                 <p className="font-semibold mb-2">This Week</p>

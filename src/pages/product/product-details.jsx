@@ -41,6 +41,8 @@ const DeliveryCustomizationModal = ({
 
   // Customization selection
   const [selectedSize, setSelectedSize] = useState("1lb");
+const [showAllFlavors, setShowAllFlavors] = useState(false);
+
   const [selectedFlavor, setSelectedFlavor] = useState("Chocolate");
   const [cakeType, setCakeType] = useState("Normal");
   const [personalMessage, setPersonalMessage] = useState("");
@@ -56,7 +58,21 @@ const DeliveryCustomizationModal = ({
   });
 
   const sizes = ["1lb", "2lb", "3lb"];
-  const flavors = ["Chocolate", "Vanilla", "Butterscotch"];
+  const flavors = ["Chocolate",
+  "Vanilla",
+  "Butterscotch",
+  "Black Forest",
+  "White Forest",
+  "Strawberry",
+  "Red Velvet",
+  "Pineapple",
+  "Mango",
+  "Blueberry",
+  "Coffee",
+  "Caramel",
+  "Orange",
+  "Lemon",
+  "Hazelnut"];
   const types = ["Eggless", "Less Cream", "Extra Juicy"];
 
   if (!isOpen) return null;
@@ -198,6 +214,28 @@ const DeliveryCustomizationModal = ({
 
           {step === 2 && (
             <div className="space-y-4">
+              {/* Show selected delivery date and cake name with qty and price at the top */}
+             
+<div>
+  {selectedDate && (
+    <div className="flex justify-between rounded-lg bg-purple-50 p-3 text-sm text-purple-700 space-y-1">
+      <div >
+        <p className="font-semibold text-black">{product.title}</p>
+         <p>
+        Price:{product?.pricing?.currency}{product?.pricing?.discounted}
+      </p>
+       <p>
+        Delivery Scheduled for: {selectedDate}
+      </p>
+      </div>
+      <div>
+        <p>
+        Qty: <b>{quantity}</b>
+      </p>
+      </div>
+    </div>
+  )}
+</div>
               {/* Cake Weight */}
               <div>
                 <p className="mb-2 font-semibold">How many pounds?</p>
@@ -219,24 +257,37 @@ const DeliveryCustomizationModal = ({
               </div>
 
               {/* Flavor */}
-              <div>
-                <p className="mb-2 font-semibold">Choose your flavor</p>
-                <div className="flex gap-2">
-                  {flavors.map((f) => (
-                    <div
-                      key={f}
-                      onClick={() => setSelectedFlavor(f)}
-                      className={`flex-1 cursor-pointer rounded border p-4 text-center ${
-                        selectedFlavor === f
-                          ? "border-orange-500 bg-orange-50"
-                          : ""
-                      }`}
-                    >
-                      {f}
-                    </div>
-                  ))}
-                </div>
-              </div>
+<div>
+  <p className="mb-2 font-semibold">Choose your flavor</p>
+
+  <div className="grid grid-cols-3 gap-2">
+    {(showAllFlavors ? flavors : flavors.slice(0, 6)).map((f) => (
+      <div
+        key={f}
+        onClick={() => setSelectedFlavor(f)}
+        className={`cursor-pointer rounded border p-4 text-center ${
+          selectedFlavor === f
+            ? "border-orange-500 bg-orange-50"
+            : ""
+        }`}
+      >
+        {f}
+      </div>
+    ))}
+  </div>
+
+  {/* Toggle Button */}
+  {flavors.length > 6 && (
+    <button
+      onClick={() => setShowAllFlavors(!showAllFlavors)}
+      className="mt-3 text-sm font-medium text-orange-500"
+    >
+      {showAllFlavors
+        ? "Show Less"
+        : `+${flavors.length - 6} more`}
+    </button>
+  )}
+</div>
 
               {/* Personal Message */}
               <div>
