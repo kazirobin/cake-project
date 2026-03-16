@@ -1,1 +1,1 @@
-[live](https://ug-cake.vercel.app/)
+# Professional Folder Structure for Cake Shop E-commerce

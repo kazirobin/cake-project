@@ -1,22 +1,24 @@
 import { createBrowserRouter } from "react-router";
 import RootLayout from "../Layouts/RootLayout";
-import Home from "../pages/home/Home";
-import Login from "@/pages/Login/Login";
-import Register from "@/pages/Register/Register";
-import AdminPanel from "@/pages/admin-panel/AdminPanel";
+import Home from "@/pages/users/home/Home";
+import Login from "@/pages/users/Login/Login";
+import Register from "@/pages/users/Register/Register";
+import AdminPanel from "@/pages/admin/AdminPanel";
 import NotFoundPage from "@/pages/error/NotFoundPage";
 import CategoryLayout from "@/Layouts/CategoryLayout";
-import AllCategory from "@/pages/category/all-category";
-import CategoryDetails from "@/pages/category/category-details";
-import ProductDetails from "@/pages/category/product/product-details";
-import CartPage from "@/components/root/Components/Cart/cart-page";
-import CheckoutPage from "@/components/root/Components/Checkout/checkout";
-import AddProduct from "@/pages/admin-panel/AddProduct";
-import Dashboard from "@/pages/admin-panel/Dashboard";
-import AllProducts from "@/pages/admin-panel/AllProducts";
-import Orders from "@/pages/admin-panel/Orders";
-import ManageCategory from "@/pages/admin-panel/ManageCategory";
-import Moderators from "@/pages/admin-panel/Moderators";
+import AllCategory from "@/components/users/category/all-category";
+import CategoryDetails from "@/pages/users/category/category-details";
+import ProductDetails from "@/pages/users/product/product-details";
+import AddProduct from "@/pages/admin/AddProduct";
+import Dashboard from "@/pages/admin/Dashboard";
+import AllProducts from "@/pages/admin/AllProducts";
+import Moderators from "@/pages/admin/Moderators";
+import Orders from "@/pages/admin/Orders";
+import WishGenerator from "../pages/users/wish-generator/wish-generator";
+import ManageCategory from "@/pages/admin/ManageCategory";
+import CartPage from "@/components/users/cart/cart-page";
+import CheckoutPage from "@/components/users/checkout/checkout";
+import Gifts from "@/pages/users/gifts/gifts";
 
 const router = createBrowserRouter([
   {
@@ -33,7 +35,11 @@ const router = createBrowserRouter([
         element: <div>About</div>,
       },
       {
-        path: "login",
+        path: "/wish-generator",
+        element: <WishGenerator />,
+      },
+      {
+        path: "/login",
         element: <Login />,
       },
       {
@@ -47,6 +53,10 @@ const router = createBrowserRouter([
       {
         path: "/checkout",
         element: <CheckoutPage />,
+      },
+      {
+        path: "/gifts",
+        element: <Gifts />,
       },
     ],
   },
