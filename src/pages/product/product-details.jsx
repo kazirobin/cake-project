@@ -218,7 +218,7 @@ const [showAllFlavors, setShowAllFlavors] = useState(false);
              
 <div>
   {selectedDate && (
-    <div className="flex justify-between rounded-lg bg-purple-50 p-3 text-sm text-purple-700 space-y-1">
+    <div className="flex justify-between rounded-lg bg-purple-50 p-3 border-2 text-sm text-purple-700 space-y-1">
       <div >
         <p className="font-semibold text-black">{product.title}</p>
          <p>
@@ -244,9 +244,9 @@ const [showAllFlavors, setShowAllFlavors] = useState(false);
                     <div
                       key={s}
                       onClick={() => setSelectedSize(s)}
-                      className={`flex-1 cursor-pointer rounded border p-4 text-center ${
+                      className={`flex-1 cursor-pointer rounded-full border-2 p-2 text-center ${
                         selectedSize === s
-                          ? "border-orange-500 bg-orange-50"
+                          ? "border-orange-500 bg-orange-200"
                           : ""
                       }`}
                     >
@@ -259,15 +259,15 @@ const [showAllFlavors, setShowAllFlavors] = useState(false);
               {/* Flavor */}
 <div>
   <p className="mb-2 font-semibold">Choose your flavor</p>
-
-  <div className="grid grid-cols-3 gap-2">
-    {(showAllFlavors ? flavors : flavors.slice(0, 6)).map((f) => (
+<hr/>
+  <div className="grid grid-cols-4 pt-2 gap-2">
+    {(showAllFlavors ? flavors : flavors.slice(0, 8)).map((f) => (
       <div
         key={f}
         onClick={() => setSelectedFlavor(f)}
-        className={`cursor-pointer rounded border p-4 text-center ${
+        className={`cursor-pointer rounded-full  p-2 text-center  ${
           selectedFlavor === f
-            ? "border-orange-500 bg-orange-50"
+            ? "border-orange-500 bg-orange-200"
             : ""
         }`}
       >
@@ -280,7 +280,7 @@ const [showAllFlavors, setShowAllFlavors] = useState(false);
   {flavors.length > 6 && (
     <button
       onClick={() => setShowAllFlavors(!showAllFlavors)}
-      className="mt-3 text-sm font-medium text-orange-500"
+      className="mt-3 text-sm  font-medium text-orange-500 border-2 px-3 py-1 rounded-lg"
     >
       {showAllFlavors
         ? "Show Less"
@@ -310,8 +310,8 @@ const [showAllFlavors, setShowAllFlavors] = useState(false);
                     <div
                       key={t}
                       onClick={() => setCakeType(t)}
-                      className={`flex-1 cursor-pointer rounded border p-4 text-center ${
-                        cakeType === t ? "border-orange-500 bg-orange-50" : ""
+                      className={`flex-1 cursor-pointer rounded-full border-2 p-2 mb-2 text-center ${
+                        cakeType === t ? "border-orange-500 bg-orange-200" : ""
                       }`}
                     >
                       {t}
@@ -344,7 +344,17 @@ const [showAllFlavors, setShowAllFlavors] = useState(false);
           {step === 2 && (
             <Button
               className="flex-1 bg-gradient-to-r from-orange-400 to-orange-600 text-white"
-              onClick={handleAddToCart}
+              //onClick={handleAddToCart}
+              // redirect to login if not logged in, else add to cart
+              onClick={() => {
+                const isLoggedIn = localStorage.getItem("isLoggedIn");
+                if (!isLoggedIn) {
+                  alert("Please log in to add items to your cart.");
+                  window.location.href = "/login";
+                } else {
+                  handleAddToCart();
+                }
+              }}
             >
               Add To Cart
             </Button>
