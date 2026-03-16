@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import ProductCard from "../../components/product/product-card";
+import ProductCard from "../../../components/users/product/product-card";
 import productService from "../product/product-service";
-import ServiceHighlights from "@/components/service-highlights/ServiceHighlights";
+import ServiceHighlights from "@/components/users/service-highlights/ServiceHighlights";
 import { Truck, Shield, Clock, Heart } from "lucide-react";
-import SliderBanner from "@/components/slider-banner/SliderBanner";
+import SliderBanner from "@/components/users/slider-banner/SliderBanner";
 // import { useCart } from "@/Hooks/cart-context";
-import CartSidebar from "@/components/cart/cart-sidebar";
-import PlayWinCake from "@/components/play-win-cake/PlayWinCake";
+import CartSidebar from "@/components/users/cart/cart-sidebar";
+import PlayWinCake from "@/components/users/play-win-cake/PlayWinCake";
 
 const Home = () => {
   console.log("Home component is rendering");

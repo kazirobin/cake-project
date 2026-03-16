@@ -3,12 +3,12 @@ import { useParams, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import categories from "@/data/category.json";
 import products from "@/data/products.json";
-import ProductCard from "../../components/product/product-card";
-import NoProductsFound from "../../components/product/no-product-found";
-import SortDropdown from "../../components/category/sort-dropdown";
-import FeaturesBar from "../../components/category/category-features-bar";
-import CategoryHero from "../../components/category/category-hero";
-import { formatPriceData } from "./../../lib/price-formatter";
+import ProductCard from "../../../components/users/product/product-card";
+import NoProductsFound from "../../../components/users/product/no-product-found";
+import SortDropdown from "../../../components/users/category/sort-dropdown";
+import FeaturesBar from "../../../components/users/category/category-features-bar";
+import CategoryHero from "../../../components/users/category/category-hero";
+import { formatPriceData } from "../../../lib/price-formatter";
 import ReusableBreadcrumb from "@/components/common/ReusableBreadcrumb";
 
 // Map category names to IDs
