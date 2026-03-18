@@ -73,7 +73,7 @@ const DeliveryCustomizationModal = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
-      <div className="w-[700px] rounded-xl bg-white dark:bg-[#111] shadow-xl p-6">
+      <div className="w-[700px] rounded-xl shadow-xl p-6">
         {/* Header */}
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-lg font-semibold">
@@ -96,7 +96,7 @@ const DeliveryCustomizationModal = ({
                       onClick={() => setSelectedDate(date)}
                       className={`cursor-pointer p-4 border rounded w-1/2 text-center ${
                         selectedDate === date
-                          ? "border-purple-500 bg-purple-50"
+                          ? "border-purple-500"
                           : ""
                       }`}
                     >
@@ -117,7 +117,7 @@ const DeliveryCustomizationModal = ({
                       onClick={() => setSelectedDate(d)}
                       className={`cursor-pointer p-2 border rounded flex-1 text-center ${
                         selectedDate === d
-                          ? "border-purple-500 bg-purple-50"
+                          ? "border-purple-500"
                           : ""
                       }`}
                     >
@@ -130,7 +130,7 @@ const DeliveryCustomizationModal = ({
               {/* Custom Dates */}
               <div>
                 <p
-                  className="cursor-pointer text-blue-500"
+                  className="cursor-pointer"
                   onClick={() => setShowCustomDates(!showCustomDates)}
                 >
                   Pick another date {showCustomDates ? "▲" : "▼"}
@@ -147,7 +147,7 @@ const DeliveryCustomizationModal = ({
               </div>
 
               {selectedDate && (
-                <div className="p-3 rounded-lg bg-purple-50 text-purple-700 text-sm">
+                <div className="p-3 rounded-lg  text-black text-sm">
                   Delivery Scheduled for: <b>{selectedDate}</b>
                 </div>
               )}
@@ -166,7 +166,7 @@ const DeliveryCustomizationModal = ({
                       onClick={() => setSelectedSize(s)}
                       className={`cursor-pointer p-4 border rounded flex-1 text-center ${
                         selectedSize === s
-                          ? "border-orange-500 bg-orange-50"
+                          ? "border-orange-500"
                           : ""
                       }`}
                     >
@@ -177,16 +177,16 @@ const DeliveryCustomizationModal = ({
               </div>
 
               {/* Flavor */}
-              <div>
+              {/* <div>
                 <p className="font-semibold mb-2">Choose your flavor</p>
                 <div className="flex gap-2">
                   {flavors.map((f) => (
                     <div
                       key={f}
                       onClick={() => setSelectedFlavor(f)}
-                      className={`cursor-pointer p-4 border rounded flex-1 text-center ${
+                      className={`cursor-pointer p-4 border rounded flex-1 text-center bg-red-800 ${
                         selectedFlavor === f
-                          ? "border-orange-500 bg-orange-50"
+                          ? "border-orange-500 bg-red-700"
                           : ""
                       }`}
                     >
@@ -194,7 +194,7 @@ const DeliveryCustomizationModal = ({
                     </div>
                   ))}
                 </div>
-              </div>
+              </div> */}
 
               {/* Personal Message */}
               <div>
@@ -219,7 +219,7 @@ const DeliveryCustomizationModal = ({
                       onClick={() => setCakeType(t)}
                       className={`cursor-pointer p-4 border rounded flex-1 text-center ${
                         cakeType === t
-                          ? "border-orange-500 bg-orange-50"
+                          ? "border-orange-500 "
                           : ""
                       }`}
                     >
@@ -244,7 +244,7 @@ const DeliveryCustomizationModal = ({
           </Button>
           {step === 1 && (
             <Button
-              className="flex-1 bg-gradient-to-r from-purple-600 to-pink-500 text-white"
+              className="flex-1 "
               onClick={handleNext}
             >
               Next
@@ -252,7 +252,7 @@ const DeliveryCustomizationModal = ({
           )}
           {step === 2 && (
             <Button
-              className="flex-1 bg-gradient-to-r from-orange-400 to-orange-600 text-white"
+              className="flex-1 "
               onClick={handleAddToCart}
             >
               Add To Cart

@@ -42,7 +42,7 @@ const DeliveryCustomizationModal = ({
 
   // Customization selection
   const [selectedSize, setSelectedSize] = useState("1lb");
-const [showAllFlavors, setShowAllFlavors] = useState(false);
+  const [showAllFlavors, setShowAllFlavors] = useState(false);
 
   const [selectedFlavor, setSelectedFlavor] = useState("Chocolate");
   const [cakeType, setCakeType] = useState("Normal");
@@ -59,21 +59,23 @@ const [showAllFlavors, setShowAllFlavors] = useState(false);
   });
 
   const sizes = ["1lb", "2lb", "3lb"];
-  const flavors = ["Chocolate",
-  "Vanilla",
-  "Butterscotch",
-  "Black Forest",
-  "White Forest",
-  "Strawberry",
-  "Red Velvet",
-  "Pineapple",
-  "Mango",
-  "Blueberry",
-  "Coffee",
-  "Caramel",
-  "Orange",
-  "Lemon",
-  "Hazelnut"];
+  const flavors = [
+    "Chocolate",
+    "Vanilla",
+    "Butterscotch",
+    "Black Forest",
+    "White Forest",
+    "Strawberry",
+    "Red Velvet",
+    "Pineapple",
+    "Mango",
+    "Blueberry",
+    "Coffee",
+    "Caramel",
+    "Orange",
+    "Lemon",
+    "Hazelnut",
+  ];
   const types = ["Eggless", "Less Cream", "Extra Juicy"];
 
   if (!isOpen) return null;
@@ -117,7 +119,6 @@ const [showAllFlavors, setShowAllFlavors] = useState(false);
       <div className="w-[700px] rounded-xl bg-white p-6 shadow-xl dark:bg-[#111]">
         {/* Header */}
         <div className="mb-4 flex items-center justify-between">
-         
           <h2 className="text-lg font-semibold">
             {step === 1 ? "Select Delivery Date" : "Customize Your Cake"}
           </h2>
@@ -128,57 +129,63 @@ const [showAllFlavors, setShowAllFlavors] = useState(false);
           {step === 1 && (
             <div className="space-y-4">
               {/* Today / Tomorrow */}
-                {/* Title */}
-                <hr/>
-        <p className="mb-4 font-medium">
-          When would you like it delivered?
-        </p>
-<div className="flex gap-4">
+              {/* Title */}
+              <hr />
+              <p className="mb-4 font-medium">
+                When would you like it delivered?
+              </p>
+              <div className="flex gap-4">
+                {[today.toDateString(), tomorrow.toDateString()].map(
+                  (date, i) => (
+                    <div
+                      key={date}
+                      onClick={() => setSelectedDate(date)}
+                      className={`w-1/2 cursor-pointer rounded border p-4 text-center ${
+                        selectedDate === date ? "border-purple-500 " : ""
+                      }`}
+                    >
+                      {/* Label */}
+                      <p className="text-sm text-gray-500">
+                        {i === 0 ? (
+                          <div className="flex justify-center space-x-2">
+                            {" "}
+                            <img src="/icons/calendar.png" width="20px" />{" "}
+                            <p className="font-bold">Today</p>{" "}
+                          </div>
+                        ) : (
+                          <div className="flex justify-center space-x-2">
+                            {" "}
+                            <img src="/icons/tomorrow.png" width="20px" />{" "}
+                            <p className="font-bold">Tomorrow</p>{" "}
+                          </div>
+                        )}
+                      </p>
 
-  {[today.toDateString(), tomorrow.toDateString()].map((date, i) => (
-
-    <div
-      key={date}
-      onClick={() => setSelectedDate(date)}
-      className={`w-1/2 cursor-pointer rounded border p-4 text-center ${
-        selectedDate === date
-          ? "border-purple-500 bg-purple-50"
-          : ""
-      }`}
-    >
-
-      {/* Label */}
-      <p className="text-sm text-gray-500">
-        {i === 0 ? <div className="flex justify-center space-x-2"> <img src="/icons/calendar.png" width="20px"/> <p className="font-bold">Today</p> </div> : <div className="flex justify-center space-x-2"> <img src="/icons/tomorrow.png" width="20px"/> <p className="font-bold">Tomorrow</p> </div>}
-      </p>
-
-      {/* Date */}
-      <p className="text-sm font-semibold">
-        {date}
-      </p>
-
-    </div>
-
-  ))}
-
-</div>
+                      {/* Date */}
+                      <p className="text-sm font-semibold">{date}</p>
+                    </div>
+                  ),
+                )}
+              </div>
 
               {/* This week */}
               <div>
                 <div className="flex gap-2">
-                  <img src="/icons/agenda.png" width="30px" className="inline-block mr-1"/>
-                <p className="mb-2 font-semibold">Select Delivery Date</p>
+                  <img
+                    src="/icons/agenda.png"
+                    width="30px"
+                    className="mr-1 inline-block"
+                  />
+                  <p className="mb-2 font-semibold">Select Delivery Date</p>
                 </div>
-                
+
                 <div className="grid grid-cols-4 gap-2">
                   {weekDates.map((d) => (
                     <div
                       key={d}
                       onClick={() => setSelectedDate(d)}
                       className={`flex-1 cursor-pointer rounded border p-3 text-center ${
-                        selectedDate === d
-                          ? "border-purple-500 bg-purple-50"
-                          : ""
+                        selectedDate === d ? "border-purple-500 " : ""
                       }`}
                     >
                       {d}
@@ -188,12 +195,16 @@ const [showAllFlavors, setShowAllFlavors] = useState(false);
               </div>
 
               {/* Custom Dates */}
-              <div className="mt-4 justify-center text-center border border-dashed border-gray-400 py-2 rounded-lg">
+              <div className="mt-4 justify-center rounded-lg border border-dashed border-gray-400 py-2 text-center">
                 <p
-                  className="cursor-pointer text-blue-500"
+                  className="cursor-pointer"
                   onClick={() => setShowCustomDates(!showCustomDates)}
                 >
-                  <img src="/icons/agenda.png" width="20px" className="inline-block mr-1"/>
+                  <img
+                    src="/icons/agenda.png"
+                    width="20px"
+                    className="mr-1 inline-block"
+                  />
                   Pick another date {showCustomDates ? "▲" : "▼"}
                 </p>
                 {showCustomDates && (
@@ -206,7 +217,7 @@ const [showAllFlavors, setShowAllFlavors] = useState(false);
               </div>
 
               {selectedDate && (
-                <div className="rounded-lg bg-purple-50 p-3 text-sm text-purple-700">
+                <div className="rounded-lg p-3 text-sm text-purple-700">
                   Delivery Scheduled for: <b>{selectedDate}</b>
                 </div>
               )}
@@ -216,27 +227,28 @@ const [showAllFlavors, setShowAllFlavors] = useState(false);
           {step === 2 && (
             <div className="space-y-4">
               {/* Show selected delivery date and cake name with qty and price at the top */}
-             
-<div>
-  {selectedDate && (
-    <div className="flex justify-between rounded-lg bg-purple-50 p-3 border-2 text-sm text-purple-700 space-y-1">
-      <div >
-        <p className="font-semibold text-black">{product.title}</p>
-         <p>
-        Price:{product?.pricing?.currency}{product?.pricing?.discounted}
-      </p>
-       <p>
-        Delivery Scheduled for: {selectedDate}
-      </p>
-      </div>
-      <div>
-        <p>
-        Qty: <b>{quantity}</b>
-      </p>
-      </div>
-    </div>
-  )}
-</div>
+
+              <div>
+                {selectedDate && (
+                  <div className="flex justify-between space-y-1 rounded-lg border-2 p-3 text-sm text-purple-700">
+                    <div>
+                      <p className="font-semibold text-black">
+                        {product.title}
+                      </p>
+                      <p>
+                        Price:{product?.pricing?.currency}
+                        {product?.pricing?.discounted}
+                      </p>
+                      <p>Delivery Scheduled for: {selectedDate}</p>
+                    </div>
+                    <div>
+                      <p>
+                        Qty: <b>{quantity}</b>
+                      </p>
+                    </div>
+                  </div>
+                )}
+              </div>
               {/* Cake Weight */}
               <div>
                 <p className="mb-2 font-semibold">How many pounds?</p>
@@ -246,9 +258,7 @@ const [showAllFlavors, setShowAllFlavors] = useState(false);
                       key={s}
                       onClick={() => setSelectedSize(s)}
                       className={`flex-1 cursor-pointer rounded-full border-2 p-2 text-center ${
-                        selectedSize === s
-                          ? "border-orange-500 bg-orange-200"
-                          : ""
+                        selectedSize === s ? "border-orange-500" : ""
                       }`}
                     >
                       {s}
@@ -257,19 +267,19 @@ const [showAllFlavors, setShowAllFlavors] = useState(false);
                 </div>
               </div>
 
-              {/* Flavor */}
+            {/* Flavor */}
 <div>
   <p className="mb-2 font-semibold">Choose your flavor</p>
-<hr/>
-  <div className="grid grid-cols-4 pt-2 gap-2">
+  <hr />
+  <div className="grid grid-cols-4 gap-2 pt-2">
     {(showAllFlavors ? flavors : flavors.slice(0, 8)).map((f) => (
       <div
         key={f}
         onClick={() => setSelectedFlavor(f)}
-        className={`cursor-pointer rounded-full  p-2 text-center  ${
-          selectedFlavor === f
-            ? "border-orange-500 bg-orange-200"
-            : ""
+        className={`cursor-pointer rounded-full border-2 p-2 text-center transition-all ${
+          selectedFlavor === f 
+            ? "border-orange-500 " 
+            : "border-gray-200 hover:border-gray-300 dark:border-gray-700"
         }`}
       >
         {f}
@@ -281,7 +291,7 @@ const [showAllFlavors, setShowAllFlavors] = useState(false);
   {flavors.length > 6 && (
     <button
       onClick={() => setShowAllFlavors(!showAllFlavors)}
-      className="mt-3 text-sm  font-medium text-orange-500 border-2 px-3 py-1 rounded-lg"
+      className="mt-3 rounded-lg border-2 px-3 py-1 text-sm font-medium text-orange-500"
     >
       {showAllFlavors
         ? "Show Less"
@@ -311,8 +321,8 @@ const [showAllFlavors, setShowAllFlavors] = useState(false);
                     <div
                       key={t}
                       onClick={() => setCakeType(t)}
-                      className={`flex-1 cursor-pointer rounded-full border-2 p-2 mb-2 text-center ${
-                        cakeType === t ? "border-orange-500 bg-orange-200" : ""
+                      className={`mb-2 flex-1 cursor-pointer rounded-full border-2 p-2 text-center ${
+                        cakeType === t ? "border-orange-500" : ""
                       }`}
                     >
                       {t}
@@ -442,7 +452,7 @@ const ProductDetails = () => {
   const firstCategoryId = product.categoryIds?.[0] || "";
 
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto px-5">
       {/* SUCCESS MESSAGE */}
       {showSuccessMessage && (
         <div className="fixed top-4 right-4 z-50 flex items-center gap-2 rounded-lg bg-green-500 px-6 py-3 text-white">
@@ -494,7 +504,7 @@ const ProductDetails = () => {
           {product.customizable && (
             <div className="mb-6 rounded-lg border border-orange-200 bg-orange-50 p-2 dark:border-orange-700 dark:bg-orange-900/20">
               <div className="flex items-start gap-3">
-                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-orange-200 text-xl dark:bg-orange-800">
+                <span className="flex h-10 w-10 items-center justify-center rounded-full text-xl">
                   ✨
                 </span>
                 <div>
