@@ -1,0 +1,213 @@
+[
+  {
+    "id": 1,
+    "name": "Birthday Cakes",
+    "slug": "birthday-cakes",
+    "description": "Celebrate with our delicious birthday cakes",
+    "image": "https://images.unsplash.com/photo-1562777717-dc6984f65a63?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "productCount": 24,
+    "type": "Cakes",
+    "metaTitle": "Birthday Cakes - Custom Designs for Every Age",
+    "metaDescription": "Find the perfect birthday cake with customizable designs for kids, teens, and adults. Order online with free delivery.",
+    "heroImage": "https://images.unsplash.com/photo-1558301211-0d8c8ddee6ec?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    "heroTitle": "Make Their Birthday Special",
+    "heroDescription": "Customize your cake with photos, messages, and designs",
+    "filters": {
+      "customizable": true,
+      "dietary": ["Eggless", "Gluten-Free", "Vegan"],
+      "sizes": ["0.5kg", "1kg", "1.5kg", "2kg", "3kg"],
+      "themes": ["Cartoon", "Elegant", "Photo Cake", "Number Cake", "Character"],
+      "priceRanges": [
+        { "min": 0, "max": 25, "label": "Under $25" },
+        { "min": 25, "max": 50, "label": "$25 - $50" },
+        { "min": 50, "max": 100, "label": "$50 - $100" },
+        { "min": 100, "max": 500, "label": "$100+" }
+      ]
+    },
+    "specificComponents": ["BirthdaySpecial"],
+    "seo": {
+      "keywords": ["birthday cakes", "happy birthday cake", "custom birthday cake", "kids birthday cake"],
+      "schema": "Product",
+      "image": "https://images.unsplash.com/photo-1562777717-dc6984f65a63?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+    }
+  },
+  {
+    "id": 2,
+    "name": "Wedding Cakes",
+    "slug": "wedding-cakes",
+    "description": "Elegant cakes for your special day",
+    "image": "https://images.unsplash.com/photo-1535254973040-607b474cb50d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "productCount": 18,
+    "type": "Cakes",
+    "metaTitle": "Wedding Cakes - Elegant Designs for Your Wedding",
+    "metaDescription": "Beautiful wedding cakes designed for your perfect day. Choose from classic, modern, and rustic styles.",
+    "heroImage": "https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    "heroTitle": "Your Dream Wedding Cake",
+    "heroDescription": "From classic to contemporary designs",
+    "filters": {
+      "customizable": true,
+      "tiers": ["Single", "2-Tier", "3-Tier", "4-Tier", "5-Tier"],
+      "flavors": ["Vanilla", "Chocolate", "Red Velvet", "Fruit", "Lemon"],
+      "dietary": ["Eggless", "Gluten-Free"],
+      "colors": ["White", "Ivory", "Gold", "Rose Gold", "Blush Pink"]
+    },
+    "specificComponents": ["WeddingSpecial"],
+    "seo": {
+      "keywords": ["wedding cakes", "bridal cakes", "wedding cake designs", "tiered cakes"],
+      "schema": "Product",
+      "image": "https://images.unsplash.com/photo-1535254973040-607b474cb50d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+    }
+  },
+  {
+    "id": 3,
+    "name": "Anniversary Cakes",
+    "slug": "anniversary-cakes",
+    "description": "Celebrate love with our anniversary specials",
+    "image": "https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "productCount": 15,
+    "type": "Cakes",
+    "metaTitle": "Anniversary Cakes - Celebrate Love",
+    "metaDescription": "Romantic cakes for your anniversary celebration. Personalized designs for every milestone.",
+    "heroImage": "https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    "heroTitle": "Celebrate Your Love Story",
+    "heroDescription": "Personalized cakes for every anniversary milestone",
+    "filters": {
+      "customizable": true,
+      "themes": ["Romantic", "Elegant", "Modern", "Classic", "Heart-Shaped"],
+      "years": ["1st", "5th", "10th", "25th", "50th"],
+      "dietary": ["Eggless", "Vegan"]
+    },
+    "specificComponents": ["AnniversarySpecial"],
+    "seo": {
+      "keywords": ["anniversary cakes", "romantic cakes", "love cakes", "milestone cakes"],
+      "schema": "Product",
+      "image": "https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+    }
+  },
+  {
+    "id": 4,
+    "name": "Kids Cakes",
+    "slug": "kids-cakes",
+    "description": "Fun and colorful cakes for little ones",
+    "image": "https://tse4.mm.bing.net/th/id/OIP.tT2QO3csQTo51eqNY-I6lQHaJ_?rs=1&pid=ImgDetMain&o=7&rm=3",
+    "productCount": 20,
+    "type": "Cakes",
+    "metaTitle": "Kids Cakes - Fun Designs for Children",
+    "metaDescription": "Exciting cakes for kids' birthdays with cartoon characters, superheroes, and fun themes.",
+    "heroImage": "https://images.unsplash.com/photo-1587668178277-c295520f5d2a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    "heroTitle": "Magical Cakes for Little Ones",
+    "heroDescription": "Bring their favorite characters to life",
+    "filters": {
+      "customizable": true,
+      "characters": ["Superhero", "Princess", "Cartoon", "Animal", "Dinosaur"],
+      "sizes": ["0.5kg", "1kg", "1.5kg"],
+      "dietary": ["Eggless"]
+    },
+    "specificComponents": ["KidsSpecial"],
+    "seo": {
+      "keywords": ["kids cakes", "children's birthday cakes", "character cakes", "fun cakes"],
+      "schema": "Product",
+      "image": "https://images.unsplash.com/photo-1587668178277-c295520f5d2a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+    }
+  },
+  {
+    "id": 5,
+    "name": "Photo Cakes",
+    "slug": "quick-cakes",
+    "description": "Edible photo prints on delicious cakes",
+    "image": "https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "productCount": 12,
+    "type": "Cakes",
+    "metaTitle": "Photo Cakes - Personalize with Photos",
+    "metaDescription": "Create memorable cakes with edible photo prints. Perfect for birthdays, anniversaries, and special occasions.",
+    "heroImage": "https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    "heroTitle": "Your Photos on a Cake",
+    "heroDescription": "Turn memories into delicious art",
+    "filters": {
+      "customizable": true,
+      "sizes": ["0.5kg", "1kg", "1.5kg", "2kg"],
+      "shapes": ["Round", "Square", "Heart", "Custom"]
+    },
+    "specificComponents": ["PhotoSpecial"],
+    "seo": {
+      "keywords": ["photo cakes", "picture cakes", "custom photo cakes", "edible image cakes"],
+      "schema": "Product",
+      "image": "https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+    }
+  },
+  {
+    "id": 6,
+    "name": "Cupcakes",
+    "slug": "cupcakes",
+    "description": "Delicious individual treats for any occasion",
+    "image": "https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "productCount": 16,
+    "type": "Desserts",
+    "metaTitle": "Cupcakes - Perfect Individual Treats",
+    "metaDescription": "Delicious cupcakes in various flavors. Perfect for parties, events, and gifting.",
+    "heroImage": "https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    "heroTitle": "Sweet Treats in Every Bite",
+    "heroDescription": "Perfect for sharing or indulging yourself",
+    "filters": {
+      "customizable": true,
+      "quantities": ["6 pcs", "12 pcs", "24 pcs", "48 pcs"],
+      "flavors": ["Vanilla", "Chocolate", "Red Velvet", "Strawberry", "Lemon"],
+      "dietary": ["Eggless", "Gluten-Free", "Vegan"]
+    },
+    "specificComponents": ["CupcakeSpecial"],
+    "seo": {
+      "keywords": ["cupcakes", "mini cakes", "cupcake delivery", "custom cupcakes"],
+      "schema": "Product",
+      "image": "https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+    }
+  },
+  {
+    "id": 7,
+    "name": "Pastries",
+    "slug": "eggless-cakes",
+    "description": "Delicate and flaky baked delights",
+    "image": "https://images.unsplash.com/photo-1509365465985-25d11c17e812?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "productCount": 14,
+    "type": "Desserts",
+    "metaTitle": "Pastries - Delicate Baked Treats",
+    "metaDescription": "Freshly baked pastries with creamy fillings and flaky layers.",
+    "heroImage": "https://images.unsplash.com/photo-1509365465985-25d11c17e812?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    "heroTitle": "Flaky, Creamy, Delicious",
+    "heroDescription": "Traditional and modern pastry delights",
+    "filters": {
+      "flavors": ["Vanilla", "Chocolate", "Fruit", "Cream", "Caramel"],
+      "types": ["Puffs", "Tarts", "Éclairs", "Danishes"]
+    },
+    "specificComponents": ["PastrySpecial"],
+    "seo": {
+      "keywords": ["pastries", "cream puffs", "éclairs", "tarts", "baked goods"],
+      "schema": "Product",
+      "image": "https://images.unsplash.com/photo-1509365465985-25d11c17e812?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+    }
+  },
+  {
+    "id": 8,
+    "name": "Cookies",
+    "slug": "sugarless-cakes",
+    "description": "Crunchy and chewy cookies made fresh",
+    "image": "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "productCount": 10,
+    "type": "Snacks",
+    "metaTitle": "Cookies - Fresh Baked Goodness",
+    "metaDescription": "Delicious cookies in various flavors. Perfect for tea-time or gifting.",
+    "heroImage": "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    "heroTitle": "Fresh Baked Cookies",
+    "heroDescription": "Crunchy, chewy, and absolutely delicious",
+    "filters": {
+      "flavors": ["Chocolate Chip", "Oatmeal", "Butter", "Almond", "Double Chocolate"],
+      "dietary": ["Eggless", "Gluten-Free", "Vegan"],
+      "giftPacks": ["Regular", "Festive", "Premium"]
+    },
+    "specificComponents": ["CookieSpecial"],
+    "seo": {
+      "keywords": ["cookies", "biscuits", "cookie gifts", "fresh cookies"],
+      "schema": "Product",
+      "image": "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+    }
+  }
+]
