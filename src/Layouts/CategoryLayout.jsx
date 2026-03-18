@@ -9,7 +9,9 @@ export default function CategoryLayout() {
     <div>
      
         <div className="sticky top-0 z-50">
+        <header className="border-border bg-background/95 supports-backdrop-filter:bg-background/60 sticky top-0 z-50 w-full border-b backdrop-blur dark:bg-slate-950/95">
           <NavbarWithNavigation />
+        </header>
         </div>
         <div>
           <div className="hidden lg:flex">
