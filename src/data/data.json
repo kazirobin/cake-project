@@ -314,7 +314,6 @@
     }
   ],
 
-
   "vendors": [
     {
       "_id": "vendor1",
@@ -359,7 +358,7 @@
     }
   ],
 
- "products": [
+  "products": [
     {
       "_id": "prod1",
       "title": "Samsung Galaxy S23 Ultra",
@@ -373,8 +372,16 @@
         "currency": "USD"
       },
       "images": [
-        { "url": "s23-1.jpg", "isPrimary": true, "altText": "Samsung Galaxy S23 Ultra Black Front" },
-        { "url": "s23-2.jpg", "isPrimary": false, "altText": "Samsung Galaxy S23 Ultra Back" }
+        {
+          "url": "s23-1.jpg",
+          "isPrimary": true,
+          "altText": "Samsung Galaxy S23 Ultra Black Front"
+        },
+        {
+          "url": "s23-2.jpg",
+          "isPrimary": false,
+          "altText": "Samsung Galaxy S23 Ultra Back"
+        }
       ],
       "videoUrl": "s23-promo.mp4",
       "rating": {
@@ -413,12 +420,16 @@
       "shopId": null,
       "brand": "UG Cakes",
       "price": {
-        "regular": 14.20,
+        "regular": 14.2,
         "discount": 11.83,
         "currency": "USD"
       },
       "images": [
-        { "url": "https://media.ugcakes.com/products/large/2199-chocolate-cupcakes-by-ug.jpg", "isPrimary": true, "altText": "Chocolate Cupcakes by UG" }
+        {
+          "url": "https://media.ugcakes.com/products/large/2199-chocolate-cupcakes-by-ug.jpg",
+          "isPrimary": true,
+          "altText": "Chocolate Cupcakes by UG"
+        }
       ],
       "additionalImages": [
         "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
@@ -481,7 +492,11 @@
         "currency": "USD"
       },
       "images": [
-        { "url": "https://media.ugcakes.com/products/large/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp", "isPrimary": true, "altText": "Strawberry Topped Cake" }
+        {
+          "url": "https://media.ugcakes.com/products/large/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+          "isPrimary": true,
+          "altText": "Strawberry Topped Cake"
+        }
       ],
       "additionalImages": [
         "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
@@ -540,7 +555,11 @@
         "currency": "USD"
       },
       "images": [
-        { "url": "https://media.ugcakes.com/products/large/rose-garden-887631752131346-U03zjdIwmF.webp", "isPrimary": true, "altText": "Rose Garden Cake" }
+        {
+          "url": "https://media.ugcakes.com/products/large/rose-garden-887631752131346-U03zjdIwmF.webp",
+          "isPrimary": true,
+          "altText": "Rose Garden Cake"
+        }
       ],
       "additionalImages": [
         "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
@@ -599,7 +618,11 @@
         "currency": "USD"
       },
       "images": [
-        { "url": "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp", "isPrimary": true, "altText": "Red Velvet Cupcakes by UG" }
+        {
+          "url": "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+          "isPrimary": true,
+          "altText": "Red Velvet Cupcakes by UG"
+        }
       ],
       "additionalImages": [
         "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
@@ -658,7 +681,11 @@
         "currency": "USD"
       },
       "images": [
-        { "url": "https://media.ugcakes.com/products/large/4867-chocolate-cake-with-choco-bark.webp", "isPrimary": true, "altText": "Chocolate Truffle Cake with Choco Barks" }
+        {
+          "url": "https://media.ugcakes.com/products/large/4867-chocolate-cake-with-choco-bark.webp",
+          "isPrimary": true,
+          "altText": "Chocolate Truffle Cake with Choco Barks"
+        }
       ],
       "additionalImages": [
         "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
@@ -717,7 +744,11 @@
         "currency": "USD"
       },
       "images": [
-        { "url": "https://media.ugcakes.com/products/large/rasmalai-cake-with-floral-and-pearls-detailing-659981711618140-uxGIlG0kaS.webp", "isPrimary": true, "altText": "Rasmalai Cake with Floral and Pearls Detailing" }
+        {
+          "url": "https://media.ugcakes.com/products/large/rasmalai-cake-with-floral-and-pearls-detailing-659981711618140-uxGIlG0kaS.webp",
+          "isPrimary": true,
+          "altText": "Rasmalai Cake with Floral and Pearls Detailing"
+        }
       ],
       "additionalImages": [
         "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
@@ -776,7 +807,11 @@
         "currency": "USD"
       },
       "images": [
-        { "url": "https://media.ugcakes.com/products/large/3629-chocolate-muffins.JPG", "isPrimary": true, "altText": "Chocolate Muffins" }
+        {
+          "url": "https://media.ugcakes.com/products/large/3629-chocolate-muffins.JPG",
+          "isPrimary": true,
+          "altText": "Chocolate Muffins"
+        }
       ],
       "additionalImages": [
         "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
@@ -835,7 +870,11 @@
         "currency": "USD"
       },
       "images": [
-        { "url": "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp", "isPrimary": true, "altText": "Happy Birthday Brother Cake" }
+        {
+          "url": "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+          "isPrimary": true,
+          "altText": "Happy Birthday Brother Cake"
+        }
       ],
       "additionalImages": [
         "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
@@ -894,7 +933,11 @@
         "currency": "USD"
       },
       "images": [
-        { "url": "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp", "isPrimary": true, "altText": "Happy Birthday Sister Cake" }
+        {
+          "url": "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+          "isPrimary": true,
+          "altText": "Happy Birthday Sister Cake"
+        }
       ],
       "additionalImages": [
         "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
@@ -953,7 +996,11 @@
         "currency": "USD"
       },
       "images": [
-        { "url": "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp", "isPrimary": true, "altText": "Happy Anniversary Cake" }
+        {
+          "url": "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+          "isPrimary": true,
+          "altText": "Happy Anniversary Cake"
+        }
       ],
       "additionalImages": [
         "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
@@ -1012,7 +1059,11 @@
         "currency": "USD"
       },
       "images": [
-        { "url": "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp", "isPrimary": true, "altText": "Happy Birthday Grandpa Cake" }
+        {
+          "url": "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+          "isPrimary": true,
+          "altText": "Happy Birthday Grandpa Cake"
+        }
       ],
       "additionalImages": [
         "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
@@ -1071,7 +1122,11 @@
         "currency": "USD"
       },
       "images": [
-        { "url": "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp", "isPrimary": true, "altText": "Happy Birthday Grandma Cake" }
+        {
+          "url": "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+          "isPrimary": true,
+          "altText": "Happy Birthday Grandma Cake"
+        }
       ],
       "additionalImages": [
         "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
@@ -1130,7 +1185,11 @@
         "currency": "USD"
       },
       "images": [
-        { "url": "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp", "isPrimary": true, "altText": "Happy Birthday Grandma Cake Special Edition" }
+        {
+          "url": "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+          "isPrimary": true,
+          "altText": "Happy Birthday Grandma Cake Special Edition"
+        }
       ],
       "additionalImages": [
         "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
