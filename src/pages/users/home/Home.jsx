@@ -6,25 +6,20 @@ import productService from "../product/product-service";
 import ServiceHighlights from "@/components/users/service-highlights/ServiceHighlights";
 import { Truck, Shield, Clock, Heart } from "lucide-react";
 import SliderBanner from "@/components/users/slider-banner/SliderBanner";
-// import { useCart } from "@/Hooks/cart-context";
 import CartSidebar from "@/components/users/cart/cart-sidebar";
 import PlayWinCake from "@/components/users/play-win-cake/PlayWinCake";
 
 const Home = () => {
   console.log("Home component is rendering");
   const [isCartOpen, setIsCartOpen] = useState(false);
-  // const { cart } = useCart();
   const featuredProducts = productService.getFeaturedProducts(4);
   const newArrivals = productService.getNewArrivals(4);
 
   return (
-    <div className="min-h-screen">
-      {/* Slider Banner Section */}
+    <div className="min-h-screen container mx-auto">
       <SliderBanner />
-      {/* ServiceHighlight Section */}
       <ServiceHighlights />
 
-      {/* Featured Products Section */}
       <section className="container mx-auto px-4 py-16">
         <div className="mb-10 text-center">
           <h2 className="mb-4 text-3xl font-bold text-gray-900 dark:text-white">
@@ -54,7 +49,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Features Section */}
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
@@ -109,7 +103,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* New Arrivals Section */}
       <section className="container mx-auto px-4 py-16">
         <div className="mb-10 text-center">
           <h2 className="mb-4 text-3xl font-bold text-gray-900 dark:text-white">
@@ -127,10 +120,8 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Cart Sidebar */}
       <CartSidebar isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
 
-      {/* Play and wind cake section */}
       <PlayWinCake />
     </div>
   );

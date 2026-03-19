@@ -9,7 +9,7 @@ import SortDropdown from "../../../components/users/category/sort-dropdown";
 import FeaturesBar from "../../../components/users/category/category-features-bar";
 import CategoryHero from "../../../components/users/category/category-hero";
 import { formatPriceData } from "../../../lib/price-formatter";
-import ReusableBreadcrumb from "@/components/common/ReusableBreadcrumb";
+import ReusableBreadcrumb from "@/components/users/BreadCrumbs/ReusableBreadcrumb";
 
 // Map category names to IDs
 const categoryNameToId = {
