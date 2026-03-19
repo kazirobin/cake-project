@@ -1,0 +1,124 @@
+{
+  "sections": [
+    {
+      "id": 1,
+      "title": "🔥 Recently Best Sellers",
+      "subtitle": "These trending cakes are flying off our shelves - Don't miss out!",
+      "updateTime": "Feb 14, 2:14 AM",
+      "badge": "HOT",
+      "type": "best-sellers",
+      "initialDesktop": 12,
+      "initialLaptop": 8,
+      "initialMobile": 6,
+      "left": false
+    },
+    {
+      "id": 2,
+      "title": "👀 Most Viewed",
+      "subtitle": "Popular picks everyone is looking at right now",
+      "updateTime": "Feb 14, 2:14 AM",
+      "badge": "POPULAR",
+      "type": "most-viewed",
+      "initialDesktop": 10,
+      "initialLaptop": 8,
+      "initialMobile": 6,
+      "left": false
+    },
+    {
+      "id": 3,
+      "title": "✨ New Arrivals",
+      "subtitle": "Freshly baked and just added to our collection",
+      "updateTime": "Feb 14, 2:14 AM",
+      "badge": "NEW",
+      "type": "new-arrivals",
+      "initialDesktop": 8,
+      "initialLaptop": 6,
+      "initialMobile": 4,
+      "left": true
+    },
+    {
+      "id": 4,
+      "title": "🎂 Birthday Specials",
+      "subtitle": "Make their day extra special with our birthday collection",
+      "updateTime": "Feb 14, 2:14 AM",
+      "badge": "BIRTHDAY",
+      "type": "birthday",
+      "initialDesktop": 12,
+      "initialLaptop": 8,
+      "initialMobile": 6,
+      "left": false
+    },
+    {
+      "id": 5,
+      "title": "💝 Anniversary Collection",
+      "subtitle": "Celebrate love with our romantic cake designs",
+      "updateTime": "Feb 14, 2:14 AM",
+      "badge": "ROMANTIC",
+      "type": "anniversary",
+      "initialDesktop": 8,
+      "initialLaptop": 6,
+      "initialMobile": 4,
+      "left": true
+    },
+    {
+      "id": 6,
+      "title": "🍫 Chocolate Lovers",
+      "subtitle": "Rich, decadent chocolate cakes for true chocoholics",
+      "updateTime": "Feb 14, 2:14 AM",
+      "badge": "CHOCOLATE",
+      "type": "chocolate",
+      "initialDesktop": 12,
+      "initialLaptop": 8,
+      "initialMobile": 6,
+      "left": false
+    },
+    {
+      "id": 7,
+      "title": "🧁 Cupcake Selection",
+      "subtitle": "Bite-sized delights perfect for any occasion",
+      "updateTime": "Feb 14, 2:14 AM",
+      "badge": "MINI",
+      "type": "cupcakes",
+      "initialDesktop": 16,
+      "initialLaptop": 12,
+      "initialMobile": 8,
+      "left": true
+    },
+    {
+      "id": 8,
+      "title": "🎉 Party Favorites",
+      "subtitle": "Crowd-pleasing cakes for your next celebration",
+      "updateTime": "Feb 14, 2:14 AM",
+      "badge": "PARTY",
+      "type": "party",
+      "initialDesktop": 12,
+      "initialLaptop": 8,
+      "initialMobile": 6,
+      "left": false
+    },
+    {
+      "id": 9,
+      "title": "💐 Floral Design Cakes",
+      "subtitle": "Elegant cakes adorned with beautiful edible flowers",
+      "updateTime": "Feb 14, 2:14 AM",
+      "badge": "ELEGANT",
+      "type": "floral",
+      "initialDesktop": 8,
+      "initialLaptop": 6,
+      "initialMobile": 4,
+      "left": true
+    },
+    {
+      "id": 10,
+      "title": "🧸 Kids Theme Cakes",
+      "subtitle": "Fun and colorful cakes for little ones",
+      "updateTime": "Feb 14, 2:14 AM",
+      "badge": "KIDS",
+      "type": "kids",
+      "initialDesktop": 10,
+      "initialLaptop": 8,
+      "initialMobile": 6,
+      "left": false
+    }
+  ]
+}
