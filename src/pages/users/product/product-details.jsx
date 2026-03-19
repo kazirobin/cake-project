@@ -8,12 +8,12 @@ import {
   AlertCircle,
   Minus,
   Plus,
+  Sparkles,
 } from "lucide-react";
 
 import { useCart } from "@/Hooks/cart-context";
 import productService from "./product-service";
 import ReusableBreadcrumb from "@/components/users/BreadCrumbs/ReusableBreadcrumb";
-import categories from "@/data/category.json";
 import ProductCard from "@/components/users/product/product-card";
 import DeliveryCustomizationModal from "@/components/users/delivery-date-modal/DeliveryDateModal";
 
@@ -23,7 +23,7 @@ const FALLBACK_CATEGORY_NAME = "Category";
 const FALLBACK_CATEGORY_PATH = "/categories";
 
 const ProductDetails = () => {
-  const { productId } = useParams();
+  const { productId, categoryId } = useParams(); // Get both params
   const navigate = useNavigate();
   const { addToCart } = useCart();
 
@@ -40,35 +40,67 @@ const ProductDetails = () => {
   });
 
   // Memoized product data
-  const productData = useMemo(
-    () => productService.getFullProductData(productId),
+  const product = useMemo(
+    () => productService.getProductById(productId),
     [productId]
   );
   
-  const product = productData?.cakeDetails;
   const relatedProducts = useMemo(
     () => productService.getRelatedProducts(productId),
     [productId]
   );
 
-  // Memoized image list
-  const allImages = useMemo(
-    () => [product?.avatar, ...(product?.additionalImages || [])].filter(Boolean),
-    [product]
-  );
+  // Check if product is customizable
+  const isCustomizable = useMemo(() => {
+    return product?.attributes?.customizable === true || 
+           product?.customizable === true;
+  }, [product]);
+
+  // Get all images
+  const allImages = useMemo(() => {
+    if (!product) return [];
+    
+    const images = [];
+    
+    // Add primary image
+    if (product.images) {
+      const primaryImage = product.images.find(img => img.isPrimary);
+      if (primaryImage?.url) images.push(primaryImage.url);
+      
+      // Add other images
+      product.images.forEach(img => {
+        if (!img.isPrimary && img.url && !images.includes(img.url)) {
+          images.push(img.url);
+        }
+      });
+    }
+    
+    // Add additionalImages if they exist and aren't already included
+    if (product.additionalImages) {
+      product.additionalImages.forEach(img => {
+        if (!images.includes(img)) {
+          images.push(img);
+        }
+      });
+    }
+    
+    return images.length > 0 ? images : ['https://via.placeholder.com/500'];
+  }, [product]);
 
   // Effects
   useEffect(() => {
-    if (product?.categoryIds?.length > 0) {
-      const firstCategoryId = product.categoryIds[0];
-      const foundCategory = categories.find((cat) => cat.id === firstCategoryId);
+    if (product?.categoryId) {
+      const catId = Array.isArray(product.categoryId) 
+        ? product.categoryId[0] 
+        : product.categoryId;
+      const foundCategory = productService.getCategoryById(catId);
       setCategoryData(foundCategory || null);
     }
   }, [product]);
 
   useEffect(() => {
     const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
-    setIsFavorite(favorites.includes(parseInt(productId)));
+    setIsFavorite(favorites.includes(productId));
   }, [productId]);
 
   // Handlers
@@ -81,11 +113,10 @@ const ProductDetails = () => {
 
   const toggleFavorite = useCallback(() => {
     const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
-    const id = parseInt(productId);
     
     const updated = isFavorite
-      ? favorites.filter((item) => item !== id)
-      : [...favorites, id];
+      ? favorites.filter((item) => item !== productId)
+      : [...favorites, productId];
 
     localStorage.setItem("favorites", JSON.stringify(updated));
     setIsFavorite(!isFavorite);
@@ -104,9 +135,17 @@ const ProductDetails = () => {
   }, []);
 
   const handleAddToCart = useCallback(() => {
-    // This will be handled by the modal
-    setShowDeliveryModal(true);
-  }, []);
+    if (isCustomizable) {
+      setShowDeliveryModal(true);
+    } else {
+      addToCart({
+        ...product,
+        quantity: quantity,
+        selectedImage: allImages[selectedImage]
+      });
+      showTemporaryMessage("success");
+    }
+  }, [isCustomizable, product, quantity, selectedImage, allImages, addToCart, showTemporaryMessage]);
 
   const handleModalClose = useCallback(() => {
     setShowDeliveryModal(false);
@@ -122,24 +161,26 @@ const ProductDetails = () => {
       <div className="container mx-auto py-16 text-center">
         <AlertCircle className="mx-auto mb-4 h-16 w-16 text-gray-400" />
         <h2 className="text-2xl font-bold">Product Not Found</h2>
+        <p className="mt-2 text-gray-600">The product with ID "{productId}" doesn't exist.</p>
         <Button
           onClick={() => navigate("/categories")}
           className="mt-6 bg-orange-500 text-white hover:bg-orange-600"
         >
-          Browse Products
+          Browse Categories
         </Button>
       </div>
     );
   }
 
-  const firstCategoryId = product.categoryIds?.[0] || "";
+  // Get category slug for breadcrumb
+  const categorySlug = categoryData?.slug || categoryId || 'category';
+
   const breadcrumbItems = [
+    { path: "/", label: "Home" },
     { path: "/categories", label: "Categories" },
     {
-      path: firstCategoryId
-        ? `/categories/${categoryData?.slug}`
-        : FALLBACK_CATEGORY_PATH,
-      label: categoryData?.name || FALLBACK_CATEGORY_NAME,
+      path: `/categories/${categorySlug}`,
+      label: categoryData?.name || "Category",
     },
     { label: product.title },
   ];
@@ -151,7 +192,7 @@ const ProductDetails = () => {
         show={messages.success}
         type="success"
         icon={Check}
-        message="Added to cart successfully!"
+        message={isCustomizable ? "Product configured successfully!" : "Added to cart successfully!"}
       />
       <MessageToast
         show={messages.favorite}
@@ -178,6 +219,7 @@ const ProductDetails = () => {
           quantity={quantity}
           isFavorite={isFavorite}
           showMore={showMore}
+          isCustomizable={isCustomizable}
           onShowMoreToggle={() => setShowMore(!showMore)}
           onQuantityChange={handleQuantityChange}
           onFavoriteToggle={toggleFavorite}
@@ -185,26 +227,32 @@ const ProductDetails = () => {
         />
       </div>
 
+      {/* Product Features */}
+      {product.features && product.features.length > 0 && (
+        <ProductFeatures product={product} />
+      )}
+
       {/* Related Products */}
       {relatedProducts.length > 0 && (
         <RelatedProducts products={relatedProducts} />
       )}
 
-      {/* Delivery Modal */}
-      <DeliveryCustomizationModal
-        isOpen={showDeliveryModal}
-        onClose={handleModalClose}
-        addToCart={addToCart}
-        product={product}
-        quantity={quantity}
-        onSuccess={handleAddToCartSuccess}
-      />
+      {/* Delivery/Customization Modal */}
+      {isCustomizable && (
+        <DeliveryCustomizationModal
+          isOpen={showDeliveryModal}
+          onClose={handleModalClose}
+          addToCart={addToCart}
+          product={product}
+          quantity={quantity}
+          onSuccess={handleAddToCartSuccess}
+        />
+      )}
     </div>
   );
 };
 
-// Sub-components for better organization
-
+// Message Toast Component
 const MessageToast = ({ show, type, icon: Icon, message, iconClassName = "" }) => {
   if (!show) return null;
   
@@ -218,6 +266,7 @@ const MessageToast = ({ show, type, icon: Icon, message, iconClassName = "" }) =
   );
 };
 
+// Product Images Component
 const ProductImages = ({ images, selectedImage, onImageSelect, productTitle }) => (
   <div>
     <div className="relative aspect-square w-full overflow-hidden rounded-lg bg-gray-100">
@@ -226,6 +275,9 @@ const ProductImages = ({ images, selectedImage, onImageSelect, productTitle }) =
         alt={productTitle}
         className="h-full w-full object-contain"
         loading="eager"
+        onError={(e) => {
+          e.target.src = 'https://via.placeholder.com/500';
+        }}
       />
     </div>
 
@@ -240,7 +292,6 @@ const ProductImages = ({ images, selectedImage, onImageSelect, productTitle }) =
                 ? "border-orange-500"
                 : "border-transparent hover:border-gray-300"
             }`}
-            aria-label={`View image ${i + 1}`}
           >
             <div className="aspect-square w-full bg-gray-50">
               <img
@@ -248,6 +299,9 @@ const ProductImages = ({ images, selectedImage, onImageSelect, productTitle }) =
                 alt={`${productTitle} - thumbnail ${i + 1}`}
                 className="h-full w-full object-cover"
                 loading="lazy"
+                onError={(e) => {
+                  e.target.src = 'https://via.placeholder.com/100';
+                }}
               />
             </div>
           </button>
@@ -257,143 +311,164 @@ const ProductImages = ({ images, selectedImage, onImageSelect, productTitle }) =
   </div>
 );
 
+// Product Info Component
 const ProductInfo = ({
   product,
   quantity,
   isFavorite,
   showMore,
+  isCustomizable,
   onShowMoreToggle,
   onQuantityChange,
   onFavoriteToggle,
   onAddToCart,
-}) => (
-  <div className="space-y-6">
-    <h1 className="text-3xl font-bold">{product.title}</h1>
+}) => {
+  const discountPercentage = product.price?.discount ? 
+    Math.round(((product.price.regular - product.price.discount) / product.price.regular) * 100) : 0;
 
-    <p className="text-3xl font-bold text-orange-600">
-      {product.pricing.currency}
-      {product.pricing.discounted}
-    </p>
+  const currentPrice = product.price?.discount || product.price?.regular || 0;
+  const currency = product.price?.currency || 'USD';
 
-    {product.customizable && <CustomizableBadge />}
+  return (
+    <div className="space-y-6">
+      <h1 className="text-3xl font-bold">{product.title}</h1>
 
-    <div className="space-y-2">
-      <p className={`text-gray-600 dark:text-gray-300 ${showMore ? "" : "line-clamp-3"}`}>
-        {product.description}
-      </p>
-      <button
-        onClick={onShowMoreToggle}
-        className="text-orange-500 hover:text-orange-600 font-medium"
-      >
-        {showMore ? "Show Less" : "Read More"}
-      </button>
-    </div>
+      {product.rating?.average > 0 && (
+        <div className="flex items-center gap-2">
+          <div className="flex items-center">
+            <span className="text-yellow-400">★</span>
+            <span className="ml-1 font-semibold">{product.rating.average}</span>
+          </div>
+          <span className="text-gray-500">({product.rating.totalReviews} reviews)</span>
+        </div>
+      )}
 
-    <PriceInfo product={product} />
+      <div className="flex items-center gap-3">
+        <span className="text-3xl font-bold text-orange-600">
+          {currency} {currentPrice}
+        </span>
+        {product.price?.discount && (
+          <>
+            <span className="text-lg text-gray-400 line-through">
+              {currency} {product.price.regular}
+            </span>
+            <span className="rounded-full bg-green-100 px-2 py-1 text-sm font-semibold text-green-600">
+              {discountPercentage}% OFF
+            </span>
+          </>
+        )}
+      </div>
 
-    <div className="flex items-center gap-4">
-      <QuantitySelector quantity={quantity} onChange={onQuantityChange} />
-    </div>
+      {isCustomizable && (
+        <div className="rounded-lg border border-orange-200 bg-orange-50 p-3">
+          <div className="flex items-start gap-3">
+            <Sparkles className="h-6 w-6 text-orange-500" />
+            <div>
+              <h4 className="text-lg font-bold text-orange-700">
+                This Product is Fully Customizable!
+              </h4>
+              <p className="mt-1 text-sm text-orange-600">
+                Personalize this with your preferred options.
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
 
-    <ActionButtons
-      onAddToCart={onAddToCart}
-      isFavorite={isFavorite}
-      onFavoriteToggle={onFavoriteToggle}
-    />
-  </div>
-);
+      {product.description && (
+        <div className="space-y-2">
+          <p className={`text-gray-600 ${showMore ? "" : "line-clamp-3"}`}>
+            {product.description}
+          </p>
+          <button
+            onClick={onShowMoreToggle}
+            className="text-orange-500 hover:text-orange-600 font-medium"
+          >
+            {showMore ? "Show Less" : "Read More"}
+          </button>
+        </div>
+      )}
 
-const CustomizableBadge = () => (
-  <div className="rounded-lg border border-orange-200 bg-orange-50 p-3 dark:border-orange-700 dark:bg-orange-900/20">
-    <div className="flex items-start gap-3">
-      <span className="flex h-10 w-10 items-center justify-center rounded-full text-xl">
-        ✨
-      </span>
-      <div>
-        <h4 className="text-lg font-bold text-orange-700 dark:text-orange-400">
-          This Cake is Fully Customizable!
-        </h4>
-        <p className="mt-1 text-sm text-orange-600 dark:text-orange-300">
-          Personalize this cake with your preferred flavors, shapes, sizes, and icing colors.
+      {product.stock !== undefined && (
+        <p className={product.stock > 0 ? "text-sm text-green-600" : "text-sm text-red-600"}>
+          {product.stock > 0 ? `✓ In Stock (${product.stock} available)` : "✗ Out of Stock"}
         </p>
+      )}
+
+      <div className="flex items-center gap-4">
+        <span className="font-medium">Quantity:</span>
+        <div className="flex items-center gap-3">
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={() => onQuantityChange(-1)}
+            disabled={quantity <= 1}
+          >
+            <Minus className="h-4 w-4" />
+          </Button>
+          <span className="w-8 text-center font-medium">{quantity}</span>
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={() => onQuantityChange(1)}
+          >
+            <Plus className="h-4 w-4" />
+          </Button>
+        </div>
+      </div>
+
+      <div className="flex gap-4">
+        <Button
+          onClick={onAddToCart}
+          className={`flex-1 ${
+            isCustomizable
+              ? "bg-gradient-to-r from-purple-500 to-orange-500 hover:from-purple-600 hover:to-orange-600"
+              : "bg-gradient-to-r from-orange-400 to-orange-600 hover:from-orange-500 hover:to-orange-700"
+          } text-white`}
+        >
+          <ShoppingCart className="mr-2 h-4 w-4" />
+          {isCustomizable ? "Customize & Add to Cart" : "Add to Cart"}
+        </Button>
+
+        <Button
+          variant="outline"
+          size="icon"
+          onClick={onFavoriteToggle}
+          className="hover:bg-red-50"
+        >
+          <Heart
+            className={`h-4 w-4 transition-colors ${
+              isFavorite ? "fill-red-500 text-red-500" : ""
+            }`}
+          />
+        </Button>
       </div>
     </div>
+  );
+};
+
+// Product Features Component
+const ProductFeatures = ({ product }) => (
+  <div className="mt-12">
+    <h3 className="mb-4 text-xl font-semibold">Features</h3>
+    <ul className="grid gap-2 md:grid-cols-2">
+      {product.features.map((feature, index) => (
+        <li key={index} className="flex items-start gap-2">
+          <Check className="mt-1 h-4 w-4 text-green-500" />
+          <span>{feature}</span>
+        </li>
+      ))}
+    </ul>
   </div>
 );
 
-const PriceInfo = ({ product }) => (
-  <div className="rounded-lg border border-orange-200 bg-orange-50 p-3 dark:border-orange-700 dark:bg-orange-900/20">
-    <div className="flex justify-between gap-3">
-      <span className="font-medium">Starting Price:</span>
-      <p className="flex items-center text-lg font-bold text-gray-900 dark:text-white">
-        {product.pricing.currency}
-        <span className="ml-1">{product.pricing.discounted}</span>
-      </p>
-    </div>
-    <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
-      The price shown is for a single pound cake in base options. The final price might change
-      based on the options you choose.
-    </p>
-  </div>
-);
-
-const QuantitySelector = ({ quantity, onChange }) => (
-  <div className="flex items-center gap-3">
-    <Button
-      variant="outline"
-      size="icon"
-      onClick={() => onChange(-1)}
-      disabled={quantity <= 1}
-      className="cursor-pointer"
-      aria-label="Decrease quantity"
-    >
-      <Minus className="h-4 w-4" />
-    </Button>
-    <span className="w-8 text-center font-medium">{quantity}</span>
-    <Button
-      variant="outline"
-      size="icon"
-      onClick={() => onChange(1)}
-      className="cursor-pointer"
-      aria-label="Increase quantity"
-    >
-      <Plus className="h-4 w-4" />
-    </Button>
-  </div>
-);
-
-const ActionButtons = ({ onAddToCart, isFavorite, onFavoriteToggle }) => (
-  <div className="flex gap-4">
-    <Button
-      onClick={onAddToCart}
-      className="flex-1 cursor-pointer bg-gradient-to-r from-orange-400 to-orange-600 text-white hover:from-orange-500 hover:to-orange-700"
-    >
-      <ShoppingCart className="mr-2 h-4 w-4" />
-      Customize & Add to Cart
-    </Button>
-
-    <Button
-      variant="outline"
-      size="icon"
-      onClick={onFavoriteToggle}
-      className="cursor-pointer hover:bg-red-50 dark:hover:bg-red-950/20"
-      aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}
-    >
-      <Heart
-        className={`h-4 w-4 transition-colors ${
-          isFavorite ? "fill-red-500 text-red-500" : ""
-        }`}
-      />
-    </Button>
-  </div>
-);
-
+// Related Products Component
 const RelatedProducts = ({ products }) => (
   <div className="mt-16">
     <h2 className="mb-6 text-2xl font-bold">You Might Also Like</h2>
     <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
       {products.map((item) => (
-        <ProductCard key={item.id} product={item} />
+        <ProductCard key={item._id || item.id} product={item} />
       ))}
     </div>
   </div>

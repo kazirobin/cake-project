@@ -9,7 +9,40 @@ import { useCart } from '@/Hooks/cart-context';
 const ProductCard = ({ product }) => {
   const { addToCart } = useCart();
   const [showPopup, setShowPopup] = useState(false);
-  const { id, title, avatar, pricing, rating, stock } = product;
+
+  // Safely extract product data with fallbacks
+  const productId = product._id || product.id;
+  const title = product.title || 'Product';
+  const avatar = product.avatar || 
+                 (product.images?.find(img => img.isPrimary)?.url) || 
+                 (product.images?.[0]?.url) || 
+                 'https://via.placeholder.com/300x200?text=Product+Image';
+  
+  // Handle pricing safely
+  const price = product.price || {};
+  const regularPrice = price.regular || 0;
+  const discountedPrice = price.discount || regularPrice;
+  const currency = price.currency || 'USD';
+  
+  // Calculate discount percentage
+  const discountPercentage = price.discount ? 
+    Math.round(((regularPrice - discountedPrice) / regularPrice) * 100) : 0;
+
+  // Handle rating safely
+  const ratingValue = product.rating?.average || 0;
+  const reviewCount = product.rating?.totalReviews || 0;
+
+  // Handle stock safely
+  const stock = product.stock !== undefined ? product.stock : 10;
+
+  // Get category slug for the link
+  const categoryId = Array.isArray(product.categoryId) 
+    ? product.categoryId[0] 
+    : product.categoryId;
+  
+  // You might want to get the category slug from your categories data
+  // For now, we'll use a default or you can pass it as a prop
+  const categorySlug = 'category'; // This should be dynamic based on your data
 
   const handleAddToCart = (e) => {
     e.preventDefault();
@@ -17,10 +50,11 @@ const ProductCard = ({ product }) => {
     
     // Add to cart
     addToCart({
-      id,
-      title,
-      price: pricing.discounted,
+      id: productId,
+      title: title,
+      price: discountedPrice,
       image: avatar,
+      quantity: 1,
     });
     
     // Show popup
@@ -50,7 +84,7 @@ const ProductCard = ({ product }) => {
       )}
 
       <Card className="group overflow-hidden hover:shadow-xl transition-all duration-300 relative bg-background">
-        <Link to={`/categories/product/${id}`}>
+        <Link to={`/categories/${categorySlug}/product/${productId}`}>
           <div className="relative overflow-hidden h-48">
             <img 
               src={avatar} 
@@ -60,9 +94,9 @@ const ProductCard = ({ product }) => {
                 e.target.src = 'https://via.placeholder.com/300x200?text=Product+Image';
               }}
             />
-            {pricing.discountPercentage > 0 && (
+            {discountPercentage > 0 && (
               <Badge className="absolute top-2 right-2 bg-red-500 text-white">
-                {pricing.discountPercentage}% OFF
+                {discountPercentage}% OFF
               </Badge>
             )}
           </div>
@@ -72,27 +106,33 @@ const ProductCard = ({ product }) => {
               {title}
             </h3>
             
-            <div className="flex items-center mb-2">
-              <div className="flex items-center">
-                <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                <span className="ml-1 text-sm font-medium text-gray-700 dark:text-gray-300">
-                  {rating.value}
-                </span>
+            {ratingValue > 0 && (
+              <div className="flex items-center mb-2">
+                <div className="flex items-center">
+                  <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                  <span className="ml-1 text-sm font-medium text-gray-700 dark:text-gray-300">
+                    {ratingValue}
+                  </span>
+                </div>
+                {reviewCount > 0 && (
+                  <>
+                    <span className="mx-2 text-gray-400">•</span>
+                    <span className="text-sm text-gray-600 dark:text-gray-400">
+                      {reviewCount} {reviewCount === 1 ? 'review' : 'reviews'}
+                    </span>
+                  </>
+                )}
               </div>
-              <span className="mx-2 text-gray-400">•</span>
-              <span className="text-sm text-gray-600 dark:text-gray-400">
-                {rating.count} reviews
-              </span>
-            </div>
+            )}
 
             <div className="flex items-center justify-between">
               <div>
                 <span className="text-2xl font-bold text-orange-600 dark:text-orange-400">
-                  {pricing.currency}{pricing.discounted}
+                  {currency} {discountedPrice}
                 </span>
-                {pricing.original > pricing.discounted && (
+                {price.discount && (
                   <span className="ml-2 text-sm text-gray-400 line-through">
-                    {pricing.currency}{pricing.original}
+                    {currency} {regularPrice}
                   </span>
                 )}
               </div>
@@ -107,7 +147,7 @@ const ProductCard = ({ product }) => {
               </Button>
             </div>
 
-            {stock < 10 && stock > 0 && (
+            {stock > 0 && stock < 10 && (
               <p className="mt-2 text-xs text-orange-600 dark:text-orange-400">
                 Only {stock} left in stock!
               </p>
@@ -119,26 +159,33 @@ const ProductCard = ({ product }) => {
           </CardContent>
         </Link>
       </Card>
-
-      {/* Add animation styles */}
-      <style jsx>{`
-        @keyframes slideDown {
-          from {
-            transform: translateY(-100%);
-            opacity: 0;
-          }
-          to {
-            transform: translateY(0);
-            opacity: 1;
-          }
-        }
-        
-        .animate-slideDown {
-          animation: slideDown 0.3s ease-out;
-        }
-      `}</style>
     </>
   );
 };
+
+// Add animation styles
+const styles = `
+  @keyframes slideDown {
+    from {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  .animate-slideDown {
+    animation: slideDown 0.3s ease-out;
+  }
+`;
+
+// Inject styles
+if (typeof document !== 'undefined') {
+  const styleElement = document.createElement('style');
+  styleElement.innerHTML = styles;
+  document.head.appendChild(styleElement);
+}
 
 export default ProductCard;

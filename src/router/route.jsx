@@ -66,17 +66,14 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        // <CategoriesPage />
         element: <AllCategory />,
       },
       {
         path: ":categoryId",
-        //  <CategoryDetailsPage />
         element: <CategoryDetails />,
       },
       {
-        path: "product/:productId", // Changed to 'product/' prefix to avoid conflict
-        // <CakeDetails />
+        path: ":categoryId/product/:productId", // Changed to include categoryId in the path
         element: <ProductDetails />,
       },
     ],
@@ -110,6 +107,11 @@ const router = createBrowserRouter([
         element: <Orders />,
       },
     ],
+  },
+  // Optional: Add a direct product route
+  {
+    path: "/product/:productId",
+    element: <ProductDetails />,
   },
 ]);
 
