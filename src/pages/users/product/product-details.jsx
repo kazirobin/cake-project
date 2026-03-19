@@ -3,19 +3,13 @@ import { useParams, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
 import {
-  Star,
   ShoppingCart,
   Heart,
-  Truck,
-  Shield,
-  RotateCcw,
-  Package,
   Check,
   AlertCircle,
   Minus,
   Plus,
   X,
-  Calendar,
 } from "lucide-react";
 
 import { useCart } from "@/Hooks/cart-context";

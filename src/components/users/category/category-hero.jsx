@@ -1,7 +1,6 @@
 import React from "react";
 import { Badge } from "@/components/ui/badge";
 import { Package } from "lucide-react";
-import CategoryBreadcrumb from "./category-breadcrumb";
 
 const CategoryHero = ({ category, productCount }) => {
   return (
