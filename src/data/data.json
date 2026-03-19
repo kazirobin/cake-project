@@ -442,7 +442,7 @@
         "totalReviews": 128
       },
       "attributes": {
-        "customizable": true,
+        "customizable": false,
         "dietary": ["Eggless option available"],
         "servingSize": "8-10 people",
         "SKU": "UGC-CC-CHOCOLATE"
@@ -509,7 +509,7 @@
         "totalReviews": 95
       },
       "attributes": {
-        "customizable": true,
+        "customizable": false,
         "flavor": "Strawberry",
         "SKU": "UGC-B-1115"
       },

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
+import { toast } from "react-toastify";
 
 const DeliveryCustomizationModal = ({
   isOpen,
@@ -79,32 +80,46 @@ const DeliveryCustomizationModal = ({
     setPersonalMessage("");
   };
 
-  const handleAddToCart = () => {
-    const cartItem = {
-      id: product.id,
-      title: product.title,
-      price: product.pricing.discounted,
-      image: product.avatar,
-      quantity,
-      deliveryDate: selectedDate,
-      size: selectedSize,
+const handleAddToCart = () => {
+  // Ensure price is a number
+  let price = product.pricing?.discounted || product.pricing?.regular || 0;
+  if (typeof price === 'string') {
+    price = parseFloat(price) || 0;
+  }
+
+  const cartItem = {
+    id: product.id,
+    title: product.title,
+    price: price, // Now a number
+    image: product.avatar,
+    quantity,
+    deliveryDate: selectedDate,
+    size: selectedSize,
+    flavor: selectedFlavor,
+    cakeType,
+    personalMessage,
+    customizations: {
       flavor: selectedFlavor,
+      size: selectedSize,
       cakeType,
       personalMessage,
-    };
-    addToCart(cartItem);
-    handleCancel();
-    alert("Added to cart!");
-  };
-
-  const handleAddToCartClick = () => {
-    const isLoggedIn = localStorage.getItem("isLoggedIn");
-    if (!isLoggedIn) {
-      alert("Please log in to add items to your cart.");
-      window.location.href = "/login";
-    } else {
-      handleAddToCart();
+      deliveryDate: selectedDate
     }
+  };
+  
+  addToCart(cartItem);
+  handleCancel();
+  
+  toast.success("🎉 Added to cart successfully!", {
+    position: "top-right",
+    autoClose: 3000,
+    icon: "🛒",
+  });
+};
+  const handleAddToCartClick = () => {
+
+      handleAddToCart();
+    
   };
 
   return (
