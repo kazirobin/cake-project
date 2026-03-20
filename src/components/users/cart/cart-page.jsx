@@ -227,7 +227,7 @@ const CartPage = () => {
             </div>
 
             <Button
-              onClick={() => navigate("/checkout")}
+              onClick={() => navigate("/login")}//checkout page
               className="mb-3 w-full bg-orange-500 text-white hover:bg-orange-600"
               size="lg"
             >
