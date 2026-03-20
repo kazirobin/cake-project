@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Star, ShoppingCart, Check } from 'lucide-react';
+import { Star, ShoppingCart, Check, Sparkles, Paintbrush } from 'lucide-react';
 import { useCart } from '@/Hooks/cart-context';
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, categorySlug = 'category' }) => {
   const { addToCart } = useCart();
   const [showPopup, setShowPopup] = useState(false);
 
@@ -35,14 +35,15 @@ const ProductCard = ({ product }) => {
   // Handle stock safely
   const stock = product.stock !== undefined ? product.stock : 10;
 
-  // Get category slug for the link
-  const categoryId = Array.isArray(product.categoryId) 
-    ? product.categoryId[0] 
-    : product.categoryId;
-  
-  // You might want to get the category slug from your categories data
-  // For now, we'll use a default or you can pass it as a prop
-  const categorySlug = 'category'; // This should be dynamic based on your data
+  // Check if product is customizable
+  const isCustomizable = product.attributes?.customizable === true || 
+                         product.customizable === true ||
+                         product.filters?.customizable === true;
+
+  // Get category slug - use prop if provided, otherwise try to get from product
+  const finalCategorySlug = categorySlug || 
+                            (product.categorySlug) || 
+                            'category';
 
   const handleAddToCart = (e) => {
     e.preventDefault();
@@ -84,7 +85,7 @@ const ProductCard = ({ product }) => {
       )}
 
       <Card className="group overflow-hidden hover:shadow-xl transition-all duration-300 relative bg-background">
-        <Link to={`/categories/${categorySlug}/product/${productId}`}>
+        <Link to={`/categories/${finalCategorySlug}/product/${productId}`}>
           <div className="relative overflow-hidden h-48">
             <img 
               src={avatar} 
@@ -94,17 +95,27 @@ const ProductCard = ({ product }) => {
                 e.target.src = 'https://via.placeholder.com/300x200?text=Product+Image';
               }}
             />
+            
+            {/* Discount Badge */}
             {discountPercentage > 0 && (
               <Badge className="absolute top-2 right-2 bg-red-500 text-white">
                 {discountPercentage}% OFF
               </Badge>
             )}
+            
+           
           </div>
           
           <CardContent className="p-4">
-            <h3 className="font-semibold text-lg text-gray-900 dark:text-white mb-2 line-clamp-1">
-              {title}
-            </h3>
+            <div className="flex items-start justify-between gap-2 mb-2">
+              <h3 className="font-semibold text-lg text-gray-900 dark:text-white line-clamp-1 flex-1">
+                {title}
+              </h3>
+              {/* Customizable icon indicator on title */}
+              {isCustomizable && (
+                <Paintbrush className="h-4 w-4 text-purple-500 flex-shrink-0" title="Customizable" />
+              )}
+            </div>
             
             {ratingValue > 0 && (
               <div className="flex items-center mb-2">
@@ -141,11 +152,17 @@ const ProductCard = ({ product }) => {
                 onClick={handleAddToCart}
                 size="sm"
                 disabled={stock === 0}
-                className="bg-orange-500 hover:bg-orange-600 text-white relative overflow-hidden group/btn cursor-pointer"
+                className={`${
+                  isCustomizable 
+                    ? 'bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600'
+                    : 'bg-orange-500 hover:bg-orange-600'
+                } text-white relative overflow-hidden group/btn cursor-pointer`}
               >
                 <ShoppingCart className="w-4 h-4 group-hover/btn:scale-110 transition-transform" />
               </Button>
             </div>
+
+       
 
             {stock > 0 && stock < 10 && (
               <p className="mt-2 text-xs text-orange-600 dark:text-orange-400">
@@ -159,6 +176,24 @@ const ProductCard = ({ product }) => {
           </CardContent>
         </Link>
       </Card>
+
+      {/* Add animation styles */}
+      <style jsx>{`
+        @keyframes slideDown {
+          from {
+            transform: translateY(-100%);
+            opacity: 0;
+          }
+          to {
+            transform: translateY(0);
+            opacity: 1;
+          }
+        }
+        
+        .animate-slideDown {
+          animation: slideDown 0.3s ease-out;
+        }
+      `}</style>
     </>
   );
 };

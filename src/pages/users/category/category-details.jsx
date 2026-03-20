@@ -7,7 +7,6 @@ import NoProductsFound from "../../../components/users/product/no-product-found"
 import SortDropdown from "../../../components/users/category/sort-dropdown";
 import FeaturesBar from "../../../components/users/category/category-features-bar";
 import CategoryHero from "../../../components/users/category/category-hero";
-import { formatPriceData } from "../../../lib/price-formatter";
 import ReusableBreadcrumb from "@/components/users/BreadCrumbs/ReusableBreadcrumb";
 
 const CategoryDetails = () => {
@@ -18,20 +17,15 @@ const CategoryDetails = () => {
   const [sortBy, setSortBy] = useState("popular");
 
   useEffect(() => {
-    // Get categories from data.json
     const categories = data.categories || [];
     
-    // Find category by slug
     const foundCategory = categories.find((cat) => cat.slug === categoryId);
     setCategory(foundCategory);
 
     if (foundCategory) {
-      // Get products from data.json
       const products = data.products || [];
       
-      // Filter products by category ID
       const productsInCategory = products.filter((product) => {
-        // Handle both string and array categoryId
         if (Array.isArray(product.categoryId)) {
           return product.categoryId.includes(foundCategory._id);
         }
@@ -129,18 +123,14 @@ const CategoryDetails = () => {
         ]}
       />
       
-      {/* Hero Section */}
       <CategoryHero
         category={category}
         productCount={categoryProducts.length}
       />
 
-      {/* Main Content */}
       <div className="container mx-auto px-4 py-8">
-        {/* Features Bar */}
         <FeaturesBar />
 
-        {/* Sort and Results Count */}
         <div className="mb-6 flex flex-col items-start justify-between sm:flex-row sm:items-center">
           <p className="mb-4 text-gray-600 transition-colors duration-300 sm:mb-0 dark:text-gray-300">
             Showing{" "}
@@ -153,12 +143,8 @@ const CategoryDetails = () => {
           <SortDropdown sortBy={sortBy} onSortChange={setSortBy} />
         </div>
 
-        {/* Filters Section - if category has filters */}
-        {category.filters && Object.keys(category.filters).length > 0 && (
-          <CategoryFilters filters={category.filters} />
-        )}
+       
 
-        {/* Products Grid */}
         {sortedProducts.length > 0 ? (
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {sortedProducts.map((product) => (
@@ -180,105 +166,6 @@ const CategoryDetails = () => {
   );
 };
 
-// CategoryFilters component - defined outside of CategoryDetails
-const CategoryFilters = ({ filters }) => {
-  const [showFilters, setShowFilters] = useState(false);
 
-  return (
-    <div className="mb-8">
-      <button
-        onClick={() => setShowFilters(!showFilters)}
-        className="mb-4 flex items-center gap-2 text-orange-500 hover:text-orange-600"
-      >
-        <span className="font-medium">Filters</span>
-        <svg
-          className={`h-4 w-4 transition-transform ${showFilters ? 'rotate-180' : ''}`}
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-        </svg>
-      </button>
-
-      {showFilters && (
-        <div className="rounded-lg bg-gray-50 p-4 dark:bg-gray-800">
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            {/* Dietary Filters */}
-            {filters.dietary && (
-              <div>
-                <h4 className="mb-2 font-medium">Dietary Options</h4>
-                <div className="space-y-2">
-                  {filters.dietary.map((option) => (
-                    <label key={option} className="flex items-center gap-2">
-                      <input type="checkbox" className="rounded" />
-                      <span className="text-sm">{option}</span>
-                    </label>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Size Filters */}
-            {filters.sizes && (
-              <div>
-                <h4 className="mb-2 font-medium">Sizes</h4>
-                <div className="space-y-2">
-                  {filters.sizes.map((size) => (
-                    <label key={size} className="flex items-center gap-2">
-                      <input type="checkbox" className="rounded" />
-                      <span className="text-sm">{size}</span>
-                    </label>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Theme/Flavor Filters */}
-            {(filters.themes || filters.flavors) && (
-              <div>
-                <h4 className="mb-2 font-medium">
-                  {filters.themes ? 'Themes' : 'Flavors'}
-                </h4>
-                <div className="space-y-2">
-                  {(filters.themes || filters.flavors || []).map((item) => (
-                    <label key={item} className="flex items-center gap-2">
-                      <input type="checkbox" className="rounded" />
-                      <span className="text-sm">{item}</span>
-                    </label>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Price Ranges */}
-            {filters.priceRanges && (
-              <div>
-                <h4 className="mb-2 font-medium">Price Range</h4>
-                <div className="space-y-2">
-                  {filters.priceRanges.map((range, index) => (
-                    <label key={index} className="flex items-center gap-2">
-                      <input type="radio" name="price" className="rounded" />
-                      <span className="text-sm">{range.label}</span>
-                    </label>
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
-
-          <div className="mt-4 flex justify-end gap-2">
-            <Button variant="outline" size="sm">
-              Clear All
-            </Button>
-            <Button size="sm" className="bg-orange-500 text-white hover:bg-orange-600">
-              Apply Filters
-            </Button>
-          </div>
-        </div>
-      )}
-    </div>
-  );
-};
 
 export default CategoryDetails;
