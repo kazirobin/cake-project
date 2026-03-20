@@ -106,10 +106,10 @@ const CartPage = () => {
                     {item.customizations && (
                       <div className="mb-2 text-sm text-gray-600 dark:text-gray-400">
                         {item.customizations.flavor && (
-                          <span className="mr-2">Flavor: {item.customizations.flavor}</span>
+                          <p className="mr-2">Flavor: {item.customizations.flavor}</p>
                         )}
                         {item.customizations.size && (
-                          <span className="mr-2">Size: {item.customizations.size}</span>
+                          <p className="mr-2">Size: {item.customizations.size}</p>
                         )}
                         {item.customizations.cakeType && (
                           <span className="mr-2">{item.customizations.cakeType}</span>
