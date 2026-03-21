@@ -1,5 +1,5 @@
-import React, { createContext, useContext, useReducer, useEffect, useRef, useCallback } from 'react';
-import useLocalStorage from './use-local-storage';
+// src/Hooks/cart-context.jsx
+import React, { createContext, useContext, useReducer, useEffect, useCallback, useMemo, useRef } from 'react';
 
 const CartContext = createContext();
 
@@ -12,322 +12,241 @@ const initialState = {
   total: 0,
 };
 
-const cartReducer = (state, action) => {
-  switch (action.type) {
-    case 'ADD_TO_CART': {
-      const { payload } = action;
-      
-      const processedPayload = {
-        ...payload,
-        price: ensureNumber(payload.price)
-      };
-      
-      const existingItemIndex = state.items.findIndex(item => {
-        if (processedPayload.customizations) {
-          return item.id === processedPayload.id && 
-                 JSON.stringify(item.customizations) === JSON.stringify(processedPayload.customizations);
-        }
-        return item.id === processedPayload.id;
-      });
+const toNumber = (value) => {
+  if (value === undefined || value === null) return 0;
+  const num = Number(value);
+  return isNaN(num) ? 0 : num;
+};
 
-      let updatedItems;
-      if (existingItemIndex >= 0) {
-        updatedItems = state.items.map((item, index) =>
-          index === existingItemIndex
-            ? { ...item, quantity: item.quantity + (processedPayload.quantity || 1) }
-            : item
+const calculateTotals = (items, deliveryCharge) => {
+  const subtotal = items.reduce((sum, item) => sum + (toNumber(item.price) * item.quantity), 0);
+  const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
+  const tax = subtotal * 0.1;
+  const total = subtotal + tax + deliveryCharge;
+
+  const result = {
+    items,
+    subtotal: Number(subtotal.toFixed(2)),
+    totalItems,
+    tax: Number(tax.toFixed(2)),
+    deliveryCharge,
+    total: Number(total.toFixed(2)),
+  };
+  
+  console.log('📊 Cart Totals Calculated:', result);
+  return result;
+};
+
+const cartReducer = (state, action) => {
+  console.log('🔄 Reducer Action:', action.type, action.payload);
+  
+  switch (action.type) {
+    case 'ADD_ITEM': {
+      const { item } = action.payload;
+      console.log('➕ Adding item to cart:', item);
+      
+      const existingIndex = state.items.findIndex(i => i.id === item.id);
+      console.log('Existing item index:', existingIndex);
+      
+      let newItems;
+      if (existingIndex >= 0) {
+        console.log('Item exists, updating quantity');
+        newItems = state.items.map((i, idx) =>
+          idx === existingIndex 
+            ? { ...i, quantity: i.quantity + (item.quantity || 1) }
+            : i
         );
       } else {
-        updatedItems = [...state.items, { 
-          ...processedPayload, 
-          quantity: processedPayload.quantity || 1,
-          addedAt: new Date().toISOString()
-        }];
+        console.log('New item, adding to cart');
+        newItems = [...state.items, { ...item, quantity: item.quantity || 1 }];
       }
-
-      return calculateCartTotals({ ...state, items: updatedItems });
+      
+      console.log('Updated items array:', newItems);
+      const totals = calculateTotals(newItems, state.deliveryCharge);
+      return { ...state, ...totals };
     }
 
-    case 'REMOVE_FROM_CART': {
-      const { id, customizations } = action.payload;
-      
-      const updatedItems = state.items.filter(item => {
-        if (customizations) {
-          return !(item.id === id && 
-                   JSON.stringify(item.customizations) === JSON.stringify(customizations));
-        }
-        return item.id !== id;
-      });
-      
-      return calculateCartTotals({ ...state, items: updatedItems });
+    case 'REMOVE_ITEM': {
+      const { itemId } = action.payload;
+      console.log('🗑️ Removing item with ID:', itemId);
+      const newItems = state.items.filter(item => item.id !== itemId);
+      console.log('Items after removal:', newItems);
+      const totals = calculateTotals(newItems, state.deliveryCharge);
+      return { ...state, ...totals };
     }
 
     case 'UPDATE_QUANTITY': {
-      const { id, quantity, customizations } = action.payload;
-      
-      const updatedItems = state.items.map(item => {
-        const isMatch = customizations 
-          ? item.id === id && JSON.stringify(item.customizations) === JSON.stringify(customizations)
-          : item.id === id;
-        
-        if (isMatch) {
-          return { ...item, quantity: Math.max(1, quantity) };
-        }
-        return item;
-      });
-      
-      return calculateCartTotals({ ...state, items: updatedItems });
+      const { itemId, quantity } = action.payload;
+      console.log('📦 Updating quantity for item:', itemId, 'New quantity:', quantity);
+      const newItems = state.items.map(item =>
+        item.id === itemId ? { ...item, quantity: Math.max(1, quantity) } : item
+      );
+      console.log('Items after quantity update:', newItems);
+      const totals = calculateTotals(newItems, state.deliveryCharge);
+      return { ...state, ...totals };
     }
 
     case 'UPDATE_ITEM': {
-      const { id, customizations, updates } = action.payload;
-      
-      const updatedItems = state.items.map(item => {
-        const isMatch = customizations 
-          ? item.id === id && JSON.stringify(item.customizations) === JSON.stringify(customizations)
-          : item.id === id;
-        
-        if (isMatch) {
-          return {
-            ...item,
-            ...updates,
-            customizations: {
-              ...item.customizations,
-              ...(updates.customizations || {})
-            },
-            price: updates.price !== undefined ? ensureNumber(updates.price) : item.price
-          };
-        }
-        return item;
-      });
-      
-      return calculateCartTotals({ ...state, items: updatedItems });
+      const { itemId, updates } = action.payload;
+      console.log('✏️ Updating item:', itemId, 'Updates:', updates);
+      const newItems = state.items.map(item =>
+        item.id === itemId ? { ...item, ...updates, price: toNumber(updates.price || item.price) } : item
+      );
+      console.log('Items after update:', newItems);
+      const totals = calculateTotals(newItems, state.deliveryCharge);
+      return { ...state, ...totals };
     }
 
-    case 'CLEAR_CART':
-      return {
-        ...initialState,
-        items: [],
-      };
+    case 'CLEAR_CART': {
+      console.log('🧹 Clearing cart');
+      const totals = calculateTotals([], state.deliveryCharge);
+      return { ...state, ...totals };
+    }
 
     case 'LOAD_CART': {
+      console.log('📀 Loading cart from storage:', action.payload);
       const loadedItems = (action.payload || []).map(item => ({
         ...item,
-        price: ensureNumber(item.price)
+        price: toNumber(item.price)
       }));
-      
-      return calculateCartTotals({ 
-        ...state, 
-        items: loadedItems 
-      });
+      console.log('Loaded items:', loadedItems);
+      const totals = calculateTotals(loadedItems, state.deliveryCharge);
+      return { ...state, ...totals };
     }
-
-    case 'UPDATE_DELIVERY_CHARGE':
-      return calculateCartTotals({ 
-        ...state, 
-        deliveryCharge: action.payload 
-      });
 
     default:
       return state;
   }
 };
 
-const ensureNumber = (price) => {
-  if (typeof price === 'number') return price;
-  if (typeof price === 'string') return parseFloat(price) || 0;
-  if (typeof price === 'object' && price !== null) {
-    const priceValue = price.discount || price.regular || price.discounted || 0;
-    return typeof priceValue === 'string' ? parseFloat(priceValue) || 0 : priceValue || 0;
-  }
-  return 0;
-};
-
-const calculateCartTotals = (state) => {
-  const subtotal = state.items.reduce((sum, item) => {
-    const price = typeof item.price === 'number' ? item.price : 
-                  (typeof item.price === 'string' ? parseFloat(item.price) || 0 : 0);
-    return sum + (price * item.quantity);
-  }, 0);
-  
-  const totalItems = state.items.reduce((sum, item) => sum + item.quantity, 0);
-  const tax = subtotal * 0.1;
-  const total = subtotal + tax + state.deliveryCharge;
-
-  return {
-    ...state,
-    subtotal: Number(subtotal.toFixed(2)),
-    totalItems,
-    tax: Number(tax.toFixed(2)),
-    total: Number(total.toFixed(2)),
-  };
-};
-
-export const CartProvider = ({ children }) => {
+export const CartProvider = ({ children, productService }) => {
   const [state, dispatch] = useReducer(cartReducer, initialState);
-  const { getItem, setItem } = useLocalStorage();
-  const isInitialMount = useRef(true);
-  const isLoadingFromStorage = useRef(false);
+  const isInitialLoad = useRef(true);
 
+  // Load cart from localStorage on mount
   useEffect(() => {
-    if (isInitialMount.current) {
-      isLoadingFromStorage.current = true;
-      try {
-        const savedCart = getItem('guestCart');
-        if (savedCart && Array.isArray(savedCart)) {
-          dispatch({ type: 'LOAD_CART', payload: savedCart });
-        }
-      } catch (error) {
-        console.error('Error loading cart from localStorage:', error);
-      } finally {
-        isLoadingFromStorage.current = false;
-        isInitialMount.current = false;
-      }
-    }
-  }, [getItem]);
-
-  useEffect(() => {
-    if (isLoadingFromStorage.current || isInitialMount.current) {
-      return;
-    }
-    
+    console.log('🚀 CartProvider mounting...');
     try {
-      if (state.items.length > 0) {
-        setItem('guestCart', state.items);
+      const savedCart = localStorage.getItem('cart');
+      console.log('Saved cart from localStorage:', savedCart);
+      if (savedCart) {
+        const parsedCart = JSON.parse(savedCart);
+        if (Array.isArray(parsedCart)) {
+          console.log('📀 Loading saved cart:', parsedCart);
+          dispatch({ type: 'LOAD_CART', payload: parsedCart });
+        }
       } else {
-        localStorage.removeItem('guestCart');
+        console.log('No saved cart found');
       }
     } catch (error) {
-      console.error('Error saving cart to localStorage:', error);
+      console.error('Error loading cart:', error);
     }
-  }, [state.items, setItem]);
+    isInitialLoad.current = false;
+  }, []);
 
-  const addToCart = useCallback((product) => {
-    const price = ensureNumber(product.price);
-    
-    let image = product.image || product.avatar;
-    if (!image && product.images) {
-      const primaryImage = product.images.find(img => img.isPrimary);
-      image = primaryImage?.url || product.images[0]?.url;
+  // Save cart to localStorage when it changes
+  useEffect(() => {
+    if (!isInitialLoad.current) {
+      console.log('💾 Saving cart to localStorage...');
+      console.log('Current cart items:', state.items);
+      try {
+        if (state.items.length > 0) {
+          localStorage.setItem('cart', JSON.stringify(state.items));
+          console.log('✅ Cart saved successfully');
+        } else {
+          localStorage.removeItem('cart');
+          console.log('🗑️ Cart cleared from storage');
+        }
+      } catch (error) {
+        console.error('Error saving cart:', error);
+      }
     }
-    image = image || 'https://www.dummyimage.com/100/1d19e8/fff.png';
+  }, [state.items]);
 
-    const cartItem = {
+  const addToCart = useCallback((product, customizations = {}) => {
+    console.log('🛒 addToCart called with:', { product, customizations });
+    console.log('Product details:', {
       id: product.id || product._id,
-      _id: product._id || product.id,
       title: product.title,
-      price: price,
-      image: image,
-      quantity: product.quantity || 1,
-      customizations: product.customizations || null,
-      type: product.type || 'regular',
-      stock: product.stock || 0,
-      slug: product.slug,
-      ...(product.customizations || {})
+      price: product.price,
+      type: product.type,
+      isCustomizable: product.isCustomizable
+    });
+    
+    // Use productService to format product with defaults
+    const cartItem = productService?.formatForCart(product, customizations) || {
+      id: product.id || product._id,
+      title: product.title,
+      price: toNumber(product.price),
+      image: product.image,
+      quantity: 1,
     };
+    
+    console.log('📦 Formatted cart item:', cartItem);
+    console.log('Cart item details:', {
+      id: cartItem.id,
+      title: cartItem.title,
+      price: cartItem.price,
+      quantity: cartItem.quantity,
+      size: cartItem.size,
+      flavor: cartItem.flavor,
+      deliveryDate: cartItem.deliveryDate,
+      hasCustomizations: !!cartItem.customizations
+    });
+    
+    dispatch({ type: 'ADD_ITEM', payload: { item: cartItem } });
+  }, [productService]);
 
-    dispatch({ type: 'ADD_TO_CART', payload: cartItem });
+  const removeFromCart = useCallback((itemId) => {
+    console.log('❌ removeFromCart called with ID:', itemId);
+    if (!itemId) {
+      console.warn('No item ID provided to removeFromCart');
+      return;
+    }
+    dispatch({ type: 'REMOVE_ITEM', payload: { itemId } });
   }, []);
 
-  const removeFromCart = useCallback((itemId, customizations = null) => {
-    dispatch({ 
-      type: 'REMOVE_FROM_CART', 
-      payload: { id: itemId, customizations } 
-    });
+  const updateQuantity = useCallback((itemId, quantity) => {
+    console.log('🔄 updateQuantity called:', { itemId, quantity });
+    if (!itemId) return;
+    dispatch({ type: 'UPDATE_QUANTITY', payload: { itemId, quantity } });
   }, []);
 
-  const updateQuantity = useCallback((itemId, quantity, customizations = null) => {
-    dispatch({ 
-      type: 'UPDATE_QUANTITY', 
-      payload: { id: itemId, quantity, customizations } 
-    });
-  }, []);
-
-  const updateItem = useCallback((itemId, customizations, updates) => {
-    dispatch({ 
-      type: 'UPDATE_ITEM', 
-      payload: { id: itemId, customizations, updates } 
-    });
+  const updateItem = useCallback((itemId, updates) => {
+    console.log('✏️ updateItem called:', { itemId, updates });
+    if (!itemId) return;
+    dispatch({ type: 'UPDATE_ITEM', payload: { itemId, updates } });
   }, []);
 
   const clearCart = useCallback(() => {
+    console.log('🧹 clearCart called');
     dispatch({ type: 'CLEAR_CART' });
   }, []);
 
-  const updateDeliveryCharge = useCallback((charge) => {
-    dispatch({ type: 'UPDATE_DELIVERY_CHARGE', payload: charge });
-  }, []);
-
-  const isInCart = useCallback((itemId, customizations = null) => {
-    return state.items.some(item => {
-      if (customizations) {
-        return item.id === itemId && 
-               JSON.stringify(item.customizations) === JSON.stringify(customizations);
-      }
-      return item.id === itemId;
-    });
+  const isInCart = useCallback((itemId) => {
+    const inCart = state.items.some(item => item.id === itemId);
+    console.log(`🔍 Checking if item ${itemId} is in cart:`, inCart);
+    return inCart;
   }, [state.items]);
 
-  const getItemCount = useCallback(() => {
-    return state.items.reduce((sum, item) => sum + item.quantity, 0);
-  }, [state.items]);
-
-  const getSubtotal = useCallback(() => {
-    return state.subtotal;
-  }, [state.subtotal]);
-
-  const getTotal = useCallback(() => {
-    return state.total;
-  }, [state.total]);
-
-  const getItemsByType = useCallback(() => {
+  const contextValue = useMemo(() => {
+    console.log('🔄 Cart context value updated');
     return {
-      regular: state.items.filter(item => !item.customizations),
-      customizable: state.items.filter(item => item.customizations)
+      cart: state,
+      items: state.items,
+      totalItems: state.totalItems,
+      subtotal: state.subtotal,
+      tax: state.tax,
+      deliveryCharge: state.deliveryCharge,
+      total: state.total,
+      addToCart,
+      removeFromCart,
+      updateQuantity,
+      updateItem,
+      clearCart,
+      isInCart,
     };
-  }, [state.items]);
-
-  const getItemsByDeliveryDate = useCallback(() => {
-    const grouped = {};
-    state.items.forEach(item => {
-      if (item.customizations?.deliveryDate) {
-        const date = item.customizations.deliveryDate;
-        if (!grouped[date]) grouped[date] = [];
-        grouped[date].push(item);
-      }
-    });
-    return grouped;
-  }, [state.items]);
-
-  const contextValue = React.useMemo(() => ({
-    cart: state,
-    addToCart,
-    removeFromCart,
-    updateQuantity,
-    updateItem,
-    clearCart,
-    updateDeliveryCharge,
-    isInCart,
-    getItemCount,
-    getSubtotal,
-    getTotal,
-    getItemsByType,
-    getItemsByDeliveryDate,
-  }), [
-    state,
-    addToCart,
-    removeFromCart,
-    updateQuantity,
-    updateItem,
-    clearCart,
-    updateDeliveryCharge,
-    isInCart,
-    getItemCount,
-    getSubtotal,
-    getTotal,
-    getItemsByType,
-    getItemsByDeliveryDate,
-  ]);
+  }, [state, addToCart, removeFromCart, updateQuantity, updateItem, clearCart, isInCart]);
 
   return (
     <CartContext.Provider value={contextValue}>
