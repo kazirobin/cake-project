@@ -9,7 +9,7 @@ export function ThemeProvider({ children, defaultTheme = "system", storageKey = 
   })
 
   useEffect(() => {
-    console.log("Theme state changed to:", theme)
+    // console.log("Theme state changed to:", theme)
   }, [theme])
 
   useEffect(() => {
@@ -24,7 +24,7 @@ export function ThemeProvider({ children, defaultTheme = "system", storageKey = 
     }
 
     root.classList.add(theme)
-    console.log("Applied theme:", theme)
+    // console.log("Applied theme:", theme)
   }, [theme])
 
   const value = {

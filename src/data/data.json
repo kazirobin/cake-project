@@ -205,6 +205,7 @@
       },
       "status": "active"
     },
+    
     {
       "_id": "cat_cupcakes",
       "name": "Cupcakes",
@@ -674,7 +675,7 @@
         "totalReviews": 78
       },
       "attributes": {
-        "customizable": true,
+        "customizable": false,
         "defaultSize": "1kg",
         "defaultFlavor": "Red Velvet",
         "defaultCakeType": "Normal",
@@ -748,7 +749,7 @@
         "totalReviews": 67
       },
       "attributes": {
-        "customizable": true,
+        "customizable": false,
         "defaultSize": "1kg",
         "defaultFlavor": "Chocolate",
         "defaultCakeType": "Normal",
@@ -969,7 +970,7 @@
         "totalReviews": 72
       },
       "attributes": {
-        "customizable": true,
+        "customizable": false,
         "defaultSize": "1kg",
         "defaultFlavor": "Black Forest",
         "defaultCakeType": "Normal",
@@ -1043,7 +1044,7 @@
         "totalReviews": 94
       },
       "attributes": {
-        "customizable": true,
+        "customizable": false,
         "defaultSize": "1kg",
         "defaultFlavor": "Strawberry",
         "defaultCakeType": "Normal",
@@ -1191,7 +1192,7 @@
         "totalReviews": 63
       },
       "attributes": {
-        "customizable": true,
+        "customizable": false,
         "defaultSize": "1kg",
         "defaultFlavor": "Vanilla with Caramel",
         "defaultCakeType": "Normal",
