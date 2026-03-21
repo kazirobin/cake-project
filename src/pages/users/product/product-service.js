@@ -1,179 +1,131 @@
-import data from '@/data/data.json';
-
+// product-service.js
 class ProductService {
-  constructor() {
-    this.data = data;
-    this.products = data.products || [];
-    this.categories = data.categories || [];
+  constructor(products) {
+    this.products = products;
   }
 
-  getAllProducts() {
-    return this.products.map(product => this.normalizeProduct(product));
+  // Generate default delivery date (3 days from today)
+  getDefaultDeliveryDate() {
+    const date = new Date();
+    date.setDate(date.getDate() + 3);
+    return date.toISOString().split('T')[0];
   }
 
-  getProductById(id) {
-    const product = this.products.find(item => item._id === id);
-    if (!product) return null;
+  // Generate default size based on product type
+  getDefaultSize(product) {
+    if (product.type === 'bakery') {
+      return product.attributes?.defaultSize || '1kg';
+    }
+    if (product.type === 'electronics') {
+      return product.attributes?.defaultStorage || 'Standard';
+    }
+    return 'Standard';
+  }
+
+  // Generate default flavor for bakery products
+  getDefaultFlavor(product) {
+    if (product.type === 'bakery') {
+      return product.attributes?.defaultFlavor || 'Original';
+    }
+    return null;
+  }
+
+  // Format product for cart with default values
+  formatForCart(product, customizations = {}) {
+    const today = new Date();
+    const deliveryDate = customizations.deliveryDate || this.getDefaultDeliveryDate();
     
-    return this.normalizeProduct(product);
-  }
+    // Determine if product is customizable
+    const isCustomizable = product.attributes?.customizable === true || 
+                          product.customizable === true;
 
-  getFullProductData(id) {
-    const product = this.products.find(item => item._id === id);
-    if (!product) return null;
-    
-    return {
-      cakeDetails: this.normalizeProduct(product)
-    };
-  }
-
-  normalizeProduct(product) {
-    // Handle both price structures (price object or pricing object)
-    const price = product.price || {};
-    const pricing = {
-      regular: price.regular || 0,
-      discounted: price.discount || price.regular || 0,
-      currency: price.currency || 'USD',
-      discountPercentage: price.discount ? 
-        Math.round(((price.regular - price.discount) / price.regular) * 100) : 0
-    };
-
-    // Handle images
-    const avatar = product.images?.find(img => img.isPrimary)?.url || 
-                  product.images?.[0]?.url || 
-                  'https://www.dummyimage.com/300/1d19e8/fff.png';
-    
-    const additionalImages = product.images
-      ?.filter(img => !img.isPrimary)
-      ?.map(img => img.url) || 
-      product.additionalImages || [];
-
-    // Handle categoryIds
-    const categoryIds = Array.isArray(product.categoryId) 
-      ? product.categoryId 
-      : [product.categoryId].filter(Boolean);
-
-    // Check if customizable
-    const customizable = product.attributes?.customizable === true || 
-                        product.filters?.customizable === true ||
-                        product.customizable === true;
-
-    return {
+    // Base cart item with all product data
+    const cartItem = {
+      // Core identification
       id: product._id,
       _id: product._id,
       title: product.title,
-      slug: product.slug,
-      description: product.description || product.metaDescription || '',
-      avatar: avatar,
-      additionalImages: additionalImages,
+      name: product.title,
+      
+      // Pricing
+      price: product.price?.discount || product.price?.regular || 0,
+      regularPrice: product.price?.regular || 0,
+      currency: product.price?.currency || "$",
+      
+      // Images
+      image: this.getPrimaryImage(product),
       images: product.images || [],
-      price: price,
-      pricing: pricing,
-      categoryIds: categoryIds,
+      additionalImages: product.additionalImages || [],
+      
+      // Product metadata
+      type: product.type || "regular",
       categoryId: product.categoryId,
       brand: product.brand,
-      rating: product.rating || { average: 0, totalReviews: 0 },
+      slug: product.slug,
+      
+      // Stock
+      stock: product.stock || 0,
+      
+      // Ratings
+      rating: product.rating?.average || 0,
+      reviewCount: product.rating?.totalReviews || 0,
+      
+      // All product details
       attributes: product.attributes || {},
       specifications: product.specifications || {},
       features: product.features || [],
+      description: product.description || "",
       deliveryInfo: product.deliveryInfo || [],
-      stock: product.stock || 0,
-      status: product.status,
-      type: product.type,
-      customizable: customizable,
-      relatedProducts: product.relatedProducts || [],
-      createdAt: product.createdAt,
-      updatedAt: product.updatedAt,
-      metaTitle: product.metaTitle,
-      metaDescription: product.metaDescription,
-      variants: product.variants || []
+      
+      // Quantity
+      quantity: 1,
+      
+      // Customization data (always include for consistency)
+      isCustomizable: isCustomizable,
+      customizations: isCustomizable ? customizations : null,
+      
+      // Always include default values for consistent display
+      size: customizations.size || (isCustomizable ? null : this.getDefaultSize(product)),
+      flavor: customizations.flavor || (isCustomizable ? null : this.getDefaultFlavor(product)),
+      cakeType: customizations.cakeType || (product.type === 'bakery' ? 'Normal' : null),
+      deliveryDate: deliveryDate,
+      message: customizations.message || null,
+      
+      // For electronics
+      color: customizations.color || product.attributes?.defaultColor || null,
+      storage: customizations.storage || product.attributes?.defaultStorage || null,
+      ram: customizations.ram || product.attributes?.defaultRam || null,
+      
+      // Timestamp
+      addedAt: new Date().toISOString()
     };
+
+    return cartItem;
   }
 
-  getRelatedProducts(productId, limit = 4) {
-    const currentProduct = this.getProductById(productId);
-    if (!currentProduct) return [];
-
-    const relatedIds = currentProduct.relatedProducts || [];
-    
-    // If no related products defined, return random products from same category
-    if (relatedIds.length === 0 && currentProduct.categoryIds?.length > 0) {
-      const categoryId = currentProduct.categoryIds[0];
-      return this.getProductsByCategory(categoryId)
-        .filter(p => p._id !== productId)
-        .slice(0, limit);
+  getPrimaryImage(product) {
+    if (product.avatar) return product.avatar;
+    if (product.images) {
+      const primary = product.images.find(img => img.isPrimary);
+      if (primary) return primary.url;
+      if (product.images[0]) return product.images[0].url;
     }
-
-    // Handle both string and number IDs in relatedProducts
-    return relatedIds
-      .map(id => {
-        // Convert to string if it's a number for consistent comparison
-        const searchId = typeof id === 'number' ? id.toString() : id;
-        return this.getProductById(searchId);
-      })
-      .filter(product => product !== null)
-      .slice(0, limit);
+    return "https://via.placeholder.com/300";
   }
 
-  getProductsByCategory(categoryId) {
-    return this.getAllProducts()
-      .filter(item => item.categoryIds?.includes(categoryId));
+  getProductById(id) {
+    const product = this.products.find(p => p._id === id);
+    if (!product) return null;
+    return product;
   }
 
-  searchProducts(query) {
-    const searchTerm = query.toLowerCase();
-    return this.getAllProducts()
-      .filter(item => 
-        item.title?.toLowerCase().includes(searchTerm) ||
-        item.description?.toLowerCase().includes(searchTerm) ||
-        item.brand?.toLowerCase().includes(searchTerm) ||
-        item.metaDescription?.toLowerCase().includes(searchTerm)
-      );
-  }
-
-  getFeaturedProducts(limit = 4) {
-    // Get products with high ratings
-    return this.getAllProducts()
-      .filter(p => p.rating?.average >= 4.5)
-      .slice(0, limit);
-  }
-
-  getNewArrivals(limit = 4) {
-    // Sort by creation date (newest first)
-    return this.getAllProducts()
-      .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-      .slice(0, limit);
-  }
-
-  getProductsByPriceRange(min, max) {
-    return this.getAllProducts()
-      .filter(product => {
-        const price = product.pricing?.discounted || product.price?.discount || product.price?.regular;
-        return price >= min && price <= max;
-      });
-  }
-
-  getDiscountedProducts() {
-    return this.getAllProducts()
-      .filter(product => {
-        const discount = product.price?.discount || product.pricing?.discountPercentage;
-        return discount > 0;
-      });
-  }
-
-  getProductsByType(type) {
-    return this.getAllProducts()
-      .filter(product => product.type === type);
-  }
-
-  getCustomizableProducts() {
-    return this.getAllProducts()
-      .filter(product => product.customizable === true);
-  }
-
-  getCategoryById(categoryId) {
-    return this.categories.find(cat => cat._id === categoryId) || null;
+  getRelatedProducts(productId) {
+    const product = this.getProductById(productId);
+    if (!product || !product.relatedProducts) return [];
+    return product.relatedProducts
+      .map(id => this.getProductById(id))
+      .filter(p => p !== null);
   }
 }
 
-export default new ProductService();
+export default ProductService;

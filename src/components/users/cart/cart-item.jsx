@@ -1,301 +1,182 @@
-import React, { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Minus, Plus, Trash2, Heart, Edit2, Sparkles, Package, Coffee, Cake, Calendar, MessageSquare, Smartphone, HardDrive, Cpu } from "lucide-react";
-import CartEdit from "./cart-edit";
+// cart-item.jsx
+import React, { useState } from 'react';
+import { Edit2, Trash2, Package, Coffee, Cake, Calendar, MessageSquare, Smartphone, HardDrive, Cpu, Sparkles, Truck } from 'lucide-react';
 
-const CartItem = ({ item, onUpdateQuantity, onRemove, onToggleWishlist, onUpdateItem }) => {
-  const [showEditModal, setShowEditModal] = useState(false);
+const CartItem = ({ item, onUpdateQuantity, onRemove, onEdit }) => {
   const [isUpdating, setIsUpdating] = useState(false);
-
-  const formatCurrency = (amount) => {
-    if (amount === null || amount === undefined) return "$0.00";
-    return `$${Number(amount).toFixed(2)}`;
-  };
-
-  const safePrice = (price) => {
-    if (price === null || price === undefined) return 0;
-    if (typeof price === 'number') return price;
-    if (typeof price === 'string') return parseFloat(price) || 0;
-    return 0;
-  };
-
-  const itemPrice = safePrice(item.price);
-  const totalPrice = itemPrice * (item.quantity || 1);
+  const itemTotal = item.price * item.quantity;
+  const isLowStock = item.stock > 0 && item.stock < 10;
   
-  // Get value from multiple possible sources
-  const getValue = (key) => {
-    // Check in order of priority
-    return item.customizations?.[key] || 
-           item[key] || 
-           item.attributes?.[key] || 
-           null;
+  // Check if this item has custom values (not default)
+  const hasCustomizations = item.customizations && Object.keys(item.customizations).length > 0;
+  
+  // Check if this is a customizable product type
+  const isCustomizableProduct = item.isCustomizable || item.attributes?.customizable === true;
+  
+  // Get all properties to display
+  const getProperties = () => {
+    const props = [];
+    
+    // Size (show for all products that have size)
+    if (item.size) {
+      props.push({ icon: Package, label: 'Size', value: item.size });
+    }
+    
+    // Flavor (show for bakery products)
+    if (item.flavor) {
+      props.push({ icon: Coffee, label: 'Flavor', value: item.flavor });
+    }
+    
+    // Cake Type (show for bakery products)
+    if (item.cakeType) {
+      props.push({ icon: Cake, label: 'Cake Type', value: item.cakeType });
+    }
+    
+    // Delivery Date (show for all products)
+    if (item.deliveryDate) {
+      const date = new Date(item.deliveryDate);
+      props.push({ icon: Calendar, label: 'Delivery', value: date.toLocaleDateString() });
+    }
+    
+    // Message (show if exists)
+    if (item.message) {
+      props.push({ icon: MessageSquare, label: 'Message', value: item.message, isMessage: true });
+    }
+    
+    // Electronics properties
+    if (item.color) {
+      props.push({ icon: Smartphone, label: 'Color', value: item.color });
+    }
+    
+    if (item.storage) {
+      props.push({ icon: HardDrive, label: 'Storage', value: item.storage });
+    }
+    
+    if (item.ram) {
+      props.push({ icon: Cpu, label: 'RAM', value: item.ram });
+    }
+    
+    return props;
   };
 
-  // Check if ANY property exists (always true for products with properties)
-  const hasAnyProperties = () => {
-    const propertyKeys = ['size', 'flavor', 'cakeType', 'message', 'deliveryDate', 'color', 'storage', 'ram'];
-    return propertyKeys.some(key => {
-      const val = getValue(key);
-      return val && val !== '' && val !== null && val !== undefined;
-    });
+  const handleIncrement = async () => {
+    if (isUpdating) return;
+    setIsUpdating(true);
+    await onUpdateQuantity(item.id, item.quantity + 1);
+    setIsUpdating(false);
   };
 
-  const hasProperties = hasAnyProperties();
-
-  const handleIncrement = () => {
-    if (!isUpdating) {
-      setIsUpdating(true);
-      onUpdateQuantity(item.id, item.quantity + 1, item.customizations);
-      setTimeout(() => setIsUpdating(false), 300);
-    }
+  const handleDecrement = async () => {
+    if (isUpdating || item.quantity <= 1) return;
+    setIsUpdating(true);
+    await onUpdateQuantity(item.id, item.quantity - 1);
+    setIsUpdating(false);
   };
 
-  const handleDecrement = () => {
-    if (item.quantity > 1 && !isUpdating) {
-      setIsUpdating(true);
-      onUpdateQuantity(item.id, item.quantity - 1, item.customizations);
-      setTimeout(() => setIsUpdating(false), 300);
-    }
-  };
-
-  const handleRemove = () => {
-    onRemove(item.id, item.customizations);
-  };
-
-  const handleSaveToWishlist = () => {
-    onToggleWishlist?.(item);
-  };
-
-  const handleEditClick = () => {
-    setShowEditModal(true);
-  };
-
-  const handleUpdateItem = (updatedItem) => {
-    if (onUpdateItem) {
-      onUpdateItem(updatedItem);
-    }
-    setShowEditModal(false);
-  };
-
-  const productType = item.type || 'bakery';
-
-  // ALWAYS render all properties that exist in the item
-  const renderAllProperties = () => {
-    const properties = [];
-    
-    // Get all values
-    const size = getValue('size');
-    const flavor = getValue('flavor');
-    const cakeType = getValue('cakeType');
-    const color = getValue('color');
-    const storage = getValue('storage');
-    const ram = getValue('ram');
-    const message = getValue('message');
-    const deliveryDate = getValue('deliveryDate');
-    
-    // Size - show if exists
-    if (size) {
-      properties.push(
-        <p key="size" className="flex items-center gap-1">
-          <Package className="h-3 w-3" />
-          <span className="font-medium">Size:</span> {size}
-        </p>
-      );
-    }
-    
-    // Flavor - show if exists
-    if (flavor) {
-      properties.push(
-        <p key="flavor" className="flex items-center gap-1">
-          <Coffee className="h-3 w-3" />
-          <span className="font-medium">Flavor:</span> {flavor}
-        </p>
-      );
-    }
-    
-    // Cake Type - show if exists
-    if (cakeType) {
-      properties.push(
-        <p key="cakeType" className="flex items-center gap-1">
-          <Cake className="h-3 w-3" />
-          <span className="font-medium">Type:</span> {cakeType}
-        </p>
-      );
-    }
-    
-    // Color - show if exists (electronics)
-    if (color) {
-      properties.push(
-        <p key="color" className="flex items-center gap-1">
-          <Smartphone className="h-3 w-3" />
-          <span className="font-medium">Color:</span> {color}
-        </p>
-      );
-    }
-    
-    // Storage - show if exists (electronics)
-    if (storage) {
-      properties.push(
-        <p key="storage" className="flex items-center gap-1">
-          <HardDrive className="h-3 w-3" />
-          <span className="font-medium">Storage:</span> {storage}
-        </p>
-      );
-    }
-    
-    // RAM - show if exists (electronics)
-    if (ram) {
-      properties.push(
-        <p key="ram" className="flex items-center gap-1">
-          <Cpu className="h-3 w-3" />
-          <span className="font-medium">RAM:</span> {ram}
-        </p>
-      );
-    }
-    
-    // Message - show if exists
-    if (message) {
-      properties.push(
-        <p key="message" className="flex items-start gap-1 italic line-clamp-1">
-          <MessageSquare className="mt-0.5 h-3 w-3 flex-shrink-0" />
-          <span>"{message}"</span>
-        </p>
-      );
-    }
-    
-    // Delivery Date - show if exists
-    if (deliveryDate) {
-      const formattedDate = new Date(deliveryDate).toLocaleDateString('en-US', {
-        month: 'numeric',
-        day: 'numeric',
-        year: 'numeric'
-      });
-      properties.push(
-        <p key="deliveryDate" className="flex items-center gap-1 text-xs text-gray-500">
-          <Calendar className="h-3 w-3" />
-          📅 Delivery: {formattedDate}
-        </p>
-      );
-    }
-    
-    return properties;
-  };
-
-  const propertyList = renderAllProperties();
+  const properties = getProperties();
 
   return (
-    <>
-      <CartEdit isOpen={showEditModal} onClose={() => setShowEditModal(false)} item={item} onUpdate={handleUpdateItem} />
-
-      <div className="group overflow-hidden rounded-lg bg-white shadow-sm transition-all duration-300 hover:shadow-md dark:bg-gray-800">
-        <div className="p-3 sm:p-4">
-          <div className="flex flex-col gap-3 sm:flex-row sm:gap-4">
-            {/* Image */}
-            <div className="relative h-32 w-full sm:h-24 sm:w-24 flex-shrink-0">
-              <img
-                src={item.image || 'https://www.dummyimage.com/96x96/1d19e8/fff.png'}
-                alt={item.title || 'Product'}
-                className="h-full w-full rounded-lg object-cover transition-transform duration-300 group-hover:scale-105"
-                onError={(e) => e.target.src = "https://www.dummyimage.com/96x96/1d19e8/fff.png"}
-              />
-              {/* Show badge if ANY properties exist */}
-              {propertyList.length > 0 && (
-                <div className="absolute -top-1 -right-1 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 p-1 shadow-lg">
-                  <Sparkles className="h-3 w-3 text-white" />
+    <div className="flex flex-col sm:flex-row gap-4 p-4 border rounded-lg bg-white dark:bg-gray-800 hover:shadow-md transition-shadow">
+      {/* Image */}
+      <img 
+        src={item.image} 
+        alt={item.title} 
+        className="w-24 h-24 object-cover rounded"
+        onError={(e) => e.target.src = 'https://via.placeholder.com/100'}
+      />
+      
+      {/* Details */}
+      <div className="flex-1">
+        <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2">
+          <div>
+            <h3 className="font-semibold text-lg">{item.title}</h3>
+            {item.brand && <p className="text-sm text-gray-500">{item.brand}</p>}
+            
+            {/* Status badges */}
+            <div className="flex items-center gap-2 mt-1">
+              {hasCustomizations && (
+                <div className="flex items-center gap-1">
+                  <Sparkles className="w-3 h-3 text-purple-500" />
+                  <span className="text-xs text-purple-600">Customized</span>
                 </div>
               )}
-            </div>
-
-            {/* Details */}
-            <div className="min-w-0 flex-1">
-              <div className="flex items-start justify-between gap-2">
-                <div className="flex-1">
-                  <h3 className="line-clamp-2 text-sm font-semibold text-gray-900 sm:text-base dark:text-white">
-                    {item.title || 'Product'}
-                  </h3>
-                  <p className="text-xs text-gray-500 dark:text-gray-400">
-                    {productType === 'electronics' ? 'Electronics' : 'Bakery'} • SKU: {item.sku || `PROD-${item.id}`}
-                  </p>
-                </div>
-
-                {/* Action Buttons */}
-                <div className="flex items-center gap-1 rounded-lg border border-gray-200 bg-gray-50 p-1 dark:border-gray-700 dark:bg-gray-800">
-                  <Button variant="ghost" size="icon" className="h-8 w-8 text-blue-500 hover:bg-blue-50" onClick={handleEditClick} title="Edit">
-                    <Edit2 className="h-4 w-4" />
-                  </Button>
-                  <div className="h-5 w-px bg-gray-300 dark:bg-gray-600"></div>
-                  <Button variant="ghost" size="icon" className="h-8 w-8 text-red-500 hover:bg-red-50" onClick={handleRemove} title="Remove">
-                    <Trash2 className="h-4 w-4" />
-                  </Button>
-                </div>
-              </div>
-
-              {/* ALL Properties Display - ALWAYS SHOWS if properties exist */}
-              {propertyList.length > 0 && (
-                <div className="mb-2 mt-1 rounded-md bg-gray-50 p-2 dark:bg-gray-700/50">
-                  <div className="space-y-1 text-xs text-gray-600 sm:text-sm dark:text-gray-400">
-                    {propertyList}
-                  </div>
+              {!hasCustomizations && item.deliveryDate && (
+                <div className="flex items-center gap-1">
+                  <Truck className="w-3 h-3 text-green-500" />
+                  <span className="text-xs text-green-600">Ready to Ship</span>
                 </div>
               )}
-
-              {/* Mobile Price */}
-              <div className="mt-2 sm:hidden">
-                <div className="flex justify-between">
-                  <span className="text-sm text-gray-500">Unit Price:</span>
-                  <span className="font-bold text-orange-600">{formatCurrency(itemPrice)}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-sm text-gray-500">Total:</span>
-                  <span className="text-lg font-bold text-orange-600">{formatCurrency(totalPrice)}</span>
-                </div>
-              </div>
-
-              {/* Quantity Controls */}
-              <div className="mt-3 space-y-3 sm:mt-4">
-                <div className="flex items-center justify-between sm:justify-start sm:gap-4">
-                  <span className="text-xs text-gray-600 sm:text-sm">Quantity:</span>
-                  <div className="flex items-center gap-1 sm:gap-2">
-                    <Button variant="outline" size="icon" onClick={handleDecrement} disabled={item.quantity <= 1 || isUpdating} className="h-7 w-7 border-gray-300 sm:h-8 sm:w-8">
-                      <Minus className="h-3 w-3" />
-                    </Button>
-                    <span className="min-w-[30px] text-center text-sm font-medium">{item.quantity || 1}</span>
-                    <Button variant="outline" size="icon" onClick={handleIncrement} disabled={isUpdating} className="h-7 w-7 border-gray-300 sm:h-8 sm:w-8">
-                      <Plus className="h-3 w-3" />
-                    </Button>
-                  </div>
-                  <span className="text-xs text-gray-500 sm:hidden">@ {formatCurrency(itemPrice)}</span>
-                </div>
-
-                <div className="hidden sm:flex sm:items-center sm:gap-2">
-                  <span className="text-sm text-gray-600">{formatCurrency(itemPrice)} each</span>
-                </div>
-
-                <div className="flex gap-2 sm:justify-end">
-                  <Button variant="ghost" size="sm" onClick={handleSaveToWishlist} className="flex-1 text-gray-600 hover:text-red-500 sm:flex-none">
-                    <Heart className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
-                    <span className="ml-1 text-xs sm:text-sm">Save for later</span>
-                  </Button>
-                </div>
-              </div>
-            </div>
-
-            {/* Desktop Total */}
-            <div className="hidden sm:flex sm:flex-col sm:items-end sm:justify-center">
-              <span className="text-xl font-bold text-orange-600">{formatCurrency(totalPrice)}</span>
-              <span className="mt-1 text-xs text-gray-500">{formatCurrency(itemPrice)} each</span>
             </div>
           </div>
-
-          {/* Stock Warning */}
-          {item.stock && item.stock < 10 && (
-            <div className="mt-3 rounded-md bg-orange-50 p-2 dark:bg-orange-900/20">
-              <p className="text-xs text-orange-600">⚡ Only {item.stock} left in stock - order soon!</p>
-            </div>
-          )}
+          <p className="font-bold text-lg text-orange-600">${itemTotal.toFixed(2)}</p>
         </div>
+        
+        {/* Properties - Always show if they exist */}
+        {properties.length > 0 && (
+          <div className="mt-2 p-2 bg-gray-50 dark:bg-gray-700 rounded space-y-1">
+            {properties.map((prop, idx) => (
+              <div key={idx} className="flex items-center gap-2 text-sm">
+                <prop.icon className="w-4 h-4 text-gray-500" />
+                <span className="font-medium text-gray-600 dark:text-gray-300">{prop.label}:</span>
+                <span className={prop.isMessage ? "italic text-gray-500" : "text-gray-700 dark:text-gray-200"}>
+                  {prop.value}
+                </span>
+              </div>
+            ))}
+          </div>
+        )}
+        
+        {/* Controls */}
+        <div className="flex flex-wrap items-center justify-between gap-3 mt-3">
+          <div className="flex items-center gap-2">
+            <button
+              onClick={handleDecrement}
+              disabled={item.quantity <= 1 || isUpdating}
+              className="w-8 h-8 border rounded hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              -
+            </button>
+            <span className="w-8 text-center font-medium">{item.quantity}</span>
+            <button
+              onClick={handleIncrement}
+              disabled={isUpdating}
+              className="w-8 h-8 border rounded hover:bg-gray-100"
+            >
+              +
+            </button>
+          </div>
+          
+          <div className="flex gap-2">
+            {isCustomizableProduct && onEdit && (
+              <button
+                onClick={() => onEdit(item)}
+                className="flex items-center gap-1 px-3 py-1 text-blue-500 hover:text-blue-700 hover:bg-blue-50 rounded"
+              >
+                <Edit2 className="w-4 h-4" />
+                <span className="text-sm">Edit</span>
+              </button>
+            )}
+            <button
+              onClick={() => onRemove(item.id)}
+              className="flex items-center gap-1 px-3 py-1 text-red-500 hover:text-red-700 hover:bg-red-50 rounded"
+            >
+              <Trash2 className="w-4 h-4" />
+              <span className="text-sm">Remove</span>
+            </button>
+          </div>
+        </div>
+        
+        {/* Price Info */}
+        <div className="mt-2 text-right">
+          <p className="text-xs text-gray-500">Unit Price: ${item.price.toFixed(2)}</p>
+        </div>
+        
+        {/* Stock Warning */}
+        {isLowStock && (
+          <p className="mt-2 text-xs text-orange-600">Only {item.stock} left in stock!</p>
+        )}
       </div>
-    </>
+    </div>
   );
 };
 
