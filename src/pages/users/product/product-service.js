@@ -41,7 +41,7 @@ class ProductService {
     // Handle images
     const avatar = product.images?.find(img => img.isPrimary)?.url || 
                   product.images?.[0]?.url || 
-                  'https://via.placeholder.com/300';
+                  'https://www.dummyimage.com/300/1d19e8/fff.png';
     
     const additionalImages = product.images
       ?.filter(img => !img.isPrimary)

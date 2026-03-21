@@ -23,7 +23,7 @@ const OrderSummary = () => {
               alt={item.title}
               className="w-16 h-16 object-cover rounded-lg"
               onError={(e) => {
-                e.target.src = 'https://via.placeholder.com/64';
+                e.target.src = 'https://www.dummyimage.com/64/1d19e8/fff.png';
               }}
             />
             <div className="flex-1">

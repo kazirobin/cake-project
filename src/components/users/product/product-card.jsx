@@ -18,7 +18,7 @@ const ProductCard = ({ product, categorySlug = "category" }) => {
   const avatar =
     product.avatar ||
     product.images?.[0]?.url ||
-    "https://via.placeholder.com/300x200?text=Product+Image";
+    "https://www.dummyimage.com/300/1d19e8/fff.png";
   const price = product.price || {};
   const regularPrice = price.regular || 0;
   const discountedPrice = price.discount || regularPrice;
@@ -116,7 +116,7 @@ const ProductCard = ({ product, categorySlug = "category" }) => {
               className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
               onError={(e) =>
                 (e.target.src =
-                  "https://via.placeholder.com/300x200?text=Product+Image")
+                  "https://www.dummyimage.com/300x200/1d19e8/fff.png")
               }
             />
             {discountPercentage > 0 && (

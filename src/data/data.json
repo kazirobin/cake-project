@@ -389,9 +389,13 @@
         "totalReviews": 340
       },
       "attributes": {
-        "color": ["Black", "Green"],
-        "storage": ["256GB", "512GB"],
-        "ram": ["12GB"]
+        "customizable": true,
+        "defaultColor": "Black",
+        "defaultStorage": "256GB",
+        "defaultRam": "12GB",
+        "colorOptions": ["Black", "Green", "Purple"],
+        "storageOptions": ["256GB", "512GB", "1TB"],
+        "ramOptions": ["12GB"]
       },
       "variants": ["var1", "var2"],
       "specifications": {
@@ -443,6 +447,19 @@
       },
       "attributes": {
         "customizable": false,
+        "defaultSize": "1kg",
+        "defaultFlavor": "Chocolate",
+        "defaultCakeType": "Normal",
+        "sizeOptions": ["0.5kg", "1kg", "1.5kg", "2kg", "3kg"],
+        "flavorOptions": [
+          "Chocolate",
+          "Vanilla",
+          "Strawberry",
+          "Red Velvet",
+          "Butterscotch",
+          "Black Forest"
+        ],
+        "cakeTypeOptions": ["Normal", "Eggless", "Less Cream", "Extra Juicy"],
         "dietary": ["Eggless option available"],
         "servingSize": "8-10 people",
         "SKU": "UGC-CC-CHOCOLATE"
@@ -510,7 +527,18 @@
       },
       "attributes": {
         "customizable": false,
-        "flavor": "Strawberry",
+        "defaultSize": "1kg",
+        "defaultFlavor": "Strawberry",
+        "defaultCakeType": "Normal",
+        "sizeOptions": ["0.5kg", "1kg", "1.5kg", "2kg", "3kg"],
+        "flavorOptions": [
+          "Strawberry",
+          "Chocolate",
+          "Vanilla",
+          "Red Velvet",
+          "Butterscotch"
+        ],
+        "cakeTypeOptions": ["Normal", "Eggless", "Less Cream", "Extra Juicy"],
         "SKU": "UGC-B-1115"
       },
       "specifications": {
@@ -572,8 +600,19 @@
         "totalReviews": 112
       },
       "attributes": {
-        "customizable": true,
-        "flavor": "Vanilla with Strawberry filling",
+        "customizable": false,
+        "defaultSize": "1kg",
+        "defaultFlavor": "Vanilla with Strawberry filling",
+        "defaultCakeType": "Normal",
+        "sizeOptions": ["0.5kg", "1kg", "1.5kg", "2kg", "3kg"],
+        "flavorOptions": [
+          "Vanilla",
+          "Chocolate",
+          "Strawberry",
+          "Red Velvet",
+          "Butterscotch"
+        ],
+        "cakeTypeOptions": ["Normal", "Eggless", "Less Cream", "Extra Juicy"],
         "SKU": "UGC-B-1013"
       },
       "specifications": {
@@ -636,7 +675,18 @@
       },
       "attributes": {
         "customizable": true,
-        "flavor": "Red Velvet",
+        "defaultSize": "1kg",
+        "defaultFlavor": "Red Velvet",
+        "defaultCakeType": "Normal",
+        "sizeOptions": ["0.5kg", "1kg", "1.5kg", "2kg", "3kg"],
+        "flavorOptions": [
+          "Red Velvet",
+          "Chocolate",
+          "Vanilla",
+          "Strawberry",
+          "Butterscotch"
+        ],
+        "cakeTypeOptions": ["Normal", "Eggless", "Less Cream", "Extra Juicy"],
         "SKU": "UGC-CC-REDVELVET"
       },
       "specifications": {
@@ -699,7 +749,17 @@
       },
       "attributes": {
         "customizable": true,
-        "flavor": "Chocolate",
+        "defaultSize": "1kg",
+        "defaultFlavor": "Chocolate",
+        "defaultCakeType": "Normal",
+        "sizeOptions": ["0.5kg", "1kg", "1.5kg", "2kg", "3kg"],
+        "flavorOptions": [
+          "Chocolate",
+          "Dark Chocolate",
+          "Milk Chocolate",
+          "White Chocolate"
+        ],
+        "cakeTypeOptions": ["Normal", "Eggless", "Less Cream", "Extra Juicy"],
         "SKU": "UGC-C-190"
       },
       "specifications": {
@@ -762,7 +822,18 @@
       },
       "attributes": {
         "customizable": true,
-        "flavor": "Rasmalai",
+        "defaultSize": "1kg",
+        "defaultFlavor": "Rasmalai",
+        "defaultCakeType": "Normal",
+        "sizeOptions": ["0.5kg", "1kg", "1.5kg", "2kg", "3kg"],
+        "flavorOptions": [
+          "Rasmalai",
+          "Chocolate",
+          "Vanilla",
+          "Strawberry",
+          "Pineapple"
+        ],
+        "cakeTypeOptions": ["Normal", "Eggless", "Less Cream", "Extra Juicy"],
         "SKU": "UGC-B-604"
       },
       "specifications": {
@@ -825,7 +896,18 @@
       },
       "attributes": {
         "customizable": true,
-        "flavor": "Chocolate",
+        "defaultSize": "6pcs",
+        "defaultFlavor": "Chocolate",
+        "defaultCakeType": "Normal",
+        "sizeOptions": ["6pcs", "12pcs", "24pcs", "48pcs"],
+        "flavorOptions": [
+          "Chocolate",
+          "Vanilla",
+          "Strawberry",
+          "Red Velvet",
+          "Blueberry"
+        ],
+        "cakeTypeOptions": ["Normal", "Eggless", "Less Cream", "Extra Juicy"],
         "SKU": "UG-CM"
       },
       "specifications": {
@@ -888,7 +970,18 @@
       },
       "attributes": {
         "customizable": true,
-        "flavor": "Black Forest",
+        "defaultSize": "1kg",
+        "defaultFlavor": "Black Forest",
+        "defaultCakeType": "Normal",
+        "sizeOptions": ["0.5kg", "1kg", "1.5kg", "2kg", "3kg"],
+        "flavorOptions": [
+          "Black Forest",
+          "Chocolate",
+          "Vanilla",
+          "Strawberry",
+          "Pineapple"
+        ],
+        "cakeTypeOptions": ["Normal", "Eggless", "Less Cream", "Extra Juicy"],
         "SKU": "UGC-BB-8890"
       },
       "specifications": {
@@ -951,7 +1044,18 @@
       },
       "attributes": {
         "customizable": true,
-        "flavor": "Strawberry",
+        "defaultSize": "1kg",
+        "defaultFlavor": "Strawberry",
+        "defaultCakeType": "Normal",
+        "sizeOptions": ["0.5kg", "1kg", "1.5kg", "2kg", "3kg"],
+        "flavorOptions": [
+          "Strawberry",
+          "Chocolate",
+          "Vanilla",
+          "Red Velvet",
+          "Pineapple"
+        ],
+        "cakeTypeOptions": ["Normal", "Eggless", "Less Cream", "Extra Juicy"],
         "SKU": "UGC-BS-9901"
       },
       "specifications": {
@@ -1014,7 +1118,18 @@
       },
       "attributes": {
         "customizable": true,
-        "flavor": "Red Velvet",
+        "defaultSize": "1kg",
+        "defaultFlavor": "Red Velvet",
+        "defaultCakeType": "Normal",
+        "sizeOptions": ["0.5kg", "1kg", "1.5kg", "2kg", "3kg"],
+        "flavorOptions": [
+          "Red Velvet",
+          "Chocolate",
+          "Vanilla",
+          "Strawberry",
+          "Butterscotch"
+        ],
+        "cakeTypeOptions": ["Normal", "Eggless", "Less Cream", "Extra Juicy"],
         "SKU": "UGC-HA-1012"
       },
       "specifications": {
@@ -1077,7 +1192,18 @@
       },
       "attributes": {
         "customizable": true,
-        "flavor": "Vanilla with Caramel",
+        "defaultSize": "1kg",
+        "defaultFlavor": "Vanilla with Caramel",
+        "defaultCakeType": "Normal",
+        "sizeOptions": ["0.5kg", "1kg", "1.5kg", "2kg", "3kg"],
+        "flavorOptions": [
+          "Vanilla",
+          "Chocolate",
+          "Caramel",
+          "Butterscotch",
+          "Pineapple"
+        ],
+        "cakeTypeOptions": ["Normal", "Eggless", "Less Cream", "Extra Juicy"],
         "SKU": "UGC-BG-1123"
       },
       "specifications": {
@@ -1140,7 +1266,18 @@
       },
       "attributes": {
         "customizable": true,
-        "flavor": "Lemon",
+        "defaultSize": "1kg",
+        "defaultFlavor": "Lemon",
+        "defaultCakeType": "Normal",
+        "sizeOptions": ["0.5kg", "1kg", "1.5kg", "2kg", "3kg"],
+        "flavorOptions": [
+          "Lemon",
+          "Vanilla",
+          "Strawberry",
+          "Pineapple",
+          "Orange"
+        ],
+        "cakeTypeOptions": ["Normal", "Eggless", "Less Cream", "Extra Juicy"],
         "SKU": "UGC-BG-1224"
       },
       "specifications": {
@@ -1203,7 +1340,18 @@
       },
       "attributes": {
         "customizable": true,
-        "flavor": "Lemon",
+        "defaultSize": "1kg",
+        "defaultFlavor": "Lemon",
+        "defaultCakeType": "Normal",
+        "sizeOptions": ["0.5kg", "1kg", "1.5kg", "2kg", "3kg"],
+        "flavorOptions": [
+          "Lemon",
+          "Vanilla",
+          "Strawberry",
+          "Pineapple",
+          "Orange"
+        ],
+        "cakeTypeOptions": ["Normal", "Eggless", "Less Cream", "Extra Juicy"],
         "SKU": "UGC-BG-1224-SE"
       },
       "specifications": {
@@ -1236,7 +1384,6 @@
       "relatedProducts": [3, 9, 13, 19]
     }
   ],
-
   "variants": [
     {
       "_id": "var1",

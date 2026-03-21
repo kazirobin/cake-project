@@ -84,7 +84,7 @@ const ProductDetails = () => {
       });
     }
     
-    return images.length > 0 ? images : ['https://via.placeholder.com/500'];
+    return images.length > 0 ? images : ['https://www.dummyimage.com/500/1d19e8/fff.png'];
   }, [product]);
 
   // Effects
@@ -276,7 +276,7 @@ const ProductImages = ({ images, selectedImage, onImageSelect, productTitle }) =
         className="h-full w-full object-contain"
         loading="eager"
         onError={(e) => {
-          e.target.src = 'https://via.placeholder.com/500';
+          e.target.src = 'https://www.dummyimage.com/500/1d19e8/fff.png';
         }}
       />
     </div>
@@ -300,7 +300,7 @@ const ProductImages = ({ images, selectedImage, onImageSelect, productTitle }) =
                 className="h-full w-full object-cover"
                 loading="lazy"
                 onError={(e) => {
-                  e.target.src = 'https://via.placeholder.com/100';
+                  e.target.src = 'https://www.dummyimage.com/500.png';
                 }}
               />
             </div>
