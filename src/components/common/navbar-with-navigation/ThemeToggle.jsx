@@ -7,7 +7,7 @@ const ThemeToggle = () => {
   const { theme, setTheme } = useTheme();
 
   // Log current theme on render
-  // console.log("ThemeToggle rendered, current theme:", theme);
+  console.log("ThemeToggle rendered, current theme:", theme);
 
   const handleThemeToggle = () => {
     const newTheme = theme === "dark" ? "light" : "dark";

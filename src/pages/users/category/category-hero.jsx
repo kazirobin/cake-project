@@ -1,11 +1,11 @@
 import React from "react";
 import { Badge } from "@/components/ui/badge";
 import { Package } from "lucide-react";
-import CategoryBreadcrumb from "./category-breadcrumb";
+import DyBread from "@/components/common/DyBread";
 
 const CategoryHero = ({ category, productCount }) => {
   return (
-    <div className="relative h-64 overflow-hidden md:h-80">
+    <div className="relative h-64 overflow-hidden bg-white md:h-80">
       <img
         src={category.heroImage || category.image}
         alt={category.name}
@@ -14,6 +14,9 @@ const CategoryHero = ({ category, productCount }) => {
       <div className="absolute inset-0 bg-black/50" />
       <div className="absolute inset-0 flex items-center">
         <div className="container mx-auto px-4 text-white">
+          <div className="mb-2">
+            <DyBread />
+          </div>
           <h1 className="mb-2 text-3xl font-bold md:text-4xl">
             {category.heroTitle || category.name}
           </h1>

@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import products from "@/data/products.json";
 
+// Map category names to IDs
 const categoryNameToId = {
   "birthday-cakes": 1,
   "wedding-cakes": 2,
@@ -13,6 +14,7 @@ const categoryNameToId = {
   cookies: 8,
 };
 
+// Pre-calculate all product counts
 const getProductCounts = () => {
   const counts = {};
 
@@ -30,13 +32,14 @@ const productCounts = getProductCounts();
 const CategoryCard = ({ category }) => {
   const { slug, name, description, image } = category;
 
+  // Get category ID and corresponding count
   const categoryId = categoryNameToId[slug];
   const productCount = productCounts[categoryId] || 0;
 
   return (
     <Link to={`/categories/${slug}`} className="block h-full">
       <div className="flex h-full flex-col overflow-hidden rounded-lg bg-white shadow-md transition-all duration-300 hover:scale-[1.02] hover:shadow-lg dark:bg-gray-800 dark:shadow-gray-700/30">
-       
+        {/* Image - Fixed height */}
         <div className="h-48 overflow-hidden">
           <img
             src={image}
@@ -45,7 +48,9 @@ const CategoryCard = ({ category }) => {
           />
         </div>
 
+        {/* Content - Grid layout for consistent spacing */}
         <div className="grid flex-1 grid-rows-[auto_1fr_auto] gap-2 p-4">
+          {/* Header Row */}
           <div className="flex items-start justify-between">
             <h3 className="line-clamp-1 pr-2 text-lg font-semibold text-gray-900 transition-colors duration-300 dark:text-white">
               {name}
@@ -55,10 +60,12 @@ const CategoryCard = ({ category }) => {
             </span>
           </div>
 
+          {/* Description Row - Takes remaining space */}
           <p className="line-clamp-3 text-sm text-gray-600 transition-colors duration-300 dark:text-gray-300">
             {description}
           </p>
 
+          {/* Footer Row */}
           <div className="pt-2 text-sm font-medium text-orange-600 transition-colors duration-300 dark:text-orange-400">
             View Products →
           </div>

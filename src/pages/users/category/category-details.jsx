@@ -1,13 +1,27 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import data from "@/data/data.json";
+import categories from "@/data/category.json";
+import products from "@/data/products.json";
 import ProductCard from "../../../components/users/product/product-card";
 import NoProductsFound from "../../../components/users/product/no-product-found";
 import SortDropdown from "../../../components/users/category/sort-dropdown";
 import FeaturesBar from "../../../components/users/category/category-features-bar";
 import CategoryHero from "../../../components/users/category/category-hero";
-import ReusableBreadcrumb from "@/components/users/BreadCrumbs/ReusableBreadcrumb";
+import { formatPriceData } from "../../../lib/price-formatter";
+import ReusableBreadcrumb from "@/components/common/ReusableBreadcrumb";
+
+// Map category names to IDs
+const categoryNameToId = {
+  "birthday-cakes": 1,
+  "wedding-cakes": 2,
+  "anniversary-cakes": 3,
+  "kids-cakes": 4,
+  "photo-cakes": 5,
+  cupcakes: 6,
+  pastries: 7,
+  cookies: 8,
+};
 
 const CategoryDetails = () => {
   const { categoryId } = useParams();
@@ -17,20 +31,15 @@ const CategoryDetails = () => {
   const [sortBy, setSortBy] = useState("popular");
 
   useEffect(() => {
-    const categories = data.categories || [];
-    
     const foundCategory = categories.find((cat) => cat.slug === categoryId);
     setCategory(foundCategory);
 
     if (foundCategory) {
-      const products = data.products || [];
-      
-      const productsInCategory = products.filter((product) => {
-        if (Array.isArray(product.categoryId)) {
-          return product.categoryId.includes(foundCategory._id);
-        }
-        return product.categoryId === foundCategory._id;
-      });
+      const categoryNumericId = categoryNameToId[categoryId] || 1;
+
+      const productsInCategory = products.filter((product) =>
+        product.cakeDetails.categoryIds.includes(categoryNumericId),
+      );
 
       setCategoryProducts(productsInCategory);
     }
@@ -45,31 +54,30 @@ const CategoryDetails = () => {
     switch (sortBy) {
       case "price-low":
         sorted.sort((a, b) => {
-          const priceA = a.price?.discount || a.price?.regular || 0;
-          const priceB = b.price?.discount || b.price?.regular || 0;
+          const priceA =
+            a.cakeDetails.pricing?.discounted || a.cakeDetails.price;
+          const priceB =
+            b.cakeDetails.pricing?.discounted || b.cakeDetails.price;
           return priceA - priceB;
         });
         break;
       case "price-high":
         sorted.sort((a, b) => {
-          const priceA = a.price?.discount || a.price?.regular || 0;
-          const priceB = b.price?.discount || b.price?.regular || 0;
+          const priceA =
+            a.cakeDetails.pricing?.discounted || a.cakeDetails.price;
+          const priceB =
+            b.cakeDetails.pricing?.discounted || b.cakeDetails.price;
           return priceB - priceA;
         });
         break;
       case "rating":
-        sorted.sort((a, b) => 
-          (b.rating?.average || 0) - (a.rating?.average || 0)
+        sorted.sort(
+          (a, b) => b.cakeDetails.rating.value - a.cakeDetails.rating.value,
         );
         break;
-      case "newest":
-        sorted.sort((a, b) => 
-          new Date(b.createdAt) - new Date(a.createdAt)
-        );
-        break;
-      default: // popular - sort by review count
-        sorted.sort((a, b) => 
-          (b.rating?.totalReviews || 0) - (a.rating?.totalReviews || 0)
+      default:
+        sorted.sort(
+          (a, b) => b.cakeDetails.rating.count - a.cakeDetails.rating.count,
         );
         break;
     }
@@ -117,55 +125,56 @@ const CategoryDetails = () => {
     <div className="min-h-screen transition-colors duration-300">
       <ReusableBreadcrumb
         items={[
-          { path: "/", label: "Home" },
           { path: "/categories", label: "Categories" },
           { label: category?.name || "Category" },
         ]}
       />
-      
+      {/* Hero Section */}
       <CategoryHero
         category={category}
         productCount={categoryProducts.length}
       />
 
+      {/* Main Content */}
       <div className="container mx-auto px-4 py-8">
+        {/* Features Bar */}
         <FeaturesBar />
 
+        {/* Sort and Results Count */}
         <div className="mb-6 flex flex-col items-start justify-between sm:flex-row sm:items-center">
           <p className="mb-4 text-gray-600 transition-colors duration-300 sm:mb-0 dark:text-gray-300">
             Showing{" "}
             <span className="font-semibold text-gray-900 dark:text-white">
               {categoryProducts.length}
             </span>{" "}
-            {categoryProducts.length === 1 ? "product" : "products"}
+            products
           </p>
 
           <SortDropdown sortBy={sortBy} onSortChange={setSortBy} />
         </div>
 
-       
-
+        {/* Products Grid */}
         {sortedProducts.length > 0 ? (
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {sortedProducts.map((product) => (
-              <ProductCard
-                key={product._id}
-                product={product}
-                categorySlug={category.slug} // Pass category slug for correct linking
-              />
-            ))}
+            {sortedProducts.map((item) => {
+              const product = item.cakeDetails;
+              const priceData = formatPriceData(item);
+
+              return (
+                <ProductCard
+                  key={product.id}
+                  product={product}
+                  priceData={priceData}
+                />
+              );
+            })}
           </div>
         ) : (
-          <NoProductsFound 
-            message={`No products found in ${category.name}`}
-            suggestion="Check back later for new arrivals!"
-          />
+          <NoProductsFound />
         )}
       </div>
     </div>
   );
 };
-
-
 
 export default CategoryDetails;
