@@ -1,5 +1,5 @@
 import { FcGoogle } from "react-icons/fc";
-import { motion,MotionConfig } from "framer-motion";
+import { motion } from "framer-motion";
 import useAuth from "@/Hooks/useAuth";
 import { useNavigate } from "react-router";
 
@@ -20,18 +20,16 @@ const GoggleBTN = ({ itemVariants }) => {
   };
 
   return (
-    <MotionConfig>
-      <motion.button
-        variants={itemVariants}
-        whileHover={{ backgroundColor: "rgba(255,255,255,0.1)" }}
-        whileTap={{ scale: 0.98 }}
-        onClick={handleGoogleSignIn}
-        className="flex w-full cursor-pointer items-center justify-center gap-3 rounded-2xl border border-black/15 bg-white py-4 font-semibold text-black transition-all"
-      >
-        <FcGoogle size={24} />
-        Continue with Google
-      </motion.button>
-    </MotionConfig>
+    <motion.button
+      variants={itemVariants}
+      whileHover={{ backgroundColor: "rgba(255,255,255,0.1)" }}
+      whileTap={{ scale: 0.98 }}
+      onClick={handleGoogleSignIn}
+      className="flex w-full cursor-pointer items-center justify-center gap-3 rounded-2xl border border-black/15 bg-white py-4 font-semibold text-black transition-all"
+    >
+      <FcGoogle size={24} />
+      Continue with Google
+    </motion.button>
   );
 };
 

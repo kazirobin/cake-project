@@ -42,7 +42,7 @@ const AuthProvider = ({ children }) => {
         return signInWithEmailAndPassword(auth, email, password);
     };
 
-    // google sign in
+    // goglle sign in
     const signinWithGoggle = () => {
         setLoading(true);
         return signInWithPopup(auth, goggleProvider);

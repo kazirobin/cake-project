@@ -6,7 +6,7 @@
       "avatar": "https://media.ugcakes.com/products/large/2199-chocolate-cupcakes-by-ug.jpg",
       "price": 1.79,
       "description": "Chocolate Cupcakes for your special day. Cupcakes make people happy, and these sweet recipes are guaranteed to put a smile on any face. These delicious cupcakes can also be a satisfying dessert of yours. This does not just taste delicious, but also looks eye pleasing. The cake can be delivered online, which is the best online cake delivery service in Kathmandu. All cakes are baked with hygiene and quality in the top of our priority at our own state-of-the-art baking facility and quality checked twice by our expert QC team before delivery. You can send cakes or gifts to your loved ones in Nepal or shop online for yourself in Nepal with UG Bazaar, a pioneer in online shopping in Nepal.",
-      "customizable": true,
+      "customizable": false,
       "SKU": "SKU: UGC-CC-CHOCOLATE",
       "categoryIds": [1,3],
       "stock": 20,
@@ -47,10 +47,7 @@
         { "label": "Fat", "value": "18g" }
       ],
       "additionalImages": [
-        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
-        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-2.webp",
-        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-3.webp",
-        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-4.webp"
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp"
       ]
     },
     "relatedProducts": [2, 3, 4, 5],
@@ -106,9 +103,9 @@
       ],
       "additionalImages": [
         "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
-        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-2.webp",
-        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-3.webp",
-        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-4.webp"
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp"
       ]
     },
     "relatedProducts": [1, 3, 6, 7],
@@ -164,9 +161,9 @@
       ],
       "additionalImages": [
         "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
-        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-2.webp",
-        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-3.webp",
-        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-4.webp"
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp"
       ]
     },
     "relatedProducts": [1, 2, 8, 9],
@@ -222,9 +219,9 @@
       ],
       "additionalImages": [
         "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
-        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-2.webp",
-        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-3.webp",
-        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-4.webp"
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp"
       ]
     },
     "relatedProducts": [1, 5, 10, 11],
@@ -280,9 +277,9 @@
       ],
       "additionalImages": [
         "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
-        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-2.webp",
-        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-3.webp",
-        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-4.webp"
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp"
       ]
     },
     "relatedProducts": [2, 4, 6, 12],
@@ -296,7 +293,7 @@
       "avatar": "https://media.ugcakes.com/products/large/rasmalai-cake-with-floral-and-pearls-detailing-659981711618140-uxGIlG0kaS.webp",
       "price": 13.67,
       "description": "Indulge in the exquisite fusion of tradition and innovation with our Rasmalai Cake adorned with delicate floral and pearl detailing. Crafted with care by the finest bakers at UGCakes, renowned as the best bakery in Kathmandu, this delectable creation promises a symphony of flavors that will tantalize your taste buds. Elevate your celebrations with a cake that seamlessly marries the rich, creamy essence of Rasmalai with the irresistible allure of a classic cake. Treat yourself to the best of both worlds and make every moment unforgettable with our signature Rasmalai Cake. Order now and experience the epitome of cake perfection. Every details used in cake is edible and made out of sponges and creams. All cakes are baked with hygiene and quality at the top of our priority at our own state-of-the-art baking facility and quality is checked twice by our expert QC team before delivery. You can send cakes or gifts to your loved ones in Nepal or shop online for yourself in Nepal with UG Bazaar, a pioneer in online shopping in Nepal.",
-      "customizable": true,
+      "customizable": false,
       "SKU": "SKU: UGC-B-604",
       "categoryIds": [1,2,3],
       "stock": 22,
@@ -338,9 +335,9 @@
       ],
       "additionalImages": [
         "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
-        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-2.webp",
-        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-3.webp",
-        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-4.webp"
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp"
       ]
     },
     "relatedProducts": [2, 3, 7, 13],
@@ -354,7 +351,7 @@
       "avatar": "https://media.ugcakes.com/products/large/3629-chocolate-muffins.JPG",
       "price": 0.83,
       "description": "A pretty birthday cake for daughters, featuring a lovely 'Happy Birthday Daughter' message. Pink ombre cake with vanilla buttercream and edible glitter.",
-      "customizable": true,
+      "customizable": false,
       "SKU": "SKU: UG-CM",
       "categoryIds": [1,2,3],
       "stock": 18,
@@ -396,9 +393,9 @@
       ],
       "additionalImages": [
         "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
-        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-2.webp",
-        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-3.webp",
-        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-4.webp"
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp"
       ]
     },
     "relatedProducts": [3, 6, 8, 14],
@@ -412,7 +409,7 @@
       "avatar": "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
       "price": 13.99,
       "description": "A cool birthday cake for brothers, featuring a trendy 'Happy Birthday Brother' design. Black forest cake with cherry filling and chocolate shavings.",
-      "customizable": true,
+      "customizable": false,
       "SKU": "UGC-BB-8890",
       "categoryIds": [1,2,3],
       "stock": 16,
@@ -454,9 +451,9 @@
       ],
       "additionalImages": [
         "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
-        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-2.webp",
-        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-3.webp",
-        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-4.webp"
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp"
       ]
     },
     "relatedProducts": [2, 5, 9, 15],
@@ -512,9 +509,9 @@
       ],
       "additionalImages": [
         "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
-        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-2.webp",
-        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-3.webp",
-        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-4.webp"
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp"
       ]
     },
     "relatedProducts": [3, 7, 10, 16],
@@ -570,9 +567,9 @@
       ],
       "additionalImages": [
         "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
-        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-2.webp",
-        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-3.webp",
-        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-4.webp"
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp"
       ]
     },
     "relatedProducts": [4, 5, 11, 17],
@@ -628,9 +625,9 @@
       ],
       "additionalImages": [
         "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
-        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-2.webp",
-        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-3.webp",
-        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-4.webp"
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp"
       ]
     },
     "relatedProducts": [2, 8, 12, 18],
@@ -686,9 +683,9 @@
       ],
       "additionalImages": [
         "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
-        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-2.webp",
-        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-3.webp",
-        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-4.webp"
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp"
       ]
     },
     "relatedProducts": [3, 9, 13, 19],
@@ -744,9 +741,9 @@
       ],
       "additionalImages": [
         "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
-        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-2.webp",
-        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-3.webp",
-        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-4.webp"
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp"
       ]
     },
     "relatedProducts": [3, 9, 13, 19],

@@ -47,6 +47,7 @@ const DyBread = () => {
         {pathnames.map((value, index) => {
           const isLast = index === pathnames.length - 1;
           const to = `/${pathnames.slice(0, index + 1).join("/")}`;
+          if (pathname === "/admin-panel") value = "Dashboard";
           const title = pathToText(value);
 
           return (

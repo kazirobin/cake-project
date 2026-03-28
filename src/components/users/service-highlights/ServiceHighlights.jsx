@@ -40,6 +40,7 @@ const ServiceHighlights = () => {
                          bg-white/5 backdrop-blur-md border border-white/10
                          transition-all duration-300
                          hover:border-purple-400/40 hover:bg-white/10
+                         hover:text-black
                          shadow-lg hover:shadow-2xl"
             >
               {/* Icon */}
