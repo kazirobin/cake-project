@@ -1,5 +1,5 @@
-import useCart from "@/Hooks/useCart";
-import React from "react";
+import { useCart } from '@/Hooks/cart-context';
+import React from 'react';
 
 const OrderSummary = () => {
   const { cart } = useCart();
@@ -9,25 +9,25 @@ const OrderSummary = () => {
   };
 
   return (
-    <div className="sticky top-24 rounded-lg bg-white p-6 shadow-lg dark:bg-gray-800">
-      <h2 className="mb-6 text-xl font-bold text-gray-900 dark:text-white">
+    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 sticky top-24">
+      <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-6">
         Order Summary
       </h2>
 
       {/* Items List */}
-      <div className="mb-6 max-h-80 space-y-4 overflow-y-auto">
-        {cart.items.map((item) => (
+      <div className="space-y-4 mb-6 max-h-80 overflow-y-auto">
+        {cart.items.map(item => (
           <div key={item.id} className="flex gap-3">
-            <img
-              src={item.image}
+            <img 
+              src={item.image} 
               alt={item.title}
-              className="h-16 w-16 rounded-lg object-cover"
+              className="w-16 h-16 object-cover rounded-lg"
               onError={(e) => {
-                e.target.src = "https://via.placeholder.com/64";
+                e.target.src = 'https://www.dummyimage.com/64/1d19e8/fff.png';
               }}
             />
             <div className="flex-1">
-              <h3 className="line-clamp-2 text-sm font-medium text-gray-900 dark:text-white">
+              <h3 className="font-medium text-gray-900 dark:text-white text-sm line-clamp-2">
                 {item.title}
               </h3>
               <p className="text-sm text-gray-500 dark:text-gray-400">
@@ -42,7 +42,7 @@ const OrderSummary = () => {
       </div>
 
       {/* Price Breakdown */}
-      <div className="space-y-2 border-t border-gray-200 pt-4 dark:border-gray-700">
+      <div className="space-y-2 pt-4 border-t border-gray-200 dark:border-gray-700">
         <div className="flex justify-between text-gray-600 dark:text-gray-400">
           <span>Subtotal:</span>
           <span>{formatCurrency(cart.subtotal)}</span>
@@ -55,9 +55,9 @@ const OrderSummary = () => {
           <span>Delivery:</span>
           <span>{formatCurrency(cart.deliveryCharge)}</span>
         </div>
-
+        
         {/* Total */}
-        <div className="mt-2 flex justify-between border-t border-gray-200 pt-2 text-lg font-bold text-gray-900 dark:border-gray-700 dark:text-white">
+        <div className="flex justify-between font-bold text-gray-900 dark:text-white text-lg pt-2 border-t border-gray-200 dark:border-gray-700 mt-2">
           <span>Total:</span>
           <span className="text-orange-600 dark:text-orange-400">
             {formatCurrency(cart.total)}
@@ -66,7 +66,7 @@ const OrderSummary = () => {
       </div>
 
       {/* Delivery Note */}
-      <p className="mt-4 text-center text-xs text-gray-500 dark:text-gray-400">
+      <p className="text-xs text-gray-500 dark:text-gray-400 text-center mt-4">
         Free delivery inside Kathmandu Valley
       </p>
     </div>

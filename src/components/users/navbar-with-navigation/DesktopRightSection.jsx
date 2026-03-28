@@ -1,13 +1,11 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
-import { ShoppingCart } from "lucide-react";
+import { User, ShoppingCart } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import useCart from "@/Hooks/useCart";
+import { useCart } from "@/Hooks/cart-context";
 import OfferBadge from "./OfferBadge";
 import DesktopSearch from "./DesktopSearch";
 import ThemeToggle from "./ThemeToggle";
-import useAuth from "@/Hooks/useAuth";
-import UserMenu from "@/components/users/UserMenu";
 
 const DesktopRightSection = ({
   searchTerm,
@@ -18,15 +16,8 @@ const DesktopRightSection = ({
   onSelectSuggestion,
   onCartClick, // Add this prop to handle cart sidebar opening
 }) => {
-  const { user, signOutUser } = useAuth();
   const navigate = useNavigate();
-  const cartData = useCart();
-
-  if (!cartData) return null;
-
-  const { cart } = cartData;
-  // calculate total items in cart
-  const cartLength = cart.items.reduce((acc, item) => acc + item.quantity, 0);
+  const { cart } = useCart(); // Get cart data
 
   const handleCartClick = () => {
     if (onCartClick) {
@@ -36,28 +27,17 @@ const DesktopRightSection = ({
     }
   };
 
-  const handleUserClick = async () => {
-    if (user) {
-      // Firebase logout
-      try {
-        await signOutUser();
-        alert("You are logged out");
-        navigate("/");
-      } catch (err) {
-        console.error(err.message);
-      }
-    } else {
-      navigate("/login");
-    }
+  const handleUserClick = () => {
+    navigate("/login"); // Or "/profile" if user is logged in
   };
 
   return (
-    <div className="hidden w-full items-center justify-end gap-3 lg:flex">
+    <div className="hidden lg:flex items-center w-full justify-end gap-3">
       {/* Offer Badge - Left side */}
       <OfferBadge />
-
+      
       {/* Search Input - Middle section with flex-1 for proper spacing */}
-      <div className="max-w-md flex-1">
+      <div className="flex-1 max-w-md ">
         <DesktopSearch
           searchTerm={searchTerm}
           setSearchTerm={setSearchTerm}
@@ -69,28 +49,36 @@ const DesktopRightSection = ({
       </div>
 
       {/* Right Icons Group */}
-      <div className="flex items-center">
+      <div className="flex items-center ">
         {/* Theme Toggle - Separated */}
         <ThemeToggle />
-
+        
         {/* Cart Icon - Clickable with badge */}
         <Button
           variant="ghost"
           size="icon"
           onClick={handleCartClick}
-          className="relative h-10 w-10 cursor-pointer rounded-full text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
+          className="h-10 w-10 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300 relative cursor-pointer"
           aria-label="Shopping cart"
         >
           <ShoppingCart className="h-4 w-4" />
-          {cartLength > 0 && (
-            <span className="absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center rounded-full bg-red-600 text-xs text-white">
-              {cartLength}
+          {cart.totalItems > 0 && (
+            <span className="absolute -top-1 -right-1 w-4 h-4 bg-rose-500 rounded-full text-[10px] text-white flex items-center justify-center">
+              {cart.totalItems > 9 ? '9+' : cart.totalItems}
             </span>
           )}
         </Button>
 
         {/* User Icon - Rightmost */}
-        <UserMenu user={user} onLogout={signOutUser} />
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={handleUserClick}
+          className="h-10 w-10 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300 cursor-pointer"
+          aria-label="User account"
+        >
+          <User className="h-4 w-4" />
+        </Button>
       </div>
     </div>
   );

@@ -2,16 +2,16 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Table2Icon, Search, ShoppingCart, User, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import {
-  Sheet,
-  SheetContent,
+import { 
+  Sheet, 
+  SheetContent, 
   SheetTrigger,
   SheetTitle,
-  SheetDescription,
+  SheetDescription 
 } from "@/components/ui/sheet";
 import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
 import MobileNavigateContent from "./MobileNavigateContent";
-import useCart from "@/Hooks/useCart";
+import { useCart } from "@/Hooks/cart-context";
 
 const MobileRightIcons = ({
   onSearchClick,
@@ -19,13 +19,7 @@ const MobileRightIcons = ({
   setIsRightMenuOpen,
 }) => {
   const navigate = useNavigate();
-  const cartData = useCart();
-
-  if (!cartData) return null;
-
-  const { cart } = cartData;
-  // calculate total items in cart
-  const cartLength = cart.items.reduce((acc, item) => acc + item.quantity, 0);
+  const { cart } = useCart();
 
   const handleCartClick = () => {
     navigate("/cart");
@@ -43,7 +37,7 @@ const MobileRightIcons = ({
           <Button
             variant="ghost"
             size="icon"
-            className="cursor-pointer text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
+            className="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer"
             aria-label="Open navigation menu"
           >
             <Table2Icon className="h-5 w-5" />
@@ -51,7 +45,7 @@ const MobileRightIcons = ({
         </SheetTrigger>
         <SheetContent
           side="right"
-          className="w-[300px] border-l border-gray-200 bg-white p-0 sm:w-[350px] dark:border-gray-800 dark:bg-gray-900"
+          className="w-[300px] sm:w-[350px] p-0 bg-white dark:bg-gray-900 border-l border-gray-200 dark:border-gray-800"
         >
           {/* Hidden Title for Accessibility */}
           <VisuallyHidden.Root asChild>
@@ -63,9 +57,9 @@ const MobileRightIcons = ({
             </SheetDescription>
           </VisuallyHidden.Root>
 
-          <div className="flex h-full flex-col">
+          <div className="flex flex-col h-full">
             {/* Header with Close Button */}
-            <div className="flex items-center justify-between border-b border-gray-200 p-4 dark:border-gray-800">
+            <div className="p-4 border-b border-gray-200 dark:border-gray-800 flex justify-between items-center">
               <h2 className="font-semibold text-gray-900 dark:text-gray-100">
                 Navigation Menu
               </h2>
@@ -80,7 +74,7 @@ const MobileRightIcons = ({
         variant="ghost"
         size="icon"
         onClick={onSearchClick}
-        className="cursor-pointer text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
+        className="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer"
         aria-label="Search"
       >
         <Search className="h-5 w-5" />
@@ -90,13 +84,13 @@ const MobileRightIcons = ({
         variant="ghost"
         size="icon"
         onClick={handleCartClick}
-        className="relative cursor-pointer text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
+        className="relative text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer"
         aria-label="Shopping cart"
       >
         <ShoppingCart className="h-5 w-5" />
-        {cartLength > 0 && (
-          <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-purple-600 text-xs text-white">
-            {cartLength > 9 ? "9+" : cartLength}
+        {cart.totalItems > 0 && (
+          <span className="absolute -top-1 -right-1 bg-purple-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+            {cart.totalItems > 9 ? '9+' : cart.totalItems}
           </span>
         )}
       </Button>
@@ -105,7 +99,7 @@ const MobileRightIcons = ({
         variant="ghost"
         size="icon"
         onClick={handleUserClick}
-        className="cursor-pointer text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
+        className="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer"
         aria-label="User account"
       >
         <User className="h-5 w-5" />

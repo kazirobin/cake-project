@@ -2,14 +2,14 @@ import { createContext, useContext, useEffect, useState } from "react"
 
 const ThemeProviderContext = createContext({})
 
-export function ThemeProvider({ children, defaultTheme = "light", storageKey = "vite-ui-theme", ...props }) {
+export function ThemeProvider({ children, defaultTheme = "system", storageKey = "vite-ui-theme", ...props }) {
   const [theme, setTheme] = useState(() => {
     const stored = localStorage.getItem(storageKey)
     return stored || defaultTheme
   })
 
   useEffect(() => {
-    console.log("Theme state changed to:", theme)
+    // console.log("Theme state changed to:", theme)
   }, [theme])
 
   useEffect(() => {
@@ -24,7 +24,7 @@ export function ThemeProvider({ children, defaultTheme = "light", storageKey = "
     }
 
     root.classList.add(theme)
-    console.log("Applied theme:", theme)
+    // console.log("Applied theme:", theme)
   }, [theme])
 
   const value = {
