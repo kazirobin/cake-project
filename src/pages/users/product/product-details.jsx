@@ -1,297 +1,619 @@
-// src/components/users/product/ProductDetails.jsx
-import React, { useState, useEffect, useCallback, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ShoppingCart, Heart, Check, AlertCircle, Minus, Plus, Sparkles, Loader2 } from "lucide-react";
-import { useCart } from "@/Hooks/cart-context";
+
+import {
+  Star,
+  ShoppingCart,
+  Heart,
+  Truck,
+  Shield,
+  RotateCcw,
+  Package,
+  Check,
+  AlertCircle,
+  Minus,
+  Plus,
+  X,
+  Calendar,
+} from "lucide-react";
+
+import useCart from "@/Hooks/useCart";
 import productService from "./product-service";
-import DeliveryCustomizationModal from "@/components/users/delivery-date-modal/DeliveryDateModal";
-import  ProductCard  from '@/components/users/product/product-card';
+
+import ReusableBreadcrumb from "@/components/common/ReusableBreadcrumb";
+import categories from "@/data/category.json";
+import ProductCard from "@/components/users/product/product-card";
+import useAuth from "@/Hooks/useAuth";
+import { toast } from "@/Hooks/useToast";
+
+/* ---------------- MULTI-STEP DELIVERY + CUSTOMIZATION MODAL ---------------- */
+
+const DeliveryCustomizationModal = ({
+  isOpen,
+  onClose,
+  addToCart,
+  product,
+  quantity,
+}) => {
+  const [step, setStep] = useState(1);
+  const navigate = useNavigate();
+  const { user } = useAuth();
+  // Delivery selection
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [showCustomDates, setShowCustomDates] = useState(false);
+
+  // Customization selection
+  const [selectedSize, setSelectedSize] = useState("1lb");
+  const [showAllFlavors, setShowAllFlavors] = useState(false);
+
+  const [selectedFlavor, setSelectedFlavor] = useState("Chocolate");
+  const [cakeType, setCakeType] = useState("Normal");
+  const [personalMessage, setPersonalMessage] = useState("");
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+
+  const today = new Date();
+  const tomorrow = new Date(today);
+  tomorrow.setDate(today.getDate() + 1);
+
+  const weekDates = Array.from({ length: 8 }).map((_, i) => {
+    const d = new Date(today);
+    d.setDate(today.getDate() + i + 2);
+    return d.toDateString();
+  });
+
+  const sizes = ["1lb", "2lb", "3lb"];
+  const flavors = [
+    "Chocolate",
+    "Vanilla",
+    "Butterscotch",
+    "Black Forest",
+    "White Forest",
+    "Strawberry",
+    "Red Velvet",
+    "Pineapple",
+    "Mango",
+    "Blueberry",
+    "Coffee",
+    "Caramel",
+    "Orange",
+    "Lemon",
+    "Hazelnut",
+  ];
+  const types = ["Eggless", "Less Cream", "Extra Juicy"];
+
+  if (!isOpen) return null;
+
+  const handleNext = () => {
+    if (step === 1 && !selectedDate) {
+      alert("Please select a delivery date");
+      return;
+    }
+    if (step < 2) setStep(step + 1);
+  };
+
+  const handleBack = () => {
+    if (step > 1) setStep(step - 1);
+  };
+
+  const handleCancel = () => {
+    onClose();
+  };
+
+  const handleAddToCart = () => {
+    if (!user) {
+      alert("Please log in to add items to your cart.");
+      navigate("/login");
+      return;
+    }
+    const cartItem = {
+      id: product.id,
+      title: product.title,
+      price: product.pricing.discounted, // you can update for dynamic pricing based on size
+      image: product.avatar,
+      quantity,
+      deliveryDate: selectedDate,
+      size: selectedSize,
+      flavor: selectedFlavor,
+      cakeType,
+      personalMessage,
+    };
+    addToCart(cartItem);
+    onClose();
+    // Show success toast globally
+    toast.success("Added to cart!");
+  };
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+      <div className="w-[700px] rounded-xl bg-white p-6 shadow-xl dark:bg-[#111]">
+        {/* Header */}
+        <div className="mb-4 flex items-center justify-between">
+          <h2 className="text-lg font-semibold">
+            {step === 1 ? "Select Delivery Date" : "Customize Your Cake"}
+          </h2>
+          <X className="cursor-pointer" onClick={handleCancel} />
+        </div>
+
+        <div className="max-h-[500px] space-y-4 overflow-y-auto">
+          {step === 1 && (
+            <div className="space-y-4">
+              {/* Today / Tomorrow */}
+              {/* Title */}
+              <hr />
+              <p className="mb-4 font-medium">
+                When would you like it delivered?
+              </p>
+              <div className="flex gap-4">
+                {[today.toDateString(), tomorrow.toDateString()].map(
+                  (date, i) => (
+                    <div
+                      key={date}
+                      onClick={() => setSelectedDate(date)}
+                      className={`w-1/2 cursor-pointer rounded border p-4 text-center ${
+                        selectedDate === date
+                          ? "border-purple-500 bg-purple-50"
+                          : ""
+                      }`}
+                    >
+                      {/* Label */}
+                      <div className="text-sm text-gray-500">
+                        <div className="flex justify-center space-x-2">
+                          <img
+                            src={
+                              i === 0
+                                ? "/icons/calendar.png"
+                                : "/icons/tomorrow.png"
+                            }
+                            width="20px"
+                          />
+                          <p className="font-bold">
+                            {i === 0 ? "Today" : "Tomorrow"}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Date */}
+                      <p className="text-sm font-semibold">{date}</p>
+                    </div>
+                  ),
+                )}
+              </div>
+
+              {/* This week */}
+              <div>
+                <div className="flex gap-2">
+                  <img
+                    src="/icons/agenda.png"
+                    width="30px"
+                    className="mr-1 inline-block"
+                  />
+                  <p className="mb-2 font-semibold">Select Delivery Date</p>
+                </div>
+
+                <div className="grid grid-cols-4 gap-2">
+                  {weekDates.map((d) => (
+                    <div
+                      key={d}
+                      onClick={() => setSelectedDate(d)}
+                      className={`flex-1 cursor-pointer rounded border p-3 text-center ${
+                        selectedDate === d
+                          ? "border-purple-500 bg-purple-50"
+                          : ""
+                      }`}
+                    >
+                      {d}
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Custom Dates */}
+              <div className="mt-4 justify-center rounded-lg border border-dashed border-gray-400 py-2 text-center">
+                <p
+                  className="cursor-pointer text-blue-500"
+                  onClick={() => setShowCustomDates(!showCustomDates)}
+                >
+                  <img
+                    src="/icons/agenda.png"
+                    width="20px"
+                    className="mr-1 inline-block"
+                  />
+                  Pick another date {showCustomDates ? "▲" : "▼"}
+                </p>
+                {showCustomDates && (
+                  <input
+                    type="date"
+                    className="mt-2 w-full rounded border p-2"
+                    onChange={(e) => setSelectedDate(e.target.value)}
+                  />
+                )}
+              </div>
+
+              {selectedDate && (
+                <div className="rounded-lg bg-purple-50 p-3 text-sm text-purple-700">
+                  Delivery Scheduled for: <b>{selectedDate}</b>
+                </div>
+              )}
+            </div>
+          )}
+
+          {step === 2 && (
+            <div className="space-y-4">
+              {/* Show selected delivery date and cake name with qty and price at the top */}
+
+              <div>
+                {selectedDate && (
+                  <div className="flex justify-between space-y-1 rounded-lg border-2 bg-purple-50 p-3 text-sm text-purple-700">
+                    <div>
+                      <p className="font-semibold text-black">
+                        {product.title}
+                      </p>
+                      <p>
+                        Price:{product?.pricing?.currency}
+                        {product?.pricing?.discounted}
+                      </p>
+                      <p>Delivery Scheduled for: {selectedDate}</p>
+                    </div>
+                    <div>
+                      <p>
+                        Qty: <b>{quantity}</b>
+                      </p>
+                    </div>
+                  </div>
+                )}
+              </div>
+              {/* Cake Weight */}
+              <div>
+                <p className="mb-2 font-semibold">How many pounds?</p>
+                <div className="flex gap-2">
+                  {sizes.map((s) => (
+                    <div
+                      key={s}
+                      onClick={() => setSelectedSize(s)}
+                      className={`flex-1 cursor-pointer rounded-full border-2 p-2 text-center ${
+                        selectedSize === s
+                          ? "border-orange-500 bg-orange-200"
+                          : ""
+                      }`}
+                    >
+                      {s}
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Flavor */}
+              <div>
+                <p className="mb-2 font-semibold">Choose your flavor</p>
+                <hr />
+                <div className="grid grid-cols-4 gap-2 pt-2">
+                  {(showAllFlavors ? flavors : flavors.slice(0, 8)).map((f) => (
+                    <div
+                      key={f}
+                      onClick={() => setSelectedFlavor(f)}
+                      className={`cursor-pointer rounded-full p-2 text-center ${
+                        selectedFlavor === f
+                          ? "border-orange-500 bg-orange-200"
+                          : ""
+                      }`}
+                    >
+                      {f}
+                    </div>
+                  ))}
+                </div>
+
+                {/* Toggle Button */}
+                {flavors.length > 6 && (
+                  <button
+                    onClick={() => setShowAllFlavors(!showAllFlavors)}
+                    className="mt-3 rounded-lg border-2 px-3 py-1 text-sm font-medium text-orange-500"
+                  >
+                    {showAllFlavors
+                      ? "Show Less"
+                      : `+${flavors.length - 6} more`}
+                  </button>
+                )}
+              </div>
+
+              {/* Personal Message */}
+              <div>
+                <p className="mb-2 font-semibold">
+                  Add a personal message (optional)
+                </p>
+                <textarea
+                  className="w-full rounded border p-2"
+                  placeholder="Write your message"
+                  value={personalMessage}
+                  onChange={(e) => setPersonalMessage(e.target.value)}
+                />
+              </div>
+
+              {/* Cake Type */}
+              <div>
+                <p className="mb-2 font-semibold">Cake Type</p>
+                <div className="flex gap-2">
+                  {types.map((t) => (
+                    <div
+                      key={t}
+                      onClick={() => setCakeType(t)}
+                      className={`mb-2 flex-1 cursor-pointer rounded-full border-2 p-2 text-center ${
+                        cakeType === t ? "border-orange-500 bg-orange-200" : ""
+                      }`}
+                    >
+                      {t}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Footer Buttons */}
+        <div className="mt-6 flex gap-4">
+          {step === 2 && (
+            <Button variant="outline" onClick={handleBack} className="flex-1">
+              Back
+            </Button>
+          )}
+          <Button variant="outline" onClick={handleCancel} className="flex-1">
+            Cancel
+          </Button>
+          {step === 1 && (
+            <Button
+              className="flex-1 bg-gradient-to-r from-purple-600 to-pink-500 text-white"
+              onClick={handleNext}
+            >
+              Next
+            </Button>
+          )}
+          {step === 2 && (
+            <Button
+              className="flex-1 bg-gradient-to-r from-orange-400 to-orange-600 text-white"
+              onClick={() => {
+                handleAddToCart();
+              }}
+            >
+              Add To Cart
+            </Button>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+/* ---------------- PRODUCT DETAILS ---------------- */
 
 const ProductDetails = () => {
-  const { productId, categoryId } = useParams();
-  const navigate = useNavigate();
+  const { productId } = useParams();
   const { addToCart } = useCart();
 
   const [selectedImage, setSelectedImage] = useState(0);
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+  const [showFavoriteMessage, setShowFavoriteMessage] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const [isFavorite, setIsFavorite] = useState(false);
+  const [categoryData, setCategoryData] = useState(null);
   const [showMore, setShowMore] = useState(false);
   const [showDeliveryModal, setShowDeliveryModal] = useState(false);
-  const [isAdding, setIsAdding] = useState(false);
-  const [showSuccess, setShowSuccess] = useState(false);
 
-  const product = useMemo(() => productService.getProductById(productId), [productId]);
-  const relatedProducts = useMemo(() => productService.getRelatedProducts(productId), [productId]);
-  
-  const isCustomizable = useMemo(() => {
-    return product?.attributes?.customizable === true || product?.customizable === true;
-  }, [product]);
+  const productData = productService.getFullProductData(productId);
+  const product = productData?.cakeDetails;
+  const relatedProducts = productService.getRelatedProducts(productId);
 
-  const allImages = useMemo(() => {
-    if (!product) return [];
-    const images = [];
-    if (product.images) {
-      product.images.forEach(img => {
-        if (img.url && !images.includes(img.url)) images.push(img.url);
-      });
+  useEffect(() => {
+    if (product?.categoryIds?.length > 0) {
+      const firstCategoryId = product.categoryIds[0];
+      const foundCategory = categories.find(
+        (cat) => cat.id === firstCategoryId,
+      );
+      setCategoryData(foundCategory || null);
     }
-    if (product.additionalImages) {
-      product.additionalImages.forEach(img => {
-        if (!images.includes(img)) images.push(img);
-      });
-    }
-    return images.length > 0 ? images : ['https://via.placeholder.com/500'];
   }, [product]);
 
   useEffect(() => {
     const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
-    setIsFavorite(favorites.includes(productId));
+    setIsFavorite(favorites.includes(parseInt(productId)));
   }, [productId]);
 
-  const handleAddToCart = useCallback(async () => {
-    if (isCustomizable) {
-      setShowDeliveryModal(true);
-      return;
-    }
-    
-    setIsAdding(true);
-    try {
-      addToCart({
-        ...product,
-        quantity,
-        selectedImage: allImages[selectedImage],
-        image: allImages[selectedImage]
-      });
-      setShowSuccess(true);
-      setTimeout(() => setShowSuccess(false), 2000);
-    } catch (error) {
-      console.error('Error adding to cart:', error);
-    } finally {
-      setIsAdding(false);
-    }
-  }, [isCustomizable, product, quantity, selectedImage, allImages, addToCart]);
-
-  const toggleFavorite = useCallback(() => {
+  const toggleFavorite = () => {
     const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
-    const updated = isFavorite
-      ? favorites.filter((id) => id !== productId)
-      : [...favorites, productId];
+    const id = parseInt(productId);
+
+    let updated;
+
+    if (isFavorite) {
+      updated = favorites.filter((item) => item !== id);
+    } else {
+      updated = [...favorites, id];
+      setShowFavoriteMessage(true);
+      setTimeout(() => setShowFavoriteMessage(false), 2000);
+    }
+
     localStorage.setItem("favorites", JSON.stringify(updated));
     setIsFavorite(!isFavorite);
-  }, [isFavorite, productId]);
+  };
 
   if (!product) {
     return (
       <div className="container mx-auto py-16 text-center">
-        <AlertCircle className="mx-auto h-16 w-16 text-gray-400" />
-        <h2 className="mt-4 text-2xl font-bold">Product Not Found</h2>
-        <Button onClick={() => navigate("/categories")} className="mt-6 bg-orange-500">
-          Browse Categories
+        <AlertCircle className="mx-auto mb-4 h-16 w-16 text-gray-400" />
+        <h2 className="text-2xl font-bold">Product Not Found</h2>
+        <Button
+          onClick={() => navigate("/categories")}
+          className="mt-6 bg-orange-500 text-white"
+        >
+          Browse Products
         </Button>
       </div>
     );
   }
 
-  const currentPrice = product.price?.discount || product.price?.regular || 0;
-  const currency = product.price?.currency || "$";
-  const discountPercentage = product.price?.discount 
-    ? Math.round(((product.price.regular - product.price.discount) / product.price.regular) * 100)
-    : 0;
+  const allImages = [
+    product.avatar,
+    ...(product.additionalImages || []),
+  ].filter(Boolean);
+
+  const firstCategoryId = product.categoryIds?.[0] || "";
 
   return (
-    <div className="container mx-auto px-4 py-6">
-      {/* Success Toast */}
-      {showSuccess && (
-        <div className="fixed top-20 right-4 z-50 animate-in slide-in-from-top-2">
-          <div className="flex items-center gap-2 rounded-lg bg-green-500 px-6 py-3 text-white shadow-lg">
-            <Check className="h-5 w-5" />
-            <span>Added to cart successfully!</span>
-          </div>
+    <div className="container mx-auto">
+      {/* SUCCESS MESSAGE */}
+      {showSuccessMessage && (
+        <div className="fixed top-4 right-4 z-50 flex items-center gap-2 rounded-lg bg-green-500 px-6 py-3 text-white">
+          <Check className="h-5 w-5" />
+          Added to cart successfully!
         </div>
       )}
 
-      <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
-        {/* Images */}
+      <ReusableBreadcrumb
+        items={[
+          { path: "/categories", label: "Categories" },
+          {
+            path: firstCategoryId
+              ? `/categories/${categoryData?.slug}`
+              : "/categories",
+            label: categoryData?.name || "Category",
+          },
+          { label: product.title },
+        ]}
+      />
+
+      <div className="grid gap-10 lg:grid-cols-2">
+        {/* IMAGES */}
         <div>
-          <div className="aspect-square w-full overflow-hidden rounded-lg bg-gray-100">
-            <img
-              src={allImages[selectedImage]}
-              alt={product.title}
-              className="h-full w-full object-contain"
-              onError={(e) => e.target.src = "https://via.placeholder.com/500"}
-            />
+          <img src={allImages[selectedImage]} className="rounded-lg" />
+
+          <div className="mt-4 grid grid-cols-4 gap-2">
+            {allImages.map((img, i) => (
+              <img
+                key={i}
+                src={img}
+                onClick={() => setSelectedImage(i)}
+                className="cursor-pointer rounded-lg border"
+              />
+            ))}
           </div>
-          {allImages.length > 1 && (
-            <div className="mt-4 grid grid-cols-4 gap-2">
-              {allImages.map((img, i) => (
-                <button
-                  key={i}
-                  onClick={() => setSelectedImage(i)}
-                  className={`overflow-hidden rounded-lg border-2 ${
-                    selectedImage === i ? "border-orange-500" : "border-transparent"
-                  }`}
-                >
-                  <img src={img} alt="" className="aspect-square w-full object-cover" />
-                </button>
-              ))}
-            </div>
-          )}
         </div>
 
-        {/* Info */}
-        <div className="space-y-6">
-          <h1 className="text-3xl font-bold">{product.title}</h1>
+        {/* DETAILS */}
+        <div>
+          <h1 className="mb-4 text-3xl font-bold">{product.title}</h1>
 
-          {product.rating?.average > 0 && (
-            <div className="flex items-center gap-2">
-              <div className="flex items-center">
-                <span className="text-yellow-400">★</span>
-                <span className="ml-1 font-semibold">{product.rating.average}</span>
-              </div>
-              <span className="text-gray-500">({product.rating.totalReviews} reviews)</span>
-            </div>
-          )}
+          <p className="text-3xl font-bold text-orange-600">
+            {product.pricing.currency}
+            {product.pricing.discounted}
+          </p>
 
-          <div className="flex items-center gap-3">
-            <span className="text-3xl font-bold text-orange-600">
-              {currency}{currentPrice.toFixed(2)}
-            </span>
-            {product.price?.discount && (
-              <>
-                <span className="text-lg text-gray-400 line-through">
-                  {currency}{product.price.regular}
+          {/* customizable badge */}
+          {product.customizable && (
+            <div className="mb-6 rounded-lg border border-orange-200 bg-orange-50 p-2 dark:border-orange-700 dark:bg-orange-900/20">
+              <div className="flex items-start gap-3">
+                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-orange-200 text-xl dark:bg-orange-800">
+                  ✨
                 </span>
-                <span className="rounded-full bg-green-100 px-2 py-1 text-sm font-semibold text-green-600">
-                  {discountPercentage}% OFF
-                </span>
-              </>
-            )}
-          </div>
-
-          {isCustomizable && (
-            <div className="rounded-lg border border-orange-200 bg-orange-50 p-3">
-              <div className="flex gap-3">
-                <Sparkles className="h-6 w-6 text-orange-500" />
                 <div>
-                  <h4 className="font-bold text-orange-700">Fully Customizable!</h4>
-                  <p className="text-sm text-orange-600">Personalize with your preferred options.</p>
+                  <h4 className="text-lg font-bold text-orange-700 dark:text-orange-400">
+                    This Cake is Fully Customizable!
+                  </h4>
+                  <p className="mt-1 text-sm text-orange-600 dark:text-orange-300">
+                    Personalize this cake with your preferred flavors, shapes,
+                    sizes, and icing colors.
+                  </p>
                 </div>
               </div>
             </div>
           )}
 
-          {product.description && (
-            <div>
-              <p className={`text-gray-600 ${showMore ? "" : "line-clamp-3"}`}>
-                {product.description}
+          <p className={`mt-4 text-gray-600 ${showMore ? "" : "line-clamp-3"}`}>
+            {product.description}
+          </p>
+
+          <button
+            onClick={() => setShowMore(!showMore)}
+            className="mt-1 text-orange-500"
+          >
+            {showMore ? "Show Less" : "Read More"}
+          </button>
+
+          <div className="mb-6 rounded-lg border border-orange-200 bg-orange-50 p-1 dark:border-orange-700 dark:bg-orange-900/20">
+            <div className="flex justify-between gap-3">
+              <h4>Starting Price:</h4>
+              <p className="flex items-center text-lg font-bold text-gray-900 dark:text-white">
+                {product.pricing.currency}
+                <span className="ml-1">{product.pricing.discounted}</span>
               </p>
-              <button onClick={() => setShowMore(!showMore)} className="mt-2 text-orange-500">
-                {showMore ? "Show Less" : "Read More"}
-              </button>
             </div>
-          )}
-
-          {product.stock !== undefined && (
-            <p className={product.stock > 0 ? "text-green-600" : "text-red-600"}>
-              {product.stock > 0 ? `✓ In Stock (${product.stock} available)` : "✗ Out of Stock"}
+            <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+              The price shown is for a single pound cake in base options. The
+              final price might change based on the options you choose.
             </p>
-          )}
-
-          <div className="flex items-center gap-4">
-            <span className="font-medium">Quantity:</span>
-            <div className="flex items-center gap-3">
-              <Button
-                variant="outline"
-                size="icon"
-                onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                disabled={quantity <= 1}
-              >
-                <Minus className="h-4 w-4" />
-              </Button>
-              <span className="w-8 text-center font-medium">{quantity}</span>
-              <Button
-                variant="outline"
-                size="icon"
-                onClick={() => setQuantity(quantity + 1)}
-              >
-                <Plus className="h-4 w-4" />
-              </Button>
-            </div>
           </div>
 
-          <div className="flex gap-4">
+          {/* QUANTITY */}
+          <div className="mt-6 flex items-center gap-3">
             <Button
-              onClick={handleAddToCart}
-              disabled={product.stock === 0 || isAdding}
-              className={`flex-1 ${
-                isCustomizable
-                  ? "bg-gradient-to-r from-purple-500 to-orange-500"
-                  : "bg-gradient-to-r from-orange-400 to-orange-600"
-              } text-white`}
+              variant="outline"
+              size="icon"
+              onClick={() => setQuantity(Math.max(1, quantity - 1))}
             >
-              {isAdding ? (
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              ) : (
-                <ShoppingCart className="mr-2 h-4 w-4" />
-              )}
-              {isCustomizable ? "Customize & Add to Cart" : "Add to Cart"}
+              <Minus />
+            </Button>
+            <span>{quantity}</span>
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={() => setQuantity(quantity + 1)}
+            >
+              <Plus />
+            </Button>
+          </div>
+
+          {/* ACTION BUTTON */}
+          <div className="mt-6 flex gap-4">
+            <Button
+              onClick={() => setShowDeliveryModal(true)}
+              className="flex-1 bg-gradient-to-r from-orange-400 to-orange-600 text-white"
+            >
+              <ShoppingCart className="mr-2 h-4 w-4" />
+              Customize & Add to Cart
             </Button>
 
             <Button
               variant="outline"
               size="icon"
-              onClick={toggleFavorite}
-              className="hover:bg-red-50"
+              onClick={() => setIsFavorite(!isFavorite)}
             >
-              <Heart className={`h-4 w-4 ${isFavorite ? "fill-red-500 text-red-500" : ""}`} />
+              <Heart
+                className={`h-4 w-4 ${
+                  isFavorite ? "fill-red-500 text-red-500" : ""
+                }`}
+              />
             </Button>
           </div>
         </div>
       </div>
 
-      {/* Features */}
-      {product.features?.length > 0 && (
-        <div className="mt-12">
-          <h3 className="mb-4 text-xl font-semibold">Features</h3>
-          <ul className="grid gap-2 md:grid-cols-2">
-            {product.features.map((feature, i) => (
-              <li key={i} className="flex items-start gap-2">
-                <Check className="mt-1 h-4 w-4 text-green-500" />
-                <span>{feature}</span>
-              </li>
-            ))}
-          </ul>
+      {/* RELATED PRODUCTS */}
+      <div className="mt-16">
+        <h2 className="mb-6 text-2xl font-bold">You Might Also Like</h2>
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {relatedProducts.map((item) => (
+            <ProductCard key={item.id} product={item} />
+          ))}
         </div>
-      )}
+      </div>
 
-      {/* Related Products */}
-      {relatedProducts.length > 0 && (
-        <div className="mt-16">
-          <h2 className="mb-6 text-2xl font-bold">You Might Also Like</h2>
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {relatedProducts.map((item) => (
-              <ProductCard key={item._id || item.id} product={item} />
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* Customization Modal */}
-      {isCustomizable && (
-        <DeliveryCustomizationModal
-          isOpen={showDeliveryModal}
-          onClose={() => setShowDeliveryModal(false)}
-          addToCart={addToCart}
-          product={product}
-          quantity={quantity}
-          onSuccess={() => {
-            setShowDeliveryModal(false);
-            setShowSuccess(true);
-            setTimeout(() => setShowSuccess(false), 2000);
-          }}
-        />
-      )}
+      {/* DELIVERY + CUSTOMIZATION MODAL */}
+      <DeliveryCustomizationModal
+        isOpen={showDeliveryModal}
+        onClose={() => setShowDeliveryModal(false)}
+        addToCart={addToCart}
+        product={product}
+        quantity={quantity}
+      />
     </div>
   );
 };

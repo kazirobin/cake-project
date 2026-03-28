@@ -205,7 +205,6 @@
       },
       "status": "active"
     },
-    
     {
       "_id": "cat_cupcakes",
       "name": "Cupcakes",
@@ -315,6 +314,7 @@
     }
   ],
 
+
   "vendors": [
     {
       "_id": "vendor1",
@@ -359,7 +359,7 @@
     }
   ],
 
-  "products": [
+ "products": [
     {
       "_id": "prod1",
       "title": "Samsung Galaxy S23 Ultra",
@@ -373,16 +373,8 @@
         "currency": "USD"
       },
       "images": [
-        {
-          "url": "s23-1.jpg",
-          "isPrimary": true,
-          "altText": "Samsung Galaxy S23 Ultra Black Front"
-        },
-        {
-          "url": "s23-2.jpg",
-          "isPrimary": false,
-          "altText": "Samsung Galaxy S23 Ultra Back"
-        }
+        { "url": "s23-1.jpg", "isPrimary": true, "altText": "Samsung Galaxy S23 Ultra Black Front" },
+        { "url": "s23-2.jpg", "isPrimary": false, "altText": "Samsung Galaxy S23 Ultra Back" }
       ],
       "videoUrl": "s23-promo.mp4",
       "rating": {
@@ -390,13 +382,9 @@
         "totalReviews": 340
       },
       "attributes": {
-        "customizable": true,
-        "defaultColor": "Black",
-        "defaultStorage": "256GB",
-        "defaultRam": "12GB",
-        "colorOptions": ["Black", "Green", "Purple"],
-        "storageOptions": ["256GB", "512GB", "1TB"],
-        "ramOptions": ["12GB"]
+        "color": ["Black", "Green"],
+        "storage": ["256GB", "512GB"],
+        "ram": ["12GB"]
       },
       "variants": ["var1", "var2"],
       "specifications": {
@@ -425,16 +413,12 @@
       "shopId": null,
       "brand": "UG Cakes",
       "price": {
-        "regular": 14.2,
+        "regular": 14.20,
         "discount": 11.83,
         "currency": "USD"
       },
       "images": [
-        {
-          "url": "https://media.ugcakes.com/products/large/2199-chocolate-cupcakes-by-ug.jpg",
-          "isPrimary": true,
-          "altText": "Chocolate Cupcakes by UG"
-        }
+        { "url": "https://media.ugcakes.com/products/large/2199-chocolate-cupcakes-by-ug.jpg", "isPrimary": true, "altText": "Chocolate Cupcakes by UG" }
       ],
       "additionalImages": [
         "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
@@ -447,20 +431,7 @@
         "totalReviews": 128
       },
       "attributes": {
-        "customizable": false,
-        "defaultSize": "1kg",
-        "defaultFlavor": "Chocolate",
-        "defaultCakeType": "Normal",
-        "sizeOptions": ["0.5kg", "1kg", "1.5kg", "2kg", "3kg"],
-        "flavorOptions": [
-          "Chocolate",
-          "Vanilla",
-          "Strawberry",
-          "Red Velvet",
-          "Butterscotch",
-          "Black Forest"
-        ],
-        "cakeTypeOptions": ["Normal", "Eggless", "Less Cream", "Extra Juicy"],
+        "customizable": true,
         "dietary": ["Eggless option available"],
         "servingSize": "8-10 people",
         "SKU": "UGC-CC-CHOCOLATE"
@@ -510,11 +481,7 @@
         "currency": "USD"
       },
       "images": [
-        {
-          "url": "https://media.ugcakes.com/products/large/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
-          "isPrimary": true,
-          "altText": "Strawberry Topped Cake"
-        }
+        { "url": "https://media.ugcakes.com/products/large/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp", "isPrimary": true, "altText": "Strawberry Topped Cake" }
       ],
       "additionalImages": [
         "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
@@ -527,19 +494,8 @@
         "totalReviews": 95
       },
       "attributes": {
-        "customizable": false,
-        "defaultSize": "1kg",
-        "defaultFlavor": "Strawberry",
-        "defaultCakeType": "Normal",
-        "sizeOptions": ["0.5kg", "1kg", "1.5kg", "2kg", "3kg"],
-        "flavorOptions": [
-          "Strawberry",
-          "Chocolate",
-          "Vanilla",
-          "Red Velvet",
-          "Butterscotch"
-        ],
-        "cakeTypeOptions": ["Normal", "Eggless", "Less Cream", "Extra Juicy"],
+        "customizable": true,
+        "flavor": "Strawberry",
         "SKU": "UGC-B-1115"
       },
       "specifications": {
@@ -584,11 +540,7 @@
         "currency": "USD"
       },
       "images": [
-        {
-          "url": "https://media.ugcakes.com/products/large/rose-garden-887631752131346-U03zjdIwmF.webp",
-          "isPrimary": true,
-          "altText": "Rose Garden Cake"
-        }
+        { "url": "https://media.ugcakes.com/products/large/rose-garden-887631752131346-U03zjdIwmF.webp", "isPrimary": true, "altText": "Rose Garden Cake" }
       ],
       "additionalImages": [
         "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
@@ -601,19 +553,8 @@
         "totalReviews": 112
       },
       "attributes": {
-        "customizable": false,
-        "defaultSize": "1kg",
-        "defaultFlavor": "Vanilla with Strawberry filling",
-        "defaultCakeType": "Normal",
-        "sizeOptions": ["0.5kg", "1kg", "1.5kg", "2kg", "3kg"],
-        "flavorOptions": [
-          "Vanilla",
-          "Chocolate",
-          "Strawberry",
-          "Red Velvet",
-          "Butterscotch"
-        ],
-        "cakeTypeOptions": ["Normal", "Eggless", "Less Cream", "Extra Juicy"],
+        "customizable": true,
+        "flavor": "Vanilla with Strawberry filling",
         "SKU": "UGC-B-1013"
       },
       "specifications": {
@@ -658,11 +599,7 @@
         "currency": "USD"
       },
       "images": [
-        {
-          "url": "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
-          "isPrimary": true,
-          "altText": "Red Velvet Cupcakes by UG"
-        }
+        { "url": "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp", "isPrimary": true, "altText": "Red Velvet Cupcakes by UG" }
       ],
       "additionalImages": [
         "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
@@ -675,19 +612,8 @@
         "totalReviews": 78
       },
       "attributes": {
-        "customizable": false,
-        "defaultSize": "1kg",
-        "defaultFlavor": "Red Velvet",
-        "defaultCakeType": "Normal",
-        "sizeOptions": ["0.5kg", "1kg", "1.5kg", "2kg", "3kg"],
-        "flavorOptions": [
-          "Red Velvet",
-          "Chocolate",
-          "Vanilla",
-          "Strawberry",
-          "Butterscotch"
-        ],
-        "cakeTypeOptions": ["Normal", "Eggless", "Less Cream", "Extra Juicy"],
+        "customizable": true,
+        "flavor": "Red Velvet",
         "SKU": "UGC-CC-REDVELVET"
       },
       "specifications": {
@@ -732,11 +658,7 @@
         "currency": "USD"
       },
       "images": [
-        {
-          "url": "https://media.ugcakes.com/products/large/4867-chocolate-cake-with-choco-bark.webp",
-          "isPrimary": true,
-          "altText": "Chocolate Truffle Cake with Choco Barks"
-        }
+        { "url": "https://media.ugcakes.com/products/large/4867-chocolate-cake-with-choco-bark.webp", "isPrimary": true, "altText": "Chocolate Truffle Cake with Choco Barks" }
       ],
       "additionalImages": [
         "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
@@ -749,18 +671,8 @@
         "totalReviews": 67
       },
       "attributes": {
-        "customizable": false,
-        "defaultSize": "1kg",
-        "defaultFlavor": "Chocolate",
-        "defaultCakeType": "Normal",
-        "sizeOptions": ["0.5kg", "1kg", "1.5kg", "2kg", "3kg"],
-        "flavorOptions": [
-          "Chocolate",
-          "Dark Chocolate",
-          "Milk Chocolate",
-          "White Chocolate"
-        ],
-        "cakeTypeOptions": ["Normal", "Eggless", "Less Cream", "Extra Juicy"],
+        "customizable": true,
+        "flavor": "Chocolate",
         "SKU": "UGC-C-190"
       },
       "specifications": {
@@ -805,11 +717,7 @@
         "currency": "USD"
       },
       "images": [
-        {
-          "url": "https://media.ugcakes.com/products/large/rasmalai-cake-with-floral-and-pearls-detailing-659981711618140-uxGIlG0kaS.webp",
-          "isPrimary": true,
-          "altText": "Rasmalai Cake with Floral and Pearls Detailing"
-        }
+        { "url": "https://media.ugcakes.com/products/large/rasmalai-cake-with-floral-and-pearls-detailing-659981711618140-uxGIlG0kaS.webp", "isPrimary": true, "altText": "Rasmalai Cake with Floral and Pearls Detailing" }
       ],
       "additionalImages": [
         "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
@@ -823,18 +731,7 @@
       },
       "attributes": {
         "customizable": true,
-        "defaultSize": "1kg",
-        "defaultFlavor": "Rasmalai",
-        "defaultCakeType": "Normal",
-        "sizeOptions": ["0.5kg", "1kg", "1.5kg", "2kg", "3kg"],
-        "flavorOptions": [
-          "Rasmalai",
-          "Chocolate",
-          "Vanilla",
-          "Strawberry",
-          "Pineapple"
-        ],
-        "cakeTypeOptions": ["Normal", "Eggless", "Less Cream", "Extra Juicy"],
+        "flavor": "Rasmalai",
         "SKU": "UGC-B-604"
       },
       "specifications": {
@@ -879,11 +776,7 @@
         "currency": "USD"
       },
       "images": [
-        {
-          "url": "https://media.ugcakes.com/products/large/3629-chocolate-muffins.JPG",
-          "isPrimary": true,
-          "altText": "Chocolate Muffins"
-        }
+        { "url": "https://media.ugcakes.com/products/large/3629-chocolate-muffins.JPG", "isPrimary": true, "altText": "Chocolate Muffins" }
       ],
       "additionalImages": [
         "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
@@ -897,18 +790,7 @@
       },
       "attributes": {
         "customizable": true,
-        "defaultSize": "6pcs",
-        "defaultFlavor": "Chocolate",
-        "defaultCakeType": "Normal",
-        "sizeOptions": ["6pcs", "12pcs", "24pcs", "48pcs"],
-        "flavorOptions": [
-          "Chocolate",
-          "Vanilla",
-          "Strawberry",
-          "Red Velvet",
-          "Blueberry"
-        ],
-        "cakeTypeOptions": ["Normal", "Eggless", "Less Cream", "Extra Juicy"],
+        "flavor": "Chocolate",
         "SKU": "UG-CM"
       },
       "specifications": {
@@ -953,11 +835,7 @@
         "currency": "USD"
       },
       "images": [
-        {
-          "url": "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
-          "isPrimary": true,
-          "altText": "Happy Birthday Brother Cake"
-        }
+        { "url": "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp", "isPrimary": true, "altText": "Happy Birthday Brother Cake" }
       ],
       "additionalImages": [
         "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
@@ -970,19 +848,8 @@
         "totalReviews": 72
       },
       "attributes": {
-        "customizable": false,
-        "defaultSize": "1kg",
-        "defaultFlavor": "Black Forest",
-        "defaultCakeType": "Normal",
-        "sizeOptions": ["0.5kg", "1kg", "1.5kg", "2kg", "3kg"],
-        "flavorOptions": [
-          "Black Forest",
-          "Chocolate",
-          "Vanilla",
-          "Strawberry",
-          "Pineapple"
-        ],
-        "cakeTypeOptions": ["Normal", "Eggless", "Less Cream", "Extra Juicy"],
+        "customizable": true,
+        "flavor": "Black Forest",
         "SKU": "UGC-BB-8890"
       },
       "specifications": {
@@ -1027,11 +894,7 @@
         "currency": "USD"
       },
       "images": [
-        {
-          "url": "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
-          "isPrimary": true,
-          "altText": "Happy Birthday Sister Cake"
-        }
+        { "url": "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp", "isPrimary": true, "altText": "Happy Birthday Sister Cake" }
       ],
       "additionalImages": [
         "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
@@ -1044,19 +907,8 @@
         "totalReviews": 94
       },
       "attributes": {
-        "customizable": false,
-        "defaultSize": "1kg",
-        "defaultFlavor": "Strawberry",
-        "defaultCakeType": "Normal",
-        "sizeOptions": ["0.5kg", "1kg", "1.5kg", "2kg", "3kg"],
-        "flavorOptions": [
-          "Strawberry",
-          "Chocolate",
-          "Vanilla",
-          "Red Velvet",
-          "Pineapple"
-        ],
-        "cakeTypeOptions": ["Normal", "Eggless", "Less Cream", "Extra Juicy"],
+        "customizable": true,
+        "flavor": "Strawberry",
         "SKU": "UGC-BS-9901"
       },
       "specifications": {
@@ -1101,11 +953,7 @@
         "currency": "USD"
       },
       "images": [
-        {
-          "url": "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
-          "isPrimary": true,
-          "altText": "Happy Anniversary Cake"
-        }
+        { "url": "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp", "isPrimary": true, "altText": "Happy Anniversary Cake" }
       ],
       "additionalImages": [
         "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
@@ -1119,18 +967,7 @@
       },
       "attributes": {
         "customizable": true,
-        "defaultSize": "1kg",
-        "defaultFlavor": "Red Velvet",
-        "defaultCakeType": "Normal",
-        "sizeOptions": ["0.5kg", "1kg", "1.5kg", "2kg", "3kg"],
-        "flavorOptions": [
-          "Red Velvet",
-          "Chocolate",
-          "Vanilla",
-          "Strawberry",
-          "Butterscotch"
-        ],
-        "cakeTypeOptions": ["Normal", "Eggless", "Less Cream", "Extra Juicy"],
+        "flavor": "Red Velvet",
         "SKU": "UGC-HA-1012"
       },
       "specifications": {
@@ -1175,11 +1012,7 @@
         "currency": "USD"
       },
       "images": [
-        {
-          "url": "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
-          "isPrimary": true,
-          "altText": "Happy Birthday Grandpa Cake"
-        }
+        { "url": "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp", "isPrimary": true, "altText": "Happy Birthday Grandpa Cake" }
       ],
       "additionalImages": [
         "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
@@ -1192,19 +1025,8 @@
         "totalReviews": 63
       },
       "attributes": {
-        "customizable": false,
-        "defaultSize": "1kg",
-        "defaultFlavor": "Vanilla with Caramel",
-        "defaultCakeType": "Normal",
-        "sizeOptions": ["0.5kg", "1kg", "1.5kg", "2kg", "3kg"],
-        "flavorOptions": [
-          "Vanilla",
-          "Chocolate",
-          "Caramel",
-          "Butterscotch",
-          "Pineapple"
-        ],
-        "cakeTypeOptions": ["Normal", "Eggless", "Less Cream", "Extra Juicy"],
+        "customizable": true,
+        "flavor": "Vanilla with Caramel",
         "SKU": "UGC-BG-1123"
       },
       "specifications": {
@@ -1249,11 +1071,7 @@
         "currency": "USD"
       },
       "images": [
-        {
-          "url": "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
-          "isPrimary": true,
-          "altText": "Happy Birthday Grandma Cake"
-        }
+        { "url": "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp", "isPrimary": true, "altText": "Happy Birthday Grandma Cake" }
       ],
       "additionalImages": [
         "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
@@ -1267,18 +1085,7 @@
       },
       "attributes": {
         "customizable": true,
-        "defaultSize": "1kg",
-        "defaultFlavor": "Lemon",
-        "defaultCakeType": "Normal",
-        "sizeOptions": ["0.5kg", "1kg", "1.5kg", "2kg", "3kg"],
-        "flavorOptions": [
-          "Lemon",
-          "Vanilla",
-          "Strawberry",
-          "Pineapple",
-          "Orange"
-        ],
-        "cakeTypeOptions": ["Normal", "Eggless", "Less Cream", "Extra Juicy"],
+        "flavor": "Lemon",
         "SKU": "UGC-BG-1224"
       },
       "specifications": {
@@ -1323,11 +1130,7 @@
         "currency": "USD"
       },
       "images": [
-        {
-          "url": "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
-          "isPrimary": true,
-          "altText": "Happy Birthday Grandma Cake Special Edition"
-        }
+        { "url": "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp", "isPrimary": true, "altText": "Happy Birthday Grandma Cake Special Edition" }
       ],
       "additionalImages": [
         "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
@@ -1341,18 +1144,7 @@
       },
       "attributes": {
         "customizable": true,
-        "defaultSize": "1kg",
-        "defaultFlavor": "Lemon",
-        "defaultCakeType": "Normal",
-        "sizeOptions": ["0.5kg", "1kg", "1.5kg", "2kg", "3kg"],
-        "flavorOptions": [
-          "Lemon",
-          "Vanilla",
-          "Strawberry",
-          "Pineapple",
-          "Orange"
-        ],
-        "cakeTypeOptions": ["Normal", "Eggless", "Less Cream", "Extra Juicy"],
+        "flavor": "Lemon",
         "SKU": "UGC-BG-1224-SE"
       },
       "specifications": {
@@ -1385,6 +1177,7 @@
       "relatedProducts": [3, 9, 13, 19]
     }
   ],
+
   "variants": [
     {
       "_id": "var1",
