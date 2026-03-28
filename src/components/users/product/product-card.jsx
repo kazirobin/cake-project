@@ -153,7 +153,6 @@ const ProductCard = ({ product, categorySlug = "category" }) => {
         };
         
         console.log('Adding to cart:', cartItem);
-        addToCart(cartItem);
         setShowPopup(true);
         setTimeout(() => setShowPopup(false), 2000);
       } catch (error) {
