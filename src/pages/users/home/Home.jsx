@@ -9,6 +9,7 @@ import Features from "@/components/users/features/features";
 import ProductShowcase from "@/components/users/product/product-showcase";
 
 const Home = () => {
+  
   const featuredProducts = productService.getFeaturedProducts(4);
   const newArrivals = productService.getNewArrivals(4);
 
