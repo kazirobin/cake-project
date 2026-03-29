@@ -1,0 +1,1525 @@
+{
+  "categories": [
+    {
+      "_id": "cat_electronics",
+      "name": "Electronics",
+      "slug": "electronics",
+      "type": "marketplace",
+      "parentId": null,
+      "level": 0,
+      "path": "electronics",
+      "subCategories": ["cat_mobiles", "cat_computers"],
+      "image": "electronics-cat-banner.jpg",
+      "icon": "electronics-icon.svg",
+      "metaTitle": "Buy Electronics Products Online | Daraz-like",
+      "metaDescription": "Shop from a wide range of Electronics including Mobiles, Computers and more. Best prices in Bangladesh.",
+      "filterableAttributes": ["brand", "price", "ram", "storage"],
+      "productCount": 350,
+      "status": "active"
+    },
+    {
+      "_id": "cat_birthday",
+      "name": "Birthday Cakes",
+      "slug": "birthday-cakes",
+      "type": "bakery",
+      "parentId": null,
+      "level": 0,
+      "path": "birthday-cakes",
+      "description": "Celebrate with our delicious birthday cakes",
+      "image": "https://images.unsplash.com/photo-1562777717-dc6984f65a63",
+      "heroImage": "https://images.unsplash.com/photo-1558301211-0d8c8ddee6ec",
+      "heroTitle": "Make Their Birthday Special",
+      "heroDescription": "Customize your cake with photos, messages, and designs",
+      "productCount": 24,
+      "metaTitle": "Birthday Cakes - Custom Designs for Every Age",
+      "metaDescription": "Find the perfect birthday cake with customizable designs for kids, teens, and adults. Order online with free delivery.",
+      "filters": {
+        "customizable": true,
+        "dietary": ["Eggless", "Gluten-Free", "Vegan"],
+        "sizes": ["0.5kg", "1kg", "1.5kg", "2kg", "3kg"],
+        "themes": [
+          "Cartoon",
+          "Elegant",
+          "Photo Cake",
+          "Number Cake",
+          "Character"
+        ],
+        "priceRanges": [
+          { "min": 0, "max": 25, "label": "Under $25" },
+          { "min": 25, "max": 50, "label": "$25 - $50" },
+          { "min": 50, "max": 100, "label": "$50 - $100" },
+          { "min": 100, "max": 500, "label": "$100+" }
+        ]
+      },
+      "specificComponents": ["BirthdaySpecial"],
+      "seo": {
+        "keywords": [
+          "birthday cakes",
+          "happy birthday cake",
+          "custom birthday cake",
+          "kids birthday cake"
+        ],
+        "schema": "Product"
+      },
+      "status": "active"
+    },
+    {
+      "_id": "cat_wedding",
+      "name": "Wedding Cakes",
+      "slug": "wedding-cakes",
+      "type": "bakery",
+      "parentId": null,
+      "level": 0,
+      "path": "wedding-cakes",
+      "description": "Elegant cakes for your special day",
+      "image": "https://images.unsplash.com/photo-1535254973040-607b474cb50d",
+      "heroImage": "https://images.unsplash.com/photo-1578985545062-69928b1d9587",
+      "heroTitle": "Your Dream Wedding Cake",
+      "heroDescription": "From classic to contemporary designs",
+      "productCount": 18,
+      "metaTitle": "Wedding Cakes - Elegant Designs for Your Wedding",
+      "metaDescription": "Beautiful wedding cakes designed for your perfect day. Choose from classic, modern, and rustic styles.",
+      "filters": {
+        "customizable": true,
+        "tiers": ["Single", "2-Tier", "3-Tier", "4-Tier", "5-Tier"],
+        "flavors": ["Vanilla", "Chocolate", "Red Velvet", "Fruit", "Lemon"],
+        "dietary": ["Eggless", "Gluten-Free"],
+        "colors": ["White", "Ivory", "Gold", "Rose Gold", "Blush Pink"]
+      },
+      "specificComponents": ["WeddingSpecial"],
+      "seo": {
+        "keywords": [
+          "wedding cakes",
+          "bridal cakes",
+          "wedding cake designs",
+          "tiered cakes"
+        ],
+        "schema": "Product"
+      },
+      "status": "active"
+    },
+    {
+      "_id": "cat_anniversary",
+      "name": "Anniversary Cakes",
+      "slug": "anniversary-cakes",
+      "type": "bakery",
+      "parentId": null,
+      "level": 0,
+      "path": "anniversary-cakes",
+      "description": "Celebrate love with our anniversary specials",
+      "image": "https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b",
+      "heroImage": "https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b",
+      "heroTitle": "Celebrate Your Love Story",
+      "heroDescription": "Personalized cakes for every anniversary milestone",
+      "productCount": 15,
+      "metaTitle": "Anniversary Cakes - Celebrate Love",
+      "metaDescription": "Romantic cakes for your anniversary celebration. Personalized designs for every milestone.",
+      "filters": {
+        "customizable": true,
+        "themes": ["Romantic", "Elegant", "Modern", "Classic", "Heart-Shaped"],
+        "years": ["1st", "5th", "10th", "25th", "50th"],
+        "dietary": ["Eggless", "Vegan"]
+      },
+      "specificComponents": ["AnniversarySpecial"],
+      "seo": {
+        "keywords": [
+          "anniversary cakes",
+          "romantic cakes",
+          "love cakes",
+          "milestone cakes"
+        ],
+        "schema": "Product"
+      },
+      "status": "active"
+    },
+    {
+      "_id": "cat_kids",
+      "name": "Kids Cakes",
+      "slug": "kids-cakes",
+      "type": "bakery",
+      "parentId": null,
+      "level": 0,
+      "path": "kids-cakes",
+      "description": "Fun and colorful cakes for little ones",
+      "image": "https://tse4.mm.bing.net/th/id/OIP.tT2QO3csQTo51eqNY-I6lQHaJ_",
+      "heroImage": "https://images.unsplash.com/photo-1587668178277-c295520f5d2a",
+      "heroTitle": "Magical Cakes for Little Ones",
+      "heroDescription": "Bring their favorite characters to life",
+      "productCount": 20,
+      "metaTitle": "Kids Cakes - Fun Designs for Children",
+      "metaDescription": "Exciting cakes for kids' birthdays with cartoon characters, superheroes, and fun themes.",
+      "filters": {
+        "customizable": true,
+        "characters": [
+          "Superhero",
+          "Princess",
+          "Cartoon",
+          "Animal",
+          "Dinosaur"
+        ],
+        "sizes": ["0.5kg", "1kg", "1.5kg"],
+        "dietary": ["Eggless"]
+      },
+      "specificComponents": ["KidsSpecial"],
+      "seo": {
+        "keywords": [
+          "kids cakes",
+          "children's birthday cakes",
+          "character cakes",
+          "fun cakes"
+        ],
+        "schema": "Product"
+      },
+      "status": "active"
+    },
+    {
+      "_id": "cat_photo",
+      "name": "Photo Cakes",
+      "slug": "photo-cakes",
+      "type": "bakery",
+      "parentId": null,
+      "level": 0,
+      "path": "photo-cakes",
+      "description": "Edible photo prints on delicious cakes",
+      "image": "https://images.unsplash.com/photo-1578985545062-69928b1d9587",
+      "heroImage": "https://images.unsplash.com/photo-1578985545062-69928b1d9587",
+      "heroTitle": "Your Photos on a Cake",
+      "heroDescription": "Turn memories into delicious art",
+      "productCount": 12,
+      "metaTitle": "Photo Cakes - Personalize with Photos",
+      "metaDescription": "Create memorable cakes with edible photo prints. Perfect for birthdays, anniversaries, and special occasions.",
+      "filters": {
+        "customizable": true,
+        "sizes": ["0.5kg", "1kg", "1.5kg", "2kg"],
+        "shapes": ["Round", "Square", "Heart", "Custom"]
+      },
+      "specificComponents": ["PhotoSpecial"],
+      "seo": {
+        "keywords": [
+          "photo cakes",
+          "picture cakes",
+          "custom photo cakes",
+          "edible image cakes"
+        ],
+        "schema": "Product"
+      },
+      "status": "active"
+    },
+    
+    {
+      "_id": "cat_cupcakes",
+      "name": "Cupcakes",
+      "slug": "cupcakes",
+      "type": "bakery",
+      "parentId": null,
+      "level": 0,
+      "path": "cupcakes",
+      "description": "Delicious individual treats for any occasion",
+      "image": "https://images.unsplash.com/photo-1576618148400-f54bed99fcfd",
+      "heroImage": "https://images.unsplash.com/photo-1576618148400-f54bed99fcfd",
+      "heroTitle": "Sweet Treats in Every Bite",
+      "heroDescription": "Perfect for sharing or indulging yourself",
+      "productCount": 16,
+      "metaTitle": "Cupcakes - Perfect Individual Treats",
+      "metaDescription": "Delicious cupcakes in various flavors. Perfect for parties, events, and gifting.",
+      "filters": {
+        "customizable": true,
+        "quantities": ["6 pcs", "12 pcs", "24 pcs", "48 pcs"],
+        "flavors": [
+          "Vanilla",
+          "Chocolate",
+          "Red Velvet",
+          "Strawberry",
+          "Lemon"
+        ],
+        "dietary": ["Eggless", "Gluten-Free", "Vegan"]
+      },
+      "specificComponents": ["CupcakeSpecial"],
+      "seo": {
+        "keywords": [
+          "cupcakes",
+          "mini cakes",
+          "cupcake delivery",
+          "custom cupcakes"
+        ],
+        "schema": "Product"
+      },
+      "status": "active"
+    },
+    {
+      "_id": "cat_pastries",
+      "name": "Pastries",
+      "slug": "pastries",
+      "type": "bakery",
+      "parentId": null,
+      "level": 0,
+      "path": "pastries",
+      "description": "Delicate and flaky baked delights",
+      "image": "https://images.unsplash.com/photo-1509365465985-25d11c17e812",
+      "heroImage": "https://images.unsplash.com/photo-1509365465985-25d11c17e812",
+      "heroTitle": "Flaky, Creamy, Delicious",
+      "heroDescription": "Traditional and modern pastry delights",
+      "productCount": 14,
+      "metaTitle": "Pastries - Delicate Baked Treats",
+      "metaDescription": "Freshly baked pastries with creamy fillings and flaky layers.",
+      "filters": {
+        "flavors": ["Vanilla", "Chocolate", "Fruit", "Cream", "Caramel"],
+        "types": ["Puffs", "Tarts", "Éclairs", "Danishes"]
+      },
+      "specificComponents": ["PastrySpecial"],
+      "seo": {
+        "keywords": [
+          "pastries",
+          "cream puffs",
+          "éclairs",
+          "tarts",
+          "baked goods"
+        ],
+        "schema": "Product"
+      },
+      "status": "active"
+    },
+    {
+      "_id": "cat_cookies",
+      "name": "Cookies",
+      "slug": "cookies",
+      "type": "bakery",
+      "parentId": null,
+      "level": 0,
+      "path": "cookies",
+      "description": "Crunchy and chewy cookies made fresh",
+      "image": "https://images.unsplash.com/photo-1558961363-fa8fdf82db35",
+      "heroImage": "https://images.unsplash.com/photo-1558961363-fa8fdf82db35",
+      "heroTitle": "Fresh Baked Cookies",
+      "heroDescription": "Crunchy, chewy, and absolutely delicious",
+      "productCount": 10,
+      "metaTitle": "Cookies - Fresh Baked Goodness",
+      "metaDescription": "Delicious cookies in various flavors. Perfect for tea-time or gifting.",
+      "filters": {
+        "flavors": [
+          "Chocolate Chip",
+          "Oatmeal",
+          "Butter",
+          "Almond",
+          "Double Chocolate"
+        ],
+        "dietary": ["Eggless", "Gluten-Free", "Vegan"],
+        "giftPacks": ["Regular", "Festive", "Premium"]
+      },
+      "specificComponents": ["CookieSpecial"],
+      "seo": {
+        "keywords": ["cookies", "biscuits", "cookie gifts", "fresh cookies"],
+        "schema": "Product"
+      },
+      "status": "active"
+    }
+  ],
+
+  "vendors": [
+    {
+      "_id": "vendor1",
+      "name": "Tech World",
+      "email": "techworld@shop.com",
+      "phone": "01711111111",
+      "verified": true,
+      "shopId": "shop1",
+      "rating": 4.7,
+      "totalSales": 1500,
+      "joinedAt": "2025-01-01T00:00:00Z",
+      "address": {
+        "street": "123 Elephant Road",
+        "city": "Dhaka",
+        "division": "Dhaka",
+        "country": "Bangladesh",
+        "zipCode": "1205"
+      },
+      "bankDetails": {
+        "accountHolderName": "Tech World",
+        "bankName": "DBBL",
+        "accountNumber": "1234567890",
+        "routingNumber": "123456789"
+      },
+      "isActive": true
+    }
+  ],
+
+  "shops": [
+    {
+      "_id": "shop1",
+      "vendorId": "vendor1",
+      "name": "Tech World Official",
+      "slug": "tech-world-official",
+      "logo": "techworld.png",
+      "bannerImage": "techworld-banner.png",
+      "description": "Official reseller of Samsung and Xiaomi products. 100% authentic products with brand warranty.",
+      "followers": 12000,
+      "createdAt": "2025-01-10T00:00:00Z",
+      "totalProducts": 350,
+      "responseTime": "within 1 hour"
+    }
+  ],
+
+  "products": [
+    {
+      "_id": "prod1",
+      "title": "Samsung Galaxy S23 Ultra",
+      "slug": "samsung-galaxy-s23-ultra",
+      "categoryId": "cat_android",
+      "shopId": "shop1",
+      "brand": "Samsung",
+      "price": {
+        "regular": 1300,
+        "discount": 1199,
+        "currency": "USD"
+      },
+      "images": [
+        {
+          "url": "s23-1.jpg",
+          "isPrimary": true,
+          "altText": "Samsung Galaxy S23 Ultra Black Front"
+        },
+        {
+          "url": "s23-2.jpg",
+          "isPrimary": false,
+          "altText": "Samsung Galaxy S23 Ultra Back"
+        }
+      ],
+      "videoUrl": "s23-promo.mp4",
+      "rating": {
+        "average": 4.8,
+        "totalReviews": 340
+      },
+      "attributes": {
+        "customizable": true,
+        "defaultColor": "Black",
+        "defaultStorage": "256GB",
+        "defaultRam": "12GB",
+        "colorOptions": ["Black", "Green", "Purple"],
+        "storageOptions": ["256GB", "512GB", "1TB"],
+        "ramOptions": ["12GB"]
+      },
+      "variants": ["var1", "var2"],
+      "specifications": {
+        "display": "6.8-inch Dynamic AMOLED 2X",
+        "processor": "Snapdragon 8 Gen 2",
+        "battery": "5000 mAh"
+      },
+      "warranty": "1-year official warranty",
+      "shippingInfo": {
+        "weight": "0.234 kg",
+        "dimensions": { "length": 16.3, "width": 7.8, "height": 0.89 },
+        "shippingCostType": "free"
+      },
+      "status": "active",
+      "metaTitle": "Samsung Galaxy S23 Ultra Price in Bangladesh | Tech World",
+      "metaDescription": "Buy the latest Samsung Galaxy S23 Ultra at the best price in Bangladesh. 200MP Camera, Snapdragon 8 Gen 2 and 5000 mAh battery. Official Warranty included.",
+      "createdAt": "2026-01-15T00:00:00Z",
+      "updatedAt": "2026-03-01T00:00:00Z",
+      "type": "electronics"
+    },
+    {
+      "_id": "prod2",
+      "title": "Chocolate Cupcakes by UG",
+      "slug": "sugarless-cakes",
+      "categoryId": "cat_sugarless-cakes",
+      "shopId": null,
+      "brand": "UG Cakes",
+      "price": {
+        "regular": 14.2,
+        "discount": 11.83,
+        "currency": "USD"
+      },
+      "images": [
+        {
+          "url": "https://media.ugcakes.com/products/large/2199-chocolate-cupcakes-by-ug.jpg",
+          "isPrimary": true,
+          "altText": "Chocolate Cupcakes by UG"
+        }
+      ],
+      "additionalImages": [
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+        "https://media.ugcakes.com/products/large/2199-chocolate-cupcakes-by-ug.jpg"
+      ],
+      "rating": {
+        "average": 4.5,
+        "totalReviews": 128
+      },
+      "attributes": {
+        "customizable": false,
+        "defaultSize": "1kg",
+        "defaultFlavor": "Chocolate",
+        "defaultCakeType": "Normal",
+        "sizeOptions": ["0.5kg", "1kg", "1.5kg", "2kg", "3kg"],
+        "flavorOptions": [
+          "Chocolate",
+          "Vanilla",
+          "Strawberry",
+          "Red Velvet",
+          "Butterscotch",
+          "Black Forest"
+        ],
+        "cakeTypeOptions": ["Normal", "Eggless", "Less Cream", "Extra Juicy"],
+        "dietary": ["Eggless option available"],
+        "servingSize": "8-10 people",
+        "SKU": "UGC-CC-CHOCOLATE"
+      },
+      "specifications": {
+        "weight": "1 kg (approx)",
+        "shelfLife": "3 days",
+        "storage": "Refrigerate",
+        "calories": "350 kcal",
+        "protein": "4g",
+        "carbs": "45g",
+        "fat": "18g",
+        "ingredients": "Flour, Cocoa, Sugar, Eggs, Butter, Cream"
+      },
+      "features": [
+        "Fresh sponge layers",
+        "Velvety cream frosting",
+        "Hand-arranged strawberries",
+        "Premium ingredients",
+        "Perfect for celebrations"
+      ],
+      "deliveryInfo": [
+        "Free delivery inside Kathmandu Valley",
+        "100% satisfaction guaranteed",
+        "24-hour return policy",
+        "Premium quality ingredients"
+      ],
+      "stock": 20,
+      "status": "active",
+      "metaTitle": "Chocolate Cupcakes by UG - Buy Online",
+      "metaDescription": "Delicious chocolate cupcakes for your special day. Freshly baked with premium ingredients. Free delivery in Kathmandu Valley.",
+      "createdAt": "2026-02-10T00:00:00Z",
+      "updatedAt": "2026-03-01T00:00:00Z",
+      "type": "bakery",
+      "relatedProducts": [2, 3, 4, 5]
+    },
+    {
+      "_id": "prod3",
+      "title": "Strawberry Topped Cake",
+      "slug": "strawberry-topped-cake",
+      "categoryId": "cat_birthday",
+      "shopId": null,
+      "brand": "UG Cakes",
+      "price": {
+        "regular": 17.99,
+        "discount": 14.99,
+        "currency": "USD"
+      },
+      "images": [
+        {
+          "url": "https://media.ugcakes.com/products/large/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+          "isPrimary": true,
+          "altText": "Strawberry Topped Cake"
+        }
+      ],
+      "additionalImages": [
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-2.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-3.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-4.webp"
+      ],
+      "rating": {
+        "average": 4.8,
+        "totalReviews": 95
+      },
+      "attributes": {
+        "customizable": false,
+        "defaultSize": "1kg",
+        "defaultFlavor": "Strawberry",
+        "defaultCakeType": "Normal",
+        "sizeOptions": ["0.5kg", "1kg", "1.5kg", "2kg", "3kg"],
+        "flavorOptions": [
+          "Strawberry",
+          "Chocolate",
+          "Vanilla",
+          "Red Velvet",
+          "Butterscotch"
+        ],
+        "cakeTypeOptions": ["Normal", "Eggless", "Less Cream", "Extra Juicy"],
+        "SKU": "UGC-B-1115"
+      },
+      "specifications": {
+        "weight": "1 kg (approx)",
+        "serves": "8-10 people",
+        "shelfLife": "3 days",
+        "storage": "Refrigerate",
+        "calories": "380 kcal"
+      },
+      "features": [
+        "Personalized message",
+        "Rich chocolate sponge",
+        "Creamy buttercream",
+        "Perfect for Father's Day",
+        "Customizable design"
+      ],
+      "deliveryInfo": [
+        "Free delivery inside Kathmandu Valley",
+        "100% satisfaction guaranteed",
+        "24-hour return policy",
+        "Premium quality ingredients"
+      ],
+      "stock": 15,
+      "status": "active",
+      "metaTitle": "Strawberry Topped Cake - Buy Online",
+      "metaDescription": "Beautiful strawberry topped cake for your celebrations. Fresh, premium ingredients for an unforgettable taste.",
+      "createdAt": "2026-02-15T00:00:00Z",
+      "updatedAt": "2026-03-01T00:00:00Z",
+      "type": "bakery",
+      "relatedProducts": [1, 3, 6, 7]
+    },
+    {
+      "_id": "prod4",
+      "title": "Rose Garden Cake",
+      "slug": "rose-garden-cake",
+      "categoryId": "cat_wedding",
+      "shopId": null,
+      "brand": "UG Cakes",
+      "price": {
+        "regular": 17.99,
+        "discount": 14.99,
+        "currency": "USD"
+      },
+      "images": [
+        {
+          "url": "https://media.ugcakes.com/products/large/rose-garden-887631752131346-U03zjdIwmF.webp",
+          "isPrimary": true,
+          "altText": "Rose Garden Cake"
+        }
+      ],
+      "additionalImages": [
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-2.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-3.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-4.webp"
+      ],
+      "rating": {
+        "average": 4.9,
+        "totalReviews": 112
+      },
+      "attributes": {
+        "customizable": false,
+        "defaultSize": "1kg",
+        "defaultFlavor": "Vanilla with Strawberry filling",
+        "defaultCakeType": "Normal",
+        "sizeOptions": ["0.5kg", "1kg", "1.5kg", "2kg", "3kg"],
+        "flavorOptions": [
+          "Vanilla",
+          "Chocolate",
+          "Strawberry",
+          "Red Velvet",
+          "Butterscotch"
+        ],
+        "cakeTypeOptions": ["Normal", "Eggless", "Less Cream", "Extra Juicy"],
+        "SKU": "UGC-B-1013"
+      },
+      "specifications": {
+        "weight": "1 kg (approx)",
+        "serves": "8-10 people",
+        "shelfLife": "3 days",
+        "storage": "Refrigerate",
+        "calories": "340 kcal"
+      },
+      "features": [
+        "Vanilla sponge",
+        "Strawberry filling",
+        "Buttercream roses",
+        "Personalized message",
+        "Mother's Day special"
+      ],
+      "deliveryInfo": [
+        "Free delivery inside Kathmandu Valley",
+        "100% satisfaction guaranteed",
+        "24-hour return policy",
+        "Premium quality ingredients"
+      ],
+      "stock": 18,
+      "status": "active",
+      "metaTitle": "Rose Garden Cake - Elegant Design",
+      "metaDescription": "Experience the elegance of our Rose Garden cake. Beautifully crafted with artistic rose decorations. Perfect for special occasions.",
+      "createdAt": "2026-02-20T00:00:00Z",
+      "updatedAt": "2026-03-01T00:00:00Z",
+      "type": "bakery",
+      "relatedProducts": [1, 2, 8, 9]
+    },
+    {
+      "_id": "prod5",
+      "title": "Red Velvet Cupcakes by UG",
+      "slug": "red-velvet-cupcakes-by-ug",
+      "categoryId": "cat_cupcakes",
+      "shopId": null,
+      "brand": "UG Cakes",
+      "price": {
+        "regular": 20.39,
+        "discount": 16.99,
+        "currency": "USD"
+      },
+      "images": [
+        {
+          "url": "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+          "isPrimary": true,
+          "altText": "Red Velvet Cupcakes by UG"
+        }
+      ],
+      "additionalImages": [
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-2.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-3.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-4.webp"
+      ],
+      "rating": {
+        "average": 4.7,
+        "totalReviews": 78
+      },
+      "attributes": {
+        "customizable": false,
+        "defaultSize": "1kg",
+        "defaultFlavor": "Red Velvet",
+        "defaultCakeType": "Normal",
+        "sizeOptions": ["0.5kg", "1kg", "1.5kg", "2kg", "3kg"],
+        "flavorOptions": [
+          "Red Velvet",
+          "Chocolate",
+          "Vanilla",
+          "Strawberry",
+          "Butterscotch"
+        ],
+        "cakeTypeOptions": ["Normal", "Eggless", "Less Cream", "Extra Juicy"],
+        "SKU": "UGC-CC-REDVELVET"
+      },
+      "specifications": {
+        "weight": "1 kg (approx)",
+        "serves": "8-10 people",
+        "shelfLife": "4 days",
+        "storage": "Refrigerate",
+        "calories": "360 kcal"
+      },
+      "features": [
+        "Red velvet cake",
+        "Cream cheese frosting",
+        "Gold leaf accents",
+        "Romantic design",
+        "Personalized message"
+      ],
+      "deliveryInfo": [
+        "Free delivery inside Kathmandu Valley",
+        "100% satisfaction guaranteed",
+        "24-hour return policy",
+        "Premium quality ingredients"
+      ],
+      "stock": 12,
+      "status": "active",
+      "metaTitle": "Red Velvet Cupcakes - Buy Online",
+      "metaDescription": "Delicious red velvet cupcakes with cream cheese frosting. Perfect for birthdays and special occasions.",
+      "createdAt": "2026-02-25T00:00:00Z",
+      "updatedAt": "2026-03-01T00:00:00Z",
+      "type": "bakery",
+      "relatedProducts": [1, 5, 10, 11]
+    },
+    {
+      "_id": "prod6",
+      "title": "Chocolate Truffle Cake with Choco Barks",
+      "slug": "chocolate-truffle-cake-with-choco-barks",
+      "categoryId": "cat_birthday",
+      "shopId": null,
+      "brand": "UG Cakes",
+      "price": {
+        "regular": 20.39,
+        "discount": 16.99,
+        "currency": "USD"
+      },
+      "images": [
+        {
+          "url": "https://media.ugcakes.com/products/large/4867-chocolate-cake-with-choco-bark.webp",
+          "isPrimary": true,
+          "altText": "Chocolate Truffle Cake with Choco Barks"
+        }
+      ],
+      "additionalImages": [
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-2.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-3.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-4.webp"
+      ],
+      "rating": {
+        "average": 4.6,
+        "totalReviews": 67
+      },
+      "attributes": {
+        "customizable": false,
+        "defaultSize": "1kg",
+        "defaultFlavor": "Chocolate",
+        "defaultCakeType": "Normal",
+        "sizeOptions": ["0.5kg", "1kg", "1.5kg", "2kg", "3kg"],
+        "flavorOptions": [
+          "Chocolate",
+          "Dark Chocolate",
+          "Milk Chocolate",
+          "White Chocolate"
+        ],
+        "cakeTypeOptions": ["Normal", "Eggless", "Less Cream", "Extra Juicy"],
+        "SKU": "UGC-C-190"
+      },
+      "specifications": {
+        "weight": "1 kg (approx)",
+        "serves": "8-10 people",
+        "shelfLife": "4 days",
+        "storage": "Refrigerate",
+        "calories": "390 kcal"
+      },
+      "features": [
+        "Whiskey chocolate",
+        "Rich ganache",
+        "Dark chocolate shavings",
+        "Masculine design",
+        "Personalized message"
+      ],
+      "deliveryInfo": [
+        "Free delivery inside Kathmandu Valley",
+        "100% satisfaction guaranteed",
+        "24-hour return policy",
+        "Premium quality ingredients"
+      ],
+      "stock": 10,
+      "status": "active",
+      "metaTitle": "Chocolate Truffle Cake with Choco Barks",
+      "metaDescription": "This beautiful classic chocolate cake is for chocolate lovers. Topped with choco wafer and bark.",
+      "createdAt": "2026-03-01T00:00:00Z",
+      "updatedAt": "2026-03-01T00:00:00Z",
+      "type": "bakery",
+      "relatedProducts": [2, 4, 6, 12]
+    },
+    {
+      "_id": "prod7",
+      "title": "Rasmalai Cake with Floral and Pearls Detailing",
+      "slug": "rasmalai-cake-with-floral-and-pearls-detailing",
+      "categoryId": "cat_anniversary",
+      "shopId": null,
+      "brand": "UG Cakes",
+      "price": {
+        "regular": 16.79,
+        "discount": 13.99,
+        "currency": "USD"
+      },
+      "images": [
+        {
+          "url": "https://media.ugcakes.com/products/large/rasmalai-cake-with-floral-and-pearls-detailing-659981711618140-uxGIlG0kaS.webp",
+          "isPrimary": true,
+          "altText": "Rasmalai Cake with Floral and Pearls Detailing"
+        }
+      ],
+      "additionalImages": [
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-2.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-3.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-4.webp"
+      ],
+      "rating": {
+        "average": 4.8,
+        "totalReviews": 89
+      },
+      "attributes": {
+        "customizable": true,
+        "defaultSize": "1kg",
+        "defaultFlavor": "Rasmalai",
+        "defaultCakeType": "Normal",
+        "sizeOptions": ["0.5kg", "1kg", "1.5kg", "2kg", "3kg"],
+        "flavorOptions": [
+          "Rasmalai",
+          "Chocolate",
+          "Vanilla",
+          "Strawberry",
+          "Pineapple"
+        ],
+        "cakeTypeOptions": ["Normal", "Eggless", "Less Cream", "Extra Juicy"],
+        "SKU": "UGC-B-604"
+      },
+      "specifications": {
+        "weight": "1 kg (approx)",
+        "serves": "8-10 people",
+        "shelfLife": "3 days",
+        "storage": "Refrigerate",
+        "calories": "350 kcal"
+      },
+      "features": [
+        "Fun design",
+        "Toy decoration",
+        "Colorful sprinkles",
+        "Kid-friendly",
+        "Personalized message"
+      ],
+      "deliveryInfo": [
+        "Free delivery inside Kathmandu Valley",
+        "100% satisfaction guaranteed",
+        "24-hour return policy",
+        "Premium quality ingredients"
+      ],
+      "stock": 22,
+      "status": "active",
+      "metaTitle": "Rasmalai Cake with Floral Detailing",
+      "metaDescription": "Indulge in the exquisite fusion of tradition and innovation with our Rasmalai Cake adorned with delicate floral and pearl detailing.",
+      "createdAt": "2026-03-02T00:00:00Z",
+      "updatedAt": "2026-03-01T00:00:00Z",
+      "type": "bakery",
+      "relatedProducts": [2, 3, 7, 13]
+    },
+    {
+      "_id": "prod8",
+      "title": "Chocolate Muffins",
+      "slug": "chocolate-muffins",
+      "categoryId": "cat_cupcakes",
+      "shopId": null,
+      "brand": "UG Cakes",
+      "price": {
+        "regular": 17.99,
+        "discount": 14.99,
+        "currency": "USD"
+      },
+      "images": [
+        {
+          "url": "https://media.ugcakes.com/products/large/3629-chocolate-muffins.JPG",
+          "isPrimary": true,
+          "altText": "Chocolate Muffins"
+        }
+      ],
+      "additionalImages": [
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-2.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-3.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-4.webp"
+      ],
+      "rating": {
+        "average": 4.9,
+        "totalReviews": 103
+      },
+      "attributes": {
+        "customizable": true,
+        "defaultSize": "6pcs",
+        "defaultFlavor": "Chocolate",
+        "defaultCakeType": "Normal",
+        "sizeOptions": ["6pcs", "12pcs", "24pcs", "48pcs"],
+        "flavorOptions": [
+          "Chocolate",
+          "Vanilla",
+          "Strawberry",
+          "Red Velvet",
+          "Blueberry"
+        ],
+        "cakeTypeOptions": ["Normal", "Eggless", "Less Cream", "Extra Juicy"],
+        "SKU": "UG-CM"
+      },
+      "specifications": {
+        "weight": "1 kg (approx)",
+        "serves": "8-10 people",
+        "shelfLife": "3 days",
+        "storage": "Refrigerate",
+        "calories": "340 kcal"
+      },
+      "features": [
+        "Pink ombre design",
+        "Vanilla buttercream",
+        "Edible glitter",
+        "Princess theme",
+        "Personalized message"
+      ],
+      "deliveryInfo": [
+        "Free delivery inside Kathmandu Valley",
+        "100% satisfaction guaranteed",
+        "24-hour return policy",
+        "Premium quality ingredients"
+      ],
+      "stock": 18,
+      "status": "active",
+      "metaTitle": "Chocolate Muffins - Buy Online",
+      "metaDescription": "Delicious chocolate muffins for your special day. Freshly baked with premium ingredients.",
+      "createdAt": "2026-03-03T00:00:00Z",
+      "updatedAt": "2026-03-01T00:00:00Z",
+      "type": "bakery",
+      "relatedProducts": [3, 6, 8, 14]
+    },
+    {
+      "_id": "prod9",
+      "title": "Happy Birthday Brother Cake",
+      "slug": "happy-birthday-brother-cake",
+      "categoryId": "cat_birthday",
+      "shopId": null,
+      "brand": "UG Cakes",
+      "price": {
+        "regular": 16.79,
+        "discount": 13.99,
+        "currency": "USD"
+      },
+      "images": [
+        {
+          "url": "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+          "isPrimary": true,
+          "altText": "Happy Birthday Brother Cake"
+        }
+      ],
+      "additionalImages": [
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-2.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-3.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-4.webp"
+      ],
+      "rating": {
+        "average": 4.7,
+        "totalReviews": 72
+      },
+      "attributes": {
+        "customizable": false,
+        "defaultSize": "1kg",
+        "defaultFlavor": "Black Forest",
+        "defaultCakeType": "Normal",
+        "sizeOptions": ["0.5kg", "1kg", "1.5kg", "2kg", "3kg"],
+        "flavorOptions": [
+          "Black Forest",
+          "Chocolate",
+          "Vanilla",
+          "Strawberry",
+          "Pineapple"
+        ],
+        "cakeTypeOptions": ["Normal", "Eggless", "Less Cream", "Extra Juicy"],
+        "SKU": "UGC-BB-8890"
+      },
+      "specifications": {
+        "weight": "1 kg (approx)",
+        "serves": "8-10 people",
+        "shelfLife": "3 days",
+        "storage": "Refrigerate",
+        "calories": "360 kcal"
+      },
+      "features": [
+        "Black forest cake",
+        "Cherry filling",
+        "Chocolate shavings",
+        "Cool design",
+        "Personalized message"
+      ],
+      "deliveryInfo": [
+        "Free delivery inside Kathmandu Valley",
+        "100% satisfaction guaranteed",
+        "24-hour return policy",
+        "Premium quality ingredients"
+      ],
+      "stock": 16,
+      "status": "active",
+      "metaTitle": "Happy Birthday Brother Cake",
+      "metaDescription": "A cool birthday cake for brothers, featuring a trendy 'Happy Birthday Brother' design. Black forest cake with cherry filling.",
+      "createdAt": "2026-03-04T00:00:00Z",
+      "updatedAt": "2026-03-01T00:00:00Z",
+      "type": "bakery",
+      "relatedProducts": [2, 5, 9, 15]
+    },
+    {
+      "_id": "prod10",
+      "title": "Happy Birthday Sister Cake",
+      "slug": "happy-birthday-sister-cake",
+      "categoryId": "cat_birthday",
+      "shopId": null,
+      "brand": "UG Cakes",
+      "price": {
+        "regular": 17.99,
+        "discount": 14.99,
+        "currency": "USD"
+      },
+      "images": [
+        {
+          "url": "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+          "isPrimary": true,
+          "altText": "Happy Birthday Sister Cake"
+        }
+      ],
+      "additionalImages": [
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-2.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-3.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-4.webp"
+      ],
+      "rating": {
+        "average": 4.8,
+        "totalReviews": 94
+      },
+      "attributes": {
+        "customizable": false,
+        "defaultSize": "1kg",
+        "defaultFlavor": "Strawberry",
+        "defaultCakeType": "Normal",
+        "sizeOptions": ["0.5kg", "1kg", "1.5kg", "2kg", "3kg"],
+        "flavorOptions": [
+          "Strawberry",
+          "Chocolate",
+          "Vanilla",
+          "Red Velvet",
+          "Pineapple"
+        ],
+        "cakeTypeOptions": ["Normal", "Eggless", "Less Cream", "Extra Juicy"],
+        "SKU": "UGC-BS-9901"
+      },
+      "specifications": {
+        "weight": "1 kg (approx)",
+        "serves": "8-10 people",
+        "shelfLife": "3 days",
+        "storage": "Refrigerate",
+        "calories": "345 kcal"
+      },
+      "features": [
+        "Strawberry cake",
+        "Fresh strawberries",
+        "Pink buttercream",
+        "Feminine design",
+        "Personalized message"
+      ],
+      "deliveryInfo": [
+        "Free delivery inside Kathmandu Valley",
+        "100% satisfaction guaranteed",
+        "24-hour return policy",
+        "Premium quality ingredients"
+      ],
+      "stock": 20,
+      "status": "active",
+      "metaTitle": "Happy Birthday Sister Cake",
+      "metaDescription": "A beautiful birthday cake for sisters, featuring a lovely 'Happy Birthday Sister' message. Strawberry cake with fresh strawberry filling.",
+      "createdAt": "2026-03-05T00:00:00Z",
+      "updatedAt": "2026-03-01T00:00:00Z",
+      "type": "bakery",
+      "relatedProducts": [3, 7, 10, 16]
+    },
+    {
+      "_id": "prod11",
+      "title": "Happy Anniversary Cake",
+      "slug": "happy-anniversary-cake",
+      "categoryId": "cat_anniversary",
+      "shopId": null,
+      "brand": "UG Cakes",
+      "price": {
+        "regular": 22.79,
+        "discount": 18.99,
+        "currency": "USD"
+      },
+      "images": [
+        {
+          "url": "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+          "isPrimary": true,
+          "altText": "Happy Anniversary Cake"
+        }
+      ],
+      "additionalImages": [
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-2.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-3.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-4.webp"
+      ],
+      "rating": {
+        "average": 4.9,
+        "totalReviews": 156
+      },
+      "attributes": {
+        "customizable": true,
+        "defaultSize": "1kg",
+        "defaultFlavor": "Red Velvet",
+        "defaultCakeType": "Normal",
+        "sizeOptions": ["0.5kg", "1kg", "1.5kg", "2kg", "3kg"],
+        "flavorOptions": [
+          "Red Velvet",
+          "Chocolate",
+          "Vanilla",
+          "Strawberry",
+          "Butterscotch"
+        ],
+        "cakeTypeOptions": ["Normal", "Eggless", "Less Cream", "Extra Juicy"],
+        "SKU": "UGC-HA-1012"
+      },
+      "specifications": {
+        "weight": "1 kg (approx)",
+        "serves": "8-10 people",
+        "shelfLife": "4 days",
+        "storage": "Refrigerate",
+        "calories": "365 kcal"
+      },
+      "features": [
+        "Red velvet cake",
+        "Cream cheese frosting",
+        "Rose decorations",
+        "Edible pearls",
+        "Romantic design"
+      ],
+      "deliveryInfo": [
+        "Free delivery inside Kathmandu Valley",
+        "100% satisfaction guaranteed",
+        "24-hour return policy",
+        "Premium quality ingredients"
+      ],
+      "stock": 8,
+      "status": "active",
+      "metaTitle": "Happy Anniversary Cake",
+      "metaDescription": "An elegant anniversary cake featuring 'Happy Anniversary' message with romantic rose decorations. Red velvet cake with cream cheese frosting.",
+      "createdAt": "2026-03-06T00:00:00Z",
+      "updatedAt": "2026-03-01T00:00:00Z",
+      "type": "bakery",
+      "relatedProducts": [4, 5, 11, 17]
+    },
+    {
+      "_id": "prod12",
+      "title": "Happy Birthday Grandpa Cake",
+      "slug": "happy-birthday-grandpa-cake",
+      "categoryId": "cat_birthday",
+      "shopId": null,
+      "brand": "UG Cakes",
+      "price": {
+        "regular": 19.19,
+        "discount": 15.99,
+        "currency": "USD"
+      },
+      "images": [
+        {
+          "url": "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+          "isPrimary": true,
+          "altText": "Happy Birthday Grandpa Cake"
+        }
+      ],
+      "additionalImages": [
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-2.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-3.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-4.webp"
+      ],
+      "rating": {
+        "average": 4.7,
+        "totalReviews": 63
+      },
+      "attributes": {
+        "customizable": false,
+        "defaultSize": "1kg",
+        "defaultFlavor": "Vanilla with Caramel",
+        "defaultCakeType": "Normal",
+        "sizeOptions": ["0.5kg", "1kg", "1.5kg", "2kg", "3kg"],
+        "flavorOptions": [
+          "Vanilla",
+          "Chocolate",
+          "Caramel",
+          "Butterscotch",
+          "Pineapple"
+        ],
+        "cakeTypeOptions": ["Normal", "Eggless", "Less Cream", "Extra Juicy"],
+        "SKU": "UGC-BG-1123"
+      },
+      "specifications": {
+        "weight": "1 kg (approx)",
+        "serves": "8-10 people",
+        "shelfLife": "3 days",
+        "storage": "Refrigerate",
+        "calories": "355 kcal"
+      },
+      "features": [
+        "Vanilla cake",
+        "Caramel filling",
+        "Walnut topping",
+        "Traditional design",
+        "Personalized message"
+      ],
+      "deliveryInfo": [
+        "Free delivery inside Kathmandu Valley",
+        "100% satisfaction guaranteed",
+        "24-hour return policy",
+        "Premium quality ingredients"
+      ],
+      "stock": 14,
+      "status": "active",
+      "metaTitle": "Happy Birthday Grandpa Cake",
+      "metaDescription": "A heartwarming birthday cake for grandpa, featuring a special 'Happy Birthday Grandpa' message. Classic vanilla cake with caramel filling.",
+      "createdAt": "2026-03-07T00:00:00Z",
+      "updatedAt": "2026-03-01T00:00:00Z",
+      "type": "bakery",
+      "relatedProducts": [2, 8, 12, 18]
+    },
+    {
+      "_id": "prod13",
+      "title": "Happy Birthday Grandma Cake",
+      "slug": "happy-birthday-grandma-cake",
+      "categoryId": "cat_birthday",
+      "shopId": null,
+      "brand": "UG Cakes",
+      "price": {
+        "regular": 19.19,
+        "discount": 15.99,
+        "currency": "USD"
+      },
+      "images": [
+        {
+          "url": "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+          "isPrimary": true,
+          "altText": "Happy Birthday Grandma Cake"
+        }
+      ],
+      "additionalImages": [
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-2.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-3.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-4.webp"
+      ],
+      "rating": {
+        "average": 4.8,
+        "totalReviews": 71
+      },
+      "attributes": {
+        "customizable": true,
+        "defaultSize": "1kg",
+        "defaultFlavor": "Lemon",
+        "defaultCakeType": "Normal",
+        "sizeOptions": ["0.5kg", "1kg", "1.5kg", "2kg", "3kg"],
+        "flavorOptions": [
+          "Lemon",
+          "Vanilla",
+          "Strawberry",
+          "Pineapple",
+          "Orange"
+        ],
+        "cakeTypeOptions": ["Normal", "Eggless", "Less Cream", "Extra Juicy"],
+        "SKU": "UGC-BG-1224"
+      },
+      "specifications": {
+        "weight": "1 kg (approx)",
+        "serves": "8-10 people",
+        "shelfLife": "3 days",
+        "storage": "Refrigerate",
+        "calories": "335 kcal"
+      },
+      "features": [
+        "Lemon cake",
+        "Elderflower buttercream",
+        "Edible flowers",
+        "Elegant design",
+        "Personalized message"
+      ],
+      "deliveryInfo": [
+        "Free delivery inside Kathmandu Valley",
+        "100% satisfaction guaranteed",
+        "24-hour return policy",
+        "Premium quality ingredients"
+      ],
+      "stock": 16,
+      "status": "active",
+      "metaTitle": "Happy Birthday Grandma Cake",
+      "metaDescription": "A sweet birthday cake for grandma, featuring a loving 'Happy Birthday Grandma' message. Lemon cake with elderflower buttercream.",
+      "createdAt": "2026-03-08T00:00:00Z",
+      "updatedAt": "2026-03-01T00:00:00Z",
+      "type": "bakery",
+      "relatedProducts": [3, 9, 13, 19]
+    },
+    {
+      "_id": "prod14",
+      "title": "Happy Birthday Grandma Cake - Special Edition",
+      "slug": "happy-birthday-grandma-cake-special",
+      "categoryId": "cat_birthday",
+      "shopId": null,
+      "brand": "UG Cakes",
+      "price": {
+        "regular": 19.19,
+        "discount": 15.99,
+        "currency": "USD"
+      },
+      "images": [
+        {
+          "url": "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+          "isPrimary": true,
+          "altText": "Happy Birthday Grandma Cake Special Edition"
+        }
+      ],
+      "additionalImages": [
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-2.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-3.webp",
+        "https://media.ugcakes.com/products/medium/strawberry-topped-cake-853601764658285-fW1XAIWe6E-4.webp"
+      ],
+      "rating": {
+        "average": 4.8,
+        "totalReviews": 71
+      },
+      "attributes": {
+        "customizable": true,
+        "defaultSize": "1kg",
+        "defaultFlavor": "Lemon",
+        "defaultCakeType": "Normal",
+        "sizeOptions": ["0.5kg", "1kg", "1.5kg", "2kg", "3kg"],
+        "flavorOptions": [
+          "Lemon",
+          "Vanilla",
+          "Strawberry",
+          "Pineapple",
+          "Orange"
+        ],
+        "cakeTypeOptions": ["Normal", "Eggless", "Less Cream", "Extra Juicy"],
+        "SKU": "UGC-BG-1224-SE"
+      },
+      "specifications": {
+        "weight": "1 kg (approx)",
+        "serves": "8-10 people",
+        "shelfLife": "3 days",
+        "storage": "Refrigerate",
+        "calories": "335 kcal"
+      },
+      "features": [
+        "Lemon cake",
+        "Elderflower buttercream",
+        "Edible flowers",
+        "Elegant design",
+        "Personalized message"
+      ],
+      "deliveryInfo": [
+        "Free delivery inside Kathmandu Valley",
+        "100% satisfaction guaranteed",
+        "24-hour return policy",
+        "Premium quality ingredients"
+      ],
+      "stock": 16,
+      "status": "active",
+      "metaTitle": "Happy Birthday Grandma Cake - Special Edition",
+      "metaDescription": "A sweet birthday cake for grandma, featuring a loving 'Happy Birthday Grandma' message. Lemon cake with elderflower buttercream.",
+      "createdAt": "2026-03-09T00:00:00Z",
+      "updatedAt": "2026-03-01T00:00:00Z",
+      "type": "bakery",
+      "relatedProducts": [3, 9, 13, 19]
+    }
+  ],
+  "variants": [
+    {
+      "_id": "var1",
+      "productId": "prod1",
+      "color": "Black",
+      "storage": "256GB",
+      "price": 1199,
+      "stock": 40,
+      "sku": "S23U-BLK-256",
+      "images": ["s23-black-256-1.jpg"]
+    }
+  ],
+
+  "users": [
+    {
+      "_id": "user1",
+      "name": "Rahim Uddin",
+      "email": "rahim@gmail.com",
+      "phone": "01710000000",
+      "role": "customer",
+      "status": "active",
+      "cartId": "cart1",
+      "wishlistId": "wish1",
+      "isPhoneVerified": true,
+      "addresses": [
+        {
+          "_id": "addr1",
+          "type": "home",
+          "street": "House 12, Road 5, Dhanmondi",
+          "city": "Dhaka",
+          "division": "Dhaka",
+          "country": "Bangladesh",
+          "zipCode": "1209",
+          "isDefault": true
+        }
+      ],
+      "lastLoginAt": "2026-03-15T08:30:00Z",
+      "createdAt": "2025-05-20T00:00:00Z"
+    }
+  ],
+
+  "orders": [
+    {
+      "_id": "order1",
+      "userId": "user1",
+      "products": [
+        {
+          "productId": "prod2",
+          "variantId": "var3",
+          "quantity": 1,
+          "price": 260,
+          "title": "Xiaomi Redmi Note 13",
+          "image": "redmi1.jpg"
+        }
+      ],
+      "totalPrice": 260,
+      "shippingAddress": {
+        "street": "House 12, Road 5, Dhanmondi",
+        "city": "Dhaka",
+        "division": "Dhaka",
+        "country": "Bangladesh",
+        "zipCode": "1209"
+      },
+      "status": "processing",
+      "paymentStatus": "paid",
+      "paymentId": "payment1",
+      "shipmentId": "ship1",
+      "createdAt": "2026-03-15T10:30:00Z",
+      "updatedAt": "2026-03-15T10:35:00Z",
+      "statusHistory": [
+        {
+          "status": "pending",
+          "timestamp": "2026-03-15T10:30:00Z",
+          "note": "Order placed"
+        },
+        {
+          "status": "processing",
+          "timestamp": "2026-03-15T10:35:00Z",
+          "note": "Payment confirmed"
+        }
+      ]
+    }
+  ],
+
+  "payments": [
+    {
+      "_id": "payment1",
+      "orderId": "order1",
+      "method": "bkash",
+      "transactionId": "TXN9834723",
+      "amount": 260,
+      "status": "success",
+      "gatewayResponse": {},
+      "paidAt": "2026-03-15T10:32:00Z"
+    }
+  ],
+
+  "shipments": [
+    {
+      "_id": "ship1",
+      "orderId": "order1",
+      "courier": "Pathao",
+      "trackingNumber": "PTH12345678",
+      "status": "shipped",
+      "estimatedDelivery": "2026-03-20T00:00:00Z",
+      "shippedAt": "2026-03-16T09:00:00Z"
+    }
+  ],
+
+  "coupons": [
+    {
+      "_id": "coupon1",
+      "code": "DARAZ10",
+      "discountType": "percentage",
+      "discountValue": 10,
+      "minOrder": 100,
+      "maxDiscount": 50,
+      "usageLimit": 1000,
+      "usedCount": 25,
+      "applicableCategories": ["cat_electronics"],
+      "applicableVendors": ["vendor1"],
+      "expiresAt": "2026-12-31T23:59:59Z",
+      "status": "active"
+    }
+  ],
+
+  "reviews": [
+    {
+      "_id": "rev1",
+      "productId": "prod1",
+      "userId": "user1",
+      "rating": 5,
+      "review": "Excellent phone with amazing camera.",
+      "images": ["review-img1.jpg"],
+      "likes": 3,
+      "createdAt": "2026-03-10T00:00:00Z"
+    }
+  ]
+}
