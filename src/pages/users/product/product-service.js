@@ -38,16 +38,48 @@ class ProductService {
         Math.round(((price.regular - price.discount) / price.regular) * 100) : 0
     };
 
-    // Handle images
+    // Handle images - IMPROVED VERSION
+    // Get primary image
     const avatar = product.images?.find(img => img.isPrimary)?.url || 
                   product.images?.[0]?.url || 
-                  'https://www.dummyimage.com/300/1d19e8/fff.png';
+                  'https://via.placeholder.com/500';
     
-    const additionalImages = product.images
-      ?.filter(img => !img.isPrimary)
-      ?.map(img => img.url) || 
-      product.additionalImages || [];
-
+    // Get all images including both from images array and additionalImages
+    let allImageUrls = [];
+    
+    // Add images from product.images array
+    if (product.images && Array.isArray(product.images)) {
+      product.images.forEach(img => {
+        if (img.url && !allImageUrls.includes(img.url)) {
+          allImageUrls.push(img.url);
+        }
+      });
+    }
+    
+    // Add additionalImages if they exist (top-level property)
+    if (product.additionalImages && Array.isArray(product.additionalImages)) {
+      product.additionalImages.forEach(img => {
+        if (img && typeof img === 'string' && !allImageUrls.includes(img)) {
+          allImageUrls.push(img);
+        }
+      });
+    }
+    
+    // Also check if product has additionalImages from different key names
+    const otherImageKeys = ['additional_images', 'extraImages', 'moreImages', 'gallery'];
+    otherImageKeys.forEach(key => {
+      if (product[key] && Array.isArray(product[key])) {
+        product[key].forEach(img => {
+          if (img && typeof img === 'string' && !allImageUrls.includes(img)) {
+            allImageUrls.push(img);
+          }
+        });
+      }
+    });
+    
+    // Create additionalImages array (all images except the primary/avatar)
+    const additionalImages = allImageUrls.filter(url => url !== avatar);
+    
     // Handle categoryIds
     const categoryIds = Array.isArray(product.categoryId) 
       ? product.categoryId 
@@ -65,7 +97,8 @@ class ProductService {
       slug: product.slug,
       description: product.description || product.metaDescription || '',
       avatar: avatar,
-      additionalImages: additionalImages,
+      additionalImages: additionalImages, // This will contain all non-primary images
+      allImages: allImageUrls, // Added for convenience - all images including primary
       images: product.images || [],
       price: price,
       pricing: pricing,

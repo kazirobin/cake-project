@@ -33,20 +33,20 @@ const calculateTotals = (items, deliveryCharge) => {
     total: Number(total.toFixed(2)),
   };
   
-  console.log('📊 Cart Totals Calculated:', result);
+  // console.log('📊 Cart Totals Calculated:', result);
   return result;
 };
 
 const cartReducer = (state, action) => {
-  console.log('🔄 Reducer Action:', action.type, action.payload);
+  // console.log('🔄 Reducer Action:', action.type, action.payload);
   
   switch (action.type) {
     case 'ADD_ITEM': {
       const { item } = action.payload;
-      console.log('➕ Adding item to cart:', item);
+      // console.log('➕ Adding item to cart:', item);
       
       const existingIndex = state.items.findIndex(i => i.id === item.id);
-      console.log('Existing item index:', existingIndex);
+      // console.log('Existing item index:', existingIndex);
       
       let newItems;
       if (existingIndex >= 0) {
@@ -57,59 +57,59 @@ const cartReducer = (state, action) => {
             : i
         );
       } else {
-        console.log('New item, adding to cart');
+        // console.log('New item, adding to cart');
         newItems = [...state.items, { ...item, quantity: item.quantity || 1 }];
       }
       
-      console.log('Updated items array:', newItems);
+      // console.log('Updated items array:', newItems);
       const totals = calculateTotals(newItems, state.deliveryCharge);
       return { ...state, ...totals };
     }
 
     case 'REMOVE_ITEM': {
       const { itemId } = action.payload;
-      console.log('🗑️ Removing item with ID:', itemId);
+      // console.log('🗑️ Removing item with ID:', itemId);
       const newItems = state.items.filter(item => item.id !== itemId);
-      console.log('Items after removal:', newItems);
+      // console.log('Items after removal:', newItems);
       const totals = calculateTotals(newItems, state.deliveryCharge);
       return { ...state, ...totals };
     }
 
     case 'UPDATE_QUANTITY': {
       const { itemId, quantity } = action.payload;
-      console.log('📦 Updating quantity for item:', itemId, 'New quantity:', quantity);
+      // console.log('📦 Updating quantity for item:', itemId, 'New quantity:', quantity);
       const newItems = state.items.map(item =>
         item.id === itemId ? { ...item, quantity: Math.max(1, quantity) } : item
       );
-      console.log('Items after quantity update:', newItems);
+      // console.log('Items after quantity update:', newItems);
       const totals = calculateTotals(newItems, state.deliveryCharge);
       return { ...state, ...totals };
     }
 
     case 'UPDATE_ITEM': {
       const { itemId, updates } = action.payload;
-      console.log('✏️ Updating item:', itemId, 'Updates:', updates);
+      // console.log('✏️ Updating item:', itemId, 'Updates:', updates);
       const newItems = state.items.map(item =>
         item.id === itemId ? { ...item, ...updates, price: toNumber(updates.price || item.price) } : item
       );
-      console.log('Items after update:', newItems);
+      // console.log('Items after update:', newItems);
       const totals = calculateTotals(newItems, state.deliveryCharge);
       return { ...state, ...totals };
     }
 
     case 'CLEAR_CART': {
-      console.log('🧹 Clearing cart');
+      // console.log('🧹 Clearing cart');
       const totals = calculateTotals([], state.deliveryCharge);
       return { ...state, ...totals };
     }
 
     case 'LOAD_CART': {
-      console.log('📀 Loading cart from storage:', action.payload);
+      // console.log('📀 Loading cart from storage:', action.payload);
       const loadedItems = (action.payload || []).map(item => ({
         ...item,
         price: toNumber(item.price)
       }));
-      console.log('Loaded items:', loadedItems);
+      // console.log('Loaded items:', loadedItems);
       const totals = calculateTotals(loadedItems, state.deliveryCharge);
       return { ...state, ...totals };
     }
@@ -125,14 +125,14 @@ export const CartProvider = ({ children, productService }) => {
 
   // Load cart from localStorage on mount
   useEffect(() => {
-    console.log('🚀 CartProvider mounting...');
+    // console.log('🚀 CartProvider mounting...');
     try {
       const savedCart = localStorage.getItem('cart');
-      console.log('Saved cart from localStorage:', savedCart);
+      // console.log('Saved cart from localStorage:', savedCart);
       if (savedCart) {
         const parsedCart = JSON.parse(savedCart);
         if (Array.isArray(parsedCart)) {
-          console.log('📀 Loading saved cart:', parsedCart);
+          // console.log('📀 Loading saved cart:', parsedCart);
           dispatch({ type: 'LOAD_CART', payload: parsedCart });
         }
       } else {
@@ -147,24 +147,24 @@ export const CartProvider = ({ children, productService }) => {
   // Save cart to localStorage when it changes
   useEffect(() => {
     if (!isInitialLoad.current) {
-      console.log('💾 Saving cart to localStorage...');
-      console.log('Current cart items:', state.items);
+      // console.log('💾 Saving cart to localStorage...');
+      // console.log('Current cart items:', state.items);
       try {
         if (state.items.length > 0) {
           localStorage.setItem('cart', JSON.stringify(state.items));
-          console.log('✅ Cart saved successfully');
+          // console.log('✅ Cart saved successfully');
         } else {
           localStorage.removeItem('cart');
-          console.log('🗑️ Cart cleared from storage');
+          // console.log('🗑️ Cart cleared from storage');
         }
       } catch (error) {
-        console.error('Error saving cart:', error);
+        // console.error('Error saving cart:', error);
       }
     }
   }, [state.items]);
 
   const addToCart = useCallback((product, customizations = {}) => {
-    console.log('🛒 addToCart called with:', { product, customizations });
+    // console.log('🛒 addToCart called with:', { product, customizations });
     console.log('Product details:', {
       id: product.id || product._id,
       title: product.title,
@@ -182,7 +182,7 @@ export const CartProvider = ({ children, productService }) => {
       quantity: 1,
     };
     
-    console.log('📦 Formatted cart item:', cartItem);
+    // console.log('📦 Formatted cart item:', cartItem);
     console.log('Cart item details:', {
       id: cartItem.id,
       title: cartItem.title,
@@ -198,7 +198,7 @@ export const CartProvider = ({ children, productService }) => {
   }, [productService]);
 
   const removeFromCart = useCallback((itemId) => {
-    console.log('❌ removeFromCart called with ID:', itemId);
+    // console.log('❌ removeFromCart called with ID:', itemId);
     if (!itemId) {
       console.warn('No item ID provided to removeFromCart');
       return;
@@ -207,7 +207,7 @@ export const CartProvider = ({ children, productService }) => {
   }, []);
 
   const updateQuantity = useCallback((itemId, quantity) => {
-    console.log('🔄 updateQuantity called:', { itemId, quantity });
+    // console.log('🔄 updateQuantity called:', { itemId, quantity });
     if (!itemId) return;
     dispatch({ type: 'UPDATE_QUANTITY', payload: { itemId, quantity } });
   }, []);
@@ -225,12 +225,12 @@ export const CartProvider = ({ children, productService }) => {
 
   const isInCart = useCallback((itemId) => {
     const inCart = state.items.some(item => item.id === itemId);
-    console.log(`🔍 Checking if item ${itemId} is in cart:`, inCart);
+    // console.log(`🔍 Checking if item ${itemId} is in cart:`, inCart);
     return inCart;
   }, [state.items]);
 
   const contextValue = useMemo(() => {
-    console.log('🔄 Cart context value updated');
+    // console.log('🔄 Cart context value updated');
     return {
       cart: state,
       items: state.items,

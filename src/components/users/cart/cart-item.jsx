@@ -82,7 +82,7 @@ const CartItem = ({ item, onUpdateQuantity, onRemove, onEdit }) => {
         src={item.image} 
         alt={item.title} 
         className="w-24 h-24 object-cover rounded"
-        onError={(e) => e.target.src = 'https://via.placeholder.com/100'}
+        onError={(e) => e.target.src = 'https://www.dummyimage.com/64/1d19e8/fff.png'}
       />
       
       {/* Details */}
