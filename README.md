@@ -1,1 +1,353 @@
-# Professional Folder Structure for Cake Shop E-commerce
+```
+
+Src
+   AuthContext
+              AuthContext.jxs
+              AuthProvider.jsx
+              
+              
+  Firebase 
+        firebase.init.js
+        
+  Hooks
+        cart-context.jsx
+        use-local-storage.js
+        use-mobile.js
+        use-mobile.jsx
+        use-toast.js
+        useAuth.jsx
+        useAxios.jsx
+        
+ Layouts
+     CategoryLayout.jsx
+     RootLayout.jsx
+     
+ assets
+     react.svg
+     
+ components
+     Theme
+         ThemeProvider.jsx
+         index.jsx
+     common
+         DyBread.jsx
+         DyForm.jsx
+         DyFormField.jsx
+         DySelect.jsx
+         Loading.jsx
+         PageHeader.jsx
+     ui
+       avatar.jsx
+       badge.jsx
+       breadcrumb.jsx
+       button.jsx
+       card.jsx
+       checkbox.jsx
+       collapsible.jsx
+       command.jsx
+       dialog.jsx
+       dropdown-menu.jsx
+       field.jsx
+       form.jsx
+       input.jsx
+       label.jsx
+       popover.jsx
+       radio-group.jsx
+       select.jsx
+       separator.jsx
+       sheet.jsx
+       sidebar.jsx
+       skeleton.jsx
+       slider.jsx
+       sonner.jsx
+       spinner.jsx
+       switch.jsx
+       tabs.jsx
+       textarea.jsx
+       tooltip.jsx
+   users
+     BreadCrumbs
+         ReusableBreadcrumb.jsx
+     Buttons
+       GoggleBTN.jsx
+     cart
+       cart-edit.jsx
+       cart-item.jsx
+       cart-page.jsx
+       cart-sidebar.jsx
+     category
+         category-card.jsx
+         category-features-bar.jsx
+         category-hero.jsx
+         sort-dropdown.jsx
+    checkout   
+         checkout-form.jsx
+         checkout.jsx
+         order-summary.jsx
+         
+    delivery-date-modal
+        DeliveryDateModal.jsx
+        
+    features
+        features.jsx
+    footer
+        AppSection.jsx
+        BottomBar.jsx
+        ContactSection.jsx
+        Footer.jsx
+        LogoSection.jsx
+        Newsletter.jsx
+        PaymentMethods.jsx
+        QuickLinks.jsx
+        SectionTitle.jsx
+        TrustBadges.jsx
+    mobile-bottom-nav
+        MobileBottomNav.jsx
+    navbar-with-navigation
+        DesktopNavigateContent.jsx
+        DesktopRightSection.jsx
+        DesktopSearch.jsx
+        LogoSection.jsx
+        MobileLeftSheet.jsx
+        MobileNavigateContent.jsx
+        MobileRightIcons.jsx
+        MobileSearch.jsx
+        NavItem.jsx
+        OfferBadge.jsx
+        SearchSuggestions.jsx
+        ThemeToggle.jsx
+        constants.js
+        index.jsx
+    play-win-cake
+        PlayWinCake.jsx
+    product
+        no-product-found.jsx
+        product-card.jsx
+        product-showcase.jsx
+    service-highlights
+        ServiceHighlights.jsx
+    slider-banner
+        SliderBanner.jsx
+      
+  app-sidebar.jsx
+  nav-main.jsx
+  nav-user.jsx
+  section-cards.jsx
+  team-switcher.jsx
+ data
+    category.json
+    data.json
+    data.jsx
+    products.json
+    serviceHighlights.json
+ lib
+    utils.js
+ pages
+    admin
+      AddProduct.jsx
+      AdminPanel.jsx
+      AllProducts.jsx
+      Dashboard.jsx
+      ManageCategory.jsx
+      Moderators.jsx
+      Orders.jsx
+    error
+      NotFoundPage.jsx
+    users
+        Login
+          Login.jsx
+        Register.jsx
+            Register.jsx
+        bakery-training
+            BakeryTraining.jsx
+        category
+            all-category.jsx
+            category-details.jsx
+            index.js
+        gifts
+            gifts.jsx
+        home
+            Home.jsx
+        product
+            index.js
+            product-details.jsx
+            product-service.js
+       wish-generator
+            wish-generator.jsx
+ router 
+   route.jsx   
+
+```
+
+```
+
+.
+└── Src/
+    ├── AuthContext/
+    │   ├── AuthContext.jxs
+    │   └── AuthProvider.jsx
+    ├── Firebase /
+    │   └── firebase.init.js
+    ├── Hooks/
+    │   ├── cart-context.jsx
+    │   ├── use-local-storage.js
+    │   ├── use-mobile.js
+    │   ├── use-mobile.jsx
+    │   ├── use-toast.js
+    │   ├── useAuth.jsx
+    │   └── useAxios.jsx
+    ├── Layouts/
+    │   ├── CategoryLayout.jsx
+    │   └── RootLayout.jsx
+    ├── assets/
+    │   └── react.svg
+    ├── components/
+    │   ├── Theme/
+    │   │   ├── ThemeProvider.jsx
+    │   │   └── index.jsx
+    │   ├── common/
+    │   │   ├── DyBread.jsx
+    │   │   ├── DyForm.jsx
+    │   │   ├── DyFormField.jsx
+    │   │   ├── DySelect.jsx
+    │   │   ├── Loading.jsx
+    │   │   └── PageHeader.jsx
+    │   ├── ui/
+    │   │   ├── avatar.jsx
+    │   │   ├── badge.jsx
+    │   │   ├── breadcrumb.jsx
+    │   │   ├── button.jsx
+    │   │   ├── card.jsx
+    │   │   ├── checkbox.jsx
+    │   │   ├── collapsible.jsx
+    │   │   ├── command.jsx
+    │   │   ├── dialog.jsx
+    │   │   ├── dropdown-menu.jsx
+    │   │   ├── field.jsx
+    │   │   ├── form.jsx
+    │   │   ├── input.jsx
+    │   │   ├── label.jsx
+    │   │   ├── popover.jsx
+    │   │   ├── radio-group.jsx
+    │   │   ├── select.jsx
+    │   │   ├── separator.jsx
+    │   │   ├── sheet.jsx
+    │   │   ├── sidebar.jsx
+    │   │   ├── skeleton.jsx
+    │   │   ├── slider.jsx
+    │   │   ├── sonner.jsx
+    │   │   ├── spinner.jsx
+    │   │   ├── switch.jsx
+    │   │   ├── tabs.jsx
+    │   │   ├── textarea.jsx
+    │   │   └── tooltip.jsx
+    │   ├── users/
+    │   │   ├── BreadCrumbs/
+    │   │   │   └── ReusableBreadcrumb.jsx
+    │   │   ├── Buttons/
+    │   │   │   └── GoggleBTN.jsx
+    │   │   ├── cart/
+    │   │   │   ├── cart-edit.jsx
+    │   │   │   ├── cart-item.jsx
+    │   │   │   ├── cart-page.jsx
+    │   │   │   └── cart-sidebar.jsx
+    │   │   ├── category/
+    │   │   │   ├── category-card.jsx
+    │   │   │   ├── category-features-bar.jsx
+    │   │   │   ├── category-hero.jsx
+    │   │   │   └── sort-dropdown.jsx
+    │   │   ├── checkout   /
+    │   │   │   ├── checkout-form.jsx
+    │   │   │   ├── checkout.jsx
+    │   │   │   └── order-summary.jsx
+    │   │   ├── delivery-date-modal/
+    │   │   │   └── DeliveryDateModal.jsx
+    │   │   ├── features/
+    │   │   │   └── features.jsx
+    │   │   ├── footer/
+    │   │   │   ├── AppSection.jsx
+    │   │   │   ├── BottomBar.jsx
+    │   │   │   ├── ContactSection.jsx
+    │   │   │   ├── Footer.jsx
+    │   │   │   ├── LogoSection.jsx
+    │   │   │   ├── Newsletter.jsx
+    │   │   │   ├── PaymentMethods.jsx
+    │   │   │   ├── QuickLinks.jsx
+    │   │   │   ├── SectionTitle.jsx
+    │   │   │   └── TrustBadges.jsx
+    │   │   ├── mobile-bottom-nav/
+    │   │   │   └── MobileBottomNav.jsx
+    │   │   ├── navbar-with-navigation/
+    │   │   │   ├── DesktopNavigateContent.jsx
+    │   │   │   ├── DesktopRightSection.jsx
+    │   │   │   ├── DesktopSearch.jsx
+    │   │   │   ├── LogoSection.jsx
+    │   │   │   ├── MobileLeftSheet.jsx
+    │   │   │   ├── MobileNavigateContent.jsx
+    │   │   │   ├── MobileRightIcons.jsx
+    │   │   │   ├── MobileSearch.jsx
+    │   │   │   ├── NavItem.jsx
+    │   │   │   ├── OfferBadge.jsx
+    │   │   │   ├── SearchSuggestions.jsx
+    │   │   │   ├── ThemeToggle.jsx
+    │   │   │   ├── constants.js
+    │   │   │   └── index.jsx
+    │   │   ├── play-win-cake/
+    │   │   │   └── PlayWinCake.jsx
+    │   │   ├── product/
+    │   │   │   ├── no-product-found.jsx
+    │   │   │   ├── product-card.jsx
+    │   │   │   └── product-showcase.jsx
+    │   │   ├── service-highlights/
+    │   │   │   └── ServiceHighlights.jsx
+    │   │   └── slider-banner/
+    │   │       └── SliderBanner.jsx
+    │   ├── app-sidebar.jsx
+    │   ├── nav-main.jsx
+    │   ├── nav-user.jsx
+    │   ├── section-cards.jsx
+    │   └── team-switcher.jsx
+    ├── data/
+    │   ├── category.json
+    │   ├── data.json
+    │   ├── data.jsx
+    │   ├── products.json
+    │   └── serviceHighlights.json
+    ├── lib/
+    │   └── utils.js
+    ├── pages/
+    │   ├── admin/
+    │   │   ├── AddProduct.jsx
+    │   │   ├── AdminPanel.jsx
+    │   │   ├── AllProducts.jsx
+    │   │   ├── Dashboard.jsx
+    │   │   ├── ManageCategory.jsx
+    │   │   ├── Moderators.jsx
+    │   │   └── Orders.jsx
+    │   ├── error/
+    │   │   └── NotFoundPage.jsx
+    │   └── users/
+    │       ├── Login/
+    │       │   └── Login.jsx
+    │       ├── Register.jsx/
+    │       │   └── Register.jsx
+    │       ├── bakery-training/
+    │       │   └── BakeryTraining.jsx
+    │       ├── category/
+    │       │   ├── all-category.jsx
+    │       │   ├── category-details.jsx
+    │       │   └── index.js
+    │       ├── gifts/
+    │       │   └── gifts.jsx
+    │       ├── home/
+    │       │   └── Home.jsx
+    │       ├── product/
+    │       │   ├── index.js
+    │       │   ├── product-details.jsx
+    │       │   └── product-service.js
+    │       └── wish-generator/
+    │           └── wish-generator.jsx
+    └── router /
+        └── route.jsx   
+
+```

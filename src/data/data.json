@@ -390,7 +390,7 @@
         "totalReviews": 340
       },
       "attributes": {
-        "customizable": true,
+        "customizable": false,
         "defaultColor": "Black",
         "defaultStorage": "256GB",
         "defaultRam": "12GB",

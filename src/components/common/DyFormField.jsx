@@ -2,7 +2,9 @@ import React from "react";
 import { Controller, useFormContext } from "react-hook-form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { Switch } from "@/components/ui/switch";
 import { Field, FieldDescription, FieldLabel } from "../ui/field";
+import { Label } from "../ui/label";
 
 export function DyFormField({ fieldConfig }) {
   const {
@@ -18,7 +20,9 @@ export function DyFormField({ fieldConfig }) {
       control={control}
       render={({ field }) => (
         <Field>
-          <FieldLabel>{fieldConfig.label}</FieldLabel>
+          <FieldLabel>
+            {fieldConfig.type === "switch" ? "" : fieldConfig.label}
+          </FieldLabel>
 
           {/* FILE INPUT */}
           {fieldConfig.type === "file" ? (
@@ -39,6 +43,15 @@ export function DyFormField({ fieldConfig }) {
               placeholder={fieldConfig.placeholder}
               className="resize-none"
             />
+          ) : fieldConfig.type === "switch" ? (
+            <div className="flex items-center space-x-2">
+              <Label htmlFor={fieldConfig.name}>{fieldConfig.label}</Label>
+              <Switch
+                {...field}
+                checked={field.value}
+                onCheckedChange={field.onChange}
+              />
+            </div>
           ) : (
             <Input
               {...field}
