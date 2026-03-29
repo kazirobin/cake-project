@@ -1,4 +1,3 @@
-# Professional Folder Structure for Cake Shop E-commerce
 ```
 
 Src
@@ -135,15 +134,15 @@ Src
   nav-user.jsx
   section-cards.jsx
   team-switcher.jsx
-  data
+ data
     category.json
     data.json
     data.jsx
     products.json
     serviceHighlights.json
-  lib
+ lib
     utils.js
-  pages
+ pages
     admin
       AddProduct.jsx
       AdminPanel.jsx
@@ -180,10 +179,8 @@ Src
 
 ```
 
-
-
-
 ```
+
 .
 └── Src/
     ├── AuthContext/
@@ -309,47 +306,47 @@ Src
     │   ├── nav-main.jsx
     │   ├── nav-user.jsx
     │   ├── section-cards.jsx
-    │   ├── team-switcher.jsx
-    │   ├── data/
-    │   │   ├── category.json
-    │   │   ├── data.json
-    │   │   ├── data.jsx
-    │   │   ├── products.json
-    │   │   └── serviceHighlights.json
-    │   ├── lib/
-    │   │   └── utils.js
-    │   └── pages/
-    │       ├── admin/
-    │       │   ├── AddProduct.jsx
-    │       │   ├── AdminPanel.jsx
-    │       │   ├── AllProducts.jsx
-    │       │   ├── Dashboard.jsx
-    │       │   ├── ManageCategory.jsx
-    │       │   ├── Moderators.jsx
-    │       │   └── Orders.jsx
-    │       ├── error/
-    │       │   └── NotFoundPage.jsx
-    │       └── users/
-    │           ├── Login/
-    │           │   └── Login.jsx
-    │           ├── Register.jsx/
-    │           │   └── Register.jsx
-    │           ├── bakery-training/
-    │           │   └── BakeryTraining.jsx
-    │           ├── category/
-    │           │   ├── all-category.jsx
-    │           │   ├── category-details.jsx
-    │           │   └── index.js
-    │           ├── gifts/
-    │           │   └── gifts.jsx
-    │           ├── home/
-    │           │   └── Home.jsx
-    │           ├── product/
-    │           │   ├── index.js
-    │           │   ├── product-details.jsx
-    │           │   └── product-service.js
-    │           └── wish-generator/
-    │               └── wish-generator.jsx
+    │   └── team-switcher.jsx
+    ├── data/
+    │   ├── category.json
+    │   ├── data.json
+    │   ├── data.jsx
+    │   ├── products.json
+    │   └── serviceHighlights.json
+    ├── lib/
+    │   └── utils.js
+    ├── pages/
+    │   ├── admin/
+    │   │   ├── AddProduct.jsx
+    │   │   ├── AdminPanel.jsx
+    │   │   ├── AllProducts.jsx
+    │   │   ├── Dashboard.jsx
+    │   │   ├── ManageCategory.jsx
+    │   │   ├── Moderators.jsx
+    │   │   └── Orders.jsx
+    │   ├── error/
+    │   │   └── NotFoundPage.jsx
+    │   └── users/
+    │       ├── Login/
+    │       │   └── Login.jsx
+    │       ├── Register.jsx/
+    │       │   └── Register.jsx
+    │       ├── bakery-training/
+    │       │   └── BakeryTraining.jsx
+    │       ├── category/
+    │       │   ├── all-category.jsx
+    │       │   ├── category-details.jsx
+    │       │   └── index.js
+    │       ├── gifts/
+    │       │   └── gifts.jsx
+    │       ├── home/
+    │       │   └── Home.jsx
+    │       ├── product/
+    │       │   ├── index.js
+    │       │   ├── product-details.jsx
+    │       │   └── product-service.js
+    │       └── wish-generator/
+    │           └── wish-generator.jsx
     └── router /
         └── route.jsx   
 
