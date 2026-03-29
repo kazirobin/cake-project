@@ -19,16 +19,53 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Search, Plus, Package } from "lucide-react";
 import { useNavigate } from "react-router";
 import PageHeader from "@/components/common/PageHeader";
+import useAxios from "@/Hooks/useAxios";
+import { useQuery } from "@tanstack/react-query";
+import { toast } from "sonner";
 
 const AllProducts = () => {
   const [searchValue, setSearchValue] = useState("");
   const [filterType, setFilterType] = useState("all");
 
+  const axios = useAxios();
   const navigate = useNavigate();
 
-  // Placeholder data - replace with actual API call
-  const products = [];
-  const isLoading = false;
+  const {
+    data: allProducts = [],
+    isLoading,
+    refetch,
+  } = useQuery({
+    queryKey: ["cakes"],
+    queryFn: async () => {
+      const { data } = await axios.get("/cakes");
+      return data?.data || [];
+    },
+  });
+
+  const products = allProducts.filter((product) => {
+    return product.isDeleted === false;
+  });
+
+  const handleDeleteProduct = async (productId) => {
+    if (!window.confirm("Are you sure you want to delete this product?")) {
+      return;
+    }
+    try {
+      const { data } = await axios.delete(`/cakes/delete-cake/${productId}`);
+
+      const { success, message } = data;
+      if (!success) {
+        toast(message || "Failed to delete product. Please try again.");
+        return;
+      }
+      toast.success(message || "Product deleted successfully!");
+      // Refetch products after deletion
+      refetch();
+    } catch (error) {
+      console.error("Failed to delete product:", error);
+      toast.error("Failed to delete product. Please try again.");
+    }
+  };
 
   return (
     <div className="space-y-6">
@@ -113,15 +150,80 @@ const AllProducts = () => {
                 <thead>
                   <tr className="border-b">
                     <th className="px-4 py-3 text-left font-semibold">Name</th>
+                    <th className="px-4 py-3 text-left font-semibold">
+                      Category
+                    </th>
                     <th className="px-4 py-3 text-left font-semibold">Type</th>
                     <th className="px-4 py-3 text-left font-semibold">Price</th>
                     <th className="px-4 py-3 text-left font-semibold">Stock</th>
+                    <th className="px-4 py-3 text-left font-semibold">Sold</th>
                     <th className="px-4 py-3 text-left font-semibold">
                       Actions
                     </th>
                   </tr>
                 </thead>
-                <tbody>{/* Products will be rendered here */}</tbody>
+                <tbody>
+                  {products.map((product) => (
+                    <tr key={product.id} className="hover:bg-muted/50 border-b">
+                      <td className="px-4 py-3">
+                        <div className="flex items-center gap-3">
+                          {product?.images !== "" ? (
+                            <img
+                              src={product.images[0]}
+                              alt={product?.title}
+                              className="h-10 w-10 rounded-md object-cover"
+                            />
+                          ) : (
+                            <div className="bg-muted flex h-10 w-10 items-center justify-center rounded-md">
+                              <Package className="text-muted-foreground h-5 w-5" />
+                            </div>
+                          )}
+                          <span className="font-medium">
+                            {product?.title || "N/A"}
+                          </span>
+                        </div>
+                      </td>
+                      <td className="px-4 py-3">
+                        {product?.category?.name || "N/A"}
+                      </td>
+                      <td className="px-4 py-3">{product?.type || "N/A"}</td>
+                      <td className="px-4 py-3">
+                        {"$"}
+                        {product.cakeDetails?.pricing?.discounted?.toFixed(2) ||
+                          product?.price ||
+                          "N/A"}
+                      </td>
+                      <td className="px-4 py-3">{product?.stock ?? "N/A"}</td>
+                      <td className="px-4 py-3">
+                        {product?.soldAmount ?? "N/A"}
+                      </td>
+                      <td className="px-4 py-3">
+                        <div className="flex items-center gap-2">
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            className="cursor-pointer"
+                            onClick={() =>
+                              navigate(
+                                `/admin-panel/edit-product/${product.id}`,
+                              )
+                            }
+                          >
+                            Edit
+                          </Button>
+                          <Button
+                            variant="destructive"
+                            size="sm"
+                            className="cursor-pointer"
+                            onClick={() => handleDeleteProduct(product.id)}
+                          >
+                            Delete
+                          </Button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
               </table>
             </div>
           )}

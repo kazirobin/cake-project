@@ -7,39 +7,44 @@ import Loading from "@/components/common/Loading";
 import { PackagePlus } from "lucide-react";
 import PageHeader from "@/components/common/PageHeader";
 import DySelect from "@/components/common/DySelect";
+import { toast } from "sonner";
 
 const formSchema = z.object({
+  customizable: z.boolean().optional(),
   title: z.string().min(2, "Title must be at least 2 characters."),
   description: z
     .string()
     .min(10, "Description must be at least 10 characters."),
   price: z.coerce.number().min(0, "Price must be a positive number."),
-  avatar: z.any().optional(),
+  images: z.any().optional(),
   cakeType: z.string().min(2, "Type is required."),
   flavors: z.string().min(2, "At least one flavor is required."),
   weight: z.string().min(1, "Weight is required."),
   features: z.string().optional(),
-  additionalImages: z.any().optional(),
   category: z.string().min(2, "Category is required."),
   stock: z.coerce.number().int().min(0, "Stock must be a positive integer."),
   specificationLabel: z.string().optional(),
   specificationValue: z.string().optional(),
+  nutritionLabel: z.string().optional(),
+  nutritionValue: z.string().optional(),
 });
 
 const defaultValues = {
+  customizable: false,
   title: "",
   description: "",
   price: 0,
-  avatar: "",
+  images: [],
   cakeType: "",
   flavors: "",
   weight: "",
   features: "",
-  additionalImages: "",
   category: "",
   stock: 0,
   specificationLabel: "",
   specificationValue: "",
+  nutritionLabel: "",
+  nutritionValue: "",
 };
 
 const AddProduct = () => {
@@ -58,8 +63,105 @@ const AddProduct = () => {
     label: category.name,
   }));
 
-  function onSubmit(values) {
-    console.log(values);
+  async function onSubmit(values) {
+    console.log("Form values:", values);
+    const {
+      customizable,
+      title,
+      description,
+      price,
+      stock,
+      images,
+      cakeType,
+      flavors,
+      weight,
+      features,
+      category,
+      specificationLabel,
+      specificationValue,
+      nutritionLabel,
+      nutritionValue,
+    } = values;
+
+    const formData = new FormData();
+
+    // Handle images - ensure we're working with an array
+    const imageArray = Array.isArray(images) ? images : images ? [images] : [];
+    if (imageArray.length > 0) {
+      imageArray.forEach((image) => {
+        if (image instanceof File) {
+          formData.append("files", image);
+        }
+      });
+    }
+
+    // Prepare JSON data with proper handling of empty strings
+    const jsonData = {
+      customizable,
+      title,
+      description,
+      price: Number(price) || 0,
+      stock: Number(stock) || 0,
+      cakeType: cakeType || "",
+      category: category || "",
+      flavors: flavors && flavors.trim() !== "" ? flavors : "",
+      weight: weight && weight.trim() !== "" ? weight : "",
+      features: features && features.trim() !== "" ? features : "",
+      specificationLabel:
+        specificationLabel && specificationLabel.trim() !== ""
+          ? specificationLabel
+          : "",
+      specificationValue:
+        specificationValue && specificationValue.trim() !== ""
+          ? specificationValue
+          : "",
+      nutritionLabel:
+        nutritionLabel && nutritionLabel.trim() !== "" ? nutritionLabel : "",
+      nutritionValue:
+        nutritionValue && nutritionValue.trim() !== "" ? nutritionValue : "",
+    };
+
+    formData.append("data", JSON.stringify(jsonData));
+
+    // Log formData contents for debugging
+    console.log("Sending formData:");
+    formData.forEach((value, key) => {
+      console.log(`${key}:`, value instanceof File ? value.name : value);
+    });
+
+    try {
+      const { data } = await axios.post("/cakes/create-cake", formData);
+      console.log("Server response:", data);
+
+      const { success, message } = data;
+
+      if (!success) {
+        toast.error(message || "Server returned unsuccessful response");
+        return;
+      }
+
+      toast.success(message || "Product created successfully!");
+    } catch (error) {
+      console.error("Axios error:", error);
+      let errorMessage = "An unknown error occurred";
+
+      if (error.response) {
+        // Server responded with error status
+        errorMessage =
+          error.response.data?.message ||
+          error.response.data?.error ||
+          `HTTP ${error.response.status}: ${error.response.statusText}`;
+      } else if (error.request) {
+        // Request made but no response
+        errorMessage =
+          "No response from server - please check if the server is running";
+      } else {
+        // Error setting up request
+        errorMessage = error.message;
+      }
+
+      toast.error(errorMessage);
+    }
   }
 
   if (isLoading) {
@@ -88,6 +190,14 @@ const AddProduct = () => {
             submitText="Save Product"
             className="space-y-6"
           >
+            <DyFormField
+              fieldConfig={{
+                name: "customizable",
+                label: "Customizable",
+                type: "switch",
+              }}
+            />
+
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
               <DyFormField
                 fieldConfig={{
@@ -152,28 +262,17 @@ const AddProduct = () => {
               />
             </div>
 
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-              <DyFormField
-                fieldConfig={{
-                  name: "avatar",
-                  label: "Avatar Image",
-                  description: "Main image for the cake.",
-                  type: "file",
-                  accept: "image/*",
-                }}
-              />
-
-              <DyFormField
-                fieldConfig={{
-                  name: "additionalImages",
-                  label: "Additional Images",
-                  description: "Other images for the cake.",
-                  type: "file",
-                  accept: "image/*",
-                  multiple: true,
-                }}
-              />
-            </div>
+            <DyFormField
+              fieldConfig={{
+                name: "images",
+                label: "Images",
+                description: "Images for the cake.",
+                type: "file",
+                accept: "image/*",
+                multiple: true,
+              }}
+            />
+            {/* </div> */}
 
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
               <DyFormField
@@ -189,7 +288,7 @@ const AddProduct = () => {
                 fieldConfig={{
                   name: "weight",
                   label: "Weight Options",
-                  placeholder: "1kg, 2kg (comma separated)",
+                  placeholder: "1lb, 2lb (comma separated)",
                   description: "Available weights.",
                   type: "text",
                 }}
@@ -200,11 +299,53 @@ const AddProduct = () => {
               fieldConfig={{
                 name: "features",
                 label: "Features",
-                placeholder: "Eggless, Sugar-free (comma separated)",
+                placeholder: "Egg-less, Sugar-free (comma separated)",
                 description: "Special features.",
                 type: "text",
               }}
             />
+
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+              <DyFormField
+                fieldConfig={{
+                  name: "specificationLabel",
+                  label: "Specification Title",
+                  placeholder: "e.g. Size, Weight",
+                  description: "The title of the specification.",
+                  type: "text",
+                }}
+              />
+              <DyFormField
+                fieldConfig={{
+                  name: "specificationValue",
+                  label: "Specification Value",
+                  placeholder: "e.g. 20cm, 1kg",
+                  description: "The value of the specification.",
+                  type: "text",
+                }}
+              />
+            </div>
+
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+              <DyFormField
+                fieldConfig={{
+                  name: "nutritionLabel",
+                  label: "Nutritional Title",
+                  placeholder: "e.g. Calories, Protein",
+                  description: "The title of the nutritional information.",
+                  type: "text",
+                }}
+              />
+              <DyFormField
+                fieldConfig={{
+                  name: "nutritionValue",
+                  label: "Nutritional Value",
+                  placeholder: "e.g. 100gm, 200gm",
+                  description: "The value of the nutritional information.",
+                  type: "text",
+                }}
+              />
+            </div>
           </DyForm>
         </div>
       </div>
