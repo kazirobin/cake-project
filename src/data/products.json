@@ -8,7 +8,7 @@
       "description": "Chocolate Cupcakes for your special day. Cupcakes make people happy, and these sweet recipes are guaranteed to put a smile on any face. These delicious cupcakes can also be a satisfying dessert of yours. This does not just taste delicious, but also looks eye pleasing. The cake can be delivered online, which is the best online cake delivery service in Kathmandu. All cakes are baked with hygiene and quality in the top of our priority at our own state-of-the-art baking facility and quality checked twice by our expert QC team before delivery. You can send cakes or gifts to your loved ones in Nepal or shop online for yourself in Nepal with UG Bazaar, a pioneer in online shopping in Nepal.",
       "customizable": false,
       "SKU": "SKU: UGC-CC-CHOCOLATE",
-      "categoryIds": [1,3],
+      "categoryIds": [1, 3],
       "stock": 20,
       "rating": {
         "value": 4.5,
@@ -16,7 +16,7 @@
         "stars": 5
       },
       "pricing": {
-        "original": 14.20,
+        "original": 14.2,
         "discounted": 11.83,
         "discountPercentage": 20,
         "currency": "$"
@@ -60,10 +60,10 @@
       "id": 2,
       "avatar": "https://media.ugcakes.com/products/large/strawberry-topped-cake-853601764658285-fW1XAIWe6E.webp",
       "price": 11.83,
-            "description": "Experience the elegance of our Rose Garden cake, a perfect blend of delicate flavors and stunning design. Fresh, premium ingredients for an unforgettable taste. Beautifully crafted with artistic rose decorations. Perfect for birthdays, anniversaries, and special occasions. Fast and reliable delivery within Kathmandu Valley.y Order now to celebrate your moments with sweetness and style",
+      "description": "Experience the elegance of our Rose Garden cake, a perfect blend of delicate flavors and stunning design. Fresh, premium ingredients for an unforgettable taste. Beautifully crafted with artistic rose decorations. Perfect for birthdays, anniversaries, and special occasions. Fast and reliable delivery within Kathmandu Valley.y Order now to celebrate your moments with sweetness and style",
       "customizable": true,
       "SKU": "SKU: UGC-B-1115",
-      "categoryIds": [1,3],
+      "categoryIds": [1, 3],
       "stock": 15,
       "rating": {
         "value": 4.8,
@@ -121,7 +121,7 @@
       "description": "Experience the elegance of our Rose Garden cake, a perfect blend of delicate flavors and stunning design. Fresh, premium ingredients for an unforgettable taste. Beautifully crafted with artistic rose decorations. Perfect for birthdays, anniversaries, and special occasions. Fast and reliable delivery within Kathmandu Valle.y Order now to celebrate your moments with sweetness and style",
       "customizable": true,
       "SKU": "SKU: UGC-B-1013",
-      "categoryIds": [2,3],
+      "categoryIds": [2, 3],
       "stock": 18,
       "rating": {
         "value": 4.9,
@@ -179,7 +179,7 @@
       "description": "Red Velvet Cupcakes for your special day. Cupcakes make people happy, and these sweet recipes are guaranteed to put a smile on any face. These delicious cupcakes can also be a satisfying dessert of yours. This does not just taste delicious, but also looks eye pleasing. The cake can be delivered online, which is the best online cake delivery service in Kathmandu. All cakes are baked with hygiene and quality in the top of our priority at our own state-of-the-art baking facility and quality checked twice by our expert QC team before delivery. You can send cakes or gifts to your loved ones in Nepal or shop online for yourself in Nepal with UG Bazaar, a pioneer in online shopping in Nepal.",
       "customizable": true,
       "SKU": "SKU: UGC-CC-REDVELVET",
-      "categoryIds": [3,4],
+      "categoryIds": [3, 4],
       "stock": 12,
       "rating": {
         "value": 4.7,
@@ -237,7 +237,7 @@
       "description": "This beautiful classic chocolate cake is for chocolate lovers. It is sure that this cake will melt the hearts of every guest at the celebrations. It is topped with choco wafer and bark. This cake not only tastes delicious, but also looks eye-pleasing. The cake can be delivered online, which is the best online cake delivery service in Kathmandu. All cakes are baked with hygiene and quality in the top of our priority at our own state-of-the-art baking facility and quality checked twice by our expert QC team before delivery. You can send cakes or gifts to your loved ones in Nepal or shop online for yourself in Nepal with UG Bazaar, a pioneer in online shopping in Nepal.",
       "customizable": true,
       "SKU": "SKU: UGC-C-190",
-      "categoryIds": [5,3],
+      "categoryIds": [5, 3],
       "stock": 10,
       "rating": {
         "value": 4.6,
@@ -295,7 +295,7 @@
       "description": "Indulge in the exquisite fusion of tradition and innovation with our Rasmalai Cake adorned with delicate floral and pearl detailing. Crafted with care by the finest bakers at UGCakes, renowned as the best bakery in Kathmandu, this delectable creation promises a symphony of flavors that will tantalize your taste buds. Elevate your celebrations with a cake that seamlessly marries the rich, creamy essence of Rasmalai with the irresistible allure of a classic cake. Treat yourself to the best of both worlds and make every moment unforgettable with our signature Rasmalai Cake. Order now and experience the epitome of cake perfection. Every details used in cake is edible and made out of sponges and creams. All cakes are baked with hygiene and quality at the top of our priority at our own state-of-the-art baking facility and quality is checked twice by our expert QC team before delivery. You can send cakes or gifts to your loved ones in Nepal or shop online for yourself in Nepal with UG Bazaar, a pioneer in online shopping in Nepal.",
       "customizable": false,
       "SKU": "SKU: UGC-B-604",
-      "categoryIds": [1,2,3],
+      "categoryIds": [1, 2, 3],
       "stock": 22,
       "rating": {
         "value": 4.8,
@@ -353,7 +353,7 @@
       "description": "A pretty birthday cake for daughters, featuring a lovely 'Happy Birthday Daughter' message. Pink ombre cake with vanilla buttercream and edible glitter.",
       "customizable": false,
       "SKU": "SKU: UG-CM",
-      "categoryIds": [1,2,3],
+      "categoryIds": [1, 2, 3],
       "stock": 18,
       "rating": {
         "value": 4.9,
@@ -411,7 +411,7 @@
       "description": "A cool birthday cake for brothers, featuring a trendy 'Happy Birthday Brother' design. Black forest cake with cherry filling and chocolate shavings.",
       "customizable": false,
       "SKU": "UGC-BB-8890",
-      "categoryIds": [1,2,3],
+      "categoryIds": [1, 2, 3],
       "stock": 16,
       "rating": {
         "value": 4.7,
@@ -701,7 +701,7 @@
       "description": "A sweet birthday cake for grandma, featuring a loving 'Happy Birthday Grandma' message. Lemon cake with elderflower buttercream and edible flowers.",
       "customizable": true,
       "SKU": "UGC-BG-1224",
-      "categoryIds": [4,8],
+      "categoryIds": [4, 8],
       "stock": 16,
       "rating": {
         "value": 4.8,

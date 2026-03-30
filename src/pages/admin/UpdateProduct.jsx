@@ -1,11 +1,12 @@
 import * as z from "zod";
-import { DyForm } from "@/components/common/DyForm";
-import { DyFormField } from "@/components/common/DyFormField";
+import { useParams } from "react-router";
 import { useQuery } from "@tanstack/react-query";
 import useAxios from "@/Hooks/useAxios";
 import Loading from "@/components/common/Loading";
-import { PackagePlus } from "lucide-react";
+import { PackageOpen } from "lucide-react";
 import PageHeader from "@/components/common/PageHeader";
+import { DyForm } from "@/components/common/DyForm";
+import { DyFormField } from "@/components/common/DyFormField";
 import DySelect from "@/components/common/DySelect";
 import { toast } from "sonner";
 
@@ -47,10 +48,11 @@ const defaultValues = {
   nutritionValue: "",
 };
 
-const AddProduct = () => {
+const UpdateProduct = () => {
+  const { id } = useParams();
   const axios = useAxios();
 
-  const { data: categories = [], isLoading } = useQuery({
+  const { data: categories = [], isLoading: categoriesLoading } = useQuery({
     queryKey: ["categories"],
     queryFn: async () => {
       const { data } = await axios.get("/categories");
@@ -58,13 +60,45 @@ const AddProduct = () => {
     },
   });
 
+  const {
+    data: product,
+    isLoading: productLoading,
+    error,
+  } = useQuery({
+    queryKey: ["product", id],
+    queryFn: async () => {
+      const { data } = await axios.get(`/cakes/${id}`);
+      return data?.data;
+    },
+    enabled: !!id,
+  });
+
   const categoryItems = categories.map((category) => ({
     value: category.id,
     label: category.name,
   }));
 
+  const productDefaultValues = product
+    ? {
+        customizable: product.customizable || false,
+        title: product.title || "",
+        description: product.description || "",
+        price: product.price?.toString() || "",
+        images: [],
+        cakeType: product.cakeType || "",
+        flavors: product.flavors || "",
+        weight: product.weight || "",
+        features: product.features || "",
+        category: product.category?.id || "",
+        stock: product.stock?.toString() || "",
+        specificationLabel: product.specificationLabel || "",
+        specificationValue: product.specificationValue || "",
+        nutritionLabel: product.nutritionLabel || "",
+        nutritionValue: product.nutritionValue || "",
+      }
+    : defaultValues;
+
   async function onSubmit(values) {
-    console.log("Form values:", values);
     const {
       customizable,
       title,
@@ -85,7 +119,7 @@ const AddProduct = () => {
 
     const formData = new FormData();
 
-    // Handle images - ensure we're working with an array
+    // Handle images - only add new images
     const imageArray = Array.isArray(images) ? images : images ? [images] : [];
     if (imageArray.length > 0) {
       imageArray.forEach((image) => {
@@ -95,7 +129,7 @@ const AddProduct = () => {
       });
     }
 
-    // Prepare JSON data with proper handling of empty strings and type conversions
+    // Prepare JSON data
     const jsonData = {
       customizable,
       title,
@@ -125,7 +159,7 @@ const AddProduct = () => {
     console.log("FormData to send:", jsonData);
 
     try {
-      const { data } = await axios.post("/cakes/create-cake", formData);
+      const { data } = await axios.put(`/cakes/update-cake/${id}`, formData);
 
       const { success, message } = data;
 
@@ -134,7 +168,7 @@ const AddProduct = () => {
         return;
       }
 
-      toast.success(message || "Product created successfully!");
+      toast.success(message || "Product updated successfully!");
     } catch (error) {
       console.error("Error response:", error.response?.data);
       console.error("Error message:", error.message);
@@ -143,23 +177,40 @@ const AddProduct = () => {
         error.response?.data?.message ||
         error.response?.data?.error ||
         error.message ||
-        "Failed to create product";
+        "Failed to update product";
 
       toast.error(errorMessage);
     }
   }
 
-  if (isLoading) {
+  if (productLoading || categoriesLoading) {
     return <Loading />;
+  }
+
+  if (error) {
+    return (
+      <div className="space-y-8">
+        <PageHeader
+          icon={PackageOpen}
+          title="Error"
+          description="Failed to load product"
+        />
+        <div className="rounded-lg border border-red-200 bg-red-50 p-6">
+          <p className="text-red-800">
+            {error?.message || "Unknown error occurred"}
+          </p>
+        </div>
+      </div>
+    );
   }
 
   return (
     <div className="space-y-8">
       {/* Header */}
       <PageHeader
-        icon={PackagePlus}
-        title={"Add New Product"}
-        description={"Create and publish a new cake product to your catalog"}
+        icon={PackageOpen}
+        title="Edit Product"
+        description="Update cake product details and information"
       />
 
       {/* Form Card */}
@@ -170,9 +221,9 @@ const AddProduct = () => {
         <div className="p-6">
           <DyForm
             schema={formSchema}
-            defaultValues={defaultValues}
+            defaultValues={productDefaultValues}
             onSubmit={onSubmit}
-            submitText="Save Product"
+            submitText="Update Product"
             className="space-y-6"
           >
             <DyFormField
@@ -200,7 +251,7 @@ const AddProduct = () => {
                 placeholder="Select a category..."
                 description="Product category."
                 items={categoryItems}
-                isLoading={isLoading}
+                isLoading={categoriesLoading}
               />
               <DySelect
                 name="cakeType"
@@ -257,7 +308,6 @@ const AddProduct = () => {
                 multiple: true,
               }}
             />
-            {/* </div> */}
 
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
               <DyFormField
@@ -294,9 +344,9 @@ const AddProduct = () => {
               <DyFormField
                 fieldConfig={{
                   name: "specificationLabel",
-                  label: "Specification Title",
-                  placeholder: "e.g. Size, Weight",
-                  description: "The title of the specification.",
+                  label: "Specification Label",
+                  placeholder: "e.g., Delivery Range",
+                  description: "Label for specifications.",
                   type: "text",
                 }}
               />
@@ -304,8 +354,8 @@ const AddProduct = () => {
                 fieldConfig={{
                   name: "specificationValue",
                   label: "Specification Value",
-                  placeholder: "e.g. 20cm, 1kg",
-                  description: "The value of the specification.",
+                  placeholder: "e.g., 2-3 Days",
+                  description: "Value for specifications.",
                   type: "text",
                 }}
               />
@@ -315,18 +365,18 @@ const AddProduct = () => {
               <DyFormField
                 fieldConfig={{
                   name: "nutritionLabel",
-                  label: "Nutritional Title",
-                  placeholder: "e.g. Calories, Protein",
-                  description: "The title of the nutritional information.",
+                  label: "Nutrition Label",
+                  placeholder: "e.g., Calories",
+                  description: "Label for nutrition info.",
                   type: "text",
                 }}
               />
               <DyFormField
                 fieldConfig={{
                   name: "nutritionValue",
-                  label: "Nutritional Value",
-                  placeholder: "e.g. 100gm, 200gm",
-                  description: "The value of the nutritional information.",
+                  label: "Nutrition Value",
+                  placeholder: "e.g., 250 Cal per serving",
+                  description: "Value for nutrition info.",
                   type: "text",
                 }}
               />
@@ -338,4 +388,4 @@ const AddProduct = () => {
   );
 };
 
-export default AddProduct;
+export default UpdateProduct;

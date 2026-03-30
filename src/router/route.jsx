@@ -19,6 +19,7 @@ import ManageCategory from "@/pages/admin/ManageCategory";
 import CartPage from "@/components/users/cart/cart-page";
 import CheckoutPage from "@/components/users/checkout/checkout";
 import Gifts from "@/pages/users/gifts/gifts";
+import UpdateProduct from "@/pages/admin/UpdateProduct";
 
 const router = createBrowserRouter([
   {
@@ -89,6 +90,10 @@ const router = createBrowserRouter([
       {
         path: "all-products",
         element: <AllProducts />,
+      },
+      {
+        path: "all-products/:id",
+        element: <UpdateProduct />,
       },
       {
         path: "add-product",
