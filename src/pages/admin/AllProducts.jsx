@@ -21,7 +21,7 @@ import { useNavigate } from "react-router";
 import PageHeader from "@/components/common/PageHeader";
 import useAxios from "@/Hooks/useAxios";
 import { useQuery } from "@tanstack/react-query";
-import { toast } from "sonner";
+import ProductRow from "@/components/admin/ProductRow";
 
 const AllProducts = () => {
   const [searchValue, setSearchValue] = useState("");
@@ -45,27 +45,6 @@ const AllProducts = () => {
   const products = allProducts.filter((product) => {
     return product.isDeleted === false;
   });
-
-  const handleDeleteProduct = async (productId) => {
-    if (!window.confirm("Are you sure you want to delete this product?")) {
-      return;
-    }
-    try {
-      const { data } = await axios.delete(`/cakes/delete-cake/${productId}`);
-
-      const { success, message } = data;
-      if (!success) {
-        toast(message || "Failed to delete product. Please try again.");
-        return;
-      }
-      toast.success(message || "Product deleted successfully!");
-      // Refetch products after deletion
-      refetch();
-    } catch (error) {
-      console.error("Failed to delete product:", error);
-      toast.error("Failed to delete product. Please try again.");
-    }
-  };
 
   return (
     <div className="space-y-6">
@@ -164,64 +143,11 @@ const AllProducts = () => {
                 </thead>
                 <tbody>
                   {products.map((product) => (
-                    <tr key={product.id} className="hover:bg-muted/50 border-b">
-                      <td className="px-4 py-3">
-                        <div className="flex items-center gap-3">
-                          {product?.images !== "" ? (
-                            <img
-                              src={product.images[0]}
-                              alt={product?.title}
-                              className="h-10 w-10 rounded-md object-cover"
-                            />
-                          ) : (
-                            <div className="bg-muted flex h-10 w-10 items-center justify-center rounded-md">
-                              <Package className="text-muted-foreground h-5 w-5" />
-                            </div>
-                          )}
-                          <span className="font-medium">
-                            {product?.title || "N/A"}
-                          </span>
-                        </div>
-                      </td>
-                      <td className="px-4 py-3">
-                        {product?.category?.name || "N/A"}
-                      </td>
-                      <td className="px-4 py-3">{product?.type || "N/A"}</td>
-                      <td className="px-4 py-3">
-                        {"$"}
-                        {product.cakeDetails?.pricing?.discounted?.toFixed(2) ||
-                          product?.price ||
-                          "N/A"}
-                      </td>
-                      <td className="px-4 py-3">{product?.stock ?? "N/A"}</td>
-                      <td className="px-4 py-3">
-                        {product?.soldAmount ?? "N/A"}
-                      </td>
-                      <td className="px-4 py-3">
-                        <div className="flex items-center gap-2">
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            className="cursor-pointer"
-                            onClick={() =>
-                              navigate(
-                                `/admin-panel/edit-product/${product.id}`,
-                              )
-                            }
-                          >
-                            Edit
-                          </Button>
-                          <Button
-                            variant="destructive"
-                            size="sm"
-                            className="cursor-pointer"
-                            onClick={() => handleDeleteProduct(product.id)}
-                          >
-                            Delete
-                          </Button>
-                        </div>
-                      </td>
-                    </tr>
+                    <ProductRow
+                      key={product.id}
+                      product={product}
+                      refetch={refetch}
+                    />
                   ))}
                 </tbody>
               </table>
