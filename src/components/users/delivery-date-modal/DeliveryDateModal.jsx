@@ -22,7 +22,7 @@ const DeliveryCustomizationModal = ({ isOpen, onClose, addToCart, product, quant
     return d.toDateString();
   });
 
-  const sizes = ["1lb", "2lb", "3lb"];
+  const sizes = ["1 pound", "2 pound", "3 pound"];
   const flavors = ["Chocolate", "Vanilla", "Butterscotch", "Black Forest", "White Forest", "Strawberry", "Red Velvet", "Pineapple", "Mango", "Blueberry", "Coffee", "Caramel", "Orange", "Lemon", "Hazelnut"];
   const types = ["Eggless", "Less Cream", "Extra Juicy"];
 

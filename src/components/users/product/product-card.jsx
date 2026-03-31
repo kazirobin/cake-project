@@ -256,7 +256,7 @@ const ProductCard = ({ product, categorySlug = "category" }) => {
                 )}
               </div>
               
-              {isCustomizable && !isOutOfStock ? (
+              {/* {isCustomizable && !isOutOfStock ? (
                 <Button
                   onClick={handleAddToCart}
                   size="sm"
@@ -284,7 +284,7 @@ const ProductCard = ({ product, categorySlug = "category" }) => {
                     <ShoppingCart className="h-4 w-4" />
                   )}
                 </Button>
-              )}
+              )} */}
             </div>
 
             {stock > 0 && stock < 10 && !isOutOfStock && (
