@@ -358,3 +358,236 @@ Src
    route.jsx   
 
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+```
+src/
+├── app/                          # App-wide configuration
+│   ├── providers/                # All providers
+│   │   ├── index.jsx
+│   │   ├── AuthProvider.jsx
+│   │   ├── ThemeProvider.jsx
+│   │   └── CartProvider.jsx
+│   └── router/
+│       └── index.jsx
+│
+├── assets/                       # Static assets
+│   ├── images/
+│   ├── fonts/
+│   └── icons/
+│
+├── common/                       # Shared components
+│   ├── components/               # Reusable UI components
+│   │   ├── Breadcrumb/
+│   │   │   ├── Breadcrumb.jsx
+│   │   │   ├── Breadcrumb.types.js
+│   │   │   └── index.js
+│   │   ├── Form/
+│   │   │   ├── Form.jsx
+│   │   │   ├── FormField.jsx
+│   │   │   └── index.js
+│   │   ├── Loading/
+│   │   │   ├── Loading.jsx
+│   │   │   ├── Spinner.jsx
+│   │   │   └── index.js
+│   │   └── PageHeader/
+│   │       └── PageHeader.jsx
+│   │
+│   ├── hooks/                    # Global hooks
+│   │   ├── useAuth.js
+│   │   ├── useAxios.js
+│   │   ├── useLocalStorage.js
+│   │   ├── useMobile.js
+│   │   ├── useToast.js
+│   │   └── index.js
+│   │
+│   ├── contexts/                 # Global contexts
+│   │   ├── AuthContext.jsx
+│   │   ├── CartContext.jsx
+│   │   └── index.js
+│   │
+│   └── utils/                    # Utility functions
+│       ├── constants.js
+│       ├── helpers.js
+│       ├── formatters.js
+│       └── index.js
+│
+├── components/                   # Feature-based components
+│   ├── layout/                   # Layout components
+│   │   ├── RootLayout.jsx
+│   │   ├── CategoryLayout.jsx
+│   │   ├── Header/
+│   │   │   ├── Header.jsx
+│   │   │   ├── DesktopNav.jsx
+│   │   │   ├── MobileNav.jsx
+│   │   │   ├── SearchBar.jsx
+│   │   │   └── index.js
+│   │   ├── Footer/
+│   │   │   ├── Footer.jsx
+│   │   │   ├── Newsletter.jsx
+│   │   │   ├── QuickLinks.jsx
+│   │   │   └── index.js
+│   │   └── Sidebar/
+│   │       └── Sidebar.jsx
+│   │
+│   ├── cart/                     # Cart feature
+│   │   ├── components/
+│   │   │   ├── CartItem.jsx
+│   │   │   ├── CartSidebar.jsx
+│   │   │   └── CartEdit.jsx
+│   │   ├── pages/
+│   │   │   └── CartPage.jsx
+│   │   ├── hooks/
+│   │   │   └── useCart.js
+│   │   └── index.js
+│   │
+│   ├── products/                 # Products feature
+│   │   ├── components/
+│   │   │   ├── ProductCard.jsx
+│   │   │   ├── ProductShowcase.jsx
+│   │   │   └── NoProductFound.jsx
+│   │   ├── pages/
+│   │   │   ├── ProductDetails.jsx
+│   │   │   └── ProductListing.jsx
+│   │   ├── hooks/
+│   │   │   └── useProducts.js
+│   │   └── index.js
+│   │
+│   ├── categories/               # Categories feature
+│   │   ├── components/
+│   │   │   ├── CategoryCard.jsx
+│   │   │   ├── CategoryHero.jsx
+│   │   │   ├── CategoryFeaturesBar.jsx
+│   │   │   └── SortDropdown.jsx
+│   │   ├── pages/
+│   │   │   ├── AllCategories.jsx
+│   │   │   └── CategoryDetails.jsx
+│   │   └── index.js
+│   │
+│   ├── checkout/                 # Checkout feature
+│   │   ├── components/
+│   │   │   ├── CheckoutForm.jsx
+│   │   │   ├── OrderSummary.jsx
+│   │   │   └── DeliveryDateModal.jsx
+│   │   ├── pages/
+│   │   │   └── CheckoutPage.jsx
+│   │   └── index.js
+│   │
+│   ├── auth/                     # Auth feature
+│   │   ├── components/
+│   │   │   ├── GoogleButton.jsx
+│   │   │   └── ProtectedRoute.jsx
+│   │   ├── pages/
+│   │   │   ├── Login.jsx
+│   │   │   └── Register.jsx
+│   │   └── index.js
+│   │
+│   ├── home/                     # Home feature
+│   │   ├── components/
+│   │   │   ├── HeroBanner.jsx
+│   │   │   ├── Features.jsx
+│   │   │   ├── ServiceHighlights.jsx
+│   │   │   └── PlayWinCake.jsx
+│   │   ├── pages/
+│   │   │   └── HomePage.jsx
+│   │   └── index.js
+│   │
+│   ├── gifts/                    # Gifts feature
+│   │   ├── components/
+│   │   │   └── GiftCard.jsx
+│   │   ├── pages/
+│   │   │   └── GiftsPage.jsx
+│   │   └── index.js
+│   │
+│   ├── bakery-training/          # Training feature
+│   │   ├── components/
+│   │   └── pages/
+│   │       └── BakeryTraining.jsx
+│   │
+│   └── wish-generator/           # Wish generator feature
+│       ├── components/
+│       └── pages/
+│           └── WishGenerator.jsx
+│
+├── lib/                          # Third-party configurations
+│   ├── firebase/
+│   │   ├── config.js
+│   │   ├── auth.js
+│   │   ├── firestore.js
+│   │   └── index.js
+│   ├── axios/
+│   │   └── instance.js
+│   └── utils.js
+│
+├── hooks/                        # Global custom hooks
+│   ├── useAuth.js
+│   ├── useCart.js
+│   ├── useLocalStorage.js
+│   ├── useMediaQuery.js
+│   ├── useToast.js
+│   └── index.js
+│
+├── contexts/                     # Global contexts
+│   ├── AuthContext.jsx
+│   ├── CartContext.jsx
+│   ├── ThemeContext.jsx
+│   └── index.js
+│
+├── services/                     # API services
+│   ├── productService.js
+│   ├── categoryService.js
+│   ├── orderService.js
+│   ├── authService.js
+│   └── index.js
+│
+├── types/                        # TypeScript types (if using TS)
+│   ├── product.types.js
+│   ├── user.types.js
+│   └── index.js
+│
+├── data/                         # Mock data (if needed)
+│   ├── products.json
+│   ├── categories.json
+│   └── serviceHighlights.json
+│
+├── styles/                       # Global styles
+│   ├── globals.css
+│   └── variables.css
+│
+├── config/                       # App configuration
+│   ├── constants.js
+│   ├── routes.js
+│   └── env.js
+│
+├── pages/                        # Page components (thin layer)
+│   ├── admin/                    # Admin pages
+│   │   ├── Dashboard/
+│   │   │   └── Dashboard.jsx
+│   │   ├── Products/
+│   │   │   ├── AddProduct.jsx
+│   │   │   └── AllProducts.jsx
+│   │   ├── Categories/
+│   │   │   └── ManageCategories.jsx
+│   │   ├── Orders/
+│   │   │   └── Orders.jsx
+│   │   └── Users/
+│   │       └── Moderators.jsx
+│   │
+│   └── error/
+│       └── NotFoundPage.jsx
+│
+├── App.jsx
+├── main.jsx
+└── index.css
+```
