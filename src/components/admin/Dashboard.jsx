@@ -1,5 +1,5 @@
 import PageHeader from "@/components/common/PageHeader";
-import { SectionCards } from "@/components/admin/section-cards";
+import { SectionCards } from "@/components/admin/SectionCard";
 import {
   Card,
   CardContent,
