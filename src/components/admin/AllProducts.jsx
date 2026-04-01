@@ -31,19 +31,15 @@ const AllProducts = () => {
   const navigate = useNavigate();
 
   const {
-    data: allProducts = [],
+    data: products = [],
     isLoading,
     refetch,
   } = useQuery({
     queryKey: ["cakes"],
     queryFn: async () => {
       const { data } = await axios.get("/cakes");
-      return data?.data || [];
+      return data?.data?.data || [];
     },
-  });
-
-  const products = allProducts.filter((product) => {
-    return product.isDeleted === false;
   });
 
   return (
@@ -134,8 +130,12 @@ const AllProducts = () => {
                     </th>
                     <th className="px-4 py-3 text-left font-semibold">Type</th>
                     <th className="px-4 py-3 text-left font-semibold">Price</th>
-                    <th className="px-4 py-3 text-left font-semibold">Stock</th>
-                    <th className="px-4 py-3 text-left font-semibold">Sold</th>
+                    <th className="px-4 py-3 text-center font-semibold">
+                      Stock
+                    </th>
+                    <th className="px-4 py-3 text-center font-semibold">
+                      Sold
+                    </th>
                     <th className="px-4 py-3 text-left font-semibold">
                       Actions
                     </th>

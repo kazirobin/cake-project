@@ -1,13 +1,7 @@
 import useAxios from "@/Hooks/useAxios";
 import { useNavigate } from "react-router";
 import { toast } from "sonner";
-import {
-  EllipsisVertical,
-  Package,
-  PencilIcon,
-  ShareIcon,
-  TrashIcon,
-} from "lucide-react";
+import { EllipsisVertical, Package, PencilIcon, TrashIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -71,8 +65,12 @@ const ProductRow = ({ product, refetch }) => {
           formattedPrice ||
           "N/A"}
       </td>
-      <td className="px-4 py-3">{product?.stock ?? "N/A"}</td>
-      <td className="px-4 py-3">{product?.soldAmount ?? "N/A"}</td>
+      <td align="center" className="px-4 py-3">
+        {product?.stock ?? "N/A"}
+      </td>
+      <td align="center" className="px-4 py-3">
+        {product?.soldAmount ?? "N/A"}
+      </td>
       <td className="px-4 py-3">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -90,10 +88,6 @@ const ProductRow = ({ product, refetch }) => {
                 <PencilIcon />
                 Edit
               </DropdownMenuItem>
-              {/* <DropdownMenuItem>
-                <ShareIcon />
-                Share
-              </DropdownMenuItem> */}
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
