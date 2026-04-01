@@ -18,6 +18,7 @@ import {
 import { Skeleton } from "@/components/ui/skeleton";
 import { Search, Package, ShoppingBag } from "lucide-react";
 import PageHeader from "@/components/common/PageHeader";
+import OrdersSkeleton from "./LoadingUI/OrdersSkeleton";
 
 const Orders = () => {
   const [searchValue, setSearchValue] = useState("");
@@ -26,6 +27,10 @@ const Orders = () => {
   // Placeholder data - replace with actual API call
   const orders = [];
   const isLoading = false;
+
+  if (isLoading) {
+    return <OrdersSkeleton />;
+  }
 
   return (
     <div className="space-y-6">

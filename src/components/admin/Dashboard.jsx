@@ -8,8 +8,14 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { LayoutDashboard } from "lucide-react";
+import DashboardSkeleton from "./LoadingUI/DashboardSkeleton";
 
 const Dashboard = () => {
+  const isLoading = false; // Replace with actual loading state
+
+  if (isLoading) {
+    return <DashboardSkeleton />;
+  }
   return (
     <div className="space-y-8">
       {/* Header */}
