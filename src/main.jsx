@@ -5,7 +5,7 @@ import { RouterProvider } from "react-router/dom";
 import router from "./router/route.jsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import AuthProvider from "./AuthContext/AuthProvider";
-import { CartProvider } from "./Hooks/cart-context";
+import { CartProvider } from "./components/cart/CartContext/cart-context";
 import { ToastContainer } from "react-toastify";
 import { Toaster } from "./components/ui/sonner";
 import { ThemeProvider } from "@/components/Theme/ThemeProvider";
