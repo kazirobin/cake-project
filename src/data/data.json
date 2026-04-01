@@ -32,7 +32,7 @@
       "heroDescription": "Customize your cake with photos, messages, and designs",
       "productCount": 24,
       "metaTitle": "Birthday Cakes - Custom Designs for Every Age",
-      "metaDescription": "Find the perfect birthday cake with customizable designs for kids, teens, and adults. Order online with free delivery.",
+      "metaDescription": "Find the perfect birthday cake with customizable true for kids, teens, and adults. Order online with free delivery.",
       "filters": {
         "customizable": true,
         "dietary": ["Eggless", "Gluten-Free", "Vegan"],
@@ -390,7 +390,7 @@
         "totalReviews": 340
       },
       "attributes": {
-        "customizable": false,
+        "customizable": true,
         "defaultColor": "Black",
         "defaultStorage": "256GB",
         "defaultRam": "12GB",
@@ -446,7 +446,7 @@
         "totalReviews": 128
       },
       "attributes": {
-        "customizable": false,
+        "customizable": true,
         "defaultSize": "1kg",
         "defaultFlavor": "Chocolate",
         "defaultCakeType": "Normal",
@@ -526,7 +526,7 @@
         "totalReviews": 95
       },
       "attributes": {
-        "customizable": false,
+        "customizable": true,
         "defaultSize": "1kg",
         "defaultFlavor": "Strawberry",
         "defaultCakeType": "Normal",
@@ -553,7 +553,7 @@
         "Rich chocolate sponge",
         "Creamy buttercream",
         "Perfect for Father's Day",
-        "Customizable design"
+        "Customizable true"
       ],
       "deliveryInfo": [
         "Free delivery inside Kathmandu Valley",
@@ -600,7 +600,7 @@
         "totalReviews": 112
       },
       "attributes": {
-        "customizable": false,
+        "customizable": true,
         "defaultSize": "1kg",
         "defaultFlavor": "Vanilla with Strawberry filling",
         "defaultCakeType": "Normal",
@@ -674,7 +674,7 @@
         "totalReviews": 78
       },
       "attributes": {
-        "customizable": false,
+        "customizable": true,
         "defaultSize": "1kg",
         "defaultFlavor": "Red Velvet",
         "defaultCakeType": "Normal",
@@ -748,7 +748,7 @@
         "totalReviews": 67
       },
       "attributes": {
-        "customizable": false,
+        "customizable": true,
         "defaultSize": "1kg",
         "defaultFlavor": "Chocolate",
         "defaultCakeType": "Normal",
@@ -969,7 +969,7 @@
         "totalReviews": 72
       },
       "attributes": {
-        "customizable": false,
+        "customizable": true,
         "defaultSize": "1kg",
         "defaultFlavor": "Black Forest",
         "defaultCakeType": "Normal",
@@ -1043,7 +1043,7 @@
         "totalReviews": 94
       },
       "attributes": {
-        "customizable": false,
+        "customizable": true,
         "defaultSize": "1kg",
         "defaultFlavor": "Strawberry",
         "defaultCakeType": "Normal",
@@ -1191,7 +1191,7 @@
         "totalReviews": 63
       },
       "attributes": {
-        "customizable": false,
+        "customizable": true,
         "defaultSize": "1kg",
         "defaultFlavor": "Vanilla with Caramel",
         "defaultCakeType": "Normal",
