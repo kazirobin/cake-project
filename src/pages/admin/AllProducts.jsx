@@ -134,8 +134,12 @@ const AllProducts = () => {
                     </th>
                     <th className="px-4 py-3 text-left font-semibold">Type</th>
                     <th className="px-4 py-3 text-left font-semibold">Price</th>
-                    <th className="px-4 py-3 text-left font-semibold">Stock</th>
-                    <th className="px-4 py-3 text-left font-semibold">Sold</th>
+                    <th className="px-4 py-3 text-center font-semibold">
+                      Stock
+                    </th>
+                    <th className="px-4 py-3 text-center font-semibold">
+                      Sold
+                    </th>
                     <th className="px-4 py-3 text-left font-semibold">
                       Actions
                     </th>
