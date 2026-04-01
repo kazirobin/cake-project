@@ -22,6 +22,7 @@ import PageHeader from "@/components/common/PageHeader";
 import useAxios from "@/Hooks/useAxios";
 import { useQuery } from "@tanstack/react-query";
 import ProductRow from "@/components/admin/ProductRow";
+import AllProductsSkeleton from "./LoadingUI/AllProductsSkeleton";
 
 const AllProducts = () => {
   const [searchValue, setSearchValue] = useState("");
@@ -41,6 +42,10 @@ const AllProducts = () => {
       return data?.data?.data || [];
     },
   });
+
+  if (isLoading) {
+    return <AllProductsSkeleton />;
+  }
 
   return (
     <div className="space-y-6">

@@ -3,11 +3,11 @@ import { DyForm } from "@/components/common/DyForm";
 import { DyFormField } from "@/components/common/DyFormField";
 import { useQuery } from "@tanstack/react-query";
 import useAxios from "@/Hooks/useAxios";
-import Loading from "@/components/common/Loading";
 import { PackagePlus } from "lucide-react";
 import PageHeader from "@/components/common/PageHeader";
 import DySelect from "@/components/common/DySelect";
 import { toast } from "sonner";
+import AddProductSkeleton from "./LoadingUI/AddProductSkeleton";
 
 const formSchema = z.object({
   customizable: z.boolean().optional(),
@@ -150,7 +150,7 @@ const AddProduct = () => {
   }
 
   if (isLoading) {
-    return <Loading />;
+    return <AddProductSkeleton />;
   }
 
   return (
