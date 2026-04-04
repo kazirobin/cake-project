@@ -48,7 +48,7 @@ const SliderBanner = () => {
     if (isAutoPlaying) {
       interval = setInterval(() => {
         setCurrentSlide((prev) =>
-          prev === sliderData.length - 1 ? 0 : prev + 1
+          prev === sliderData.length - 1 ? 0 : prev + 1,
         );
       }, 4000);
     }
@@ -57,16 +57,12 @@ const SliderBanner = () => {
 
   const nextSlide = () => {
     setIsAutoPlaying(false);
-    setCurrentSlide((prev) =>
-      prev === sliderData.length - 1 ? 0 : prev + 1
-    );
+    setCurrentSlide((prev) => (prev === sliderData.length - 1 ? 0 : prev + 1));
   };
 
   const prevSlide = () => {
     setIsAutoPlaying(false);
-    setCurrentSlide((prev) =>
-      prev === 0 ? sliderData.length - 1 : prev - 1
-    );
+    setCurrentSlide((prev) => (prev === 0 ? sliderData.length - 1 : prev - 1));
   };
 
   const goToSlide = (index) => {
@@ -75,8 +71,8 @@ const SliderBanner = () => {
   };
 
   return (
-    <div 
-      className="relative w-full h-[300px] sm:h-[350px] md:h-[380px] lg:h-[400px] overflow-hidden group"
+    <div
+      className="group relative h-75 w-full overflow-hidden sm:h-87.5 md:h-95 lg:h-100"
       onMouseEnter={() => setIsAutoPlaying(false)}
       onMouseLeave={() => setIsAutoPlaying(true)}
     >
@@ -86,40 +82,40 @@ const SliderBanner = () => {
           key={slide.id}
           className={`absolute inset-0 transition-all duration-700 ease-in-out ${
             index === currentSlide
-              ? "opacity-100 z-10"
-              : "opacity-0 z-0 pointer-events-none"
+              ? "z-10 opacity-100"
+              : "pointer-events-none z-0 opacity-0"
           }`}
         >
           {/* Image */}
           <img
             src={slide.image}
             alt={slide.alt}
-            className="w-full h-full object-cover"
+            className="h-full w-full object-cover"
           />
 
           {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent" />
+          <div className="absolute inset-0 bg-linear-to-r from-black/80 via-black/50 to-transparent" />
 
           {/* Content - Left aligned */}
           <div className="absolute inset-0 flex items-center">
-            <div className="container lg:ms-10 sm:ms-0 px-4   sm:px-6 lg:px-8">
-              <div className="max-w-xl text-white text-left">
+            <div className="container px-4 sm:ms-0 sm:px-6 lg:ms-10 lg:px-8">
+              <div className="max-w-xl text-left text-white">
                 {/* Title */}
-                <h1 
-                  className={`text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-bold mb-3 transform transition-all duration-700 delay-200 ${
-                    index === currentSlide 
-                      ? "translate-y-0 opacity-100" 
+                <h1
+                  className={`mb-3 transform text-3xl font-bold transition-all delay-200 duration-700 sm:text-4xl md:text-5xl lg:text-5xl ${
+                    index === currentSlide
+                      ? "translate-y-0 opacity-100"
                       : "translate-y-8 opacity-0"
                   }`}
                 >
                   {slide.title}
                 </h1>
-                
+
                 {/* Description */}
-                <p 
-                  className={`text-base sm:text-lg md:text-xl mb-6 text-gray-200 transform transition-all duration-700 delay-400 ${
-                    index === currentSlide 
-                      ? "translate-y-0 opacity-100" 
+                <p
+                  className={`mb-6 transform text-base text-gray-200 transition-all delay-400 duration-700 sm:text-lg md:text-xl ${
+                    index === currentSlide
+                      ? "translate-y-0 opacity-100"
                       : "translate-y-8 opacity-0"
                   }`}
                 >
@@ -127,18 +123,15 @@ const SliderBanner = () => {
                 </p>
 
                 {/* Buttons - Bigger size */}
-                <div 
-                  className={`flex flex-col sm:flex-row gap-4 transform transition-all duration-700 delay-600 ${
-                    index === currentSlide 
-                      ? "translate-y-0 opacity-100" 
+                <div
+                  className={`flex transform flex-col gap-4 transition-all delay-600 duration-700 sm:flex-row ${
+                    index === currentSlide
+                      ? "translate-y-0 opacity-100"
                       : "translate-y-8 opacity-0"
                   }`}
                 >
-                  <Button 
-                    className={`${slide.buttonColor} hover:opacity-90 text-white px-8 py-6 
-                      flex items-center justify-center gap-3 text-base sm:text-lg
-                      shadow-lg hover:shadow-xl transform hover:scale-105 
-                      transition-all duration-300 rounded-xl min-w-[160px]`}
+                  <Button
+                    className={`${slide.buttonColor} flex min-w-40 transform items-center justify-center gap-3 rounded-xl px-8 py-6 text-base text-white shadow-lg transition-all duration-300 hover:scale-105 hover:opacity-90 hover:shadow-xl sm:text-lg`}
                   >
                     {slide.buyNowText}
                     <ShoppingBag size={20} />
@@ -146,11 +139,7 @@ const SliderBanner = () => {
 
                   <Button
                     variant="outline"
-                    className="bg-transparent border-2 border-white text-white 
-                      hover:bg-white hover:text-gray-900 px-8 py-6 
-                      flex items-center justify-center gap-3 text-base sm:text-lg
-                      shadow-lg hover:shadow-xl transform hover:scale-105 
-                      transition-all duration-300 rounded-xl min-w-[180px]"
+                    className="flex min-w-45 transform items-center justify-center gap-3 rounded-xl border-2 border-white bg-transparent px-8 py-6 text-base text-white shadow-lg transition-all duration-300 hover:scale-105 hover:bg-white hover:text-gray-900 hover:shadow-xl sm:text-lg"
                   >
                     <Search size={20} />
                     {slide.findCakeText}
@@ -165,32 +154,22 @@ const SliderBanner = () => {
       {/* Navigation Arrows */}
       <button
         onClick={prevSlide}
-        className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 
-          bg-black/30 backdrop-blur-md hover:bg-black/50 
-          text-white p-2 sm:p-3 rounded-full z-20
-          opacity-0 group-hover:opacity-100 transition-all duration-300
-          border border-white/20 hover:border-white/40
-          shadow-lg hover:shadow-xl transform hover:scale-110"
+        className="absolute top-1/2 left-2 z-20 -translate-y-1/2 transform rounded-full border border-white/20 bg-black/30 p-2 text-white opacity-0 shadow-lg backdrop-blur-md transition-all duration-300 group-hover:opacity-100 hover:scale-110 hover:border-white/40 hover:bg-black/50 hover:shadow-xl sm:left-4 sm:p-3"
         aria-label="Previous slide"
       >
-        <ChevronLeft size={20} className="sm:w-6 sm:h-6" />
+        <ChevronLeft size={20} className="sm:h-6 sm:w-6" />
       </button>
 
       <button
         onClick={nextSlide}
-        className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 
-          bg-black/30 backdrop-blur-md hover:bg-black/50 
-          text-white p-2 sm:p-3 rounded-full z-20
-          opacity-0 group-hover:opacity-100 transition-all duration-300
-          border border-white/20 hover:border-white/40
-          shadow-lg hover:shadow-xl transform hover:scale-110"
+        className="absolute top-1/2 right-2 z-20 -translate-y-1/2 transform rounded-full border border-white/20 bg-black/30 p-2 text-white opacity-0 shadow-lg backdrop-blur-md transition-all duration-300 group-hover:opacity-100 hover:scale-110 hover:border-white/40 hover:bg-black/50 hover:shadow-xl sm:right-4 sm:p-3"
         aria-label="Next slide"
       >
-        <ChevronRight size={20} className="sm:w-6 sm:h-6" />
+        <ChevronRight size={20} className="sm:h-6 sm:w-6" />
       </button>
 
       {/* Dots Indicator */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+      <div className="absolute bottom-4 left-1/2 z-20 flex -translate-x-1/2 gap-2">
         {sliderData.map((_, index) => (
           <button
             key={index}
@@ -198,23 +177,26 @@ const SliderBanner = () => {
             className="group relative"
             aria-label={`Go to slide ${index + 1}`}
           >
-            <span 
-              className={`block h-2 rounded-full transition-all duration-300 cursor-pointer
-                ${index === currentSlide 
-                  ? 'w-6 bg-white shadow-lg' 
-                  : 'w-2 bg-white/50 group-hover:bg-white/80'}`}
+            <span
+              className={`block h-2 cursor-pointer rounded-full transition-all duration-300 ${
+                index === currentSlide
+                  ? "w-6 bg-white shadow-lg"
+                  : "w-2 bg-white/50 group-hover:bg-white/80"
+              }`}
             />
           </button>
         ))}
       </div>
 
       {/* Progress Bar */}
-      <div className="absolute bottom-0 left-0 w-full h-1 bg-white/10 z-20">
-        <div 
-          className="h-full bg-gradient-to-r from-pink-500 via-purple-500 to-red-500 transition-all duration-300"
-          style={{ 
-            width: isAutoPlaying ? `${((currentSlide + 1) / sliderData.length) * 100}%` : '0%',
-            transition: 'width 0.3s ease'
+      <div className="absolute bottom-0 left-0 z-20 h-1 w-full bg-white/10">
+        <div
+          className="h-full bg-linear-to-r from-pink-500 via-purple-500 to-red-500 transition-all duration-300"
+          style={{
+            width: isAutoPlaying
+              ? `${((currentSlide + 1) / sliderData.length) * 100}%`
+              : "0%",
+            transition: "width 0.3s ease",
           }}
         />
       </div>

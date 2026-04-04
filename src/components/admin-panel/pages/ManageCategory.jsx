@@ -1,9 +1,9 @@
 import * as z from "zod";
-import { DyForm } from "@/components/common/DyForm";
-import { DyFormField } from "@/components/common/DyFormField";
+import { DyForm } from "@/components/DynamicComponents/DyForm";
+import { DyFormField } from "@/components/DynamicComponents/DyFormField";
 import { toast } from "react-toastify";
 import useAxios from "@/Hooks/useAxios";
-import PageHeader from "@/components/common/PageHeader";
+import PageHeader from "@/components/DynamicComponents/PageHeader";
 import { ChartGantt } from "lucide-react";
 
 const formSchema = z.object({

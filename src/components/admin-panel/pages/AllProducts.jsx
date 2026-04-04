@@ -18,11 +18,11 @@ import {
 import { Skeleton } from "@/components/ui/skeleton";
 import { Search, Plus, Package } from "lucide-react";
 import { useNavigate } from "react-router";
-import PageHeader from "@/components/common/PageHeader";
+import PageHeader from "@/components/DynamicComponents/PageHeader";
 import useAxios from "@/Hooks/useAxios";
 import { useQuery } from "@tanstack/react-query";
-import ProductRow from "@/components/admin/ProductRow";
-import AllProductsSkeleton from "./LoadingUI/AllProductsSkeleton";
+import ProductRow from "@/components/admin-panel/shared/ProductRow";
+import AllProductsSkeleton from "@/components/admin-panel/LoadingUI/AllProductsSkeleton";
 
 const AllProducts = () => {
   const [searchValue, setSearchValue] = useState("");

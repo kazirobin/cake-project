@@ -4,10 +4,10 @@ import { useQuery } from "@tanstack/react-query";
 import useAxios from "@/Hooks/useAxios";
 import Loading from "@/components/common/Loading";
 import { PackageOpen } from "lucide-react";
-import PageHeader from "@/components/common/PageHeader";
-import { DyForm } from "@/components/common/DyForm";
-import { DyFormField } from "@/components/common/DyFormField";
-import DySelect from "@/components/common/DySelect";
+import PageHeader from "@/components/DynamicComponents/PageHeader";
+import { DyForm } from "@/components/DynamicComponents/DyForm";
+import { DyFormField } from "@/components/DynamicComponents/DyFormField";
+import DySelect from "@/components/DynamicComponents/DySelect";
 import { toast } from "sonner";
 
 const formSchema = z.object({

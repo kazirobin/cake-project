@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import productService from "../../product/product-service";
 import ServiceHighlights from "@/components/home/components/service-highlights/ServiceHighlights";
-import SliderBanner from "@/components/common/slider-banner/SliderBanner";
+import SliderBanner from "@/components/common/SliderBanner";
 import PlayWinCake from "@/components/home/components/play-win-cake/PlayWinCake";
 import Features from "@/components/home/components/features/features";
 import ProductShowcase from "@/components/product/product-showcase";

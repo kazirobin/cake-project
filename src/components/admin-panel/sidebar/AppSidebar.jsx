@@ -9,9 +9,9 @@ import {
   ShoppingBag,
 } from "lucide-react";
 
-import { NavMain } from "./nav-main";
-import { NavUser } from "./nav-user";
-import { TeamSwitcher } from "./team-switcher";
+import { NavMain } from "./NavMain";
+import { NavUser } from "./NavUser";
+import { TeamSwitcher } from "./TeamSwitcher";
 import {
   Sidebar,
   SidebarContent,

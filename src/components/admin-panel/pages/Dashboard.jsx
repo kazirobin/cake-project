@@ -1,5 +1,5 @@
-import PageHeader from "@/components/common/PageHeader";
-import { SectionCards } from "@/components/admin/section-cards";
+import PageHeader from "@/components/DynamicComponents/PageHeader";
+import { SectionCards } from "@/components/admin-panel/shared/SectionCard";
 import {
   Card,
   CardContent,
@@ -8,7 +8,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { LayoutDashboard } from "lucide-react";
-import DashboardSkeleton from "./LoadingUI/DashboardSkeleton";
+import DashboardSkeleton from "@/components/admin-panel/LoadingUI/DashboardSkeleton";
 
 const Dashboard = () => {
   const isLoading = false; // Replace with actual loading state
