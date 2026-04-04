@@ -1,5 +1,5 @@
-import { AppSidebar } from "@/components/admin/AppSidebar";
-import DyBread from "@/components/common/DyBread";
+import { AppSidebar } from "@/components/admin-panel/sidebar/AppSidebar";
+import DyBread from "@/components/DynamicComponents/DyBread";
 import { Separator } from "@/components/ui/separator";
 import {
   SidebarProvider,

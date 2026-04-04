@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Search, Plus, Trash2, Shield, ShieldUser } from "lucide-react";
-import PageHeader from "@/components/common/PageHeader";
+import PageHeader from "@/components/DynamicComponents/PageHeader";
 
 const Moderators = () => {
   const [searchValue, setSearchValue] = useState("");

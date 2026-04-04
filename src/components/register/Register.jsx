@@ -9,7 +9,7 @@ import {
   FiEyeOff,
   FiArrowRight,
 } from "react-icons/fi";
-import GoggleBTN from "@/components/common/Buttons/GoggleBTN";
+import GoggleBTN from "@/components/common/GoggleBTN";
 import useAuth from "@/Hooks/useAuth";
 import { useNavigate } from "react-router";
 import { toast, ToastContainer } from "react-toastify";

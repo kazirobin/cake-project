@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { AnimatePresence, motion } from "framer-motion";
 import { FiMail, FiLock, FiEye, FiEyeOff, FiArrowRight } from "react-icons/fi";
 import { Link, useNavigate } from "react-router";
-import GoggleBTN from "@/components/common/Buttons/GoggleBTN";
+import GoggleBTN from "@/components/common/GoggleBTN";
 import useAuth from "@/Hooks/useAuth";
 import { toast, ToastContainer } from "react-toastify";
 

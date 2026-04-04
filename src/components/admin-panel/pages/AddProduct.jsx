@@ -1,13 +1,13 @@
 import * as z from "zod";
-import { DyForm } from "@/components/common/DyForm";
-import { DyFormField } from "@/components/common/DyFormField";
+import { DyForm } from "@/components/DynamicComponents/DyForm";
+import { DyFormField } from "@/components/DynamicComponents/DyFormField";
 import { useQuery } from "@tanstack/react-query";
 import useAxios from "@/Hooks/useAxios";
 import { PackagePlus } from "lucide-react";
-import PageHeader from "@/components/common/PageHeader";
-import DySelect from "@/components/common/DySelect";
+import PageHeader from "@/components/DynamicComponents/PageHeader";
+import DySelect from "@/components/DynamicComponents/DySelect";
 import { toast } from "sonner";
-import AddProductSkeleton from "./LoadingUI/AddProductSkeleton";
+import AddProductSkeleton from "@/components/admin-panel/LoadingUI/AddProductSkeleton";
 
 const formSchema = z.object({
   customizable: z.boolean().optional(),

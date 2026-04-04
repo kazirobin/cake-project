@@ -7,7 +7,7 @@ import NoProductsFound from "@/components/product/no-product-found";
 import SortDropdown from "@/components/category/sort-dropdown";
 import FeaturesBar from "@/components/category/category-features-bar";
 import CategoryHero from "@/components/category/category-hero";
-import ReusableBreadcrumb from "@/components/common/BreadCrumbs/ReusableBreadcrumb";
+import ReusableBreadcrumb from "@/components/DynamicComponents/ReusableBreadcrumb";
 
 const CategoryDetails = () => {
   const { categoryId } = useParams();

@@ -17,8 +17,8 @@ import {
 } from "@/components/ui/select";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Search, Package, ShoppingBag } from "lucide-react";
-import PageHeader from "@/components/common/PageHeader";
-import OrdersSkeleton from "./LoadingUI/OrdersSkeleton";
+import PageHeader from "@/components/DynamicComponents/PageHeader";
+import OrdersSkeleton from "@/components/admin-panel/LoadingUI/OrdersSkeleton";
 
 const Orders = () => {
   const [searchValue, setSearchValue] = useState("");
