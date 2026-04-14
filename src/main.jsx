@@ -1,30 +1,17 @@
+import "./index.css";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import "./index.css";
 import { RouterProvider } from "react-router/dom";
 import router from "./router/route.jsx";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import AuthProvider from "./AuthContext/AuthProvider";
-import { CartProvider } from "./components/cart/CartContext/cart-context";
-import { ToastContainer } from "react-toastify";
-import { Toaster } from "./components/ui/sonner";
-import { ThemeProvider } from "@/components/Theme/ThemeProvider";
+import ProviderWrapper from "./components/common/ProviderWrapper";
 
-// Create a client
-const queryClient = new QueryClient();
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <AuthProvider>
-        <ThemeProvider>
-          <CartProvider>
-            <RouterProvider router={router} />
-            <ToastContainer />
-            <Toaster />
-          </CartProvider>
-        </ThemeProvider>
-      </AuthProvider>
-    </QueryClientProvider>
+    <ProviderWrapper>
+
+      <RouterProvider router={router} />
+    
+    </ProviderWrapper>
   </StrictMode>,
 );

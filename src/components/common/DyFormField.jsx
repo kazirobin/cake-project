@@ -3,8 +3,8 @@ import { Controller, useFormContext } from "react-hook-form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Switch } from "@/components/ui/switch";
-import { Field, FieldDescription, FieldLabel } from "../ui/field";
-import { Label } from "../ui/label";
+import { Field, FieldDescription, FieldLabel } from "@/components/ui/field";
+import { Label } from "@/components/ui/label";
 
 export function DyFormField({ fieldConfig }) {
   const {

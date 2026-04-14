@@ -1,25 +1,5 @@
 import { createBrowserRouter } from "react-router";
-import RootLayout from "../components/layouts/RootLayout";
-import Home from "@/components/home/page/Home";
-import Login from "@/components/login/Login";
-import Register from "@/components/register/Register";
-import AdminPanel from "@/components/admin/AdminPanel";
-import NotFoundPage from "@/components/error/NotFoundPage";
-import CategoryLayout from "@/components/layouts/CategoryLayout";
-import AllCategory from "@/components/category/all-category";
-import CategoryDetails from "@/components/category/category-details";
-import ProductDetails from "@/components/product/product-details";
-import AddProduct from "@/components/admin/AddProduct";
-import Dashboard from "@/components/admin/Dashboard";
-import AllProducts from "@/components/admin/AllProducts";
-import Moderators from "@/components/admin/Moderators";
-import Orders from "@/components/admin/Orders";
-import WishGenerator from "../components/wish-generator/wish-generator";
-import ManageCategory from "@/components/admin/ManageCategory";
-import CartPage from "@/components/cart/page/cart-page";
-import CheckoutPage from "@/components/checkout/checkout";
-import Gifts from "@/components/gifts/gifts";
-import UpdateProduct from "@/components/admin/UpdateProduct";
+import {RootLayout,NotFoundPage,Home,WishGenerator, Login, Register, CartPage, CheckoutPage, Gifts, CategoryLayout, AllCategory, CategoryDetails, ProductDetails, AdminPanel, Dashboard, AllProducts, UpdateProduct, AddProduct, ManageCategory, Moderators, Orders} from "@/router"
 
 const router = createBrowserRouter([
   {

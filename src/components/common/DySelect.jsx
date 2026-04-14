@@ -8,7 +8,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Field, FieldDescription, FieldLabel } from "../ui/field";
+import { Field, FieldDescription, FieldLabel } from "@/components/ui/field";
 
 const DySelect = ({
   name,
