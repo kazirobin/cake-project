@@ -3,7 +3,6 @@ import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import  SearchSuggestions  from '@/components/common/layouts/header/navbar-with-navigation/SearchSuggestions';
 
-
 const DesktopSearch = ({
   searchTerm,
   setSearchTerm,
