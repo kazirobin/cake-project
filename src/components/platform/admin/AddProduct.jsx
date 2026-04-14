@@ -3,7 +3,7 @@ import { DyForm } from "@/components/DynamicComponents/DyForm";
 import { DyFormField } from "@/components/DynamicComponents/DyFormField";
 import { useQuery } from "@tanstack/react-query";
 
-import useAxios from "@/hooks/use-axios";
+import useAxios from "@/Hooks/use-axios";
 import Loading from "@/components/common/Loading";
 
 import { PackagePlus } from "lucide-react";

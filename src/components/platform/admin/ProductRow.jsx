@@ -1,4 +1,4 @@
-import useAxios from "@/hooks/use-axios";
+import useAxios from "@/Hooks/use-axios";
 import { useNavigate } from "react-router";
 import { toast } from "sonner";
 import { EllipsisVertical, Package, PencilIcon, TrashIcon } from "lucide-react";

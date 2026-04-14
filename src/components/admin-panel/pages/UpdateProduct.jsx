@@ -1,7 +1,7 @@
 import * as z from "zod";
 import { useParams } from "react-router";
 import { useQuery } from "@tanstack/react-query";
-import useAxios from "@/hooks/use-axios";
+import useAxios from "@/Hooks/use-axios";
 import Loading from "@/components/common/Loading";
 import { PackageOpen } from "lucide-react";
 import PageHeader from "@/components/DynamicComponents/PageHeader";

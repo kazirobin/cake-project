@@ -18,7 +18,7 @@ import {
 import { Skeleton } from "@/components/ui/skeleton";
 import { Search, Plus, Package } from "lucide-react";
 import { useNavigate } from "react-router";
-import useAxios from "@/hooks/use-axios";
+import useAxios from "@/Hooks/use-axios";
 import { useQuery } from "@tanstack/react-query";
 import PageHeader from "@/components/DynamicComponents/PageHeader";
 import ProductRow from "@/components/admin-panel/shared/ProductRow";

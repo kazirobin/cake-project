@@ -10,7 +10,7 @@ import {
   FiArrowRight,
 } from "react-icons/fi";
 import GoggleBTN from "@/components/common/GoggleBTN";
-import useAuth from "@/hooks/use-auth";
+import useAuth from "@/Hooks/use-auth";
 
 import { useNavigate } from "react-router";
 import { toast, ToastContainer } from "react-toastify";
