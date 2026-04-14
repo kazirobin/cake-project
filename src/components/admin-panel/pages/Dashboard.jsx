@@ -1,6 +1,5 @@
 import PageHeader from "@/components/DynamicComponents/PageHeader";
 import { SectionCards } from "@/components/admin-panel/shared/SectionCard";
-
 import {
   Card,
   CardContent,

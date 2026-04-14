@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import productService from "@/services/product-service";
 import ServiceHighlights from "@/components/platform/home/service-highlights";
-import SliderBanner from "@/components/common/slider-banner/SliderBanner";
 import PlayWinCake from "@/components/platform/home/play-win-cake";
 import Features from "@/components/platform/home/features";
 import ProductShowcase from "@/components/platform/product/product-showcase";
+import SliderBanner from "@/components/common/SliderBanner";
 
 const Home = () => {
   const featuredProducts = productService.getFeaturedProducts(4);
