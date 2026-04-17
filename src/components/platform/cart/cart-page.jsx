@@ -83,7 +83,7 @@ const CartPage = () => {
 
           {/* Summary */}
           <div className="lg:w-1/3">
-            <div className="sticky top-4 rounded-lg bg-gray-50 p-6">
+            <div className="sticky top-4 rounded-lgp-6">
               <h2 className="mb-4 text-xl font-semibold">Order Summary</h2>
               <div className="space-y-2">
                 <div className="flex justify-between">
