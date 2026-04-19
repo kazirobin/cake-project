@@ -9,13 +9,13 @@
       "level": 0,
       "path": "electronics",
       "subCategories": ["cat_mobiles", "cat_computers"],
-      "image": "electronics-cat-banner.jpg",
+      "image": "https://t4.ftcdn.net/jpg/03/64/41/07/360_F_364410722_To5BhNoslW4QLWZ3KtkVFMckiFO0TFxn.jpg",
       "icon": "electronics-icon.svg",
       "metaTitle": "Buy Electronics Products Online | Daraz-like",
       "metaDescription": "Shop from a wide range of Electronics including Mobiles, Computers and more. Best prices in Bangladesh.",
       "filterableAttributes": ["brand", "price", "ram", "storage"],
       "productCount": 350,
-      "status": "active"
+      "status": "deactivate"
     },
     {
       "_id": "cat_birthday",
@@ -1522,5 +1522,99 @@
       "likes": 3,
       "createdAt": "2026-03-10T00:00:00Z"
     }
-  ]
+  ],
+  "serviceHighlights":[
+  {
+    "id": 1,
+    "title": "Same Day Delivery",
+    "description": "In Kathmandu Valley",
+    "icon": "/icons/truck.png"
+  },
+  {
+    "id": 2,
+    "title": "Custom Designs",
+    "description": "Made to Order",
+    "icon": "/icons/palette.png"
+  },
+  {
+    "id": 3,
+    "title": "Fresh Daily",
+    "description": "Baked Fresh Daily",
+    "icon": "/icons/cake.png"
+  },
+  {
+    "id": 4,
+    "title": "Easy Payment",
+    "description": "Card, QR or Cash",
+    "icon": "/icons/card.png"
+  },
+  {
+    "id": 5,
+    "title": "Sugarless Cakes",
+    "description": "Diabetic Friendly",
+    "icon": "/icons/heart.png"
+  },
+  {
+    "id": 6,
+    "title": "Eggless Cakes",
+    "description": "Pure Vegetarian",
+    "icon": "/icons/star.png"
+  }
+],
+"navigateLinks" : [
+  {
+    "id": 1,
+    "label": "Home",
+    "icon": "🏠",
+    "path": "/"
+  },
+  {    "id": 2,
+    "label": "All Categories",
+    "icon": "👩‍🍳",
+    "path": "/categories"
+  },
+  {    "id": 3,
+    "label": "Sugarless Cakes",
+    "icon": "🍯",
+    "path": "/categories/sugarless-cakes",
+    "categoryId": 9,
+    "isCategory": true
+  },
+  {    "id": 4,
+    "label": "Eggless Cakes",
+    "icon": "🥚",
+    "path": "/categories/eggless-cakes",
+    "categoryId": 10,
+    "isCategory": true
+  },
+  {    "id": 5,
+    "label": "Wedding Cakes",
+    "icon": "💑",
+    "path": "/categories/wedding-cakes",
+    "categoryId": 2,
+    "isCategory": true
+  },
+  {    "id": 6,
+    "label": "Quick Cakes",
+    "icon": "🎂",
+    "path": "/categories/quick-cakes",
+    "categoryId": 11,
+    "isCategory": true
+  },
+  {    "id": 7,
+    "label": "Gifts",
+    "icon": "🎁",
+    "path": "/gifts"
+  },
+  {    "id": 8,
+    "label": "Wish Generator",
+    "icon": "✨",
+    "path": "/wish-generator"
+  },
+  {    "id": 9,
+    "label": "Admin",
+    "icon": "💼",
+    "path": "/admin-panel"
+  }
+]
 }

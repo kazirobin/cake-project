@@ -1,37 +1,25 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import products from "@/data/products.json";
-
-const categoryNameToId = {
-  "birthday-cakes": 1,
-  "wedding-cakes": 2,
-  "anniversary-cakes": 3,
-  "kids-cakes": 4,
-  "photo-cakes": 5,
-  cupcakes: 6,
-  pastries: 7,
-  cookies: 8,
-};
-
-const getProductCounts = () => {
-  const counts = {};
-
-  products.forEach((product) => {
-    product.cakeDetails.categoryIds.forEach((categoryId) => {
-      counts[categoryId] = (counts[categoryId] || 0) + 1;
-    });
-  });
-
-  return counts;
-};
-
-const productCounts = getProductCounts();
+import data from "@/data/data.json";
 
 const CategoryCard = ({ category }) => {
-  const { slug, name, description, image } = category;
+  const { slug, name, description, image, _id } = category;
 
-  const categoryId = categoryNameToId[slug];
-  const productCount = productCounts[categoryId] || 0;
+  const getProductCountForCategory = () => {
+    const products = data.products || [];
+    const allProducts = data.product ? [data.product, ...products] : products; 
+    return allProducts.filter(product => {
+      if (Array.isArray(product.categoryId)) {
+        return product.categoryId.includes(_id);
+      }
+      if (typeof product.categoryId === 'string') {
+        return product.categoryId === _id;
+      }
+      return false;
+    }).length;
+  };
+
+  const productCount = getProductCountForCategory();
 
   return (
     <Link to={`/categories/${slug}`} className="block h-full">

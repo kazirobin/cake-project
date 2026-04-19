@@ -1,9 +1,11 @@
 import React from "react";
-import categories from "@/data/category.json";
+import data from "@/data/data.json";
 import CategoryCard from "@/components/platform/category/category-card";
 
 const AllCategory = () => {
-  //console.log(categories);
+  const categories = data.categories || [];
+
+  const activeCategories = categories.filter(cat => cat.status === "active");
 
   return (
     <div className="py-8 transition-colors duration-300">
@@ -18,8 +20,8 @@ const AllCategory = () => {
         </div>
 
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {categories.map((category, index) => (
-            <CategoryCard category={category} key={category.id || index} />
+          {activeCategories.map((category) => (
+            <CategoryCard category={category} key={category._id || category.id} />
           ))}
         </div>
       </div>

@@ -56,18 +56,12 @@ const ProductDetails = () => {
     );
   }, [product]);
 
-  // Extract all images from product data - IMPROVED VERSION WITH DEBUGGING
   const allImages = useMemo(() => {
     if (!product) return ["https://www.dummyimage.com/64/1d19e8/fff.png"];
 
     const images = [];
 
-    console.log("Full product object:", product); // Debug: See entire product
-    console.log("Product images:", product.images); // Debug
-    console.log("Product additionalImages:", product.additionalImages); // Debug
-    console.log("Product all keys:", Object.keys(product)); // Debug: See all available keys
 
-    // Add primary images from images array
     if (product.images && Array.isArray(product.images)) {
       product.images.forEach((img) => {
         if (img.url && !images.includes(img.url)) {
@@ -76,7 +70,6 @@ const ProductDetails = () => {
       });
     }
 
-    // Add additional images - Check different possible key names
     const additionalImagesKey =
       product.additionalImages ||
       product.additional_images ||
@@ -91,7 +84,6 @@ const ProductDetails = () => {
       });
     }
 
-    // Also check if images array has objects with url property that are not primary
     if (product.images && Array.isArray(product.images)) {
       product.images.forEach((img) => {
         if (img.url && !images.includes(img.url)) {
@@ -100,17 +92,14 @@ const ProductDetails = () => {
       });
     }
 
-    // Remove duplicates
     const uniqueImages = [...new Set(images)];
 
-    console.log("All images loaded:", uniqueImages.length, uniqueImages); // Debug log
 
     return uniqueImages.length > 0
       ? uniqueImages
       : ["https://www.dummyimage.com/64/1d19e8/fff.png"];
   }, [product]);
 
-  // Get category name from product or categoryId
   const categoryName = useMemo(() => {
     if (product?.category) {
       return product.category;
@@ -123,7 +112,6 @@ const ProductDetails = () => {
     return "Categories";
   }, [product, categoryId]);
 
-  // Check if description needs truncation
   useEffect(() => {
     if (product?.description && descriptionRef.current) {
       const checkTruncation = () => {

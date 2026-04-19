@@ -5,7 +5,7 @@ const SortDropdown = ({ sortBy, onSortChange }) => {
     <select
       value={sortBy}
       onChange={(e) => onSortChange(e.target.value)}
-      className="border rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+      className="border rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 bg-background" 
     >
       <option value="popular">Most Popular</option>
       <option value="rating">Highest Rated</option>

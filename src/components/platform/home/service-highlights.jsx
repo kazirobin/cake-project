@@ -1,8 +1,9 @@
 import React from "react"
 import { motion } from "framer-motion"
-import services from "@/data/serviceHighlights.json"
+import data from "@/data/data.json"
 
 const ServiceHighlights = () => {
+  const services = data.serviceHighlights
   return (
     <section className="bg-white dark:bg-[#0b0b0b] py-20">
       <div className="max-w-7xl mx-auto px-6">

@@ -1,8 +1,9 @@
 import React from "react";
-import { navigateLinks } from "@/data/data";
+import data from "@/data/data.json";
 import NavItem from "@/components/common/layouts/header/navbar-with-navigation/NavItem";
 
 const DesktopNavigateContent = () => {
+  const navigateLinks = data.navigateLinks
   return (
     <div className="w-full py-4 border-t border-gray-200 dark:border-gray-800">
       <div className="max-w-7xl mx-auto px-4">

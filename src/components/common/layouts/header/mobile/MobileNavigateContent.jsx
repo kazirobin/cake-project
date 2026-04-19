@@ -1,8 +1,10 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { navigateLinks } from '@/data/data';
+import  data  from '@/data/data.json';
 
 const MobileNavigateContent = () => {
+    const navigateLinks = data.navigateLinks
+
   return (
     <div className="p-4 bg-white dark:bg-gray-900">
       {/* Main Navigation - 2 Column Cards with Icons */}
