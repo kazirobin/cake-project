@@ -24,6 +24,7 @@ const Home = () => {
             moments"
         productList={featuredProducts}
       >
+
         <div className="mt-10 text-center">
           <Link to="/categories">
             <Button
@@ -34,6 +35,7 @@ const Home = () => {
             </Button>
           </Link>
         </div>
+        
       </ProductShowcase>
 
       <Features />

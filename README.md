@@ -1,6 +1,6 @@
 - Remove Category Layout..
 
-
+```
 ├── .vite/
 │   └── deps/
 │       ├── _metadata.json
@@ -226,3 +226,4 @@
 ├── tailwind.config.js
 ├── vercel.json
 └── vite.config.js
+```
