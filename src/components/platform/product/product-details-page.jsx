@@ -7,6 +7,7 @@ import React, {
   useRef,
 } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import {
   ShoppingCart,
@@ -24,30 +25,52 @@ import DeliveryCustomizationModal from "@/components/platform/cart/delivery-date
 import ProductCard from "@/components/platform/product/product-card";
 import ReusableBreadcrumb from "@/components/common/ReusableBreadcrumb";
 
+const fetchProductById = async (id) => {
+  const product = productService.getProductById(id);
+  if (!product) throw new Error('Product not found');
+  return product;
+};
+
+const fetchRelatedProducts = async (id) => {
+  return productService.getRelatedProducts(id);
+};
+
 const ProductDetails = () => {
   const { productId, categoryId } = useParams();
   const navigate = useNavigate();
   const { addToCart } = useCart();
+  const queryClient = useQueryClient();
 
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [isFavorite, setIsFavorite] = useState(false);
   const [showMore, setShowMore] = useState(false);
   const [showDeliveryModal, setShowDeliveryModal] = useState(false);
-  const [isAdding, setIsAdding] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [needsTruncation, setNeedsTruncation] = useState(false);
 
   const descriptionRef = useRef(null);
 
-  const product = useMemo(
-    () => productService.getProductById(productId),
-    [productId],
-  );
-  const relatedProducts = useMemo(
-    () => productService.getRelatedProducts(productId),
-    [productId],
-  );
+  const { 
+    data: product, 
+    isLoading: productLoading, 
+    error: productError 
+  } = useQuery({
+    queryKey: ['product', productId],
+    queryFn: () => fetchProductById(productId),
+    staleTime: 5 * 60 * 1000, // 5 মিনিট
+    enabled: !!productId,
+  });
+
+  const { 
+    data: relatedProducts = [], 
+    isLoading: relatedLoading 
+  } = useQuery({
+    queryKey: ['related-products', productId],
+    queryFn: () => fetchRelatedProducts(productId),
+    staleTime: 5 * 60 * 1000,
+    enabled: !!productId,
+  });
 
   const isCustomizable = useMemo(() => {
     return (
@@ -60,7 +83,6 @@ const ProductDetails = () => {
     if (!product) return ["https://www.dummyimage.com/64/1d19e8/fff.png"];
 
     const images = [];
-
 
     if (product.images && Array.isArray(product.images)) {
       product.images.forEach((img) => {
@@ -84,16 +106,7 @@ const ProductDetails = () => {
       });
     }
 
-    if (product.images && Array.isArray(product.images)) {
-      product.images.forEach((img) => {
-        if (img.url && !images.includes(img.url)) {
-          images.push(img.url);
-        }
-      });
-    }
-
     const uniqueImages = [...new Set(images)];
-
 
     return uniqueImages.length > 0
       ? uniqueImages
@@ -135,28 +148,37 @@ const ProductDetails = () => {
     setIsFavorite(favorites.includes(productId));
   }, [productId]);
 
+  const addToCartMutation = useMutation({
+    mutationFn: async (cartItem) => {
+      return cartItem;
+    },
+    onSuccess: (cartItem) => {
+      addToCart(cartItem);
+      setShowSuccess(true);
+      setTimeout(() => setShowSuccess(false), 2000);
+      
+      queryClient.invalidateQueries({ queryKey: ['cart'] });
+    },
+    onError: (error) => {
+      console.error("Error adding to cart:", error);
+    }
+  });
   const handleAddToCart = useCallback(async () => {
     if (isCustomizable) {
       setShowDeliveryModal(true);
       return;
     }
 
-    setIsAdding(true);
-    try {
-      addToCart({
-        ...product,
-        quantity,
-        selectedImage: allImages[selectedImage],
-        image: allImages[selectedImage],
-      });
-      setShowSuccess(true);
-      setTimeout(() => setShowSuccess(false), 2000);
-    } catch (error) {
-      console.error("Error adding to cart:", error);
-    } finally {
-      setIsAdding(false);
-    }
-  }, [isCustomizable, product, quantity, selectedImage, allImages, addToCart]);
+    const cartItem = {
+      ...product,
+      quantity,
+      selectedImage: allImages[selectedImage],
+      image: allImages[selectedImage],
+      addedAt: new Date().toISOString()
+    };
+    
+    addToCartMutation.mutate(cartItem);
+  }, [isCustomizable, product, quantity, selectedImage, allImages, addToCartMutation]);
 
   const toggleFavorite = useCallback(() => {
     const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
@@ -167,7 +189,18 @@ const ProductDetails = () => {
     setIsFavorite(!isFavorite);
   }, [isFavorite, productId]);
 
-  if (!product) {
+  if (productLoading) {
+    return (
+      <div className="flex min-h-screen items-center justify-center">
+        <div className="text-center">
+          <Loader2 className="mx-auto h-12 w-12 animate-spin text-orange-500" />
+          <p className="mt-4 text-gray-600">Loading product...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (productError || !product) {
     return (
       <div className="container mx-auto py-16 text-center">
         <AlertCircle className="mx-auto h-16 w-16 text-gray-400" />
@@ -196,6 +229,8 @@ const ProductDetails = () => {
     allImages.length > 0 &&
     allImages[0] !== "https://www.dummyimage.com/64/1d19e8/fff.png";
 
+  const isAddingToCart = addToCartMutation.isPending;
+
   return (
     <div className="container mx-auto px-4 py-6">
       {showSuccess && (
@@ -220,9 +255,9 @@ const ProductDetails = () => {
         ]}
       />
 
-      {/*main*/}
+      {/* Main Content */}
       <div className="mt-6 grid gap-8 lg:grid-cols-2 lg:gap-12">
-        {/*left */}
+        {/* Left - Images */}
         <div className={hasImages ? "flex items-center justify-center" : ""}>
           <div className={hasImages ? "mx-auto w-full max-w-md" : "w-full"}>
             {/* Main Image */}
@@ -276,7 +311,7 @@ const ProductDetails = () => {
           </div>
         </div>
 
-        {/*right */}
+        {/* Right - Product Info */}
         <div className="flex flex-col space-y-6">
           <h1 className="text-3xl font-bold">{product.title}</h1>
 
@@ -357,9 +392,9 @@ const ProductDetails = () => {
             </p>
           )}
 
-          {/* This div will create space and push the quantity and buttons to the bottom */}
           <div className="flex-1" />
 
+          {/* Quantity Selector */}
           <div className="flex items-center gap-4">
             <span className="font-medium">Quantity:</span>
             <div className="flex items-center gap-3">
@@ -382,17 +417,18 @@ const ProductDetails = () => {
             </div>
           </div>
 
+          {/* Action Buttons */}
           <div className="flex gap-4">
             <Button
               onClick={handleAddToCart}
-              disabled={product.stock === 0 || isAdding}
+              disabled={product.stock === 0 || isAddingToCart}
               className={`flex-1 ${
                 isCustomizable
                   ? "bg-linear-to-r from-purple-500 to-orange-500"
                   : "bg-linear-to-r from-orange-400 to-orange-600"
               } text-white transition-opacity hover:opacity-90`}
             >
-              {isAdding ? (
+              {isAddingToCart ? (
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
               ) : (
                 <ShoppingCart className="mr-2 h-4 w-4" />
@@ -414,6 +450,7 @@ const ProductDetails = () => {
         </div>
       </div>
 
+      {/* Features Section */}
       {product.features?.length > 0 && (
         <div className="mt-12">
           <h3 className="mb-4 text-xl font-semibold">Features</h3>
@@ -428,6 +465,7 @@ const ProductDetails = () => {
         </div>
       )}
 
+      {/* Related Products */}
       {relatedProducts.length > 0 && (
         <div className="mt-16">
           <h2 className="mb-6 text-2xl font-bold">You Might Also Like</h2>
@@ -439,6 +477,7 @@ const ProductDetails = () => {
         </div>
       )}
 
+      {/* Customization Modal */}
       {isCustomizable && (
         <DeliveryCustomizationModal
           isOpen={showDeliveryModal}

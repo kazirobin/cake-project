@@ -1,6 +1,7 @@
+// CartEdit.jsx - আপডেটেড ভার্সন
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { X, Sparkles, Package, Coffee, Cake, Calendar, MessageSquare } from "lucide-react";
+import { X, Sparkles, Package, Coffee, Cake, Calendar, MessageSquare, Loader2 } from "lucide-react";
 import { toast } from "react-toastify";
 
 const CartEdit = ({ isOpen, onClose, item, onUpdate }) => {
@@ -13,6 +14,27 @@ const CartEdit = ({ isOpen, onClose, item, onUpdate }) => {
   });
   
   const [errors, setErrors] = useState({});
+  const [isUpdating, setIsUpdating] = useState(false);
+
+  // Helper function to format date to YYYY-MM-DD
+  const formatDateToYYYYMMDD = (dateString) => {
+    if (!dateString) return "";
+    try {
+      // If it's already in YYYY-MM-DD format
+      if (dateString.match(/^\d{4}-\d{2}-\d{2}$/)) {
+        return dateString;
+      }
+      // Convert Date object or string to YYYY-MM-DD
+      const date = new Date(dateString);
+      if (!isNaN(date.getTime())) {
+        return date.toISOString().split('T')[0];
+      }
+      return "";
+    } catch (error) {
+      console.error("Date formatting error:", error);
+      return "";
+    }
+  };
 
   useEffect(() => {
     if (item) {
@@ -20,7 +42,7 @@ const CartEdit = ({ isOpen, onClose, item, onUpdate }) => {
         size: item.customizations?.size || item.size || "1kg",
         flavor: item.customizations?.flavor || item.flavor || "Chocolate",
         cakeType: item.customizations?.cakeType || item.cakeType || "Normal",
-        deliveryDate: item.customizations?.deliveryDate || item.deliveryDate || "",
+        deliveryDate: formatDateToYYYYMMDD(item.customizations?.deliveryDate || item.deliveryDate || ""),
         message: item.customizations?.message || item.message || "",
       });
     }
@@ -55,38 +77,76 @@ const CartEdit = ({ isOpen, onClose, item, onUpdate }) => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleUpdate = () => {
+  const handleUpdate = async () => {
     if (!validateForm()) {
       toast.error("Please fill in all required fields");
       return;
     }
     
-    const updatedItem = {
-      ...item,
-      customizations: {
-        ...item.customizations,
+    setIsUpdating(true);
+    
+    try {
+      // Calculate new price based on size if needed
+      let newPrice = item.price;
+      if (customizations.size !== item.size) {
+        const basePrice = item.originalPrice || item.price;
+        const sizeMultiplier = customizations.size === "1kg" ? 1 : 
+                              customizations.size === "1.5kg" ? 1.5 : 
+                              customizations.size === "2kg" ? 2 : 
+                              customizations.size === "3kg" ? 3 : 1;
+        newPrice = basePrice * sizeMultiplier;
+      }
+      
+      const updatedItem = {
+        ...item,
+        price: newPrice,
+        customizations: {
+          ...item.customizations,
+          size: customizations.size,
+          flavor: customizations.flavor,
+          cakeType: customizations.cakeType,
+          deliveryDate: customizations.deliveryDate,
+          message: customizations.message,
+        },
         size: customizations.size,
         flavor: customizations.flavor,
         cakeType: customizations.cakeType,
         deliveryDate: customizations.deliveryDate,
         message: customizations.message,
-      },
-      size: customizations.size,
-      flavor: customizations.flavor,
-      cakeType: customizations.cakeType,
-      deliveryDate: customizations.deliveryDate,
-      message: customizations.message,
-    };
-    
-    onUpdate(updatedItem);
-    toast.success(`${item.title || "Item"} updated successfully!`);
-    onClose();
+        updatedAt: new Date().toISOString()
+      };
+      
+      await onUpdate(updatedItem);
+      toast.success(`${item?.title || "Item"} updated successfully!`);
+      onClose();
+    } catch (error) {
+      toast.error("Failed to update item. Please try again.");
+      console.error("Error updating item:", error);
+    } finally {
+      setIsUpdating(false);
+    }
   };
 
   const getMinDate = () => {
     const today = new Date();
     today.setDate(today.getDate() + 1);
     return today.toISOString().split("T")[0];
+  };
+
+  // Format display date for showing in UI
+  const getDisplayDate = (dateString) => {
+    if (!dateString) return "Not selected";
+    try {
+      const date = new Date(dateString);
+      return date.toLocaleDateString('en-US', { 
+        weekday: 'short', 
+        year: 'numeric', 
+        month: 'short', 
+        day: 'numeric' 
+      });
+    } catch {
+      return dateString;
+    }
   };
 
   return (
@@ -136,7 +196,7 @@ const CartEdit = ({ isOpen, onClose, item, onUpdate }) => {
               <Coffee className="h-4 w-4" /> Flavor <span className="text-red-500">*</span>
             </label>
             <div className="grid grid-cols-2 gap-2">
-              {flavorOptions.slice(0, 8).map((flavor) => (
+              {flavorOptions.map((flavor) => (
                 <button
                   key={flavor}
                   onClick={() => setCustomizations({ ...customizations, flavor })}
@@ -188,6 +248,11 @@ const CartEdit = ({ isOpen, onClose, item, onUpdate }) => {
               min={getMinDate()}
               className="w-full rounded-lg border border-gray-300 p-2 focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500"
             />
+            {customizations.deliveryDate && (
+              <p className="mt-1 text-xs text-green-600">
+                Selected: {getDisplayDate(customizations.deliveryDate)}
+              </p>
+            )}
             {errors.deliveryDate && <p className="mt-1 text-xs text-red-500">{errors.deliveryDate}</p>}
           </div>
 
@@ -211,7 +276,16 @@ const CartEdit = ({ isOpen, onClose, item, onUpdate }) => {
         <div className="border-t border-gray-200 p-4 dark:border-gray-700">
           <div className="flex gap-3">
             <Button onClick={onClose} variant="outline" className="flex-1">Cancel</Button>
-            <Button onClick={handleUpdate} className="flex-1 bg-orange-500 text-white hover:bg-orange-600">Update Item</Button>
+            <Button 
+              onClick={handleUpdate} 
+              disabled={isUpdating}
+              className="flex-1 bg-orange-500 text-white hover:bg-orange-600"
+            >
+              {isUpdating ? (
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              ) : null}
+              {isUpdating ? "Updating..." : "Update Item"}
+            </Button>
           </div>
         </div>
       </div>

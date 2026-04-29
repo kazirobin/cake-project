@@ -1,4 +1,3 @@
-// cart-item.jsx
 import React, { useState } from 'react';
 import { Edit2, Trash2, Package, Coffee, Cake, Calendar, MessageSquare, Smartphone, HardDrive, Cpu, Sparkles, Truck } from 'lucide-react';
 
@@ -150,7 +149,7 @@ const CartItem = ({ item, onUpdateQuantity, onRemove, onEdit }) => {
             {isCustomizableProduct && onEdit && (
               <button
                 onClick={() => onEdit(item)}
-                className="flex items-center gap-1 px-3 py-1 text-blue-500 hover:text-blue-700 hover:bg-blue-50 rounded"
+                className="flex items-center gap-1 px-3 py-1 text-blue-500 hover:text-blue-700 hover:bg-blue-50 rounded transition-colors"
               >
                 <Edit2 className="w-4 h-4" />
                 <span className="text-sm">Edit</span>
@@ -158,7 +157,7 @@ const CartItem = ({ item, onUpdateQuantity, onRemove, onEdit }) => {
             )}
             <button
               onClick={() => onRemove(item.id)}
-              className="flex items-center gap-1 px-3 py-1 text-red-500 hover:text-red-700 hover:bg-red-50 rounded"
+              className="flex items-center gap-1 px-3 py-1 text-red-500 hover:text-red-700 hover:bg-red-50 rounded transition-colors"
             >
               <Trash2 className="w-4 h-4" />
               <span className="text-sm">Remove</span>
