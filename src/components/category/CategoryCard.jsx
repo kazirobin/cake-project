@@ -1,42 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import products from "@/data/products.json";
-
-const categoryNameToId = {
-  "birthday-cakes": 1,
-  "wedding-cakes": 2,
-  "anniversary-cakes": 3,
-  "kids-cakes": 4,
-  "photo-cakes": 5,
-  cupcakes: 6,
-  pastries: 7,
-  cookies: 8,
-};
-
-const getProductCounts = () => {
-  const counts = {};
-
-  products.forEach((product) => {
-    product.cakeDetails.categoryIds.forEach((categoryId) => {
-      counts[categoryId] = (counts[categoryId] || 0) + 1;
-    });
-  });
-
-  return counts;
-};
-
-const productCounts = getProductCounts();
 
 const CategoryCard = ({ category }) => {
-  const { slug, name, description, image } = category;
-
-  const categoryId = categoryNameToId[slug];
-  const productCount = productCounts[categoryId] || 0;
+  const { slug, name, description, image, cakes } = category;
 
   return (
     <Link to={`/categories/${slug}`} className="block h-full">
       <div className="flex h-full flex-col overflow-hidden rounded-lg bg-white shadow-md transition-all duration-300 hover:scale-[1.02] hover:shadow-lg dark:bg-gray-800 dark:shadow-gray-700/30">
-       
         <div className="h-48 overflow-hidden">
           <img
             src={image}
@@ -51,7 +21,7 @@ const CategoryCard = ({ category }) => {
               {name}
             </h3>
             <span className="rounded bg-orange-100 px-2 py-1 text-xs whitespace-nowrap text-orange-600 transition-colors duration-300 dark:bg-orange-900/30 dark:text-orange-400">
-              {productCount} {productCount === 1 ? "item" : "items"}
+              {cakes.length} {cakes.length > 1 ? "items" : "item"}
             </span>
           </div>
 

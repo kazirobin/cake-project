@@ -18,6 +18,7 @@ const DySelect = ({
   description,
   items,
   isLoading,
+  defaultValue = "",
 }) => {
   const {
     register,
@@ -36,6 +37,7 @@ const DySelect = ({
           <Select
             {...field}
             value={field.value}
+            defaultValue={defaultValue}
             onValueChange={field.onChange}
             disabled={isLoading}
             {...register(field.name)}

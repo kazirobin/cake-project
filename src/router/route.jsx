@@ -61,22 +61,26 @@ const router = createBrowserRouter([
         path: "/gifts",
         element: <Gifts />,
       },
-    ],
-  },
-  {
-    path: "/categories",
-    element: <CategoryLayout />,
-    children: [
       {
-        index: true,
-        element: <AllCategory />,
+        path: "/categories",
+        element: <CategoryLayout />,
+        children: [
+          {
+            index: true,
+            element: <AllCategory />,
+          },
+          {
+            path: ":slug",
+            element: <CategoryDetails />,
+          },
+          {
+            path: ":categoryId/product/:productId", // Changed to include categoryId in the path
+            element: <ProductDetails />,
+          },
+        ],
       },
       {
-        path: ":categoryId",
-        element: <CategoryDetails />,
-      },
-      {
-        path: ":categoryId/product/:productId", // Changed to include categoryId in the path
+        path: "/product/:productId",
         element: <ProductDetails />,
       },
     ],
@@ -114,11 +118,6 @@ const router = createBrowserRouter([
         element: <Orders />,
       },
     ],
-  },
-  // Optional: Add a direct product route
-  {
-    path: "/product/:productId",
-    element: <ProductDetails />,
   },
 ]);
 

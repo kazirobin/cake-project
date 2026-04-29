@@ -21,7 +21,7 @@ import {
 import { useCart } from "@/components/cart/CartContext/cart-context";
 import productService from "./product-service";
 import DeliveryCustomizationModal from "@/components/cart/delivery-date-modal/DeliveryDateModal";
-import ProductCard from "@/components/product/product-card";
+import ProductCard from "@/components/product/ProductCard";
 import ReusableBreadcrumb from "@/components/DynamicComponents/ReusableBreadcrumb";
 
 const ProductDetails = () => {

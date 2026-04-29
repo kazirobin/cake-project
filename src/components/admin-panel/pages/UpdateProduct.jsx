@@ -61,17 +61,19 @@ const UpdateProduct = () => {
   });
 
   const {
-    data: product,
+    data: product = {},
     isLoading: productLoading,
     error,
   } = useQuery({
     queryKey: ["product", id],
     queryFn: async () => {
       const { data } = await axios.get(`/cakes/${id}`);
-      return data?.data;
+      return data?.data || {};
     },
     enabled: !!id,
   });
+
+  console.log("Product : ", product);
 
   const categoryItems = categories.map((category) => ({
     value: category.id,
@@ -82,19 +84,19 @@ const UpdateProduct = () => {
     ? {
         customizable: product.customizable || false,
         title: product.title || "",
-        description: product.description || "",
+        description: product?.description || "",
         price: product.price?.toString() || "",
         images: [],
-        cakeType: product.cakeType || "",
-        flavors: product.flavors || "",
-        weight: product.weight || "",
-        features: product.features || "",
+        cakeType: product?.type || "",
+        flavors: product?.flavour || "",
+        weight: product?.size || "",
+        features: product?.cakeFeatures?.features || "",
         category: product.category?.id || "",
         stock: product.stock?.toString() || "",
-        specificationLabel: product.specificationLabel || "",
-        specificationValue: product.specificationValue || "",
-        nutritionLabel: product.nutritionLabel || "",
-        nutritionValue: product.nutritionValue || "",
+        specificationLabel: product?.cakeFeatures?.specificationLabel || "",
+        specificationValue: product?.cakeFeatures?.specificationValue || "",
+        nutritionLabel: product?.cakeFeatures?.nutritionLabel || "",
+        nutritionValue: product?.cakeFeatures?.nutritionValue || "",
       }
     : defaultValues;
 
@@ -156,7 +158,6 @@ const UpdateProduct = () => {
     };
 
     formData.append("data", JSON.stringify(jsonData));
-    console.log("FormData to send:", jsonData);
 
     try {
       const { data } = await axios.put(`/cakes/update-cake/${id}`, formData);
@@ -260,9 +261,10 @@ const UpdateProduct = () => {
                 placeholder="Select cake type..."
                 description="The type of the cake."
                 items={[
-                  { value: "cup-cake", label: "Cup Cake" },
-                  { value: "cake", label: "Cake" },
+                  { value: "CUPCAKE", label: "Cup Cake" },
+                  { value: "CAKE", label: "Cake" },
                 ]}
+                // defaultValue={product?.cakeType}
                 isLoading={false}
               />
             </div>

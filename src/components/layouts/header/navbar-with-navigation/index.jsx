@@ -5,14 +5,14 @@ import MobileLeftSheet from "./MobileLeftSheet";
 import MobileRightIcons from "./MobileRightIcons";
 import MobileSearch from "./MobileSearch";
 import DesktopRightSection from "./DesktopRightSection";
-import { useTheme } from "@/components/Theme/ThemeProvider";
+// import { useTheme } from "@/components/Theme/ThemeProvider";
 
 const NavbarWithNavigation = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isRightMenuOpen, setIsRightMenuOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [showSuggestions, setShowSuggestions] = useState(false);
-  const { theme } = useTheme();
+  // const { theme } = useTheme();
 
   const handleSuggestionSelect = (suggestion) => {
     setSearchTerm(suggestion.name);
@@ -23,7 +23,7 @@ const NavbarWithNavigation = () => {
   return (
     <>
       {/* Top Navbar */}
-      <div className="relative container mx-auto flex flex-col items-center justify-between gap-4 border-b border-gray-200 p-4 shadow-sm lg:flex-row lg:gap-0 lg:px-8 dark:border-gray-800">
+      <div className="relative container mx-auto flex flex-col items-center justify-between gap-4 border-gray-200 p-4 lg:flex-row lg:gap-0 lg:px-8">
         {/* Logo and Mobile Menu */}
         <div className="flex w-full items-center justify-between gap-4 lg:w-auto">
           <MobileLeftSheet navLinks={navLinks} />

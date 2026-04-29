@@ -6,7 +6,7 @@ export { default as Register } from "@/components/register/Register";
 export { default as AdminPanel } from "@/components/admin-panel/sidebar/AdminPanel";
 export { default as NotFoundPage } from "@/components/error/NotFoundPage";
 export { default as CategoryLayout } from "@/components/layouts/CategoryLayout";
-export { default as AllCategory } from "@/components/category/all-category";
+export { default as AllCategory } from "@/components/category/AllCategory";
 export { default as CategoryDetails } from "@/components/category/category-details";
 export { default as ProductDetails } from "@/components/product/product-details";
 export { default as AddProduct } from "@/components/admin-panel/pages/AddProduct";

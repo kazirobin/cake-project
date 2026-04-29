@@ -8,12 +8,12 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-const NavItem = ({ item, className = "", isMobile = false }) => {
+const NavItem = ({ item, className = "" }) => {
   if (item.subItems) {
     return (
       <DropdownMenu>
         <DropdownMenuTrigger
-          className={`flex items-center justify-between gap-1 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 text-sm w-full ${className}`}
+          className={`flex w-full items-center justify-between gap-1 rounded-lg px-3 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-gray-100 ${className}`}
         >
           <div className="flex items-center gap-2">
             <span className="text-lg">{item.icon}</span>
@@ -21,7 +21,7 @@ const NavItem = ({ item, className = "", isMobile = false }) => {
           </div>
           <ChevronDown className="h-4 w-4" />
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="w-48 ml-4 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">
+        <DropdownMenuContent className="ml-4 w-48 border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800">
           {item.subItems.map((subItem, index) => (
             <DropdownMenuItem
               key={index}
@@ -30,7 +30,7 @@ const NavItem = ({ item, className = "", isMobile = false }) => {
             >
               <NavLink
                 to={subItem.path}
-                className="w-full px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+                className="w-full px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700"
               >
                 {subItem.label}
               </NavLink>
@@ -45,15 +45,15 @@ const NavItem = ({ item, className = "", isMobile = false }) => {
     <NavLink
       to={item.path}
       className={({ isActive }) =>
-        `flex items-center px-1 rounded-lg transition-colors text-sm w-full ${
+        `flex w-full items-center rounded-lg px-1 text-sm transition-colors ${
           isActive
-            ? "bg-purple-50 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 font-medium"
-            : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-gray-100"
+            ? "bg-purple-50 font-medium text-purple-600 dark:bg-purple-900/30 dark:text-purple-400"
+            : "text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-gray-100"
         } ${className}`
       }
     >
       <span className="text-lg">{item.icon}</span>
-      <span className="font-medium ps-1">{item.label}</span>
+      <span className="ps-1 font-medium">{item.label}</span>
     </NavLink>
   );
 };
