@@ -17,19 +17,87 @@
       "productCount": 350,
       "status": "deactivate"
     },
-    {
-      "_id": "cat_birthday",
-      "name": "Birthday Cakes",
-      "slug": "birthday-cakes",
+     {
+      "_id": "cat_wedding",
+      "name": "Wedding & Anniversary Cakes",
+      "slug": "wedding-cakes",
       "type": "bakery",
       "parentId": null,
       "level": 0,
-      "path": "birthday-cakes",
-      "description": "Celebrate with our delicious birthday cakes",
+      "path": "wedding-cakes",
+      "description": "Elegant cakes for your special day",
+      "image": "https://images.unsplash.com/photo-1535254973040-607b474cb50d",
+      "heroImage": "https://images.unsplash.com/photo-1578985545062-69928b1d9587",
+      "heroTitle": "Your Dream Wedding Cake",
+      "heroDescription": "From classic to contemporary designs",
+      "productCount": 18,
+      "metaTitle": "Wedding Cakes - Elegant Designs for Your Wedding",
+      "metaDescription": "Beautiful wedding cakes designed for your perfect day. Choose from classic, modern, and rustic styles.",
+      "filters": {
+        "customizable": true,
+        "tiers": ["Single", "2-Tier", "3-Tier", "4-Tier", "5-Tier"],
+        "flavors": ["Vanilla", "Chocolate", "Red Velvet", "Fruit", "Lemon"],
+        "dietary": ["Eggless", "Gluten-Free"],
+        "colors": ["White", "Ivory", "Gold", "Rose Gold", "Blush Pink"]
+      },
+      "specificComponents": ["WeddingSpecial"],
+      "seo": {
+        "keywords": [
+          "wedding cakes",
+          "bridal cakes",
+          "wedding cake designs",
+          "tiered cakes"
+        ],
+        "schema": "Product"
+      },
+      "status": "active"
+    },
+     {
+      "_id": "cat_combo",
+      "name": "Combos & Bundles",
+      "slug": "combos-and-bundles",
+      "type": "bakery",
+      "parentId": null,
+      "level": 0,
+      "path": "combos-and-bundles",
+      "description": "Make celebrations extra special with our gift combos! Choose from curated bundles for Mother's Day, Father's Day, Valentine's Day, Rakhi, Dashain, Christmas, and more. Each gift bundle combines cakes, flowers, chocolates, and personalized gifts - perfect for birthdays, weddings, anniversaries, and corporate occasions",
+      "image": "https://images.unsplash.com/photo-1578985545062-69928b1d9587",
+      "heroImage": "https://images.unsplash.com/photo-1578985545062-69928b1d9587",
+      "heroTitle": "Gift Combos & Bundles - Complete Celebration Packages",
+      "heroDescription": "Turn memories into delicious art",
+      "productCount": 12,
+      "metaTitle": "Photo Cakes - Personalize with Photos",
+      "metaDescription": "Create memorable cakes with edible photo prints. Perfect for birthdays, anniversaries, and special occasions.",
+      "filters": {
+        "customizable": true,
+        "sizes": ["0.5kg", "1kg", "1.5kg", "2kg"],
+        "shapes": ["Round", "Square", "Heart", "Custom"]
+      },
+      "specificComponents": ["PhotoSpecial"],
+      "seo": {
+        "keywords": [
+          "photo cakes",
+          "picture cakes",
+          "custom photo cakes",
+          "edible image cakes"
+        ],
+        "schema": "Product"
+      },
+      "status": "active"
+    },
+    {
+      "_id": "cat_mini",
+      "name": "Mini Cakes",
+      "slug": "mini-cakes",
+      "type": "bakery",
+      "parentId": null,
+      "level": 0,
+      "path": "mini-cakes",
+      "description": "Mini Cakes - Perfect for 2-4 People",
       "image": "https://images.unsplash.com/photo-1562777717-dc6984f65a63",
       "heroImage": "https://images.unsplash.com/photo-1558301211-0d8c8ddee6ec",
-      "heroTitle": "Make Their Birthday Special",
-      "heroDescription": "Customize your cake with photos, messages, and designs",
+      "heroTitle": "Mini Cakes - Perfect for 2-4 People",
+      "heroDescription": "Mini Cakes - Perfect for 2-4 People",
       "productCount": 24,
       "metaTitle": "Birthday Cakes - Custom Designs for Every Age",
       "metaDescription": "Find the perfect birthday cake with customizable true for kids, teens, and adults. Order online with free delivery.",
@@ -64,77 +132,8 @@
       "status": "active"
     },
     {
-      "_id": "cat_wedding",
-      "name": "Wedding Cakes",
-      "slug": "wedding-cakes",
-      "type": "bakery",
-      "parentId": null,
-      "level": 0,
-      "path": "wedding-cakes",
-      "description": "Elegant cakes for your special day",
-      "image": "https://images.unsplash.com/photo-1535254973040-607b474cb50d",
-      "heroImage": "https://images.unsplash.com/photo-1578985545062-69928b1d9587",
-      "heroTitle": "Your Dream Wedding Cake",
-      "heroDescription": "From classic to contemporary designs",
-      "productCount": 18,
-      "metaTitle": "Wedding Cakes - Elegant Designs for Your Wedding",
-      "metaDescription": "Beautiful wedding cakes designed for your perfect day. Choose from classic, modern, and rustic styles.",
-      "filters": {
-        "customizable": true,
-        "tiers": ["Single", "2-Tier", "3-Tier", "4-Tier", "5-Tier"],
-        "flavors": ["Vanilla", "Chocolate", "Red Velvet", "Fruit", "Lemon"],
-        "dietary": ["Eggless", "Gluten-Free"],
-        "colors": ["White", "Ivory", "Gold", "Rose Gold", "Blush Pink"]
-      },
-      "specificComponents": ["WeddingSpecial"],
-      "seo": {
-        "keywords": [
-          "wedding cakes",
-          "bridal cakes",
-          "wedding cake designs",
-          "tiered cakes"
-        ],
-        "schema": "Product"
-      },
-      "status": "active"
-    },
-    {
-      "_id": "cat_anniversary",
-      "name": "Anniversary Cakes",
-      "slug": "anniversary-cakes",
-      "type": "bakery",
-      "parentId": null,
-      "level": 0,
-      "path": "anniversary-cakes",
-      "description": "Celebrate love with our anniversary specials",
-      "image": "https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b",
-      "heroImage": "https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b",
-      "heroTitle": "Celebrate Your Love Story",
-      "heroDescription": "Personalized cakes for every anniversary milestone",
-      "productCount": 15,
-      "metaTitle": "Anniversary Cakes - Celebrate Love",
-      "metaDescription": "Romantic cakes for your anniversary celebration. Personalized designs for every milestone.",
-      "filters": {
-        "customizable": true,
-        "themes": ["Romantic", "Elegant", "Modern", "Classic", "Heart-Shaped"],
-        "years": ["1st", "5th", "10th", "25th", "50th"],
-        "dietary": ["Eggless", "Vegan"]
-      },
-      "specificComponents": ["AnniversarySpecial"],
-      "seo": {
-        "keywords": [
-          "anniversary cakes",
-          "romantic cakes",
-          "love cakes",
-          "milestone cakes"
-        ],
-        "schema": "Product"
-      },
-      "status": "active"
-    },
-    {
-      "_id": "cat_kids",
-      "name": "Kids Cakes",
+      "_id": "cat_valentine",
+      "name": "Cakes For Valentine",
       "slug": "kids-cakes",
       "type": "bakery",
       "parentId": null,
@@ -143,10 +142,10 @@
       "description": "Fun and colorful cakes for little ones",
       "image": "https://tse4.mm.bing.net/th/id/OIP.tT2QO3csQTo51eqNY-I6lQHaJ_",
       "heroImage": "https://images.unsplash.com/photo-1587668178277-c295520f5d2a",
-      "heroTitle": "Magical Cakes for Little Ones",
-      "heroDescription": "Bring their favorite characters to life",
+      "heroTitle": "Valentine's Day Cakes - Celebrate Love",
+      "heroDescription": "Express your love with our romantic Valentine cakes! From heart-shaped red velvet cakes to elegant Valentine's Day cake delivery, we create stunning designs perfect for your special someone. Order Valentine cake online with roses, chocolates, and personalized messages.",
       "productCount": 20,
-      "metaTitle": "Kids Cakes - Fun Designs for Children",
+      "metaTitle": "Valentine's Day Cakes - Celebrate Love",
       "metaDescription": "Exciting cakes for kids' birthdays with cartoon characters, superheroes, and fun themes.",
       "filters": {
         "customizable": true,
@@ -173,47 +172,13 @@
       "status": "active"
     },
     {
-      "_id": "cat_photo",
-      "name": "Photo Cakes",
-      "slug": "photo-cakes",
+      "_id": "cat_dry",
+      "name": "Dry Cakes",
+      "slug": "dry-cakes",
       "type": "bakery",
       "parentId": null,
       "level": 0,
-      "path": "photo-cakes",
-      "description": "Edible photo prints on delicious cakes",
-      "image": "https://images.unsplash.com/photo-1578985545062-69928b1d9587",
-      "heroImage": "https://images.unsplash.com/photo-1578985545062-69928b1d9587",
-      "heroTitle": "Your Photos on a Cake",
-      "heroDescription": "Turn memories into delicious art",
-      "productCount": 12,
-      "metaTitle": "Photo Cakes - Personalize with Photos",
-      "metaDescription": "Create memorable cakes with edible photo prints. Perfect for birthdays, anniversaries, and special occasions.",
-      "filters": {
-        "customizable": true,
-        "sizes": ["0.5kg", "1kg", "1.5kg", "2kg"],
-        "shapes": ["Round", "Square", "Heart", "Custom"]
-      },
-      "specificComponents": ["PhotoSpecial"],
-      "seo": {
-        "keywords": [
-          "photo cakes",
-          "picture cakes",
-          "custom photo cakes",
-          "edible image cakes"
-        ],
-        "schema": "Product"
-      },
-      "status": "active"
-    },
-    
-    {
-      "_id": "cat_cupcakes",
-      "name": "Cupcakes",
-      "slug": "cupcakes",
-      "type": "bakery",
-      "parentId": null,
-      "level": 0,
-      "path": "cupcakes",
+      "path": "dry-cakes",
       "description": "Delicious individual treats for any occasion",
       "image": "https://images.unsplash.com/photo-1576618148400-f54bed99fcfd",
       "heroImage": "https://images.unsplash.com/photo-1576618148400-f54bed99fcfd",
