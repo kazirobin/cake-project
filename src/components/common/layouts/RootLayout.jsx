@@ -9,15 +9,15 @@ const RootLayout = () => {
   return (
     <div className="bg-background flex min-h-screen flex-col transition-colors duration-300 dark:bg-slate-950">
       {/* Sticky Header */}
-      <header className="border-border bg-background/95 supports-backdrop-filter:bg-background/60 sticky top-0 z-50 w-full border-b backdrop-blur dark:bg-slate-950/95">
+      <header className="border-border bg-background/95 supports-backdrop-filter:bg-background/60 sticky top-0 z-50 w-full border-b backdrop-blur-lg dark:bg-slate-950/95">
         <NavbarWithNavigation />
+        <div className="hidden lg:flex">
+          <DesktopNavigateContent />
+        </div>
       </header>
-      <div className="hidden lg:flex">
-        <DesktopNavigateContent />
-      </div>
 
       {/* Main content */}
-      <main className="w-full flex-1 transition-colors duration-300">
+      <main className="mt-5 w-full flex-1 transition-colors duration-300">
         <Outlet />
       </main>
 

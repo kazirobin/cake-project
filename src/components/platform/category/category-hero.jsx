@@ -8,7 +8,7 @@ const CategoryHero = ({ category, productCount }) => {
       <img
         src={category.heroImage || category.image}
         alt={category.name}
-        className="h-full w-full object-cover"
+        className="h-full w-full object-cover object-center"
       />
       <div className="absolute inset-0 bg-black/50" />
       <div className="absolute inset-0 flex items-center">
@@ -26,7 +26,7 @@ const CategoryHero = ({ category, productCount }) => {
               className="border-0 bg-white/20 text-white"
             >
               <Package className="mr-1 h-3 w-3" />
-              {productCount} Products
+              {productCount} {productCount === 1 ? "Product" : "Products"}
             </Badge>
             {category.filters?.customizable && (
               <Badge

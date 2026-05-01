@@ -41,7 +41,7 @@ export function DyFormField({ fieldConfig }) {
             <Textarea
               {...field}
               placeholder={fieldConfig.placeholder}
-              className="resize-none"
+              className="h-28 resize-none"
             />
           ) : fieldConfig.type === "switch" ? (
             <div className="flex items-center space-x-2">

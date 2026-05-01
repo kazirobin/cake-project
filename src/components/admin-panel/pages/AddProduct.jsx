@@ -12,17 +12,17 @@ import AddProductSkeleton from "@/components/admin-panel/LoadingUI/AddProductSke
 const formSchema = z.object({
   customizable: z.boolean().optional(),
   title: z.string().min(2, "Title must be at least 2 characters."),
+  category: z.string().min(2, "Category is required."),
+  cakeType: z.string().min(2, "Type is required."),
   description: z
     .string()
     .min(10, "Description must be at least 10 characters."),
   price: z.string().min(0, "Price must be a positive number."),
+  stock: z.string().min(0, "Stock must be a positive number."),
   images: z.any().optional(),
-  cakeType: z.string().min(2, "Type is required."),
   flavors: z.string().min(2, "At least one flavor is required."),
   weight: z.string().min(1, "Weight is required."),
   features: z.string().optional(),
-  category: z.string().min(2, "Category is required."),
-  stock: z.string().min(0, "Stock must be a positive number."),
   specificationLabel: z.string().optional(),
   specificationValue: z.string().optional(),
   nutritionLabel: z.string().optional(),
@@ -122,7 +122,6 @@ const AddProduct = () => {
     };
 
     formData.append("data", JSON.stringify(jsonData));
-    console.log("FormData to send:", jsonData);
 
     try {
       const { data } = await axios.post("/cakes/create-cake", formData);
@@ -263,7 +262,7 @@ const AddProduct = () => {
               <DyFormField
                 fieldConfig={{
                   name: "flavors",
-                  label: "Flavors",
+                  label: "Flavor(s)",
                   placeholder: "Chocolate, Vanilla (comma separated)",
                   description: "Available flavors.",
                   type: "text",
@@ -272,7 +271,7 @@ const AddProduct = () => {
               <DyFormField
                 fieldConfig={{
                   name: "weight",
-                  label: "Weight Options",
+                  label: "Weight(s)",
                   placeholder: "1lb, 2lb (comma separated)",
                   description: "Available weights.",
                   type: "text",

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
@@ -18,6 +18,13 @@ export function DyForm({
     resolver: zodResolver(schema),
     defaultValues,
   });
+
+  // Reset form when defaultValues change (e.g., when data is fetched)
+  useEffect(() => {
+    if (defaultValues) {
+      form.reset(defaultValues);
+    }
+  }, [defaultValues, form]);
 
   const handleSubmit = async (values) => {
     if (onSubmit) {

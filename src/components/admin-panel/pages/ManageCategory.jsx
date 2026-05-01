@@ -9,21 +9,23 @@ import { ChartGantt } from "lucide-react";
 const formSchema = z.object({
   name: z.string().min(2, "Title must be at least 2 characters."),
   image: z.any(),
+  description: z.string().optional(),
 });
 
 const defaultValues = {
   name: "",
   image: undefined,
+  description: "",
 };
 
 const ManageCategory = () => {
   const axios = useAxios();
 
   const onSubmit = async (values) => {
-    const { name, image } = values;
-
+    const { name, image, description } = values;
+    console.log("Category values : ", values);
     const formData = new FormData();
-    formData.append("data", JSON.stringify({ name }));
+    formData.append("data", JSON.stringify({ name, description }));
     if (image) {
       formData.append("file", image);
     }
@@ -33,6 +35,8 @@ const ManageCategory = () => {
         `/categories/create-category`,
         formData,
       );
+
+      console.log("Category Data : ", data);
 
       const { success, message } = data;
 
@@ -90,6 +94,15 @@ const ManageCategory = () => {
                 }}
               />
             </div>
+            <DyFormField
+              fieldConfig={{
+                name: "description",
+                label: "Description",
+                placeholder: "Enter category description",
+                description: "Detailed description of the category.",
+                type: "textarea",
+              }}
+            />
           </DyForm>
         </div>
       </div>
