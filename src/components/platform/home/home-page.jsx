@@ -7,6 +7,7 @@ import PlayWinCake from "@/components/platform/home/play-win-cake";
 import Features from "@/components/platform/home/features";
 import ProductShowcase from "@/components/platform/product/product-showcase";
 import SliderBanner from "@/components/common/SliderBanner";
+import DbTest from "@/components/test/db-test";
 
 const Home = () => {
   const featuredProducts = productService.getFeaturedProducts(4);
@@ -15,7 +16,7 @@ const Home = () => {
   return (
     <div className="container mx-auto min-h-screen">
       <SliderBanner />
-
+      <DbTest/>
       <ServiceHighlights />
 
       <ProductShowcase
