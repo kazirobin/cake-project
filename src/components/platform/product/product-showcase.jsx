@@ -13,7 +13,6 @@ const ProductShowcase = ({ title, details, productList, children }) => {
         </p>
       </div>
 
-<<<<<<< HEAD:src/components/platform/product/product-showcase.jsx
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {productList.map((product) => (
             
@@ -24,16 +23,5 @@ const ProductShowcase = ({ title, details, productList, children }) => {
       </section>
   )
 }
-=======
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        {productList.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
-      </div>
-      {children}
-    </section>
-  );
-};
->>>>>>> 7ed81a6a461cddbe19db9026c483f04919ab8b1f:src/components/product/product-showcase.jsx
 
 export default ProductShowcase;

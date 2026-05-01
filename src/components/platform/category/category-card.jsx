@@ -1,31 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-<<<<<<<< HEAD:src/components/platform/category/category-card.jsx
-import data from "@/data/data.json";
 
 const CategoryCard = ({ category }) => {
-  const { slug, name, description, image, _id } = category;
-
-  const getProductCountForCategory = () => {
-    const products = data.products || [];
-    const allProducts = data.product ? [data.product, ...products] : products; 
-    return allProducts.filter(product => {
-      if (Array.isArray(product.categoryId)) {
-        return product.categoryId.includes(_id);
-      }
-      if (typeof product.categoryId === 'string') {
-        return product.categoryId === _id;
-      }
-      return false;
-    }).length;
-  };
-
-  const productCount = getProductCountForCategory();
-========
-
-const CategoryCard = ({ category }) => {
-  const { slug, name, description, image, cakes } = category;
->>>>>>>> 7ed81a6a461cddbe19db9026c483f04919ab8b1f:src/components/platform/category/CategoryCard.jsx
+  const { slug, name, description, image, cakes = [] } = category;
+  
+  const productCount = cakes.length;
+  const itemText = productCount === 1 ? "item" : "items";
 
   return (
     <Link to={`/categories/${slug}`} className="block h-full">
@@ -35,6 +15,9 @@ const CategoryCard = ({ category }) => {
             src={image}
             alt={name}
             className="h-full w-full object-cover transition-transform duration-300 hover:scale-110"
+            onError={(e) => {
+              e.target.src = "https://www.dummyimage.com/400x300/1d19e8/fff.png";
+            }}
           />
         </div>
 
@@ -44,7 +27,7 @@ const CategoryCard = ({ category }) => {
               {name}
             </h3>
             <span className="rounded bg-orange-100 px-2 py-1 text-xs whitespace-nowrap text-orange-600 transition-colors duration-300 dark:bg-orange-900/30 dark:text-orange-400">
-              {cakes.length} {cakes.length > 1 ? "items" : "item"}
+              {productCount} {itemText}
             </span>
           </div>
 

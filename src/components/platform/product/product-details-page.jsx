@@ -19,7 +19,6 @@ import {
   Sparkles,
   Loader2,
 } from "lucide-react";
-<<<<<<< HEAD:src/components/platform/product/product-details-page.jsx
 import { useCart } from "@/context/cart/cart-context";
 import productService from "@/services/product-service";
 import DeliveryCustomizationModal from "@/components/platform/cart/delivery-date-modal";
@@ -35,13 +34,6 @@ const fetchProductById = async (id) => {
 const fetchRelatedProducts = async (id) => {
   return productService.getRelatedProducts(id);
 };
-=======
-import { useCart } from "@/components/cart/CartContext/cart-context";
-import productService from "./product-service";
-import DeliveryCustomizationModal from "@/components/cart/delivery-date-modal/DeliveryDateModal";
-import ProductCard from "@/components/product/ProductCard";
-import ReusableBreadcrumb from "@/components/DynamicComponents/ReusableBreadcrumb";
->>>>>>> 7ed81a6a461cddbe19db9026c483f04919ab8b1f:src/components/product/product-details.jsx
 
 const ProductDetails = () => {
   const { productId, categoryId } = useParams();

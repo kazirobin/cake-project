@@ -1,5 +1,27 @@
 import { createBrowserRouter } from "react-router";
-import {RootLayout,NotFoundPage,Home,WishGenerator, Login, Register, CartPage, CheckoutPage, Gifts, CategoryLayout, AllCategory, CategoryDetails, ProductDetails, AdminPanel, Dashboard, AllProducts, UpdateProduct, AddProduct, ManageCategory, Moderators, Orders} from "@/router"
+import {
+  RootLayout,
+  NotFoundPage,
+  Home,
+  WishGenerator,
+  Login,
+  Register,
+  CartPage,
+  CheckoutPage,
+  Gifts,
+  CategoryLayout,
+  AllCategory,
+  CategoryDetails,
+  ProductDetails,
+  AdminPanel,
+  Dashboard,
+  AllProducts,
+  UpdateProduct,
+  AddProduct,
+  ManageCategory,
+  Moderators,
+  Orders,
+} from "@/router";
 
 const router = createBrowserRouter([
   {

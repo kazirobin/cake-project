@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-<<<<<<< HEAD:src/components/common/layouts/header/navbar-with-navigation/index.jsx
 import { navLinks, searchSuggestions } from "@/components/common/layouts/header/constants";
 
 
@@ -9,15 +8,6 @@ import MobileSearch from "@/components/common/layouts/header/mobile/MobileSearch
 import DesktopRightSection from "@/components/common/layouts/header/desktop/DesktopRightSection";
 import { useTheme } from "@/components/common/Theme/ThemeProvider";
 import LogoSection from "@/components/common/layouts/header/LogoSection";
-=======
-import { navLinks, searchSuggestions } from "./constants";
-import LogoSection from "./LogoSection";
-import MobileLeftSheet from "./MobileLeftSheet";
-import MobileRightIcons from "./MobileRightIcons";
-import MobileSearch from "./MobileSearch";
-import DesktopRightSection from "./DesktopRightSection";
-// import { useTheme } from "@/components/Theme/ThemeProvider";
->>>>>>> 7ed81a6a461cddbe19db9026c483f04919ab8b1f:src/components/layouts/header/navbar-with-navigation/index.jsx
 
 const NavbarWithNavigation = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);

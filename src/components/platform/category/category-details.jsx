@@ -1,6 +1,5 @@
 import { useParams, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-<<<<<<< HEAD:src/components/platform/category/category-details.jsx
 import data from "@/data/data.json";
 import ProductCard from "@/components/platform/product/product-card";
 import NoProductsFound from "@/components/platform/product/no-product-found";
@@ -8,16 +7,6 @@ import SortDropdown from "@/components/platform/category/sort-dropdown";
 import FeaturesBar from "@/components/platform/category/category-features-bar";
 import CategoryHero from "@/components/platform/category/category-hero";
 import ReusableBreadcrumb from "@/components/common/ReusableBreadcrumb";
-=======
-import ProductCard from "@/components/product/ProductCard";
-import NoProductsFound from "@/components/product/no-product-found";
-import SortDropdown from "@/components/category/sort-dropdown";
-import FeaturesBar from "@/components/category/category-features-bar";
-import CategoryHero from "@/components/category/category-hero";
-import ReusableBreadcrumb from "@/components/DynamicComponents/ReusableBreadcrumb";
-import { useQuery } from "@tanstack/react-query";
-import useAxios from "@/Hooks/useAxios";
->>>>>>> 7ed81a6a461cddbe19db9026c483f04919ab8b1f:src/components/category/category-details.jsx
 
 const CategoryDetails = () => {
   const { slug } = useParams();
