@@ -1,4 +1,5 @@
 - Remove Category Layout..
+- [suny-webdevs-ugcake-server](https://github.com/suny-webdevs/ugcake-server)
 
 ```
 ├── .vite/
@@ -227,3 +228,46 @@
 ├── vercel.json
 └── vite.config.js
 ```
+
+
+
+### Product Data Comparison Table
+
+| No. | Property                  | Object 1 (Simple Cake)                                      | Object 2 (Advanced Cake) |
+|-----|---------------------------|-------------------------------------------------------------|--------------------------|
+| 1   | `id` / `_id`              | `"4c08e67d-949a-4d19-92c6-0cda72f3642e"`                   | `"prod3"` |
+| 2   | `title`                   | `"Vanilla"`                                                 | `"Strawberry Topped Cake"` |
+| 3   | `slug`                    | `"vanilla"`                                                 | `"strawberry-topped-cake"` |
+| 4   | `price`                   | `"34"` (String)                                             | `{ regular: 17.99, discount: 14.99, currency: "USD" }` |
+| 5   | `stock`                   | `1`                                                         | `15` |
+| 6   | `type`                    | `"CAKE"`                                                    | `"bakery"` |
+| 7   | `customizable`            | `false`                                                     | `true` (inside `attributes`) |
+| 8   | `images`                  | `[]` (empty array)                                          | Array with 1 object (has `url`, `isPrimary`, `altText`) |
+| 9   | `additionalImages`        | Not Present                                                 | `["url1", "url2", ...]` (4 images) |
+| 10  | `categoryId`              | `"49a6f261-297e-4466-b912-6a3a071d8222"`                   | `"cat_birthday"` |
+| 11  | `category`                | Full nested object                                          | Not Present (only `categoryId`) |
+| 12  | `flavour`                 | `"Chokolate"`                                               | Not directly (inside `attributes.defaultFlavor`) |
+| 13  | `size`                    | `"1lb"`                                                     | Not directly (inside `attributes.defaultSize`) |
+| 14  | `description`             | `"Description"`                                             | Not Present |
+| 15  | `rating`                  | Not Present                                                 | `{ average: 4.8, totalReviews: 95 }` |
+| 16  | `ratings`                 | `[]`                                                        | Not Present |
+| 17  | `attributes`              | Not Present                                                 | Full object (customizable, sizeOptions, flavorOptions, etc.) |
+| 18  | `specifications`          | Not Present                                                 | `{ weight, serves, shelfLife, storage, calories }` |
+| 19  | `features`                | Inside `cakeFeatures.features` (empty)                     | `["Personalized message", ...]` (Array) |
+| 20  | `cakeFeatures`            | Full object (with empty arrays)                             | Not Present |
+| 21  | `deliveryInfo`            | Not Present                                                 | `["Free delivery...", ...]` (Array) |
+| 22  | `brand`                   | Not Present                                                 | `"UG Cakes"` |
+| 23  | `shopId`                  | Not Present                                                 | `null` |
+| 24  | `status`                  | Not Present                                                 | `"active"` |
+| 25  | `isBestSeller`            | `false`                                                     | Not Present |
+| 26  | `isDeleted`               | `false`                                                     | Not Present |
+| 27  | `soldAmount`              | `0`                                                         | Not Present |
+| 28  | `metaTitle`               | Not Present                                                 | `"Strawberry Topped Cake - Buy Online"` |
+| 29  | `metaDescription`         | Not Present                                                 | Long description for SEO |
+| 30  | `relatedProducts`         | Not Present                                                 | `[1, 3, 6, 7]` |
+| 31  | `createdAt`               | `"2026-04-29T12:36:11.034Z"`                                | `"2026-02-15T00:00:00Z"` |
+| 32  | `updatedAt`               | `"2026-04-29T12:36:11.034Z"`                                | `"2026-03-01T00:00:00Z"` |
+
+### Summary:
+- **Object 2 (Advanced Cake)** is much more complete and suitable for a real e-commerce application.
+- **Object 1 (Simple Cake)** is minimal and good for testing or early development.
