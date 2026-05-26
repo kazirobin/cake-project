@@ -2,13 +2,13 @@ import * as z from "zod";
 import { useParams } from "react-router";
 import { useQuery } from "@tanstack/react-query";
 import useAxios from "@/Hooks/useAxios";
-import Loading from "@/components/common/Loading";
 import { PackageOpen } from "lucide-react";
 import PageHeader from "@/components/DynamicComponents/PageHeader";
 import { DyForm } from "@/components/DynamicComponents/DyForm";
 import { DyFormField } from "@/components/DynamicComponents/DyFormField";
 import DySelect from "@/components/DynamicComponents/DySelect";
 import { toast } from "sonner";
+import FormLoadingSkeleton from "../LoadingUI/FormLoadingSkeleton";
 
 const formSchema = z.object({
   customizable: z.boolean().optional(),
@@ -21,9 +21,9 @@ const formSchema = z.object({
   cakeType: z.string().min(2, "Type is required."),
   flavors: z.string().min(2, "At least one flavor is required."),
   weight: z.string().min(1, "Weight is required."),
-  features: z.string().optional(),
   category: z.string().min(2, "Category is required."),
   stock: z.string().min(0, "Stock must be a positive number."),
+  features: z.string().optional(),
   specificationLabel: z.string().optional(),
   specificationValue: z.string().optional(),
   nutritionLabel: z.string().optional(),
@@ -39,9 +39,9 @@ const defaultValues = {
   cakeType: "",
   flavors: "",
   weight: "",
-  features: "",
   category: "",
   stock: "",
+  features: "",
   specificationLabel: "",
   specificationValue: "",
   nutritionLabel: "",
@@ -70,7 +70,6 @@ const UpdateProduct = () => {
       const { data } = await axios.get(`/cakes/${id}`);
       return data?.data || {};
     },
-    enabled: !!id,
   });
 
   console.log("Product : ", product);
@@ -90,13 +89,27 @@ const UpdateProduct = () => {
         cakeType: product?.type || "",
         flavors: product?.flavour || "",
         weight: product?.size || "",
-        features: product?.cakeFeatures?.features || "",
         category: product.category?.id || "",
         stock: product.stock?.toString() || "",
-        specificationLabel: product?.cakeFeatures?.specificationLabel || "",
-        specificationValue: product?.cakeFeatures?.specificationValue || "",
-        nutritionLabel: product?.cakeFeatures?.nutritionLabel || "",
-        nutritionValue: product?.cakeFeatures?.nutritionValue || "",
+        features: Array.isArray(product?.cakeFeatures?.features)
+          ? product.cakeFeatures.features.join(", ")
+          : "",
+        specificationLabel: Array.isArray(
+          product?.cakeFeatures?.specificationLabel,
+        )
+          ? product.cakeFeatures.specificationLabel.join(", ")
+          : "",
+        specificationValue: Array.isArray(
+          product?.cakeFeatures?.specificationValue,
+        )
+          ? product.cakeFeatures.specificationValue.join(", ")
+          : "",
+        nutritionLabel: Array.isArray(product?.cakeFeatures?.nutritionLabel)
+          ? product.cakeFeatures.nutritionLabel.join(", ")
+          : "",
+        nutritionValue: Array.isArray(product?.cakeFeatures?.nutritionValue)
+          ? product.cakeFeatures.nutritionValue.join(", ")
+          : "",
       }
     : defaultValues;
 
@@ -121,7 +134,7 @@ const UpdateProduct = () => {
 
     const formData = new FormData();
 
-    // Handle images - only add new images
+    // Handle new file uploads - only add new images (File instances)
     const imageArray = Array.isArray(images) ? images : images ? [images] : [];
     if (imageArray.length > 0) {
       imageArray.forEach((image) => {
@@ -131,36 +144,50 @@ const UpdateProduct = () => {
       });
     }
 
-    // Prepare JSON data
+    // Helper function matching backend's toArray logic
+    const toArray = (value) => {
+      if (Array.isArray(value) && value.length > 0) {
+        return value.filter((v) => v && String(v).trim());
+      }
+      if (typeof value === "string" && value.trim()) {
+        return value.split(/\s*,\s*/).filter(Boolean);
+      }
+      return undefined;
+    };
+
+    // Prepare JSON data - send all fields for backend to process
     const jsonData = {
-      customizable,
+      customizable: customizable || false,
       title,
       description,
       price: parseFloat(price) || 0,
       stock: parseInt(stock) || 0,
-      cakeType: cakeType || "",
-      category: category || "",
-      flavors: flavors && flavors.trim() !== "" ? flavors : "",
-      weight: weight && weight.trim() !== "" ? weight : "",
-      features: features && features.trim() !== "" ? features : "",
-      specificationLabel:
-        specificationLabel && specificationLabel.trim() !== ""
-          ? specificationLabel
-          : "",
-      specificationValue:
-        specificationValue && specificationValue.trim() !== ""
-          ? specificationValue
-          : "",
-      nutritionLabel:
-        nutritionLabel && nutritionLabel.trim() !== "" ? nutritionLabel : "",
-      nutritionValue:
-        nutritionValue && nutritionValue.trim() !== "" ? nutritionValue : "",
+      cakeType,
+      category,
+      flavors: typeof flavors === "string" ? flavors : "",
+      weight: typeof weight === "string" ? weight : null,
     };
+
+    // Handle CakeFeatures fields - only include if they have values
+    const specLabel = toArray(specificationLabel);
+    if (specLabel) jsonData.specificationLabel = specLabel;
+
+    const specValue = toArray(specificationValue);
+    if (specValue) jsonData.specificationValue = specValue;
+
+    const featsArray = toArray(features);
+    if (featsArray) jsonData.features = featsArray;
+
+    const nutritLbl = toArray(nutritionLabel);
+    if (nutritLbl) jsonData.nutritionLabel = nutritLbl;
+
+    const nutritVal = toArray(nutritionValue);
+    if (nutritVal) jsonData.nutritionValue = nutritVal;
 
     formData.append("data", JSON.stringify(jsonData));
 
     try {
-      const { data } = await axios.put(`/cakes/update-cake/${id}`, formData);
+      const { data } = await axios.patch(`/cakes/update-cake/${id}`, formData);
 
       const { success, message } = data;
 
@@ -185,7 +212,7 @@ const UpdateProduct = () => {
   }
 
   if (productLoading || categoriesLoading) {
-    return <Loading />;
+    return <FormLoadingSkeleton fieldCount={6} showTextarea={true} />;
   }
 
   if (error) {
