@@ -178,11 +178,11 @@ const UpdateProduct = () => {
     const featsArray = toArray(features);
     if (featsArray) jsonData.features = featsArray;
 
-    const nutritLbl = toArray(nutritionLabel);
-    if (nutritLbl) jsonData.nutritionLabel = nutritLbl;
+    const nutritionLbl = toArray(nutritionLabel);
+    if (nutritionLbl) jsonData.nutritionLabel = nutritionLbl;
 
-    const nutritVal = toArray(nutritionValue);
-    if (nutritVal) jsonData.nutritionValue = nutritVal;
+    const nutritionVal = toArray(nutritionValue);
+    if (nutritionVal) jsonData.nutritionValue = nutritionVal;
 
     formData.append("data", JSON.stringify(jsonData));
 
@@ -198,9 +198,6 @@ const UpdateProduct = () => {
 
       toast.success(message || "Product updated successfully!");
     } catch (error) {
-      console.error("Error response:", error.response?.data);
-      console.error("Error message:", error.message);
-
       const errorMessage =
         error.response?.data?.message ||
         error.response?.data?.error ||
